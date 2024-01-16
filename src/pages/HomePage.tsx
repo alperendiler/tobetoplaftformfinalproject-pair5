@@ -8,7 +8,7 @@ type Props = {}
 export default function HomePage({}: Props) {
   return (
     <>
-    <div className='container'>
+    <div className='container col-md-6 text-center'>
        <Welcome/>    
        <Main/>
   </div>

@@ -7,12 +7,11 @@ import Register from './pages/Register';
 import HomePage from './pages/HomePage';
 import UserProfile from './pages/UserProfile';
 
-
 function App() {
   return (
     <>
-    
     <Navbar/>
+
     
    <Routes>
     <Route path='/' element={<HomePage/>}/>
