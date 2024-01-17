@@ -27,33 +27,18 @@ Areal Alien ❥ 雷克斯
     /* Gradients */
     --gradient: linear-gradient(90deg, hsla(var(--red), 1) 0%, hsla(var(--orange), 1) 12.5%, hsla(var(--yellow), 1) 25%, hsla(var(--green), 1) 37.5%, hsla(var(--teal), 1) 50%, hsla(var(--blue), 1) 62.5%, hsla(var(--blue), 1) 75%, hsla(var(--purple), 1) 87.5%, hsla(var(--pink), 1) 100%);
     /* Sizes */
-    --paragraph: 1.11rem;
     /* misc */
     --transition-main: .175, .685, .32;
     /* Fonts */
-    --font-main: "Poppins";
   }
   *, *::before, *::after {
       box-sizing: inherit;
   }
  
+  
+
   .button-rainbow {
-      border: 1px solid hsl(var(--black));
-      background-color: var(--background);
-      font-size: var(--paragraph);
-      cursor: pointer;
-      outline: none;
-  }
-  .button-rainbow:focus {
-      box-shadow:
-              0 0 0 2px hsl(var(--black)),
-              0 0 0 3px hsl(var(--white));
-      border: 1px solid transparent;
-  }
-  .button-rainbow, .btn-secondary {
-      margin: 0;
       position: relative;
-      letter-spacing: .025em;
       color: hsl(var(--background));
       font-size: var(--paragraph);
       background: var(--gradient);
@@ -61,41 +46,13 @@ Areal Alien ❥ 雷克斯
       border-radius: 5em;
       border: none;
       transform: scaleX(1);
-      transition: transform .3s cubic-bezier(var(--transition-main), 1.275), filter .3s cubic-bezier(var(--transition-main), 1.275), bottom .3s cubic-bezier(var(--transition-main), 1.275), background-position 7.5s cubic-bezier(var(--transition-main), .955);
+      transition: background-position 7.5s cubic-bezier(var(--transition-main), .955);
   }
   
-  .button-rainbow {
-      transition: transform .3s cubic-bezier(var(--transition-main), 1.275), bottom .3s cubic-bezier(var(--transition-main), 1.275), background-position 17.5s cubic-bezier(var(--transition-main), .955);
-  }
-  .button-rainbow, .button-rainbow .btn-secondary {
-      bottom: 0;
-      background-position: 0 50%;
-  }
-  .button-rainbow .btn-secondary {
-      left: 0;
-      width: 100%;
-      position: absolute;
-      filter: blur(1rem);
-      transform: scale3d(.85, .95, 1);
-      transition: transform .3s cubic-bezier(var(--transition-main), 1.275), filter .3s cubic-bezier(var(--transition-main), 1.275), bottom .3s cubic-bezier(var(--transition-main), 1.275), background-position 7.5s cubic-bezier(var(--transition-main), .955), opacity 3s cubic-bezier(var(--transition-main), 1.275);
-      opacity: .5;
-      z-index: -1;
-  }
-  .button-rainbow:focus {
-      outline: none;
-  }
-  .button-rainbow:hover {
-      bottom: 2px;
-      transform: scale3d(1.1, 1.1, 1);
+
+ 
+ 
+  .button-rainbow:hover,:focus {
       background-position: 100% 50%;
       outline: none;
-  }
-  .btn-secondary, .button-rainbow:hover .btn-secondary {
-      bottom: -5px;
-      background-position: 100% 50%;
-      filter: blur(1.6rem);
-      opacity: .8;
-  }
-  .button-rainbow ion-icon {
-      margin: 0 .5em .075em 0;
   }
