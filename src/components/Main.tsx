@@ -11,8 +11,8 @@ export default function Main({}: Props) {
     {
       id: 1,
       title: 'İstanbul Kodluyor Bilgilendirme',
-      status: 'Kabul edildi',
-      description: 'Lorem ipsum dolor sit a',
+      status: 'Kabul edildi', 
+      description: 'Lorem ipsum dolor sit a', 
     }
    
   ];
@@ -70,9 +70,10 @@ export default function Main({}: Props) {
           <div className="card application col-md-6 col-12 mt-2" key={application.id}>
       <div className="card-body ">
         <div className='row'>   
-        <div className="card-title col"><b>{application.title}</b></div>
-        <div className='confirm col'> 
-        {application.status}
+        <div className="card card-title-main col"><b>{application.title}</b></div>
+        <div className=' col confirm-col'> 
+        <span className='confirm'>{application.status}</span>
+       
         </div>
       
       </div>
