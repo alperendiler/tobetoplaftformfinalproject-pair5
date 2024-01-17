@@ -1,0 +1,28 @@
+.footerColor {
+    background-color: #181717 !important;
+    color: white !important;
+}
+
+.text-footer{
+    color: white !important;
+    text-decoration: none;
+    font-size: .875rem;
+    font-family: poppins, sans-serif;
+    margin-bottom: 10px;
+}
+
+footer h5{
+    margin-bottom: 10px;
+}
+
+footer li{
+    margin-bottom: 10px;
+}
+
+svg{
+    margin-right: 10px;
+}
+
+footer{
+    padding-bottom: 75px;
+}
