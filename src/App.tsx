@@ -15,7 +15,7 @@ function App() {
     <Routes>
     <Route path="/" element={<Login/>}/>
     <Route path="/test" element={<Test/>}/>
-    <Route path='kayitOl' element={<Register/>}/>
+    <Route path='kayit-ol' element={<Register/>}/>
     </Routes>
   
   </>

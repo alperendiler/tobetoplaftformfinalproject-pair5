@@ -8,11 +8,11 @@ import { passwordRule } from '../utils/validations/customValidationRules';
 
 
 const Login = () => {
-  interface ProductAddForm {
+  interface LoginForm {
     email:string,
     password:string
   }
-  const initialValues: ProductAddForm = {
+  const initialValues: LoginForm = {
     email:"",
     password:""
   };
@@ -57,24 +57,28 @@ const Login = () => {
 					console.log(values);
 				}}>
                 <Form className='row g-3 '>
-                <div className="col-12">
+                <div className="col-12 mt-3">
                 <FormikInput placeholder="E-Posta" name="email" />
                 </div>
-                <div className="col-12">
+                <div className="col-12 mt-3">
 					<FormikInput placeholder="Şifre" name="password"  />
 				
           </div>
 				
 					<ErrorMessage name="colorId"></ErrorMessage>
 
-					<button type="submit" className="btn btn-primary w-100">
-						Kaydet
+					<button type="submit" className="btn fw-bold btn-login btn-primary w-100">
+						Giriş Yap
 					</button>
+          <div className="col-12 ">
+                      <p className="  mt-3 d-block"> <a className='link-secondary' href="pages-register.html">Şifremi Unuttum</a></p>
+                    </div>
+                    <label><small>Henüz üye değil misin?
+                      <a className="text-decoration-none text-muted fw-bold" href="/kayit-ol"> Kayıt Ol</a>
+                      </small></label>
                       </Form>
                       </Formik>
-                      <div className="col-12 ">
-                      <p className="small mb-0">Don't have account? <a href="pages-register.html">Create an account</a></p>
-                    </div>
+                     
                   </div>
                   
                 </div>

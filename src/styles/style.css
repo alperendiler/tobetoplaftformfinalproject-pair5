@@ -5,6 +5,11 @@
 .login-logo-istanbul{
     width: 200px;
 }
+.btn-login{
+    background-color: rgb(153,51,255) !important  ;
+    border-radius: 20px !important;
+    border: 0px !important;
+}
 .h-100 {
     height: 100%!important;
 }
