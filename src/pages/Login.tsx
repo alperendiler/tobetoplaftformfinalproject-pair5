@@ -13,7 +13,7 @@ const Login = () => {
   };
   return (
     <main>
-      <div className="container">
+      <div className="container ">
         <section className="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
           <div className="container">
             <div className="row justify-content-center">
@@ -70,9 +70,9 @@ const Login = () => {
 
                
 
-<div className="card mb-3">
+<div className="card mb-3 container ">
 
-  <div className="card-body">
+  <div className="card-body ">
   
   <div className="mx-auto text-center col-md-6 col-12" >
     <div className='ik-banner-big h-100'>
@@ -80,8 +80,10 @@ const Login = () => {
 </div>
 
     <span className="greenLine2"></span>
+    <p className='text-blue fw-bold'>Aradığın<span className="quot">&nbsp;“</span>İş<span className="quot">“</span> Burada!</p>
+
     <div className="d-flex w-100 flex-column justify-content-center align-items-center">
-      <button className="btn istanbul-kodluyor-submit-btn d-md-inline-block mt-5 btn-dark">Başvur</button>
+      <button className="btn fw-semibold istanbul-kodluyor-submit-btn d-md-inline-block mt-5 btn-dark">Başvur</button>
       </div>
     </div>
   </div>

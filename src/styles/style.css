@@ -12,15 +12,22 @@
     background-color: #1e0f41 !important;
     color: #0fcdfa !important;
     border-radius: 22px !important;
-    padding: 0px 11px 0px 11px !important;
+    bottom: 22px;  position: relative;
+    padding: 3px 25px 4px 25px !important;
 }
-
+.quot{
+    color: rgb(0, 176, 120);
+}
+.text-blue{
+    font-size: 1.5em!important;
+    color: #110a3a;
+}
 .ik-banner-big {
-    min-height: 300px;
+    min-height: 207px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50%;
-    border-radius: 14px;
+    border-radius: 14px ;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,8 +39,8 @@
     content: "";
     position: absolute;    background-image: url(https://tobeto.com/_next/static/media/dotv.9454a9b6.svg);
 
-    top: 2px;
-    right:  155px;
+    top: 5px;
+    right:  120%;
     display: block;
     width: 3em;
     height: 3em;
@@ -42,8 +49,8 @@
     content: "";
     background-image: url(https://tobeto.com/_next/static/media/doth.d78dd392.svg);
     position: absolute;
-    top: 355px;
-    left: 144px;
+    top: 155%;
+    left: 124%;
     width: 3em;
     background-size: 3em 3em;
     height: 3em;
@@ -55,9 +62,9 @@
     display: block;
     border-bottom: 2.5px solid #00b078!important;
     margin: 2em 0px 4em 0px;
-    bottom: 21px;    position: absolute;
+    bottom:  35% ;    position: absolute;
 
-    width: 200px;
+    width: 50%;
 }
 .login-button{
     border: 1px solid rgb(243, 243, 243) !important;

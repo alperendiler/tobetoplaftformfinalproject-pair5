@@ -41,7 +41,7 @@ export default function Main({}: Props) {
         </div>
         <div className='mt-2 d-flex flex-column justify-content-center px-10 text-center'>
         <p className='fs-4 fw-medium'>Ücretsiz eğitimlerle, geleceğin mesleklerinde sen de yerini al.</p>
-        <p className='fs-2 fw-bold'>Aradığın  <span className="quot">&nbsp;“</span>İş”  Burada!</p>
+        <p className='fs-2 fw-bold'>Aradığın  <span className="quot">&nbsp;“</span>İş<span className="quot">“</span>  Burada!</p>
         </div>
         <div className="card border-light">
 
