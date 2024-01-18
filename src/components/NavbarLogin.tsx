@@ -1,5 +1,5 @@
 import React from 'react'
-import './navbar.css';
+import '../styles/navbar.css';
 import "../styles/btn-rainbow.css"
 
 type Props = {}
