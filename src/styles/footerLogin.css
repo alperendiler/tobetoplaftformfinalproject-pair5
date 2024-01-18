@@ -19,8 +19,8 @@ footer li{
     margin-bottom: 10px;
 }
 
-svg{
-    margin-right: 10px;
+footer svg{
+    margin-right: 10px;/*footer svg değişti 10*/
 }
 
 footer{

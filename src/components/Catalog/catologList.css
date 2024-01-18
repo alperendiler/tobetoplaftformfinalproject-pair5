@@ -1,0 +1,62 @@
+.education-box-new .edubox-img {
+    position: relative;
+    border-radius: 12px;
+    width: 100%;
+    height: auto;
+    z-index: 11;
+}
+img, svg {
+    vertical-align: middle;
+}
+.educard-mobile {
+    margin-bottom: 3em;
+    padding:0.4em!important
+}
+
+.education-box-new .catalog-content {
+    position: absolute;
+    z-index: 12;
+    background: rgba(65,65,65,.5);
+    -webkit-backdrop-filter: blur(21.5px);
+    backdrop-filter: blur(21.5px);
+    width: 96%;
+    bottom: 0;
+    min-height: 100px;
+    border-radius: 12px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all .2s ease-in-out;
+}
+.education-box-new .catalog-content .property {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+.education-box-new .catalog-content .property .pro {
+    color: #fff;
+    font-size: 12px;
+    margin-left: 4px;
+    font-weight: 400;
+}
+.education-box-new .catalog-content .name {
+    color: #fff;
+    font-size: 1em;
+    font-weight: 600;
+    margin-top: 0.5em;
+}
+.entry-btn {
+    position: absolute;
+    top: 8px;
+    right: 0;
+    z-index: 12;
+    margin-top: 8px;
+    cursor: pointer;
+}
+.entry-btn:before {
+    content: url(https://tobeto.com/entry.svg);
+    display: flex;
+    margin-right: 8px;
+    margin-left: 8px;
+}

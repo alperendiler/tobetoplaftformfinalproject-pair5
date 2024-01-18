@@ -35,7 +35,7 @@ const Login = () => {
   });
 
   return (
-    
+
     
     <main>
       <div className="container ">
@@ -73,7 +73,7 @@ const Login = () => {
 					<button type="submit" className="btn fw-bold btn-login btn-primary w-100">
 						Giriş Yap
 					</button>
-          <div className="col-12 ">
+<div className="col-12 ">
                       <p className="  mt-3 d-block"> <a className='link-secondary' href="pages-register.html">Şifremi Unuttum</a></p>
                     </div>
                     <label><small>Henüz üye değil misin?
@@ -81,7 +81,7 @@ const Login = () => {
                       </small></label>
                       </Form>
                       </Formik>
-                     
+                      
                   </div>
                   
                 </div>

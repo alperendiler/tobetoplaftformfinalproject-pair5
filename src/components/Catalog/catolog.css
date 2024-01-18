@@ -1,0 +1,81 @@
+.search-section {
+    background-image: url(https://tobeto.com/_next/static/media/edu-banner2.8923a47d.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 0;
+    min-height: 300px;
+    padding: 3.5em;
+}
+
+.search-section .search-container {
+    background: rgba(0,0,0,.4);
+    border-radius: 16px;
+    padding: 2em;
+    min-width: 50%;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5em;
+}
+.search-section .search-container .education-count span:first-child {
+    font-weight: 700;
+    font-size: 3em;
+}
+.search-box input {
+    background: none;
+    border: none;
+    padding: 0;
+    outline: none;
+    font-size: 16px;
+}
+.search-section .search-container .search-box {
+    background: #fff;
+    border-radius: 100px;
+}
+.search-section .search-container .search-box button {
+    background: transparent;
+    border: none;
+}.search-box {
+    background: #e2e0f8;
+    border-radius: 9px;
+    padding: 1px 1em;
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+.light {
+    background: #fff;
+    box-shadow: 0 0 11px rgba(0,0,0,.25);
+    border-radius: 12px;
+    height: -moz-fit-content;
+    height: fit-content;
+}
+.light .filter {
+    padding-top: 18px;
+}
+.light .filter h2 {
+    font-size: 18px;
+    color: #181818;
+    font-weight: 600;
+}
+
+.catolog-filter-btn{
+    border: 2px solid rgb(153, 51, 255) !important;
+    border-radius: 50px !important;
+    padding: 8px 16px ;
+    font-size: large;
+    text-align: left;
+    background-color: white;
+}
+.catolog-filter-btn:focus{
+    border: 2px solid rgb(153, 51, 255);
+    border-radius: 50px;
+    padding: 8px 16px;
+    color: white;
+    font-size: large ;
+    text-align: left;
+    background-color: rgb(153, 51, 255);
+}
