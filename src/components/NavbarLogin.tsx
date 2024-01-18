@@ -7,7 +7,7 @@ type Props = {}
 export default function NavbarLogin({}: Props) {
   return (
     <>
-    <nav className="navbar    navbar-expand-xxl  bg-black ">
+    <nav className="navbar  fixed-top  navbar-expand-xxl  bg-black ">
   <div className="container-fluid">
   <button className="navbar-toggler  d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
@@ -18,8 +18,7 @@ export default function NavbarLogin({}: Props) {
     
 
 
-      
-{/* test */}
+
 
 
 

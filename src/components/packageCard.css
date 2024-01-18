@@ -1,0 +1,31 @@
+.profileCard{
+    margin-top: 40px;
+    padding: 20px;
+    border: 2px black;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    background-image: linear-gradient(to top right, rgb(233, 215, 242),#6610f2);
+    color:white;
+    min-height: 280px;
+    
+}
+
+
+.cardbutton{
+    background-color: #9933FF !important;
+    color:white;
+    padding: 5px 10%; 
+    max-width: 200px;
+    width: 100%;  
+}
+
+.profileCard h3{
+    padding-top: 60px;
+    padding-bottom: 60px;
+    margin-bottom: 10px;
+}
+
+.cardContainer{
+    padding: 0px 50px;
+}
