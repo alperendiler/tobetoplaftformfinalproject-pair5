@@ -1,5 +1,5 @@
 import React from 'react';
-import "./packageCard.css"
+import "../styles/packageCard.css"
 
 type Props = {
     title: string; 
