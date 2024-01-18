@@ -8,6 +8,7 @@ import HomePage from './pages/HomePage';
 import FooterLogin from './components/FooterLogin';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
+import UserProfile from './pages/UserProfile';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
 </Route>
     <Route path='kayit-ol' element={<Register/>}/>
     <Route path='home-page' element={<div><Navbar/><HomePage/><Footer/></div>}/>
+    <Route path='user-profile' element={<div><Navbar/><UserProfile/><Footer/></div>}/>
     </Routes>
   
   </>
