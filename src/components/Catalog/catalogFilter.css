@@ -22,6 +22,10 @@
     align-items: center;
 }
 
+.form-check-input:checked {
+    background-color: #93f !important;
+    border-color: #93f !important;
+}
 .accordion-button:focus {
     border: 2px solid rgb(153, 51, 255) !important;
     border-radius: 50px !important;
@@ -30,4 +34,11 @@
     text-align: left !important;
     background-color: rgb(153, 51, 255) !important;
 }
-
+.filter  ul li {
+    list-style-type: none!important;
+    margin-bottom: 8px;
+    
+}
+.filter ul{
+    padding-left: 4% !important;
+}

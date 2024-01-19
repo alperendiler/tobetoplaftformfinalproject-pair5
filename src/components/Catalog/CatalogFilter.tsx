@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "./catologFilter.css"
+import "./catalogFilter.css"
 interface FilterOption {
   label: string;
   value: string;
@@ -42,10 +42,10 @@ const Filter: React.FC<FilterProps> = ({ title, options }) => {
               {options
                 .filter((option) => option.label.toLowerCase().includes(search.toLowerCase()))
                 .map((option, index) => (
-                  <li key={index}>
+                  <li className="" key={index}>
                     <a>
                       <input
-                        className="form-check-input"
+                        className="form-check-input "
                         type="radio"
                         name={title.toLowerCase()}
                         value={option.value}

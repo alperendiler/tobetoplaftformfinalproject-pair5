@@ -9,7 +9,7 @@ import FooterLogin from './components/FooterLogin';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import UserProfile from './pages/UserProfile';
-import Catalog from './pages/Catolog';
+import Catalog from './pages/Catalog';
 
 function App() {
   return (

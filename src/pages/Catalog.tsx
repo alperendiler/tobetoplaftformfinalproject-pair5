@@ -1,7 +1,7 @@
 import React from 'react'
-import "../components/Catalog/catolog.css"
-import Filters from '../components/Catalog/CatologFilter'
-import CatologList from '../components/Catalog/CatologList'
+import "../components/Catalog/catalog.css"
+import Filters from '../components/Catalog/CatalogFilter'
+import CatologList from '../components/Catalog/CatalogList'
 import Pagination from '../components/Pagination'
 type Props = {}
 
