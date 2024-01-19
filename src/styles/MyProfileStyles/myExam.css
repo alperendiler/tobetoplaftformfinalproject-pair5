@@ -1,0 +1,4 @@
+.examResult:hover{
+    border:2px solid #93f;
+    box-shadow:2px 8px 10px rgb(209, 182, 215) !important
+}
