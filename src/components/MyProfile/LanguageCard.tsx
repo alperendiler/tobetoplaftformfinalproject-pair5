@@ -14,8 +14,8 @@ function LanguageCard({ language }: LanguageCardProps) {
 
   return (
     <div>
-      <div className="row rounded-pill shadow mb-3 text-muted bg-white ">
-        <div className="col-2">
+      <div className="row rounded-pill shadow mb-3 text-muted bg-white">
+        <div className="col-2 pt-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="25"
@@ -31,7 +31,7 @@ function LanguageCard({ language }: LanguageCardProps) {
           <div>{title}</div>
           <div>{level}</div>
         </div>
-        <div className="col-2">
+        <div className="col-2 pt-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="25"
