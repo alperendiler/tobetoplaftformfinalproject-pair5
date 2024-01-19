@@ -20,7 +20,7 @@ const Filter: React.FC<FilterProps> = ({ title, options }) => {
     <div className=" " id={`accordion${title}`}>
       <div className="">
         <h2 className="" id={`heading${title}`}>
-          <button className="accordion-button fw-bold " type="button" data-bs-toggle="collapse" data-bs-target={`#collapse${title}`} aria-expanded="false" aria-controls={`collapse${title}`}>
+          <button className="accordion-button fw-bold " type="button" data-bs-toggle="collapse" data-bs-target={`#collapse${title}`} aria-expanded="true" aria-controls={`collapse${title}`}>
             <div className="title w-100">
               <span>{title}</span>
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -31,9 +31,9 @@ const Filter: React.FC<FilterProps> = ({ title, options }) => {
         </h2>
         <div id={`collapse${title}`} className="accordion-collapse collapse" aria-labelledby={`heading${title}`} data-bs-parent={`#accordion${title}`}>
           <div className="accordion-body filter-accordion-body">
-            <input
+            <input 
               type="text"
-              className="form-control mt-5 mb-3"
+              className="form-control fw-medium mb-3"
               placeholder="Arama"
               value={search}
               onChange={(e) => setSearch(e.target.value)}

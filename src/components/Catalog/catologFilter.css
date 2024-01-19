@@ -1,12 +1,19 @@
-.light .filter .accordion-button[aria-expanded=false] {
-    background-color: rgba(77,64,90,.69)!important;
+.light .filter .accordion-button  {
+    background-color: rgba(77,64,90,.69) !important;
     border-radius: 50px !important;
     border: none;
     padding: 0.5em 1em;
     color: white;
 
 }
-
+ .title svg path {
+    stroke: #fff;
+}
+.form-control {
+    padding: 0.875rem 1.5rem !important;
+    font-size: .875rem !important;
+    line-height: 1.25 !important;
+}
 .filter .title {
     justify-content: space-between;
     display: flex;
@@ -19,8 +26,8 @@
     border: 2px solid rgb(153, 51, 255) !important;
     border-radius: 50px !important;
     padding: 8px 16px !important;
-    color: white !important;
     font-weight: 600 !important;
     text-align: left !important;
     background-color: rgb(153, 51, 255) !important;
 }
+
