@@ -15,13 +15,6 @@ export default function NavbarLogin({}: Props) {
     <a className="navbar-brand" href="/">
       <img className="navbar-logo" src='https://tobeto.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FTebeto-logo-yatay-beyaz.8c2d6927.png&w=384&q=75'/>
       </a>
-    
-
-
-
-
-
-
       <ul className="d-none d-xxl-flex navbar-nav">
       <li className="nav-item nav-active  fw-bold flex-grow-5 me-4"><a className="nav-link text-light nav-active" href="#">  Biz Kimiz?</a></li>
       <li className="nav-item fw-bold me-4" ><a className="nav-link text-light c-gray-3" href="#">Neler Sunuyoruz?</a></li>

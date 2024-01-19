@@ -1,22 +1,27 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import  '../assets/vendor/bootstrap/css/bootstrap.min.css';
-import  '../assets/vendor/boxicons/css/boxicons.min.css';
-import   '../assets/vendor/quill/quill.snow.css';
-import  '../assets/vendor/quill/quill.bubble.css';
-import '../assets/vendor/remixicon/remixicon.css';
-import '../assets/vendor/simple-datatables/style.css';
-import '../assets/img/apple-touch-icon.png';
-import  '../assets/css/style.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import "../assets/vendor/bootstrap/css/bootstrap.min.css";
+import "../assets/vendor/boxicons/css/boxicons.min.css";
+import "../assets/vendor/quill/quill.snow.css";
+import "../assets/vendor/quill/quill.bubble.css";
+import "../assets/vendor/remixicon/remixicon.css";
+import "../assets/vendor/simple-datatables/style.css";
+import "../assets/img/apple-touch-icon.png";
+import "../assets/css/style.css";
+import ProfileCard from "../components/MyProfile/ProfileCard";
 
-type Props = {}
+type Props = {};
 
 export default function UserProfile({}: Props) {
   return (
     <>
-    
-  
-    <main id="main" className="main">
+      <div className="container">
+        <div className="col-4">
+          <ProfileCard />
+        </div>
+      </div>
+
+      {/* <main id="main" className="main">
 
 <div className="pagetitle">
   <h1>Profile</h1>
@@ -303,10 +308,7 @@ export default function UserProfile({}: Props) {
   </div>
 </section>
 
-</main>
+</main> */}
     </>
- 
-
-    
-  )
+  );
 }
