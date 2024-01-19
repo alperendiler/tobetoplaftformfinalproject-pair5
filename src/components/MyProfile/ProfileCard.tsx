@@ -4,8 +4,8 @@ import "../../styles/MyProfileStyles/profilePicture.css";
 type Props = {};
 function ProfileCard({}: Props) {
   return (
-    <div className="p-5">
-      <div className="shadow mb-5 bg-white rounded">
+    <div>
+      <div className="shadow mb-3 bg-white rounded">
         <div className="profilePicture">
           <div>
             <img

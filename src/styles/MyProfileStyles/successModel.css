@@ -1,0 +1,46 @@
+.eyeLink{
+    text-decoration: none;
+    color: black !important;
+}
+
+p{
+    font-weight: normal;
+    margin-bottom: 6px !important;
+}
+
+.badge{
+    min-width: 33px !important;
+    margin-right: 5px;
+}
+
+.colorgrey{
+    background-color: #85a0a9;
+}
+
+.colorgreen{
+    background-color: #217925;
+}
+
+.coloryellow{
+    background-color: #eec272;
+}
+
+.colorpurple{
+    background-color: #6667ab;
+}
+
+.colorpink{
+    background-color: #e288b6;
+}
+
+.colorbrown{
+    background-color: #b38f6a;
+}
+
+.colorred{
+    background-color: #d75078;
+}
+
+.colororange{
+    background-color: #d77e6f;
+}
