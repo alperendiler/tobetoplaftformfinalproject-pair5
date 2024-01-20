@@ -1,0 +1,13 @@
+.profilePicture{
+    background-color: #555bce;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.profileImage{
+    opacity: 50%;  
+    height: 150px;
+    weight: 150px;
+}
