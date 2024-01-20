@@ -10,6 +10,8 @@ import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import UserProfile from './pages/UserProfile';
 import Catalog from './pages/Catalog';
+import Calendar from './pages/Calendar';
+import Evaluations from './pages/Evaluations';
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
     <Route path='home-page' element={<div><Navbar/><HomePage/><Footer/></div>}/>
     <Route path='user-profile' element={<div><Navbar/><UserProfile/><Footer/></div>}/>
     <Route path='catalog' element={<div><Navbar/><Catalog /><Footer/></div>}/>
+    <Route path='calendar' element={<div><Navbar/><Calendar /><Footer/></div>}/>
+    <Route path='evalations' element={<div><Navbar/><Evaluations /><Footer/></div>}/>
 
     </Routes>
   
