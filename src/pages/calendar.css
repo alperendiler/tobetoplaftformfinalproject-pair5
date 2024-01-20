@@ -1,0 +1,61 @@
+.light-calendar .calendar-bg, .light-calendar .filter-top {
+    border-radius: 12px;
+    background: #fff;
+    padding: 2em 1em;
+}
+
+.fc-col-header-cell-cushion{
+    color: #828282  !important;
+    font-weight: 400!important;
+   
+}
+.fc .fc-daygrid-day-number {
+    margin-right: auto;
+    text-decoration: none;
+    color: #282828;
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.fc-scrollgrid a {
+    text-decoration: none;
+}
+.fc .fc-toolbar-title {
+  color: #828282 !important ;
+}
+.light-calendar .fc-button-group {
+    border: 2px solid #828282;    
+
+    border-radius: 20px;
+}
+.fc-timeGridWeek-button,.fc-dayGridMonth-button,.fc-timeGridDay-button{
+    background: white !important;
+    border-radius: 30px !important;
+    border: 0px  solid #828282 !important ;
+    color: #828282 !important;
+}
+
+.fc .fc-prev-button{
+    background: white;
+    border-radius: 30px;;
+    border: 0px  solid #828282 ;
+}
+.fc .fc-next-button{
+    background: white;
+    border-radius: 30px;;
+    border: 0px;
+}
+.fc-icon-chevron-left::before {
+    color: #828282;
+}
+.fc-icon-chevron-right::before {
+    color: #828282 ;
+}
+.fc-today-button {
+    background-color: rgb(255, 255, 255) !important;
+    color: #828282 !important;
+    font-size: large !important;
+    border-radius: 30px !important;
+    border: 2px solid #828282 !important;   
+
+}

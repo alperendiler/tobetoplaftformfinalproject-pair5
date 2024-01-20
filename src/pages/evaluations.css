@@ -1,0 +1,140 @@
+.evaluation-card {
+    min-height: 300px;
+    -webkit-backdrop-filter: blur(40px);
+    backdrop-filter: blur(40px);
+    border-radius: 0 30px 40px 40px;
+    padding: 2em 10%;
+    background: rgba(31,31,71,.6);
+    box-shadow: 0 40px 80px rgba(24,32,79,.25), inset 0 0 0 0.5px hsla(0,0%,100%,.5);
+    background: linear-gradient(209.21deg,#3c0b8c 13.57%,#e3a6fe 98.38%)!important;
+    z-index: 1;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.btn-evaluation {
+    border-radius: 30px !important;
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #9933ff !important;
+    --bs-btn-border-color: #93f;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #822bd9;
+    --bs-btn-hover-border-color: #7a29cc;
+    --bs-btn-focus-shadow-rgb: 168,82,255;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #7a29cc;
+    --bs-btn-active-border-color: #7326bf;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #93f;
+    --bs-btn-disabled-border-color: #93f;
+}
+.evaluation-container{
+    max-width: 570px !important;
+}
+.mt-8 {
+    margin-top: 2rem!important;
+}
+.container, .container-lg, .container-md, .container-sm, .container-xl { /* bu satır bakılcak*/
+    max-width: 1140px !important;
+}   
+.evaluation-card1 {
+    max-width: 546px;
+    min-height: 376px;
+    -webkit-backdrop-filter: blur(40px);
+    backdrop-filter: blur(40px);
+    border-radius: 0 30px 40px 40px;
+    padding: 2em 10%;
+    background: rgba(31,31,71,.6);
+    box-shadow: 0 40px 80px rgba(24,32,79,.25), inset 0 0 0 0.5px hsla(0,0%,100%,.5);
+    background: linear-gradient(209.21deg,#1d0b8c 13.57%,#bda6fe 98.38%)!important;
+    z-index: 1;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.evaluation-card1 span {
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.5em;
+    color: #fff;
+}
+.evaluation-card1 p {
+    text-align: center;
+    width: 75%;
+    color: #fff;
+    font-size: 1.25em;
+}
+.evaluation-card-slim {
+    -webkit-backdrop-filter: blur(40px);
+    backdrop-filter: blur(40px);
+    max-width: 546px;
+    min-height: 64px;
+    max-height: 64px;
+    padding: 8px 16px;
+    border-radius: 50px;
+    background: rgba(31,31,71,.6);
+    box-shadow: 0 40px 80px rgba(24,32,79,.25), inset 0 0 0 0.5px hsla(0,0%,100%,.5);
+    background: linear-gradient(209.21deg,#1d0b8c 13.57%,#bda6fe 98.38%)!important;
+    z-index: 1;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+.platformIcon:before {
+    content: "";
+    background-image: url(https://tobeto.com/platform-icon.png);
+    display: flex;
+    background-size: 3em 3em;
+    display: inline-block;
+    width: 3em;
+    height: 3em;
+    margin-top: 6px;
+}
+
+
+.gradient-line3 {
+    background: linear-gradient(180deg,#93f,#953dac 27.08%,#fff);
+    width: 12px;
+    height: 180px;
+    margin: 0 auto;
+}
+
+.evaluation-card4 {
+    min-height: 377px;
+    -webkit-backdrop-filter: blur(40px);
+    backdrop-filter: blur(40px);
+    border-radius: 0 30px 40px 40px;
+    padding: 2em 0;
+    background: rgba(31,31,71,.6);
+    box-shadow: 0 40px 80px rgba(24,32,79,.25), inset 0 0 0 0.5px hsla(0,0%,100%,.5);
+    background: linear-gradient(109.6deg,#ad1deb 11.2%,#6e72fc 91.1%);
+    z-index: 1;
+    border: none;
+    align-items: center;
+}
+.evaluation-card4 span {
+    text-align: center ;
+    
+    font-weight: 600;
+    font-size: 1.5em;
+    color: #fff;
+}
+.evaluation-card4 p {
+    width: 75%;
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+}
+.evaluation-card4, .equal-box {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}

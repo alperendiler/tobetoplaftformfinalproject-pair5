@@ -1,5 +1,6 @@
 import React from 'react'
 import '../styles/navbar.css';
+import { Link } from 'react-router-dom';
 
 type Props = {}
 
@@ -17,12 +18,12 @@ export default function Navbar({}: Props) {
       </a>
    
       <ul className="d-none d-xxl-flex navbar-nav">
-      <li className="nav-item nav-active  fw-bold flex-grow-5 me-4"><a className="nav-link nav-active" href="#">Ana Sayfa</a></li>
-      <li className="nav-item fw-bold me-4" ><a className="nav-link c-gray-3" href="#">Profilim</a></li>
-      <li className="nav-item fw-bold me-4"><a className="nav-link c-gray-3" href="#">Değerlendirmeler</a></li>
-      <li className="nav-item fw-bold me-4"><a className="nav-link c-gray-3" href="/catalog">Katalog</a></li>
-      <li className="nav-item fw-bold me-4"><a className="nav-link c-gray-3" href="#">Takvim</a></li>
-      <li className="nav-item fw-bold me-4"><a className="nav-link c-gray-3" href="#">İstanbul Kodluyor</a></li>
+      <li className="nav-item nav-active  fw-bold flex-grow-5 me-4"><Link className="nav-link nav-active" to="/home-page">Ana Sayfa</Link></li>
+      <li className="nav-item fw-bold me-4" ><Link className="nav-link c-gray-3" to="/">Profilim</Link></li>
+      <li className="nav-item fw-bold me-4"><Link className="nav-link c-gray-3" to="/evalations">Değerlendirmeler</Link></li>
+      <li className="nav-item fw-bold me-4"><Link className="nav-link c-gray-3" to="/catalog">Katalog</Link></li>
+      <li className="nav-item fw-bold me-4"><Link className="nav-link c-gray-3" to="/calendar">Takvim</Link></li>
+      <li className="nav-item fw-bold me-4"><Link className="nav-link c-gray-3" to="#">İstanbul Kodluyor</Link></li>
 
     </ul>
     <div className="btn-group navbar-text">

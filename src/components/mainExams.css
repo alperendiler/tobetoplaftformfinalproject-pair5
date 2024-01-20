@@ -1,0 +1,68 @@
+.cv-box {
+    background: #fff;
+    box-shadow: 0 7px 29px rgba(0,0,0,.13);
+    border-radius: 12px;
+    margin-top: 1em;
+}
+.cv-padding {
+    padding: 22px;
+}
+.exams {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1em;
+    gap: 1em;
+}
+.exams .exam-card {
+    position: relative;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 1px 15px 1px rgba(0,0,0,.25);
+    display: flex !;
+    flex-direction: column;
+    gap: 1em;
+    padding: 8px 14px;
+    transition: .3s;
+}
+.exams .exam-card .exam-header .exam-name {
+    font-weight: 600;
+    text-align: start;
+    font-size: 1em;
+}
+.exams .exam-card .status-done:before {
+    content: "";
+    background-image: url(https://tobeto.com/_next/static/media/done-purple.b4443456.svg);
+    width: 1.5em;
+    height: 1.5em;
+    display: inline-block;
+    vertical-align: middle;
+    background-size: 1.5em 1.5em;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+.status-done{
+    position: relative;
+    left: 47%;
+    bottom: 70%;
+}
+.exams .exam-card .exam-header .lesson-name {
+    font-weight: 500;
+    font-size: 14px;
+
+    color: #828282;
+}
+.exams .exam-card .exam-details .exam_time {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 600;
+}
+.exams .exam-card .exam-details .exam_time:before {
+    content: "";
+    background-image: url(https://tobeto.com/_next/static/media/countdown.458879a2.svg) ;
+    background-repeat: no-repeat;
+    background-size: 1.2em 1.2em;
+    width: 1.2em;
+    height: 1.2em;
+    display: block;
+}
