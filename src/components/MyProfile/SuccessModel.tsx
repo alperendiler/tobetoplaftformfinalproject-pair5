@@ -7,8 +7,8 @@ type Props={}
 const SuccessModel = ({}:Props) => {
   return (
     <div>
-      <div className="row shadow mb-5 bg-white rounded p-3">
-        <div className="col-11 fw-bold h5">Tobeto İşte Başarı Modelim</div>
+      <div className="row shadow mb-3 bg-white rounded p-3">
+        <div className="col-md-11 fw-bold h5">Tobeto İşte Başarı Modelim</div>
         <div className="col-1">
           <a href="#" className="eyeLink">
             <svg

@@ -16,6 +16,7 @@ import MyCertificate from "../components/MyProfile/MyCertificate";
 import MyMedia from "../components/MyProfile/MyMedia";
 import SuccessModel from "../components/MyProfile/SuccessModel";
 import MyExam from "../components/MyProfile/MyExam";
+import MyBadge from "../components/MyProfile/MyBadge";
 
 type Props = {};
 
@@ -54,7 +55,7 @@ export default function UserProfile({}: Props) {
           </span>
         </div>
         <div className="row">
-          <div className="col-4">
+          <div className="col-md-4 col-12">
             <ProfileCard />
             <AboutMe />
             <MyCompetence />
@@ -62,9 +63,10 @@ export default function UserProfile({}: Props) {
             <MyCertificate />
             <MyMedia />
           </div>
-          <div className="col-8">
+          <div className="col-md-8 col-12">
             <SuccessModel />
             <MyExam/>
+            <MyBadge/>
           </div>
         </div>
       </div>

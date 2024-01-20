@@ -12,7 +12,7 @@ function MyMedia() {
     {
       mediaType: "instagram",
       url: "https://www.instagram.com/",
-      imageUrl: "https://png.pngtree.com/png-clipart/20230401/original/pngtree-three-dimensional-instagram-icon-png-image_9015419.png",
+      imageUrl: "https://tobeto.com/cv-insta.svg",
     },
     {
       mediaType: "github",
