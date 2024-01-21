@@ -27,6 +27,7 @@ interface PersonalInformationForm {
 
 export default function PersonalInformation({}: Props) {
   const [value, setValue] = useState<string | undefined>(undefined);
+  const [startDate, setStartDate] = useState(new Date());
 
   const initialValues: PersonalInformationForm = {
     name: "",
@@ -110,7 +111,11 @@ export default function PersonalInformation({}: Props) {
                   </div>
                   <div className="col-12 col-md-6">
                     <FormikInput name="name" label="Soyadınız*" />
-
+                    <div className="mb-3">
+                    <label className="form-label">Doğum Tarihiniz*</label>
+                    <br/>
+                    <DatePicker selected={startDate} onChange={(date: Date) => setStartDate(date)} />
+                    </div>        
                   </div>
                 </div>
 
