@@ -17,6 +17,7 @@ import MyMedia from "../components/MyProfile/MyMedia";
 import SuccessModel from "../components/MyProfile/SuccessModel";
 import MyExam from "../components/MyProfile/MyExam";
 import MyBadge from "../components/MyProfile/MyBadge";
+import MyActivityMap from "../components/MyProfile/MyActivityMap";
 
 type Props = {};
 
@@ -67,6 +68,7 @@ export default function UserProfile({}: Props) {
             <SuccessModel />
             <MyExam/>
             <MyBadge/>
+            <MyActivityMap/>
           </div>
         </div>
       </div>
