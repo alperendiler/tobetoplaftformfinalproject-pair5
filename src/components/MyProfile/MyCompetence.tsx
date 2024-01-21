@@ -1,7 +1,19 @@
-import React from 'react'
+import React from 'react';
+import CompetenceCard from './CompetenceCard';
 
-type Props = {}
-function MyCompetence({}:Props) {
+
+type Competence = {
+  title: string;
+};
+function MyCompetence() {
+  const userCompetences: Competence[] = [
+    {
+      title: 'C#',
+    },
+    {
+      title: 'SQL',
+    },
+  ];
   return (
     <div>
       <div className='shadow mb-3 bg-white rounded p-3'>
@@ -10,7 +22,9 @@ function MyCompetence({}:Props) {
         </div>
         <hr/>
         <div>
-          Henüz bir yetkinlik eklemedin.
+        {userCompetences.map((competence, index) => (
+            <CompetenceCard key={index} competence={competence} />
+          ))}
         </div>
       </div>
     </div>

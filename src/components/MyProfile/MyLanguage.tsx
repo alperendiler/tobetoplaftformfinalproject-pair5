@@ -20,7 +20,7 @@ function MyLanguage() {
 
   return (
     <div>
-      <div className="shadow mb-5 bg-white rounded p-3">
+      <div className="shadow mb-3 bg-white rounded p-3">
         <div className="fw-bold h5">Yabancı Dillerim</div>
         <hr />
         <div className="p-2">
