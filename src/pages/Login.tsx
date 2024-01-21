@@ -63,7 +63,7 @@ const Login = () => {
                 <div className="col-12 mt-3">
                 <FormikInput placeholder="E-Posta" name="email" />
                 </div>
-                <div className="col-12 mt-3">
+                <div className="col-12 mt-2">
 					<FormikInput placeholder="Şifre" name="password"  />
 				
           </div>
@@ -74,7 +74,7 @@ const Login = () => {
 						Giriş Yap
 					</button>
 <div className="col-12 ">
-                      <p className="  mt-3 d-block"> <a className='link-secondary' href="pages-register.html">Şifremi Unuttum</a></p>
+                      <p className="  mt-2 d-block"> <a className='link-secondary' href="pages-register.html">Şifremi Unuttum</a></p>
                     </div>
                     <label><small>Henüz üye değil misin?
                       <a className="text-decoration-none text-muted fw-bold" href="/kayit-ol"> Kayıt Ol</a>

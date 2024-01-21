@@ -12,6 +12,7 @@ import UserProfile from './pages/UserProfile';
 import Catalog from './pages/Catalog';
 import Calendar from './pages/Calendar';
 import Evaluations from './pages/Evaluations';
+import ExamDetail from './components/ExamDetail';
 
 function App() {
   return (

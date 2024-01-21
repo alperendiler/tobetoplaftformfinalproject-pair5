@@ -62,19 +62,42 @@ export default function Main({}: Props) {
             <button className="nav-link link-secondary" id="contact-tab" data-bs-toggle="tab" data-bs-target="#bordered-contact" type="button" role="tab" aria-controls="surveys" aria-selected="false">Anketlerim</button>
           </li>
         </ul>
+     
+
+      {/*}  <div className="col-md-6 col-12 mt-2">
+      <div className={`status-card ${isFormAccepted ? 'status_accepted' : ''}`}>
+        <span className="form_name">{formName}</span>
+        <span className="form_status"></span>
+        <span className="pull_back"></span>
+        <span className="form_name">Bilgilendirme</span>
+        <div>
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <i className={`fa fa-check fa-sm`} aria-hidden="true" style={{ color: 'green', marginRight: '5px' }}></i>
+              <span className="form_date">{formDate}</span>
+            </div>
+          </div>
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <i className={`fa fa-check fa-sm`} aria-hidden="true" style={{ color: 'green', marginRight: '5px' }}></i>
+              <span className="form_date">{formDate}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>*/}
+
         <div className="tab-content pt-2" id="borderedTabContent">
           <div className="tab-pane fade show active" id="bordered-home" role="tabpanel" aria-labelledby="applications-tab">
-          
+          <div className='row' >  
           {applications && applications.length > 0 ? (
   applications.map((application) => (
           <div className="card application col-md-6 col-12 mt-2" key={application.id}>
-      <div className="card-body ">
-        <div className='row'>   
+      <div className="status-card status_accepted">
         <div className="card card-title-main col"><b>{application.title}</b></div>
         <div className=' col confirm-col'> 
         <span className='confirm'>{application.status}</span>
        
-        </div>
       
       </div>
       <div className="card-description col-6"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="green" className="bi bi-check" viewBox="0 0 16 16">
@@ -87,7 +110,7 @@ export default function Main({}: Props) {
       ) : (
         <p>Başvurular bulunamadı.</p>
       )}
-    
+    </div>
           
 
           </div>

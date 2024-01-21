@@ -11,7 +11,7 @@ export default function HomePage({}: Props) {
   return (
     <>
     <div className='container col-md-8 text-center'>
-       
+    
      <Welcome/>
      <Main/>
      <MainExams/>
