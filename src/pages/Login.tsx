@@ -40,59 +40,36 @@ const Login = () => {
               <div className="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
                 <div className="card mb-3">
                   <div className="card-body">
-                    <div className="d-flex justify-content-center py-4  d-flex align-items-center w-auto">
-                      <img
-                        className="login-logo"
-                        src="https://tobeto.com/_next/static/media/tobeto-logo.29b55e1c.svg"
-                        alt=""
-                      />
+
+                  <div className="d-flex justify-content-center py-4  d-flex align-items-center w-auto" >
+                    <img className='login-logo' src="https://tobeto.com/_next/static/media/tobeto-logo.29b55e1c.svg" alt="" />
+                </div>
+                <Formik
+				validationSchema={validationSchema}
+				initialValues={initialValues}
+				onSubmit={values => {
+					console.log(values);
+				}}>
+                <Form className='row g-3 '>
+                <div className="col-12 mt-3">
+                <FormikInput placeholder="E-Posta" name="email" />
+                </div>
+                <div className="col-12 mt-2">
+					<FormikInput placeholder="Şifre" name="password"  />
+				
+          </div>
+				
+					<ErrorMessage name="colorId"></ErrorMessage>
+
+					<button type="submit" className="btn fw-bold btn-login btn-primary w-100">
+						Giriş Yap
+					</button>
+<div className="col-12 ">
+                      <p className="  mt-2 d-block"> <a className='link-secondary' href="pages-register.html">Şifremi Unuttum</a></p>
                     </div>
-                    <Formik
-                      validationSchema={validationSchema}
-                      initialValues={initialValues}
-                      onSubmit={(values) => {
-                        console.log(values);
-                      }}
-                    >
-                      <Form className="row g-3 ">
-                        <div className="col-12 mt-3">
-                          <FormikInput placeholder="E-Posta" name="email" />
-                        </div>
-                        <div className="col-12 mt-3">
-                          <FormikInput placeholder="Şifre" name="password" />
-                        </div>
-
-                        <ErrorMessage name="colorId"></ErrorMessage>
-
-                        <button
-                          type="submit"
-                          className="btn fw-bold btn-login btn-primary w-100"
-                        >
-                          Giriş Yap
-                        </button>
-                        <div className="col-12 ">
-                          <p className="  mt-3 d-block">
-                            {" "}
-                            <a
-                              className="link-secondary"
-                              href="pages-register.html"
-                            >
-                              Şifremi Unuttum
-                            </a>
-                          </p>
-                        </div>
-                        <label>
-                          <small>
-                            Henüz üye değil misin?
-                            <a
-                              className="text-decoration-none text-muted fw-bold"
-                              href="/kayit-ol"
-                            >
-                              {" "}
-                              Kayıt Ol
-                            </a>
-                          </small>
-                        </label>
+                    <label><small>Henüz üye değil misin?
+                      <a className="text-decoration-none text-muted fw-bold" href="/kayit-ol"> Kayıt Ol</a>
+                      </small></label>
                       </Form>
                     </Formik>
                   </div>

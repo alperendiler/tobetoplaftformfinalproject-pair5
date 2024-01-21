@@ -26,7 +26,6 @@
 }
 .exams .exam-card .exam-header .exam-name {
     font-weight: 600;
-    text-align: start;
     font-size: 1em;
 }
 .exams .exam-card .status-done:before {
@@ -36,20 +35,39 @@
     height: 1.5em;
     display: inline-block;
     vertical-align: middle;
-    background-size: 1.5em 1.5em;
+    background-size: 1.5em 1.5em; left: 47%;
+    bottom: 70%;    position: relative;
+
     background-repeat: no-repeat;
     cursor: pointer;
 }
-.status-done{
-    position: relative;
-    left: 47%;
-    bottom: 70%;
+.exams .exam-card:hover{
+    cursor:pointer;
+    scale:1.02;transition:.3s;
+    
 }
 .exams .exam-card .exam-header .lesson-name {
     font-weight: 500;
     font-size: 14px;
 
     color: #828282;
+}
+.exams-header{
+    display: flex;
+    align-items:  start;
+    font-size: 18px;
+}
+.exams .exam-card .exam-header  {
+    display: flex;
+    flex-direction: column;
+    align-items:  start;
+    gap: 6px;
+}
+
+.exams .exam-card .exam-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: end !important;
 }
 .exams .exam-card .exam-details .exam_time {
     display: flex;
@@ -62,6 +80,7 @@
     background-image: url(https://tobeto.com/_next/static/media/countdown.458879a2.svg) ;
     background-repeat: no-repeat;
     background-size: 1.2em 1.2em;
+    
     width: 1.2em;
     height: 1.2em;
     display: block;

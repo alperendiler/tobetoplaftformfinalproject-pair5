@@ -13,6 +13,7 @@ import Catalog from './pages/Catalog';
 import Calendar from './pages/Calendar';
 import Evaluations from './pages/Evaluations';
 import PersonalInformation from './pages/PersonalInformation';
+import ExamDetail from './components/ExamDetail';
 
 function App() {
   return (

@@ -1,0 +1,45 @@
+
+.modal{
+    background: rgba(0, 0, 0, 0.5); /* Arkaplan rengi ve şeffaflık */
+  backdrop-filter: blur(5px); /* Blur efekti */
+  text-align: start;
+
+}
+.quiz-details-header {
+    font-size: 24px;
+    font-weight: 600;
+    color: #181818;
+}
+.join-screen p {
+    font-size: 18px;
+    font-weight: 500;
+    color: #828282;
+}
+.join-screen div span {
+    font-size: 18px;
+    font-weight: 600;
+    color: #181818;
+}
+.btn-exam-detail{
+    width: 18% !important;
+    border-radius: 30px !important;
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #9933ff !important;
+    --bs-btn-border-color: #93f !important; 
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #822bd9 !important;
+    --bs-btn-hover-border-color: #7a29cc;
+    --bs-btn-focus-shadow-rgb: 168,82,255;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #7a29cc;
+    --bs-btn-active-border-color: #7326bf ;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,.125) !important;
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #93f;
+    --bs-btn-disabled-border-color: #93f;
+}
+.join-screen div {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
