@@ -1,7 +1,8 @@
 import {ErrorMessage, Field} from "formik";
 
 type Props = {
-	placeholder:string,
+	placeholder?:string,
+    label?: string;
 	name: string;
 	type?: string; // type: string | undefined
 };
@@ -9,6 +10,7 @@ type Props = {
 const FormikInput = (props: Props) => {
 	return (
 		<div className="mb-3">
+			{props.label && <label className="form-label">{props.label}</label>}
 			<Field  placeholder={props.placeholder}
 				name={props.name}
 				type={props.type || "text"}

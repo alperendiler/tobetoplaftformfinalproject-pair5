@@ -12,6 +12,7 @@ import UserProfile from './pages/UserProfile';
 import Catalog from './pages/Catalog';
 import Calendar from './pages/Calendar';
 import Evaluations from './pages/Evaluations';
+import PersonalInformation from './pages/PersonalInformation';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
     <Route path='catalog' element={<div><Navbar/><Catalog /><Footer/></div>}/>
     <Route path='calendar' element={<div><Navbar/><Calendar /><Footer/></div>}/>
     <Route path='evalations' element={<div><Navbar/><Evaluations /><Footer/></div>}/>
+    <Route path='personal-information' element={<div><Navbar/><PersonalInformation /><Footer/></div>}/>
     </Routes>
   
   </>

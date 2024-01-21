@@ -38,7 +38,7 @@ export default function Navbar({}: Props) {
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" ><path d="M6 9L12 15L18 9" stroke="#828282" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
     </button>
     <ul className="dropdown-menu">
-      <li><a className="dropdown-item" href="#">Profil Bilgileri</a></li>
+      <li><a className="dropdown-item" href="#"><Link className="nav-link" to="/personal-information">Profil Bilgileri</Link></a></li>
       <li><a className="dropdown-item" href="#">Çıkış Yap</a></li>
     
     </ul>
