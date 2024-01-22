@@ -52,16 +52,16 @@ export default function PersonalInformation({}: Props) {
       .required("Doldurulması zorunlu alan*")
       .min(2, "En az 2 haneden oluşmalıdır.")
       .max(100, "En fazla 200 karakter girebilirsiniz"),
-    phoneNumber: Yup.string()
-    .test({
-      name: 'len',
-      message: 'Telefon numarası en az 10 haneli olmalıdır.',
-      test: (val) => {
-        if (!val) return false; // Boşsa başarısız
-        return val.replace(/\D/g, '').length >= 10; // Sayı karakterleri sayısını kontrol et
-      },
-    })
-    .matches(/^[0-9]{10}$/, 'Geçerli bir telefon numarası girin'),
+    // phoneNumber: Yup.string()
+    // .test({
+    //   name: 'len',
+    //   message: 'Telefon numarası en az 10 haneli olmalıdır.',
+    //   test: (val) => {
+    //     if (!val) return false; // Boşsa başarısız
+    //     return val.replace(/\D/g, '').length >= 10; // Sayı karakterleri sayısını kontrol et
+    //   },
+    //})
+    //.matches(/^[0-9]{10}$/, 'Geçerli bir telefon numarası girin'),
   });
 
   return (
