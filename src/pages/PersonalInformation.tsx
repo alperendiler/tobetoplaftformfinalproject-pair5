@@ -22,6 +22,7 @@ interface PersonalInformationForm {
   email: string;
   country: string;
   city: string;
+  county:string,
   neighbourhood: string;
   about: string;
 }
@@ -39,10 +40,12 @@ export default function PersonalInformation({}: Props) {
     email: "",
     country: "",
     city: "",
+    county:"",
     neighbourhood: "",
     about: "",
   };
 
+  
   const validationSchema = Yup.object({
     name: Yup.string()
       .required("Doldurulması zorunlu alan*")
@@ -52,16 +55,8 @@ export default function PersonalInformation({}: Props) {
       .required("Doldurulması zorunlu alan*")
       .min(2, "En az 2 haneden oluşmalıdır.")
       .max(100, "En fazla 200 karakter girebilirsiniz"),
-    // phoneNumber: Yup.string()
-    // .test({
-    //   name: 'len',
-    //   message: 'Telefon numarası en az 10 haneli olmalıdır.',
-    //   test: (val) => {
-    //     if (!val) return false; // Boşsa başarısız
-    //     return val.replace(/\D/g, '').length >= 10; // Sayı karakterleri sayısını kontrol et
-    //   },
-    //})
-    //.matches(/^[0-9]{10}$/, 'Geçerli bir telefon numarası girin'),
+      // phoneNumber: Yup.string()
+      // .matches(/^[0-9]{10}$/, 'Geçerli bir telefon numarası girin')
   });
 
   return (
@@ -98,6 +93,7 @@ export default function PersonalInformation({}: Props) {
                         onChange={setValue}
                         name="phoneNumber"
                         limitMaxLength={true}
+                        rules={{ required: true }}
                       />
                       <ErrorMessage name="phoneNumber">
                         {(message) => <p className="text-danger">{message}</p>}
@@ -140,7 +136,8 @@ export default function PersonalInformation({}: Props) {
                     <option value={1}>Türkiye</option>
                   </Field>
                 </div>
-                <div className="mb-3">
+                <div className=" row mb-3 ">
+                  <div className="col-md-6 col-12">
                   <label className="form-label">Şehir*</label>
                   <Field
                     label="Şehir*"
@@ -150,9 +147,23 @@ export default function PersonalInformation({}: Props) {
                   >
                     <option value={0}>Bir şehir seçin</option>
                     <option value={1}>Ankara</option>
-                    <option value={2}>İstanbul</option>
-                    <option value={3}>İzmir</option>
                   </Field>
+                  </div>
+                  <div className="col-md-6 col-12">
+                  <label className="form-label">İlçe*</label>
+                  <Field
+                    label="İlçe*"
+                    name="county"
+                    as="select"
+                    className=" form-control form-select"
+                  >
+                    <option value={0}>Bir ilçe seçin</option>
+                    <option value={1}>Çankaya</option>
+                    <option value={2}>Sincan</option>
+                    <option value={3}>Yenimahalle</option>
+                  </Field>
+                  </div>
+                  
                 </div>
                 <FormikInput
                   className="no-resize"

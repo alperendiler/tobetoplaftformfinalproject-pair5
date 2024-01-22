@@ -20,7 +20,7 @@ export default function Navbar({}: Props) {
       <ul className="d-none d-xxl-flex navbar-nav">
       <li className="nav-item nav-active  fw-bold flex-grow-5 me-4"><Link className="nav-link nav-active" to="/home-page">Ana Sayfa</Link></li>
       <li className="nav-item fw-bold me-4" ><Link className="nav-link c-gray-3" to="/user-profile">Profilim</Link></li>
-      <li className="nav-item fw-bold me-4"><Link className="nav-link c-gray-3" to="/evalations">Değerlendirmeler</Link></li>
+      <li className="nav-item fw-bold me-4"><Link className="nav-link c-gray-3" to="/evaluations">Değerlendirmeler</Link></li>
       <li className="nav-item fw-bold me-4"><Link className="nav-link c-gray-3" to="/catalog">Katalog</Link></li>
       <li className="nav-item fw-bold me-4"><Link className="nav-link c-gray-3" to="/calendar">Takvim</Link></li>
       <li className="nav-item fw-bold me-4"><Link className="nav-link c-gray-3" to="#">İstanbul Kodluyor</Link></li>
