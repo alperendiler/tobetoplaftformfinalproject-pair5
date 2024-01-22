@@ -7,6 +7,9 @@ import * as Yup from "yup";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import "../styles/MyProfileStyles/profilePicture.css";
+import "../styles/personalInformation.css";
+import SidebarProfileInformation from "../components/SidebarProfileInformation/SidebarProfileInformation";
 
 type Props = {};
 
@@ -15,13 +18,11 @@ interface PersonalInformationForm {
   surname: string;
   phoneNumber: string;
   birthDate: string;
-  IdentityNumber: string;
+  identityNumber: string;
   email: string;
   country: string;
   city: string;
-  county: string;
   neighbourhood: string;
-  street: string;
   about: string;
 }
 
@@ -34,66 +35,55 @@ export default function PersonalInformation({}: Props) {
     surname: "",
     phoneNumber: "",
     birthDate: "",
-    IdentityNumber: "",
+    identityNumber: "",
     email: "",
     country: "",
     city: "",
-    county: "",
     neighbourhood: "",
-    street: "",
     about: "",
   };
 
-  const validationSchema = Yup.object();
+  const validationSchema = Yup.object({
+    name: Yup.string()
+      .required("Doldurulması zorunlu alan*")
+      .min(2, "En az 2 haneden oluşmalıdır.")
+      .max(100, "En fazla 100 karakter girebilirsiniz"),
+    surname: Yup.string()
+      .required("Doldurulması zorunlu alan*")
+      .min(2, "En az 2 haneden oluşmalıdır.")
+      .max(100, "En fazla 200 karakter girebilirsiniz"),
+    phoneNumber: Yup.string()
+    .test({
+      name: 'len',
+      message: 'Telefon numarası en az 10 haneli olmalıdır.',
+      test: (val) => {
+        if (!val) return false; // Boşsa başarısız
+        return val.replace(/\D/g, '').length >= 10; // Sayı karakterleri sayısını kontrol et
+      },
+    })
+    .matches(/^[0-9]{10}$/, 'Geçerli bir telefon numarası girin'),
+  });
 
   return (
     <>
       <div className="container p-5">
         <div className="row">
           <div className="col-12 col-lg-3 mb-8 mb-lg-0">
-            <div className="p-2 py-4 mobile-sidebar">
-              <a
-                className="btn mb-2 text-start w-100 sidebar-link active-edit"
-                href="#"
-              >
-                <span className="personel-informations"></span>
-                <span className="sidebar-text">Kişisel Bilgilerim</span>
-              </a>
-              <a className="btn mb-2 text-start w-100  sidebar-link " href="#">
-                <span className="experience"></span>
-                <span className="sidebar-text">Deneyimlerim</span>
-              </a>
-              <a className="btn mb-2 text-start w-100  sidebar-link " href="#">
-                <span className="educations"></span>
-                <span className="sidebar-text">Eğitim Hayatım</span>
-              </a>
-              <a className="btn mb-2 text-start w-100  sidebar-link " href="#">
-                <span className="abilities"></span>
-                <span className="sidebar-text">Yetkinliklerim</span>
-              </a>
-              <a className="btn mb-2 text-start w-100  sidebar-link " href="#">
-                <span className="certificates"></span>
-                <span className="sidebar-text">Sertifikalarım</span>
-              </a>
-              <a className="btn mb-2 text-start w-100  sidebar-link " href="#">
-                <span className="languages"></span>
-                <span className="sidebar-text">Medya Hesaplarım</span>
-              </a>
-              <a className="btn mb-2 text-start w-100  sidebar-link " href="#">
-                <span className="languages2"></span>
-                <span className="sidebar-text">Yabancı Dillerim</span>
-              </a>
-              <a className="btn mb-2 text-start w-100  sidebar-link " href="#">
-                <span className="settings"></span>
-                <span className="sidebar-text">Ayarlar</span>
-              </a>
-            </div>
+            <SidebarProfileInformation />
           </div>
           <div className="col-12 col-lg-9">
+            <div className=" d-flex justify-content-center profile-picture-form">
+              <img
+                className="profile-picture-image"
+                src="https://tobeto.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fimages.19a45d39.png&w=384&q=75"
+              />
+            </div>
             <Formik
               validationSchema={validationSchema}
               initialValues={initialValues}
-              onSubmit={(values) => {}}
+              onSubmit={async (values) => {
+                console.log(values);
+              }}
             >
               <Form>
                 <div className="row">
@@ -106,32 +96,80 @@ export default function PersonalInformation({}: Props) {
                         defaultCountry="TR"
                         value={value}
                         onChange={setValue}
+                        name="phoneNumber"
+                        limitMaxLength={true}
+                      />
+                      <ErrorMessage name="phoneNumber">
+                        {(message) => <p className="text-danger">{message}</p>}
+                      </ErrorMessage>
+                    </div>
+
+                    <div className="mt-3">
+                      <FormikInput
+                        name="identityNumber"
+                        label="TC Kimlik No*"
                       />
                     </div>
                   </div>
                   <div className="col-12 col-md-6">
-                    <FormikInput name="name" label="Soyadınız*" />
+                    <FormikInput name="surname" label="Soyadınız*" />
                     <div className="mb-3">
-                    <label className="form-label">Doğum Tarihiniz*</label>
-                    <br/>
-                    <DatePicker selected={startDate} onChange={(date: Date) => setStartDate(date)} />
-                    </div>        
+                      <label className="form-label">Doğum Tarihiniz*</label>
+                      <br />
+                      <DatePicker
+                        className="date-picker"
+                        name="birthDate"
+                        selected={startDate}
+                        onChange={(date: Date) => setStartDate(date)}
+                      />
+                    </div>
+                    <div>
+                      <FormikInput name="email" label="E-posta" type="email" />
+                    </div>
                   </div>
                 </div>
+                <div className="mb-3">
+                  <label className="form-label">Ülke*</label>
+                  <Field
+                    label="Ülke*"
+                    name="country"
+                    as="select"
+                    className=" form-control form-select"
+                  >
+                    <option value={0}>Bir ülke seçin</option>
+                    <option value={1}>Türkiye</option>
+                  </Field>
+                </div>
+                <div className="mb-3">
+                  <label className="form-label">Şehir*</label>
+                  <Field
+                    label="Şehir*"
+                    name="city"
+                    as="select"
+                    className=" form-control form-select"
+                  >
+                    <option value={0}>Bir şehir seçin</option>
+                    <option value={1}>Ankara</option>
+                    <option value={2}>İstanbul</option>
+                    <option value={3}>İzmir</option>
+                  </Field>
+                </div>
+                <FormikInput
+                  className="no-resize"
+                  name="neighbourhood"
+                  label="Mahalle/Sokak"
+                  as="textarea"
+                  placeholder=""
+                />
 
-                <FormikInput name="description" label="Ürün Açıklaması" />
-                <FormikInput name="price" label="Ürün Fiyatı" type="number" />
-                <FormikInput name="stock" label="Ürün Stok" type="number" />
-
-                <Field as="select" className="form-select" name="colorId">
-                  <option value={0}>Bir renk seçin</option>
-                  <option value={1}>Kırmızı</option>
-                  <option value={2}>Siyah</option>
-                  <option value={3}>Beyaz</option>
-                </Field>
-                <ErrorMessage name="colorId"></ErrorMessage>
-
-                <button type="submit" className="btn btn-primary">
+                <FormikInput
+                  className="no-resize"
+                  name="about"
+                  label="Hakkımda"
+                  as="textarea"
+                  placeholder="Kendini kısaca tanıt"
+                />
+                <button type="submit" className="btn btn-personal-information">
                   Kaydet
                 </button>
               </Form>

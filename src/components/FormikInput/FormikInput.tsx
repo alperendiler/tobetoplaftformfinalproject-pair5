@@ -4,7 +4,10 @@ type Props = {
 	placeholder?:string,
     label?: string;
 	name: string;
-	type?: string; // type: string | undefined
+	type?: string;
+	as?: string;
+	rows?:number;
+	className?:string;
 };
 
 const FormikInput = (props: Props) => {
@@ -14,7 +17,9 @@ const FormikInput = (props: Props) => {
 			<Field  placeholder={props.placeholder}
 				name={props.name}
 				type={props.type || "text"}
-				className="form-control"
+				className={`form-control ${props.className}`}
+				as={props.as}
+				row={props.rows}
 			/>
 			<ErrorMessage name={props.name}>
 				{message => <p className="text-danger">{message}</p>}
