@@ -1,7 +1,8 @@
 
 .tobeto-logo-register{
     max-width: 200px;
-    padding: 20px;
+    padding-top: 20px;
+
 }
 .istanbul-kodluyor-logo{
     width: 200px !important;
@@ -51,7 +52,7 @@
 .btn-rainbow-card{
     border-radius: 14px;
     border: 1px solid rgb(90, 0, 78);
-    min-height: 600px !important;
+    min-height: 700px !important;
     max-width: 500px !important;
     max-height: 400px !important;
 
@@ -59,4 +60,13 @@
 .py-lg-20 {
     padding-top: 5rem!important;
     padding-bottom: 5rem!important;
+}
+
+.register-form-dimension{
+justify-content: center !important;
+}
+
+.form-content-dimension{
+padding-left: 100px !important;
+padding-right: 100px !important;
 }

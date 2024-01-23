@@ -2,7 +2,7 @@
 import axios from "axios";
 import axiosInstance from "../core/interceptors/axiosInterceptor";
 import { AuthLoginRequest } from "../models/requests/auth/AuthLoginRequest";
-import { UserAddRequest } from "../models/requests/auth/UserAddRequest";
+import {AddUserRequest } from "../models/requests/user/addUserRequest";
 
 
 class AuthService {
@@ -26,7 +26,7 @@ class AuthService {
     logout() {
         localStorage.removeItem('user');
     }
-    register(model: UserAddRequest) {
+    register(model: AddUserRequest) {
       return axios.post("http://localhost:5155/api/Auth/Register", model);
     }
 

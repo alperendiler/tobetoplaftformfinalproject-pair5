@@ -42,7 +42,7 @@ function App({}: Props) {
       </Routes>
 
       <PrivateRoot
-        path="home-page"
+        path="/home-page"
         element={
           <div>
             <Navbar />
@@ -52,7 +52,7 @@ function App({}: Props) {
         }
       />
       <PrivateRoot
-        path="user-profile"
+        path="/user-profile"
         element={
           <div>
             <Navbar />
@@ -62,7 +62,7 @@ function App({}: Props) {
         }
       />
       <PrivateRoot
-        path="catalog"
+        path="/catalog"
         element={
           <div>
             <Navbar />
@@ -72,7 +72,7 @@ function App({}: Props) {
         }
       />
       <PrivateRoot
-        path="calendar"
+        path="/calendar"
         element={
           <div>
             <Navbar />
@@ -82,7 +82,7 @@ function App({}: Props) {
         }
       />
       <PrivateRoot
-        path="evaluations"
+        path="/evaluations"
         element={
           <div>
             <Navbar />
@@ -92,7 +92,7 @@ function App({}: Props) {
         }
       />
       <PrivateRoot
-        path="egitimler"
+        path="/egitimler"
         element={
           <div>
             <Navbar />
@@ -110,7 +110,7 @@ function App({}: Props) {
         }
       />
       <PrivateRoot
-        path="personal-information"
+        path="/personal-information"
         element={
           <div>
             <Navbar />

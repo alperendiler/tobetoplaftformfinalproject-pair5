@@ -16,7 +16,7 @@ export default function Welcome({}: Props){
                 <span className="text-purple fs-1 fw-bold"> TOBETO</span>
                  <span className="fw-normal fs-1 text-dark-emphasis">'ya hoş geldin</span>
                  
-                 <h2 className="fw-normal text-dark-emphasis mb-5">{"user.name"}</h2>
+                 <h2 className="fw-normal text-dark-emphasis mb-5">Alperen</h2>
       <p className="fs-3 fw-normal">Yeni nesil öğrenme deneyimi ile Tobeto kariyer yolculuğunda senin yanında!</p></div></div>
        
       </div>
