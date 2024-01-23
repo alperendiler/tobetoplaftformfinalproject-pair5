@@ -1,12 +1,7 @@
-import "../styles/login.css"
-import LoginForm from '../components/Login/LoginForm';
-
-
-
+import "../styles/login.css";
+import LoginForm from "../components/Login/LoginForm";
 
 const Login = () => {
-
-
   return (
     <main>
       <div className="container ">
@@ -16,14 +11,15 @@ const Login = () => {
               <div className="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
                 <div className="card mb-3">
                   <div className="card-body">
-
-                  <div className="d-flex justify-content-center py-4  d-flex align-items-center w-auto" >
-                    <img className='login-logo' src="https://tobeto.com/_next/static/media/tobeto-logo.29b55e1c.svg" alt="" />
-                </div>
-              <LoginForm/>
-                      
+                    <div className="d-flex justify-content-center py-4  d-flex align-items-center w-auto">
+                      <img
+                        className="login-logo"
+                        src="https://tobeto.com/_next/static/media/tobeto-logo.29b55e1c.svg"
+                        alt=""
+                      />
+                    </div>
+                    <LoginForm />
                   </div>
-                  
                 </div>
               </div>
 

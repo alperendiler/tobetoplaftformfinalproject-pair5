@@ -1,5 +1,5 @@
 import React from 'react';
-import "../../styles/examDetail.css"
+import "../../../styles/examDetail.css"
 
 type Props = {
     onClose: () => void;

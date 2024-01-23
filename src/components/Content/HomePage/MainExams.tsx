@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "../../../styles/mainExams.css";
-import ExamDetail from '../ExamDetail';
+import ExamDetail from './ExamDetail';
 
 type Props = {}
 

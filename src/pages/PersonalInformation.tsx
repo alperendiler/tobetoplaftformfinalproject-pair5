@@ -22,7 +22,7 @@ interface PersonalInformationForm {
   email: string;
   country: string;
   city: string;
-  county:string,
+  county: string;
   neighbourhood: string;
   about: string;
 }
@@ -40,12 +40,11 @@ export default function PersonalInformation({}: Props) {
     email: "",
     country: "",
     city: "",
-    county:"",
+    county: "",
     neighbourhood: "",
     about: "",
   };
 
-  
   const validationSchema = Yup.object({
     name: Yup.string()
       .required("Doldurulması zorunlu alan*")
@@ -55,8 +54,8 @@ export default function PersonalInformation({}: Props) {
       .required("Doldurulması zorunlu alan*")
       .min(2, "En az 2 haneden oluşmalıdır.")
       .max(100, "En fazla 200 karakter girebilirsiniz"),
-      // phoneNumber: Yup.string()
-      // .matches(/^[0-9]{10}$/, 'Geçerli bir telefon numarası girin')
+    // phoneNumber: Yup.string()
+    // .matches(/^[0-9]{10}$/, 'Geçerli bir telefon numarası girin')
   });
 
   return (
@@ -138,32 +137,31 @@ export default function PersonalInformation({}: Props) {
                 </div>
                 <div className=" row mb-3 ">
                   <div className="col-md-6 col-12">
-                  <label className="form-label">Şehir*</label>
-                  <Field
-                    label="Şehir*"
-                    name="city"
-                    as="select"
-                    className=" form-control form-select"
-                  >
-                    <option value={0}>Bir şehir seçin</option>
-                    <option value={1}>Ankara</option>
-                  </Field>
+                    <label className="form-label">Şehir*</label>
+                    <Field
+                      label="Şehir*"
+                      name="city"
+                      as="select"
+                      className=" form-control form-select"
+                    >
+                      <option value={0}>Bir şehir seçin</option>
+                      <option value={1}>Ankara</option>
+                    </Field>
                   </div>
                   <div className="col-md-6 col-12">
-                  <label className="form-label">İlçe*</label>
-                  <Field
-                    label="İlçe*"
-                    name="county"
-                    as="select"
-                    className=" form-control form-select"
-                  >
-                    <option value={0}>Bir ilçe seçin</option>
-                    <option value={1}>Çankaya</option>
-                    <option value={2}>Sincan</option>
-                    <option value={3}>Yenimahalle</option>
-                  </Field>
+                    <label className="form-label">İlçe*</label>
+                    <Field
+                      label="İlçe*"
+                      name="county"
+                      as="select"
+                      className=" form-control form-select"
+                    >
+                      <option value={0}>Bir ilçe seçin</option>
+                      <option value={1}>Çankaya</option>
+                      <option value={2}>Sincan</option>
+                      <option value={3}>Yenimahalle</option>
+                    </Field>
                   </div>
-                  
                 </div>
                 <FormikInput
                   className="no-resize"

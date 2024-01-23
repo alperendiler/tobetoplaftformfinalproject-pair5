@@ -59,9 +59,9 @@ export default function UserProfile({}: Props) {
           </div>
           <div className="col-md-8 col-12">
             <SuccessModel />
-            <MyExam/>
-            <MyBadge/>
-            <MyActivityMap/>
+            <MyExam />
+            <MyBadge />
+            <MyActivityMap />
           </div>
         </div>
       </div>
