@@ -12,6 +12,7 @@ import UserProfile from './pages/UserProfile';
 import Catalog from './pages/Catalog';
 import Calendar from './pages/Calendar';
 import Evaluations from './pages/Evaluations';
+import PersonalInformation from './pages/PersonalInformation';
 import ExamDetail from './components/ExamDetail';
 import Trainings from './pages/Trainings';
 import CourseDetail from './pages/CourseDetail'
@@ -27,10 +28,11 @@ function App() {
     <Route path='user-profile' element={<div><Navbar/><UserProfile/><Footer/></div>}/>
     <Route path='catalog' element={<div><Navbar/><Catalog /><Footer/></div>}/>
     <Route path='calendar' element={<div><Navbar/><Calendar /><Footer/></div>}/>
-    <Route path='evalations' element={<div><Navbar/><Evaluations /><Footer/></div>}/>
+    <Route path='evaluations' element={<div><Navbar/><Evaluations /><Footer/></div>}/>
     <Route path='egitimler' element={<div><Navbar/><Trainings /><Footer/></div>}/>
     <Route path='/kurslar/:id'  element={<div><CourseDetail /></div>}/>
 
+    <Route path='personal-information' element={<div><Navbar/><PersonalInformation /><Footer/></div>}/>
     </Routes>
   
   </>

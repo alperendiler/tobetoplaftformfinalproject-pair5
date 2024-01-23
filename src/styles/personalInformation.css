@@ -1,0 +1,41 @@
+.no-resize {
+    resize: none;
+    height: 120px;
+  }
+
+.btn-personal-information{
+    margin-top: 12px;
+    background-color: #93f !important;
+    color: #fff !important;
+    width: 90px;
+    border-radius:40px 40px !important;
+}
+
+.btn-personal-information:hover {
+    background-color: #7a29cc !important;
+    color: #fff !important;
+
+}
+
+.date-picker{
+    width: 380px;
+}
+
+.profile-picture-form{
+    height: 148px;
+  width: 100%;
+}
+
+.profile-picture-image {
+    max-width: 148px; 
+    width: 100%;
+    height: auto; 
+  }
+
+.form-text-style{
+    font-size: 17px !important;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    color: #828282 !important;
+    
+}

@@ -13,14 +13,14 @@ export default function Navbar({}: Props) {
   <button className="navbar-toggler  d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
-    <a className="navbar-brand" href="/">
+    <Link className="nav-link navbar-brand" to="/">
       <img className="navbar-logo" src='https://tobeto.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ftobeto-logo.409772fc.png&w=256&q=75'/>
-      </a>
+      </Link>
    
       <ul className="d-none d-xxl-flex navbar-nav">
       <li className="nav-item nav-active  fw-bold flex-grow-5 me-4"><Link className="nav-link nav-active" to="/home-page">Ana Sayfa</Link></li>
       <li className="nav-item fw-bold me-4" ><Link className="nav-link c-gray-3" to="/user-profile">Profilim</Link></li>
-      <li className="nav-item fw-bold me-4"><Link className="nav-link c-gray-3" to="/evalations">Değerlendirmeler</Link></li>
+      <li className="nav-item fw-bold me-4"><Link className="nav-link c-gray-3" to="/evaluations">Değerlendirmeler</Link></li>
       <li className="nav-item fw-bold me-4"><Link className="nav-link c-gray-3" to="/catalog">Katalog</Link></li>
       <li className="nav-item fw-bold me-4"><Link className="nav-link c-gray-3" to="/calendar">Takvim</Link></li>
       <li className="nav-item fw-bold me-4"><Link className="nav-link c-gray-3" to="#">İstanbul Kodluyor</Link></li>
@@ -35,11 +35,15 @@ export default function Navbar({}: Props) {
         <img src="https://tobeto.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fimages.19a45d39.png&w=48&q=75" alt="user's profile picture" className="profile-picture" />
       </span>
       <span className="user-name link-secondary me-2">Alperen Diler</span>
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" ><path d="M6 9L12 15L18 9" stroke="#828282" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" ><path d="M6 9L12 15L18 9" stroke="#828282" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path></svg>
     </button>
     <ul className="dropdown-menu">
-      <li><a className="dropdown-item" href="#">Profil Bilgileri</a></li>
-      <li><a className="dropdown-item" href="#">Çıkış Yap</a></li>
+      <li>
+        <span className=" nav-link dropdown-item">
+          <Link className="nav-link" to="/personal-information">Profil Bilgileri</Link>
+        </span>
+        </li>
+      <li><Link className=" nav-link dropdown-item" to="#">Çıkış Yap</Link></li>
     
     </ul>
   </div>
