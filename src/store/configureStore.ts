@@ -1,11 +1,11 @@
 import {Action, ThunkAction, combineReducers, configureStore} from "@reduxjs/toolkit";
 import {loadingReducer} from "./loading/loadingSlice";
-import authSlice from "./auth/authSlice";
+import authSlice, { setToken } from "./auth/authSlice";
 
 
 export const rootReducer = combineReducers({
 	loading: loadingReducer,
-	auth: authSlice,
+	auth: setToken,
 
 });
 

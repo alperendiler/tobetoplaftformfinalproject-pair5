@@ -1,16 +1,26 @@
 
+import axios from "axios";
 import axiosInstance from "../core/interceptors/axiosInterceptor";
 import { AuthLoginRequest } from "../models/requests/auth/AuthLoginRequest";
 
 
 class AuthService {
 	async login(model : AuthLoginRequest) {
-        const response = await axiosInstance.post("Auth/Login", model);
-        if (response.data.token) {
-            localStorage.setItem('user', JSON.stringify(response.data));
+        try {
+            const response = await axios.post("http://localhost:5155/api/Auth/Login", model);
+
+            if (response.data  && response.data.result.token) {
+              localStorage.setItem('user', JSON.stringify(response.data));
+          
+              return response.data.result.token;
+            } else {
+              throw new Error("Token not found in the response data");
+            }
+          } catch (error) {
+
+            throw new Error("Authentication error"); // Bu kısmı düzeltmek gerekebilir, duruma göre değişebilir.
+          }
         }
-        return response.data;
-    }
 
     logout() {
         localStorage.removeItem('user');

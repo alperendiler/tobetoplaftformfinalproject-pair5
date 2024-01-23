@@ -1,11 +1,16 @@
 import React from 'react'
 import '../styles/navbar.css';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { clearToken } from '../store/auth/authSlice';
 
 type Props = {}
 
 export default function Navbar({}: Props) {
 
+  const handleLogOut = () => {
+    localStorage.clear();
+  }
   return (
 <>
 <nav className="navbar    navbar-expand-xxl  bg-white ">
@@ -43,7 +48,7 @@ export default function Navbar({}: Props) {
           <Link className="nav-link" to="/personal-information">Profil Bilgileri</Link>
         </span>
         </li>
-      <li><Link className=" nav-link dropdown-item" to="#">Çıkış Yap</Link></li>
+      <li><Link onClick={handleLogOut} className=" nav-link dropdown-item" to="/">Oturumu Kapat</Link></li>
     
     </ul>
   </div>
@@ -53,5 +58,5 @@ export default function Navbar({}: Props) {
 </nav>
 </>
 
-  )
+  );
 }

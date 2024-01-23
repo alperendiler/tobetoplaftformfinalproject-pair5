@@ -16,26 +16,51 @@ import PersonalInformation from './pages/PersonalInformation';
 import ExamDetail from './components/ExamDetail';
 import Trainings from './pages/Trainings';
 import CourseDetail from './pages/CourseDetail'
-function App() {
+import PrivateRoot from './components/PrivateRoot';
+
+interface Props{
+}
+function App({}: Props) {
   return (
     <>
-    <Routes>
-    <Route path="/" element={<div><NavbarLogin/> <Login/> <FooterLogin/></div>}>
+      <Routes>
+        <Route path="/" element={<div><NavbarLogin/> <Login/> <FooterLogin/></div>} />
+        <Route path='/register' element={<div><NavbarLogin/> <Register/> <FooterLogin/></div>} />
+        </Routes>
 
-</Route>
-    <Route path='/register' element={<div><NavbarLogin/> <Register/> <FooterLogin/></div>}/>
-    <Route path='home-page' element={<div><Navbar/><HomePage/><Footer/></div>}/>
-    <Route path='user-profile' element={<div><Navbar/><UserProfile/><Footer/></div>}/>
-    <Route path='catalog' element={<div><Navbar/><Catalog /><Footer/></div>}/>
-    <Route path='calendar' element={<div><Navbar/><Calendar /><Footer/></div>}/>
-    <Route path='evaluations' element={<div><Navbar/><Evaluations /><Footer/></div>}/>
-    <Route path='egitimler' element={<div><Navbar/><Trainings /><Footer/></div>}/>
-    <Route path='/kurslar/:id'  element={<div><CourseDetail /></div>}/>
-
-    <Route path='personal-information' element={<div><Navbar/><PersonalInformation /><Footer/></div>}/>
-    </Routes>
-  
-  </>
+        <PrivateRoot
+          path='home-page'
+          element={<div><Navbar/><HomePage/><Footer/></div>}
+        />
+        <PrivateRoot
+          path='user-profile'
+          element={<div><Navbar/><UserProfile/><Footer/></div>}
+        />
+        <PrivateRoot
+          path='catalog'
+          element={<div><Navbar/><Catalog /><Footer/></div>}
+        />
+        <PrivateRoot
+          path='calendar'
+          element={<div><Navbar/><Calendar /><Footer/></div>}
+        />
+        <PrivateRoot
+          path='evaluations'
+          element={<div><Navbar/><Evaluations /><Footer/></div>}
+        />
+        <PrivateRoot
+          path='egitimler'
+          element={<div><Navbar/><Trainings /><Footer/></div>}
+        />
+        <PrivateRoot
+          path='/kurslar/:id'
+          element={<div><CourseDetail /></div>}
+        />
+        <PrivateRoot
+          path='personal-information'
+          element={<div><Navbar/><PersonalInformation /><Footer/></div>}
+        />
+    </>
   );
 }
 
