@@ -8,6 +8,7 @@ const Login = () => {
         <section className="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
           <div className="container">
             <div className="row equal-col justify-content-center">
+
               <div className="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
                 <div className="card mb-3">
                   <div className="card-body">

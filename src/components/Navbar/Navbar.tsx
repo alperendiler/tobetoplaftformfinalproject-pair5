@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react'
+import React from 'react'
 import '../../styles/navbar.css';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -7,24 +7,6 @@ import { clearToken } from '../../store/auth/authSlice';
 type Props = {}
 
 export default function Navbar({}: Props) {
-  const [userName, setUserName] = useState<string>('');
-  // useEffect(() => {
-  //   // 2. useEffect ile backend'den kullanıcı adını çek
-  //   // Örnek olarak, varsayılan bir kullanıcı adıyla çalışıyormuş gibi simule ediyorum
-  //   // Gerçek projede, backend'den veriyi çekecek bir API çağrısı yapmalısın.
-  //   const fetchUserName = async () => {
-  //     try {
-  //       // Örneğin: const response = await fetch('/api/getUserName');
-  //       // const data = await response.json();
-  //       // setUserName(data.userName);
-  //       setUserName('Alperen'); // Backend'den gelen kullanıcı adını set et
-  //     } catch (error) {
-  //       console.error('Kullanıcı adı alınamadı', error);
-  //     }
-  //   };
-
-    fetchUserName();
-  }, []); // useEffect sadece bir kere çalışsın diye boş bağımlılık dizisi kullanıyoruz
 
   const handleLogOut = () => {
     localStorage.clear();

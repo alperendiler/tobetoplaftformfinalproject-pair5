@@ -56,6 +56,32 @@ export default function PersonalInformation({}: Props) {
       .max(100, "En fazla 200 karakter girebilirsiniz"),
     // phoneNumber: Yup.string()
     // .matches(/^[0-9]{10}$/, 'Geçerli bir telefon numarası girin')
+    identityNumber: Yup.string()
+      .required("Doldurulması zorunlu alan*")
+      .test(function (value) {
+        if (value && value[0] !== "0") {
+          return true; // Geçerli
+        } else {
+          return this.createError({
+            message: "TC Kimlik Numaranızı doğru giriniz",
+          });
+        }
+      })
+      .min(11, "TC Kimlik Numaranızı 11 karakterli olacak şekilde giriniz")
+      .max(11, "TC Kimlik Numaranızı 11 karakterli olacak şekilde giriniz"),
+    email: Yup.string()
+      .required("Doldurulması zorunlu alan*")
+      .email("Geçerli bir e-posta adresi giriniz"),
+      country: Yup.string()
+      .required("Doldurulması zorunlu alan*"),
+      city: Yup.string()
+      .required("Doldurulması zorunlu alan*"),
+      county: Yup.string()
+      .required("Doldurulması zorunlu alan*"),
+      neighbourhood: Yup.string()
+      .max(200,"En fazla 200 karakter girebilirsiniz"),
+      about: Yup.string()
+      .max(300, "En fazla 300 karakter girebilirsiniz")
   });
 
   return (
@@ -104,6 +130,7 @@ export default function PersonalInformation({}: Props) {
                         name="identityNumber"
                         label="TC Kimlik No*"
                       />
+                      <div className="mb-3"><i className="text-danger">*Aboneliklerde fatura için doldurulması zorunlu alan</i></div>
                     </div>
                   </div>
                   <div className="col-12 col-md-6">
