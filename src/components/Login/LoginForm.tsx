@@ -82,7 +82,7 @@ export default function LoginForm({}: Props) {
                 <FormikInput placeholder="E-Posta" name="email" />
                 </div>
                 <div className="col-12 mt-2">
-					<FormikInput  placeholder="Şifre" name="password"  />
+					<FormikInput type='password'  placeholder="Şifre" name="password"  />
 				
           </div>
 				
