@@ -1,0 +1,62 @@
+
+.tobeto-logo-register{
+    max-width: 200px;
+    padding: 20px;
+}
+.istanbul-kodluyor-logo{
+    width: 200px !important;
+}
+
+.btn-darkblue2, .btn-darkblue2:hover {
+    background-color: #1e0f41 !important;
+    color: #0fcdfa !important;
+    line-height: 18px;
+    min-width: 140px;
+    border-radius: 30px;
+}
+.ik-banner-big-register:before {
+    content: url(https://tobeto.com/_next/static/media/dotv.9454a9b6.svg);
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: block;
+    width: 3em;
+    height: auto;
+}
+.ik-banner-big-register:after {
+    background-image: url(https://tobeto.com/_next/static/media/doth.d78dd392.svg);
+    position: absolute;
+    top: 88%;
+    left: 90%;
+    width: 3em ;
+    background-size: 3em 3em;
+    height: 3em;
+    background-repeat: no-repeat;
+}
+.ik-banner-big-register {
+    min-height: 600px !important;
+    max-width: 500px !important;
+    border: 1px solid black;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% ;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 2em;
+    position: relative;
+}
+.btn-rainbow-card{
+    border-radius: 14px;
+    border: 1px solid rgb(90, 0, 78);
+    min-height: 600px !important;
+    max-width: 500px !important;
+    max-height: 400px !important;
+
+}
+.py-lg-20 {
+    padding-top: 5rem!important;
+    padding-bottom: 5rem!important;
+}

@@ -1,6 +1,8 @@
 import {PayloadAction, createSlice} from "@reduxjs/toolkit";
+import { UserAddRequest } from "../../models/requests/auth/UserAddRequest";
 interface AuthState {
 	token: string | null;
+	user?: UserAddRequest; 
   }
   
   const initialState: AuthState = {
@@ -17,6 +19,9 @@ const authSlice = createSlice({
 			  clearToken: (state) => {
 				state.token = null;
 			  },
+			  addUser:(state, action: PayloadAction<UserAddRequest>) =>{
+				state.user = action.payload;
+			}
 	},
 });
 
