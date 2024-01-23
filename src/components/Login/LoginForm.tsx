@@ -11,6 +11,8 @@ import axiosInstance from "../../core/interceptors/axiosInterceptor";
 import { useNavigate } from "react-router-dom";
 import tokenService from "../../core/services/tokenService";
 import "./loginForm.css"
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 type Props = {};
 interface LoginForm {
@@ -18,6 +20,7 @@ interface LoginForm {
   password: string;
 }
 export default function LoginForm({}: Props) {
+
   const initialValues: LoginForm = {
     email: "",
     password: "",
@@ -46,7 +49,17 @@ export default function LoginForm({}: Props) {
       // Hata burada işleniyor
 
       console.error("Kimlik doğrulama hatası:", (error as Error).message);
-      setErrors({ password: "Kimlik doğrulama hatası" }); // Uygun bir hata mesajı ayarlayın
+      setErrors({ password: "Kimlik doğrulama hatası" }); 
+      toast.error("E-posta veya şifre geçersiz", {
+        position: "top-right",
+        autoClose: 5000, // 5 saniye sonra otomatik olarak kapat
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme:"colored"
+      });// Uygun bir hata mesajı ayarlayın
     } finally {
       setSubmitting(false);
     }
@@ -56,6 +69,7 @@ export default function LoginForm({}: Props) {
     email: Yup.string().required("Doldurulması zorunlu alan*"),
     password: Yup.string().required("Doldurulması zorunlu alan*"),
   });
+
   return (
     <div>
       <Formik
@@ -92,6 +106,7 @@ export default function LoginForm({}: Props) {
               >
                 Giriş Yap
               </button>
+              <ToastContainer />
               <div className="col-12 ">
                 <p className="  mt-2 d-block">
                   {" "}

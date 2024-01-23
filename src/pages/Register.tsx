@@ -16,8 +16,8 @@ const Register = () => {
   return (
     <>
       <section className="position-relative py-lg-20 bg-light-light py-sm-10">
-        <div className="container pt-20">
-          <div className="row equal-col">
+        <div className="container ">
+          <div className="row equal-col mt-3">
             <RegisterForm />
             <RegisterApplication />
           </div>

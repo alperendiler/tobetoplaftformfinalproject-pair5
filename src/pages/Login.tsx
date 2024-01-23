@@ -7,10 +7,10 @@ const Login = () => {
       <div className="container ">
         <section className="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
           <div className="container">
-            <div className="row equal-col justify-content-center">
+            <div className="row equal-col d-flex justify-content-center">
 
               <div className="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
-                <div className="card mb-3">
+                <div className="card ">
                   <div className="card-body">
                     <div className="d-flex justify-content-center py-4  d-flex align-items-center w-auto">
                       <img
@@ -25,7 +25,7 @@ const Login = () => {
               </div>
 
               <div className="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
-                <div className="card mb-3 container ">
+                <div className="card container pt-3 pb-1">
                   <div className="card-body ">
                     <div className="mx-auto text-center col-md-6 col-12">
                       <div className="ik-banner-big h-100">

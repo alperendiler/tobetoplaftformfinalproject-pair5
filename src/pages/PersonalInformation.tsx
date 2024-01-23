@@ -48,10 +48,12 @@ export default function PersonalInformation({}: Props) {
   const validationSchema = Yup.object({
     name: Yup.string()
       .required("Doldurulması zorunlu alan*")
+      .matches(/^[a-zA-ZğüşıöçĞÜŞİÖÇ]+$/, "Geçersiz karakter girişi*")
       .min(2, "En az 2 haneden oluşmalıdır.")
       .max(100, "En fazla 100 karakter girebilirsiniz"),
     surname: Yup.string()
       .required("Doldurulması zorunlu alan*")
+      .matches(/^[a-zA-ZğüşıöçĞÜŞİÖÇ]+$/, "Geçersiz karakter girişi*")
       .min(2, "En az 2 haneden oluşmalıdır.")
       .max(100, "En fazla 200 karakter girebilirsiniz"),
     // phoneNumber: Yup.string()
