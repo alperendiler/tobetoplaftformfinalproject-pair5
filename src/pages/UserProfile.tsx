@@ -1,16 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import ProfileCard from "../components/MyProfile/ProfileCard";
-import AboutMe from "../components/MyProfile/AboutMe";
-import MyCompetence from "../components/MyProfile/MyCompetence";
-import MyLanguage from "../components/MyProfile/MyLanguage";
-import MyCertificate from "../components/MyProfile/MyCertificate";
-import MyMedia from "../components/MyProfile/MyMedia";
-import SuccessModel from "../components/MyProfile/SuccessModel";
-import MyExam from "../components/MyProfile/MyExam";
-import MyBadge from "../components/MyProfile/MyBadge";
-import MyActivityMap from "../components/MyProfile/MyActivityMap";
+import ProfileCard from "../components/Content/MyProfile/ProfileCard";
+import AboutMe from "../components/Content/MyProfile/AboutMe";
+import MyCompetence from "../components/Content/MyProfile/MyCompetence";
+import MyLanguage from "../components/Content/MyProfile/MyLanguage";
+import MyCertificate from "../components/Content/MyProfile/MyCertificate";
+import MyMedia from "../components/Content/MyProfile/MyMedia";
+import SuccessModel from "../components/Content/MyProfile/SuccessModel";
+import MyExam from "../components/Content/MyProfile/MyExam";
+import MyBadge from "../components/Content/MyProfile/MyBadge";
+import MyActivityMap from "../components/Content/MyProfile/MyActivityMap";
 
 type Props = {};
 
@@ -59,9 +59,9 @@ export default function UserProfile({}: Props) {
           </div>
           <div className="col-md-8 col-12">
             <SuccessModel />
-            <MyExam/>
-            <MyBadge/>
-            <MyActivityMap/>
+            <MyExam />
+            <MyBadge />
+            <MyActivityMap />
           </div>
         </div>
       </div>

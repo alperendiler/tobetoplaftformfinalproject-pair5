@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/MyProfileStyles/mediaCard.css"
+import "../../../styles/MyProfileStyles/mediaCard.css"
 
 type Media = {
   mediaType: string;
