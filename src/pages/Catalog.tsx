@@ -1,8 +1,8 @@
 import React from 'react'
-import "../components/Catalog/catalog.css"
-import Filters from '../components/Catalog/CatalogFilter'
-import CatologList from '../components/Catalog/CatalogList'
-import Pagination from '../components/Pagination'
+import "../components/Content/Catalog/catalog.css"
+import Filters from '../components/Content/Catalog/CatalogFilter'
+import CatologList from '../components/Content/Catalog/CatalogList'
+import Pagination from '../components/Content/Pagination'
 type Props = {}
 
 export default function Catalog({}: Props) {

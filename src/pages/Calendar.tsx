@@ -1,13 +1,13 @@
 import React, { useState,useEffect } from 'react'
-import CalendarFilter from '../components/Calendar/CalendarFilter'
-import CalendarList from '../components/Calendar/CalendarList'
+import CalendarFilter from '../components/Content/Calendar/CalendarFilter'
+import CalendarList from '../components/Content/Calendar/CalendarList'
 import { DateSelectArg } from '@fullcalendar/core/index.js';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import trLocale from '@fullcalendar/core/locales/tr';
-import "./calendar.css"
+import "../styles/calendar.css"
 type Props = {}
 
 type Event = {

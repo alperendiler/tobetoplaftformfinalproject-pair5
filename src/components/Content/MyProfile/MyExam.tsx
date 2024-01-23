@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/MyProfileStyles/myExam.css"
+import "../../../styles/MyProfileStyles/myExam.css"
 import ExamCard from "./ExamCard";
 
 type Props = {};

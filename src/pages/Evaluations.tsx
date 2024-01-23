@@ -1,5 +1,5 @@
 import React from 'react'
-import "./evaluations.css"
+import "../styles/evaluations.css"
 type Props = {}
 
 export default function Evaluations({}: Props) {

@@ -1,8 +1,8 @@
 import React, { useState,useEffect } from 'react'
-import "../styles/style.css"
-import "./mainFormCard.css"
-import MainMyTrainings from './Main/MainMyTrainings';
-import "./main.css"
+import "../../../styles/style.css";
+import "../../../styles/mainFormCard.css";
+import MainMyTrainings from '../Main/MainMyTrainings';
+import "../../../styles/main.css";
 import { Link } from 'react-router-dom';
 
 type Props = {

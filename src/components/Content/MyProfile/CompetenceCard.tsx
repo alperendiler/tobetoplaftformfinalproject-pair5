@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/MyProfileStyles/competenceCard.css";
+import "../../../styles/MyProfileStyles/competenceCard.css";
 
 type Competence = {
   title: string;

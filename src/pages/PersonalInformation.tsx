@@ -9,7 +9,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../styles/MyProfileStyles/profilePicture.css";
 import "../styles/personalInformation.css";
-import SidebarProfileInformation from "../components/SidebarProfileInformation/SidebarProfileInformation";
+import SidebarProfileInformation from "../components/Content/SidebarProfileInformation/SidebarProfileInformation";
 
 type Props = {};
 

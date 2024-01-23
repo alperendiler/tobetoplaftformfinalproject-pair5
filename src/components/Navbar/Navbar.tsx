@@ -1,8 +1,8 @@
 import React from 'react'
-import '../styles/navbar.css';
+import '../../styles/navbar.css';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { clearToken } from '../store/auth/authSlice';
+import { clearToken } from '../../store/auth/authSlice';
 
 type Props = {}
 

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import "./trainings.css"
-import MainMyTrainings from '../components/Main/MainMyTrainings';
-import TrainingFilter from '../components/Training/TrainingFilter';
+import React, { useEffect, useState } from 'react';
+import "../styles/trainings.css";
+import MainMyTrainings from '../components/Content/Main/MainMyTrainings';
+import TrainingFilter from '../components/Content/Training/TrainingFilter';
 
 type Props = {}
 

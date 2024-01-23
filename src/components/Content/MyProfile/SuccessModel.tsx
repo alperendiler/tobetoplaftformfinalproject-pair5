@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/MyProfileStyles/successModel.css"
+import "../../../styles/MyProfileStyles/successModel.css"
 
 type Props={}
 

@@ -1,19 +1,19 @@
 import React from 'react';
 import Login from './pages/Login';
-import NavbarLogin from './components/NavbarLogin';
+import NavbarLogin from './components/Navbar/NavbarLogin';
 import "./styles/style.css"
 import { Route, Routes } from 'react-router-dom';
 import Register from './pages/Register';
 import HomePage from './pages/HomePage';
-import FooterLogin from './components/FooterLogin';
-import Footer from './components/Footer';
-import Navbar from './components/Navbar';
+import FooterLogin from './components/Footer/FooterLogin';
+import Footer from './components/Footer/Footer';
+import Navbar from './components/Navbar/Navbar';
 import UserProfile from './pages/UserProfile';
 import Catalog from './pages/Catalog';
 import Calendar from './pages/Calendar';
 import Evaluations from './pages/Evaluations';
 import PersonalInformation from './pages/PersonalInformation';
-import ExamDetail from './components/ExamDetail';
+import ExamDetail from './components/Content/ExamDetail';
 import Trainings from './pages/Trainings';
 import CourseDetail from './pages/CourseDetail'
 import PrivateRoot from './components/PrivateRoot';
