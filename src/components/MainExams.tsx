@@ -35,7 +35,7 @@ export default function MainExams({}: Props) {
               </div>
               <div className="exam-details">
                 <div>
-                  <span className="exam_time">45 Dakika</span>
+                  <span className="exam_time fw-bold">45 Dakika</span>
                 </div>
               </div>
               <span className="status-done"></span>

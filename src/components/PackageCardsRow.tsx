@@ -8,9 +8,9 @@ const PackageCardsRow = ({}: Props) => {
   return (
     <div>
         <div className='row'>
-        <PackageCard title="Profilini oluştur"/>
-        <PackageCard title="Kendini değerlendir"/>
-        <PackageCard title="Öğrenmeye başla"/>
+        <PackageCard route='' title="Profilini oluştur"/>
+        <PackageCard route='/evalations' title="Kendini değerlendir"/>
+        <PackageCard route='/platform-egitimler' title="Öğrenmeye başla"/>
         </div>
     </div>
   )

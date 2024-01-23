@@ -1,0 +1,24 @@
+.page-banner-card {
+    background-image: url(https://tobeto.com/_next/static/media/edu-banner3.d7dc50ac.svg);
+    background-position: 50%;
+    justify-content: flex-start;
+    border-radius: 20px;
+    margin-bottom: 1.5em;
+    padding-left: 1vw;
+    padding-right: 1vw;
+}
+.page-banner-card {
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+}
+.page-banner-card span {
+    color: #fff;
+    font-size: 5vw ;
+    font-weight: 600;
+}
+
+
+

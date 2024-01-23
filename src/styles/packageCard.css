@@ -5,13 +5,27 @@
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
     border-bottom-left-radius: 25px;
-    background-image: linear-gradient(to top right, rgb(233, 215, 242),#6610f2);
-    color:white;
+    background: linear-gradient(209.21deg,#1d0b8c 13.57%,#bda6fe 98.38%)!important;    color:white;    width: 240px !important;    min-height: 256px !important;
     min-height: 280px;
     
 }
 
-
+.new-packs .package-card .details {
+    position: relative;
+    width: 240px;
+    min-height: 256px;
+    -webkit-backdrop-filter: blur(40px);
+    backdrop-filter: blur(40px);
+    border-radius: 0 30px 40px 40px;
+    padding: 20px;
+    background: rgba(31,31,71,.6);
+    box-shadow: 0 40px 80px rgba(24,32,79,.25), inset 0 0 0 0.5px hsla(0,0%,100%,.5);
+    z-index: 1;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 .cardbutton{
     background-color: #9933FF !important;
     color:white;

@@ -1,0 +1,26 @@
+.content .page-content {
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -webkit-box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    height: auto;
+    padding: 20px;
+}
+.activity-detail {
+    margin-bottom: 50px;
+}
+.content {
+    padding: 40px 0;
+}
+
+.wrapper:not(.IEMainPage).without-slide .content {
+    width: -moz-calc(100% - 190px);
+    width: -webkit-calc(100% - 190px);
+    width: calc(100% - 190px);
+    margin: 0 auto;
+}

@@ -8,7 +8,6 @@ import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import trLocale from '@fullcalendar/core/locales/tr';
 import "./calendar.css"
-import { B, a, b } from '../assets/vendor/chart.js/chunks/helpers.segment';
 type Props = {}
 
 type Event = {

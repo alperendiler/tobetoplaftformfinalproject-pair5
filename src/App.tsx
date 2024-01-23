@@ -13,19 +13,24 @@ import Catalog from './pages/Catalog';
 import Calendar from './pages/Calendar';
 import Evaluations from './pages/Evaluations';
 import ExamDetail from './components/ExamDetail';
-
+import Trainings from './pages/Trainings';
+import CourseDetail from './pages/CourseDetail'
 function App() {
   return (
     <>
     <Routes>
     <Route path="/" element={<div><NavbarLogin/> <Login/> <FooterLogin/></div>}>
+
 </Route>
-    <Route path='kayit-ol' element={<Register/>}/>
+    <Route path='/register' element={<div><NavbarLogin/> <Register/> <FooterLogin/></div>}/>
     <Route path='home-page' element={<div><Navbar/><HomePage/><Footer/></div>}/>
     <Route path='user-profile' element={<div><Navbar/><UserProfile/><Footer/></div>}/>
     <Route path='catalog' element={<div><Navbar/><Catalog /><Footer/></div>}/>
     <Route path='calendar' element={<div><Navbar/><Calendar /><Footer/></div>}/>
     <Route path='evalations' element={<div><Navbar/><Evaluations /><Footer/></div>}/>
+    <Route path='egitimler' element={<div><Navbar/><Trainings /><Footer/></div>}/>
+    <Route path='/kurslar/:id'  element={<div><CourseDetail /></div>}/>
+
     </Routes>
   
   </>

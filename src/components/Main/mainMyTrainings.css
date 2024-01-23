@@ -1,0 +1,56 @@
+.corp-edu-card .card-img {
+    height: 181px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50%;
+    border-radius: 20px 20px 0 0;
+}
+.corp-edu-card {
+    display: flex ;
+    flex-direction: column;
+    border-radius: 20px;
+    border: 3px solid transparent;
+    background-color: #f1f1f1;
+    box-shadow: 0 1px 15px 2px rgba(0,0,0,.27);
+    height: 320px;
+    transition: .5s;
+    margin-bottom: 1em;
+}
+.corp-edu-card .card-content span {
+    color: #515151;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}.corp-edu-card .card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: start;
+    height: calc(100% - 181px);
+    padding: 12px;
+}
+
+.platform-course-date {
+    font-size: 12px!important;
+    color: #787878!important;
+    font-weight: 500!important;
+}
+.corp-edu-card .card-content .apply-btn {
+    padding: 0.5rem 3rem;
+    background-color: #d9d9d9;
+    text-align: center;
+    color: #282828;
+    border-radius: 2em;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+    transition: .5s;
+}
+.corp-edu-card .card-content .apply-btn:hover {
+    background-color: #93f;
+    color: #fff;
+}.corp-edu-card:hover {
+    border: 3px solid #93f;
+}
