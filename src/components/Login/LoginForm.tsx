@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import tokenService from "../../core/services/tokenService";
 import "./loginForm.css"
 import { ToastContainer, toast } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 type Props = {};
 interface LoginForm {
@@ -45,8 +45,8 @@ export default function LoginForm({}: Props) {
       dispatch(setToken(token));
       localStorage.setItem("user", JSON.stringify(token));
       navigate("/home-page");
+      
     } catch (error) {
-      // Hata burada işleniyor
 
       console.error("Kimlik doğrulama hatası:", (error as Error).message);
       setErrors({ password: "Kimlik doğrulama hatası" }); 
@@ -59,7 +59,7 @@ export default function LoginForm({}: Props) {
         draggable: true,
         progress: undefined,
         theme:"colored"
-      });// Uygun bir hata mesajı ayarlayın
+      });
     } finally {
       setSubmitting(false);
     }

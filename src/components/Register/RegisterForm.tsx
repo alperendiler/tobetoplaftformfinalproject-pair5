@@ -4,6 +4,11 @@ import FormikInput from "../FormikInput/FormikInput";
 import { Link } from "react-router-dom";
 import "./register.css";
 import authService from "../../services/authService";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+
 type Props = {};
 interface RegisterForm {
   firstName: string;
@@ -37,8 +42,37 @@ export default function RegisterForm({}: Props) {
     password: "",
   };
 
+
   const handleRegister = async (values: RegisterForm) => {
-    authService.register(values).then((response) => console.log(response));
+   try{
+    const response = await authService.register(values);
+    console.log(response);
+
+    toast.success("Kayıt Başarılı", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme:"colored"
+    });
+   }
+   catch (error) {
+    console.error("Kayıt Başarısız:", (error as Error).message);
+
+    toast.error("Kayıt Başarısız.Lütfen tekrar deneyin", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme:"colored"
+    });
+  }
+
+
   };
   return (
     <>
@@ -107,6 +141,7 @@ export default function RegisterForm({}: Props) {
                   >
                     Kayıt Ol
                   </button>
+                  <ToastContainer />
                   <div className="col-12">
                     <label>
                       <small>
