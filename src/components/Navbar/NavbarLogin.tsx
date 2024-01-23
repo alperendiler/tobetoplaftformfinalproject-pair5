@@ -1,6 +1,6 @@
 import React from 'react'
-import '../styles/navbar.css';
-import "../styles/btn-rainbow.css"
+import '../../styles/navbar.css';
+import "../../styles/btn-rainbow.css"
 
 type Props = {}
 

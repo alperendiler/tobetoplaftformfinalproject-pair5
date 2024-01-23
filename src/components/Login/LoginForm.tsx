@@ -2,14 +2,14 @@ import { ErrorMessage, Form, Formik } from 'formik';
 import React from 'react'
 import { Link } from 'react-router-dom';
 import * as Yup from "yup";
-import FormikInput from './FormikInput/FormikInput';
+import FormikInput from '../FormikInput/FormikInput';
 import { useDispatch, useSelector } from 'react-redux';
-import authSlice, { setToken } from '../store/auth/authSlice';
-import { RootState } from '../store/configureStore';
-import authService from '../services/authService';
-import axiosInstance from '../core/interceptors/axiosInterceptor';
+import authSlice, { setToken } from '../../store/auth/authSlice';
+import { RootState } from '../../store/configureStore';
+import authService from '../../services/authService';
+import axiosInstance from '../../core/interceptors/axiosInterceptor';
 import { useNavigate } from 'react-router-dom';
-import tokenService from '../core/services/tokenService';
+import tokenService from '../../core/services/tokenService';
 
 type Props = {}
 interface LoginForm {

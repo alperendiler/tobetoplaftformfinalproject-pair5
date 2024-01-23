@@ -1,5 +1,5 @@
 import React from 'react';
-import "../styles/packageCard.css"
+import "../../../styles/packageCard.css"
 import { Link } from 'react-router-dom';
 
 type Props = {

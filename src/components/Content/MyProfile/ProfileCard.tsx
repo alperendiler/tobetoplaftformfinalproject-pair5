@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/MyProfileStyles/profilePicture.css";
+import "../../../styles/MyProfileStyles/profilePicture.css";
 
 type Props = {};
 function ProfileCard({}: Props) {

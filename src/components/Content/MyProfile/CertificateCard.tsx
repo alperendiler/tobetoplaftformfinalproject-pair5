@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/MyProfileStyles/certificateCard.css"
+import "../../../styles/MyProfileStyles/certificateCard.css"
 
 type Certificate = {
   file: string;
