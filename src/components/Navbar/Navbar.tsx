@@ -1,15 +1,54 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles/navbar.css";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { clearToken } from "../../store/auth/authSlice";
+import { jwtDecode } from "jwt-decode";
 
 type Props = {};
-
+type UserInfo = {
+  name: string;
+  email: string;
+};
 export default function Navbar({}: Props) {
   const handleLogOut = () => {
     localStorage.clear();
   };
+  const [UserInfo, setUserInfo] =  useState<UserInfo | null>(null);
+
+  useEffect(() => {
+    // Local Storage'dan token'ı al
+    const token = localStorage.getItem('user');
+
+    // Eğer token varsa, kullanıcı bilgilerini al
+    if (token) {
+      const user = getUserInfoFromToken(token);
+      setUserInfo(user);
+    }
+  }, []); // Komponent yüklendiğinde sadece bir kere çalışsın
+
+  const getUserInfoFromToken = (token:string) => {
+    try {
+      // Token'ı çözümle
+      const decodedToken: any = jwtDecode(token);
+
+      const username = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
+
+      // Token içindeki bütün bilgileri konsola yazdır
+      const user : UserInfo = {
+        name: username,
+        email: decodedToken.email,
+        // Diğer özellikler...
+      };
+
+      return user;
+    } catch (error) {
+      console.error('Token çözümlenirken bir hata oluştu:', error);
+      return null;
+    }
+  };
+
+ 
   return (
     <>
       <nav className="navbar    navbar-expand-xxl  bg-white ">
@@ -80,7 +119,7 @@ export default function Navbar({}: Props) {
                   />
                 </span>
                 <span className="user-name link-secondary me-2">
-                  Alperen Diler
+                  {UserInfo?.name}
                 </span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

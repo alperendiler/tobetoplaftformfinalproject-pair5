@@ -8,7 +8,7 @@ import {AddUserRequest } from "../models/requests/user/addUserRequest";
 class AuthService {
 	async login(model : AuthLoginRequest) {
         try {
-            const response = await axios.post("http://localhost:5155/api/Auth/Login", model);
+            const response = await axiosInstance.post("Auth/Login", model);
 
             if (response.data  && response.data.result.token) {
               localStorage.setItem('user', JSON.stringify(response.data));

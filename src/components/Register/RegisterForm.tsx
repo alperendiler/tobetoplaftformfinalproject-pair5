@@ -1,7 +1,7 @@
 import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
 import FormikInput from "../FormikInput/FormikInput";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./register.css";
 import authService from "../../services/authService";
 import { ToastContainer, toast } from 'react-toastify';
@@ -9,14 +9,18 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 
-type Props = {};
+type Props = {
+
+};
 interface RegisterForm {
   firstName: string;
   lastName: string;
   email: string;
   password: string;
+
 }
 export default function RegisterForm({}: Props) {
+  const navigate = useNavigate();
   const validationSchema = Yup.object({
     firstName: Yup.string().required("Doldurulması zorunlu alan*")
     .matches(/^[a-zA-ZğüşıöçĞÜŞİÖÇ]+$/, "Geçersiz karakter girişi*"),
@@ -40,6 +44,7 @@ export default function RegisterForm({}: Props) {
     lastName: "",
     email: "",
     password: "",
+    
   };
 
 
@@ -47,7 +52,7 @@ export default function RegisterForm({}: Props) {
    try{
     const response = await authService.register(values);
     console.log(response);
-
+    
     toast.success("Kayıt Başarılı", {
       position: "top-right",
       autoClose: 3000,
@@ -57,6 +62,11 @@ export default function RegisterForm({}: Props) {
       draggable: true,
       theme:"colored"
     });
+
+    navigate("/");
+   // onRegisterSuccess();
+
+   
    }
    catch (error) {
     console.error("Kayıt Başarısız:", (error as Error).message);
@@ -78,7 +88,7 @@ export default function RegisterForm({}: Props) {
     <>
       <div className="col-md-6 col-12 btn-rainbow-card">
         <div>
-        <div className=" text-center">
+        <div className="d-flex flex-column align-items-center justify-content-center text-center">
           <div className="cursor-pointer mb-5 register-form-dimension">
             <span>
               <img
@@ -144,7 +154,7 @@ export default function RegisterForm({}: Props) {
                   <ToastContainer />
                   <div className="col-12">
                     <label>
-                      <small>
+                      <small >
                         Zaten bir hesabın var mı?
                         <Link
                           className="text-decoration-none text-muted fw-bold"

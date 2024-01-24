@@ -1,7 +1,20 @@
 import "../styles/login.css";
 import LoginForm from "../components/Login/LoginForm";
+import { toast } from "react-toastify";
 
 const Login = () => {
+  const onRegisterSuccess =()=>{
+    toast.success("Kayıt Başarılı", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme:"colored"
+    });
+
+  }
   return (
     <main>
       <div className="container ">
