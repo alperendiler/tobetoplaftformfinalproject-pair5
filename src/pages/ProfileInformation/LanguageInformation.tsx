@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import SidebarProfileInformation from "../../components/Content/ProfileInformation//SidebarProfile";
+import "../../styles/personalInformation.css"
 
 interface LanguageInformationForm {
   language: string;
@@ -37,7 +38,7 @@ const LanguageInformation: React.FC = () => {
   return (
 
 <>
-      <div className="container p-5">
+      <div className="container pt-5 profile-footer">
         <div className="row">
           <div className="col-12 col-lg-3 mb-8 mb-lg-0">
             <SidebarProfileInformation />
