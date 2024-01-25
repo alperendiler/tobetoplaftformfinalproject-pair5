@@ -18,6 +18,7 @@ import CourseDetail from "./pages/CourseDetail";
 import PrivateRoot from "./components/PrivateRoot";
 import ProfileInformation from "./pages/ProfileInformation/ProfileInformation";
 import PersonalInformation from "./pages/ProfileInformation/PersonalInformation";
+import EducationInformation from "./pages/ProfileInformation/EducationInformation";
 
 interface Props {}
 function App({}: Props) {
@@ -120,7 +121,7 @@ function App({}: Props) {
           </div>
         }
       />
-          <PrivateRoot
+      <PrivateRoot
         path="/personal-information"
         element={
           <div>
@@ -129,7 +130,17 @@ function App({}: Props) {
             <Footer />
           </div>
         }
-        />
+      />
+      <PrivateRoot
+        path="/education-information"
+        element={
+          <div>
+            <Navbar />
+            <EducationInformation />
+            <Footer />
+          </div>
+        }
+      />
     </>
   );
 }
