@@ -9,6 +9,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../../styles/MyProfileStyles/profilePicture.css";
 import "../../styles/personalInformation.css";
+import SidebarProfileInformation from "../../components/Content/ProfileInformation/SidebarProfile";
 
 type Props = {};
 
@@ -86,8 +87,14 @@ export default function PersonalInformation({}: Props) {
   });
 
   return (
-    <>
-            <div className=" d-flex justify-content-center profile-picture-form">
+<>
+      <div className="container p-5">
+        <div className="row">
+          <div className="col-12 col-lg-3 mb-8 mb-lg-0">
+            <SidebarProfileInformation />
+          </div>
+          <div className="col-12 col-lg-9">
+          <div className=" d-flex justify-content-center profile-picture-form">
               <img
                 className="profile-picture-image"
                 src="https://tobeto.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fimages.19a45d39.png&w=384&q=75"
@@ -205,6 +212,12 @@ export default function PersonalInformation({}: Props) {
                 </button>
               </Form>
             </Formik>
+          </div>
+        </div>
+      </div>
     </>
+
+
+  
   );
 }

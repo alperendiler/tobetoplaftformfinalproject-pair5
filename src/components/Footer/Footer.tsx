@@ -6,8 +6,8 @@ type Props = {}
 
 export default function Footer({}: Props) {
   return (
-    <div>
-       <footer className="colorFooter ">
+    <div >
+       <footer className="colorFooter">
             <div className="container p-4">
                 <div className="row">
                     <div className="col-10">

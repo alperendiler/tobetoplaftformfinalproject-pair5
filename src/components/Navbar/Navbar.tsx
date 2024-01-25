@@ -140,7 +140,7 @@ export default function Navbar({}: Props) {
               <ul className="dropdown-menu ">
                 <li>
                   <span className=" nav-link dropdown-item p-2 ">
-                    <Link className="nav-link" to="/profile-information">
+                    <Link className="nav-link" to="/edit-profile/personal-information">
                       Profil Bilgileri
                     </Link>
                   </span>
