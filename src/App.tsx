@@ -12,11 +12,12 @@ import UserProfile from "./pages/UserProfile";
 import Catalog from "./pages/Catalog";
 import Calendar from "./pages/Calendar";
 import Evaluations from "./pages/Evaluations";
-import PersonalInformation from "./pages/PersonalInformation";
 import ExamDetail from "./components/Content/HomePage/ExamDetail";
 import Trainings from "./pages/Trainings";
 import CourseDetail from "./pages/CourseDetail";
 import PrivateRoot from "./components/PrivateRoot";
+import ProfileInformation from "./pages/ProfileInformation/ProfileInformation";
+import PersonalInformation from "./pages/ProfileInformation/PersonalInformation";
 
 interface Props {}
 function App({}: Props) {
@@ -92,7 +93,7 @@ function App({}: Props) {
         }
       />
       <PrivateRoot
-        path="/egitimler"
+        path="/education"
         element={
           <div>
             <Navbar />
@@ -102,7 +103,7 @@ function App({}: Props) {
         }
       />
       <PrivateRoot
-        path="/kurslar/:id"
+        path="/course/:id"
         element={
           <div>
             <CourseDetail />
@@ -110,6 +111,16 @@ function App({}: Props) {
         }
       />
       <PrivateRoot
+        path="/profile-information"
+        element={
+          <div>
+            <Navbar />
+            <ProfileInformation />
+            <Footer />
+          </div>
+        }
+      />
+          <PrivateRoot
         path="/personal-information"
         element={
           <div>
@@ -118,7 +129,7 @@ function App({}: Props) {
             <Footer />
           </div>
         }
-      />
+        />
     </>
   );
 }

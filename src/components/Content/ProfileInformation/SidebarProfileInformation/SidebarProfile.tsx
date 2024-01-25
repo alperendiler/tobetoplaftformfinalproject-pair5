@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
+
 
 type Props= {}
 
@@ -6,14 +8,14 @@ function SidebarProfileInformation({}:Props) {
   return (
     <div>
         <div className="p-2 py-4 mobile-sidebar  ">
-              <a
-                className="btn mb-2 text-start w-100 sidebar-link form-text-style active-edit"
-                href="#"
+              <Link 
+                className=" nav-link btn mb-2 text-start w-100 sidebar-link form-text-style active-edit"
+                to="/personal-information"
               >
                 <img src="https://tobeto.com/user.svg" className="me-2"/>
                 <span className="personel-informations"></span>
                 <span className="sidebar-text">Kişisel Bilgilerim</span>
-              </a>
+              </Link>
               <a className="btn mb-2 text-start w-100  sidebar-link form-text-style " href="#">
                 <img src="https://tobeto.com/business.svg" className="me-2"/>
                 <span className="experience"></span>
