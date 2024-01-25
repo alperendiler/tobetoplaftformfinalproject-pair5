@@ -50,7 +50,7 @@ export default function MainMyTrainings({}: Props) {
           <span>{course.title}</span>
           <span className="platform-course-date">{course.date}</span>
         </div>
-        <Link  className="apply-btn" to={"/kurslar/" + course.id}>Eğitime Git</Link>
+        <Link  className="apply-btn" to={"/courses/" + course.id}>Eğitime Git</Link>
       </div>
     </div>
     </div>

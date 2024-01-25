@@ -23,9 +23,9 @@ export default function RegisterForm({}: Props) {
   const navigate = useNavigate();
   const validationSchema = Yup.object({
     firstName: Yup.string().required("Doldurulması zorunlu alan*")
-    .matches(/^[a-zA-ZğüşıöçĞÜŞİÖÇ]+$/, "Geçersiz karakter girişi*"),
+    .matches(/^[a-zA-ZğüşıöçĞÜŞİÖÇ]+$/g, "Geçersiz karakter girişi*"),
     lastName: Yup.string().required("Doldurulması zorunlu alan*")
-    .matches(/^[a-zA-ZğüşıöçĞÜŞİÖÇ]+$/, "Geçersiz karakter girişi*"),
+    .matches(/^[a-zA-ZğüşıöçĞÜŞİÖÇ]+$/g, "Geçersiz karakter girişi*"),
     email: Yup.string().required("Doldurulması zorunlu alan*")
     .email("Geçersiz e-posta adresi*"),
     password: Yup.string()

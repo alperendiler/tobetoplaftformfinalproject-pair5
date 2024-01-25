@@ -150,7 +150,7 @@ export default function Main({}: Props) {
      
     <MainMyTrainings  />
   
- <Link to={"/egitimler"}><div className="showMoreBtn">Daha Fazla Göster</div></Link>
+ <Link to={"/education"}><div className="showMoreBtn">Daha Fazla Göster</div></Link>
             </div>
 
 
