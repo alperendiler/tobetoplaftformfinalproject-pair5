@@ -16,14 +16,15 @@ import ExamDetail from "./components/Content/HomePage/ExamDetail";
 import Trainings from "./pages/Trainings";
 import CourseDetail from "./pages/CourseDetail";
 import PrivateRoot from "./components/PrivateRoot";
-import Experience from "./pages/Profile/Experience";
-import Competence from "./pages/Profile/Competence";
-import Certificate from "./pages/Profile/Certificate";
-import MediaAccount from "./pages/Profile/MediaAccount";
+import Experience from "./pages/ProfileInformation/ExperienceInformation";
+import Competence from "./pages/ProfileInformation/CompetenceInformation";
+import Certificate from "./pages/ProfileInformation/CertificateInformation";
+import MediaAccount from "./pages/ProfileInformation/MediaAccountInformation";
 import ProfileInformation from "./pages/ProfileInformation/ProfileInformation";
 import PersonalInformation from "./pages/ProfileInformation/PersonalInformation";
 import EducationInformation from "./pages/ProfileInformation/EducationInformation";
 import LanguageInformation from "./pages/ProfileInformation/LanguageInformation";
+import Announcements from "./pages/Announcements";
 
 interface Props {}
 function App({}: Props) {
@@ -117,17 +118,7 @@ function App({}: Props) {
         }
       />
       <PrivateRoot
-        path="/experience"
-        element={
-          <div>
-            <Navbar />
-            <Experience />
-            <Footer />
-          </div>
-        }
-      />
-      <PrivateRoot
-        path="/experience"
+        path="/edit-profile/experience-information"
         element={
           <div>
             <Navbar />
@@ -158,7 +149,7 @@ function App({}: Props) {
         
       />
       <PrivateRoot
-        path="/profilim/competence"
+        path="/edit-profile/competence-information"
         element={
           <div>
             <Navbar />
@@ -169,7 +160,7 @@ function App({}: Props) {
         
       />
        <PrivateRoot
-        path="/profilim/certificate"
+        path="/edit-profile/certificate-information"
         element={
           <div>
             <Navbar />
@@ -180,7 +171,7 @@ function App({}: Props) {
         
       />
        <PrivateRoot
-        path="/profilim/media-account"
+        path="/edit-profile/media-account-information"
         element={
           <div>
             <Navbar />
@@ -232,7 +223,18 @@ function App({}: Props) {
           </div>
         }
       />
+      <PrivateRoot
+        path="/announcements"
+        element={
+          <div>
+            <Navbar />
+            <Announcements />
+            <Footer />
+          </div>
+        }
+      />
     </>
+    
   );
 }
 

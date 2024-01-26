@@ -1,36 +1,39 @@
 import React from 'react'
-import SidebarProfileInformation from '../../components/Content/SidebarProfileInformation/SidebarProfileInformation'
+import SidebarProfileInformation from "../../components/Content/ProfileInformation/SidebarProfile";
 import "../../styles/personalInformation.css";
 import FormikInput from "../../components/FormikInput/FormikInput";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 type Props = {}
-interface CompetenceForm {
-    company: string;
+interface MediaAccountForm {
+    socialMediaUrl: string;
   }
-export default function  ({}: Props) {
-    
-  const initialValues: CompetenceForm = {
-    company: "",
-  };
-  const validationSchema = Yup.object({
-    company: Yup.string()
-      .required("Doldurulması zorunlu alan*")
-      .matches(/^[a-zA-ZğüşıöçĞÜŞİÖÇ]+$/, "Geçersiz karakter girişi*")
-      .min(2, "En az 2 haneden oluşmalıdır.")
-      .max(100, "En fazla 100 karakter girebilirsiniz"),
-     
-  });
-  return (
+export default function MediaAccount({}: Props) {
+      
+    const initialValues: MediaAccountForm = {
+        socialMediaUrl: "",
+      };
+      const validationSchema = Yup.object({
+        socialMediaUrl: Yup.string()
+          .min(2, "En az 2 haneden oluşmalıdır.")
+          .max(100, "En fazla 100 karakter girebilirsiniz"),
+         
+      });
+    return (
     <>
-    <div className="container profile-footer">
+          <div className="container pt-5 profile-footer">
         <div className="row">
             <div className="col-12 col-lg-3 mb-8 mb-lg-0">
             <SidebarProfileInformation/>
             </div>
            <div className='col-12 col-lg-9'>
-           <Formik
+           <div className="row">
+    
+      <div className="">
+        <div className="row">
+
+        <Formik
               validationSchema={validationSchema}
               initialValues={initialValues}
               onSubmit={async (values) => {
@@ -41,8 +44,7 @@ export default function  ({}: Props) {
               <Form>
               <div className="row">
 
-                  <div className="col-md-12 col-12 mb-4 mt-3">
-                    <label className="form-label">Yetkinlik</label>
+                  <div className="col-md-4 col-12">
                     <Field
                       label="Yetkinlik"
                       name="competence"
@@ -50,10 +52,19 @@ export default function  ({}: Props) {
                       className=" form-control form-select"
                     >
                       <option value={0}>Seçiniz</option>
+                      <option value={0}>Instagram</option>
+                      <option value={0}>Twitter</option>
+                      <option value={0}>LinkedIn</option>
+                      <option value={0}>Behance</option>
+                      <option value={0}>Dribble</option>
+                      <option value={0}>Github</option>
+
                     </Field>
                   </div>
             
-                 
+                 <div className='col-md-8 col-12'>
+                    <FormikInput name='socialMediaUrl' type='text' placeholder='https://'/>
+                 </div>
                  
                  
 
@@ -64,10 +75,13 @@ export default function  ({}: Props) {
 
               </Form>
             </Formik>
+            </div>   
+         </div>
+
+    </div>
            </div>
        </div>
-      </div>
-
-     </>
+      </div>   
+    </>
   )
 }

@@ -4,6 +4,8 @@ import "../../../styles/mainFormCard.css";
 import MainMyTrainings from '../Main/MainMyTrainings';
 import "../../../styles/main.css";
 import { Link } from 'react-router-dom';
+import AnnouncementAndNews from './AnnouncementAndNews';
+import Surveys from './Surveys';
 
 type Props = {
 
@@ -38,7 +40,7 @@ export default function Main({}: Props) {
       description: 'Lorem ipsum dolor sit a Lorem ipsum dolor sit aLorem ipsum dolor sit a', 
     },
     {
-      id: 1,
+      id: 2,
       title: 'İstanbul Kodluyor Bilgilendirme',
       status: 'Kabul edildi', 
       description: 'Lorem ipsum dolor sit a Lorem ipsum dolor sit aLorem ipsum dolor sit a', 
@@ -101,7 +103,7 @@ export default function Main({}: Props) {
               <button className="nav-link link-secondary" id="contact-tab" data-bs-toggle="tab" data-bs-target="#bordered-contact" type="button" role="tab" aria-controls="announcementandnews" aria-selected="false">Duyuru Ve Haberlerim</button>
             </li>
             <li className="nav-item" role="presentation">
-              <button className="nav-link link-secondary" id="contact-tab" data-bs-toggle="tab" data-bs-target="#bordered-contact" type="button" role="tab" aria-controls="surveys" aria-selected="false">Anketlerim</button>
+              <button className="nav-link link-secondary" id="surveys-tab" data-bs-toggle="tab" data-bs-target="#bordered-surveys" type="button" role="tab" aria-controls="surveys" aria-selected="false">Anketlerim</button>
             </li>
           </ul>
      
@@ -148,19 +150,22 @@ export default function Main({}: Props) {
           <div className="tab-pane fade" id="bordered-profile" role="tabpanel" aria-labelledby="educations-tab">
                     <div className='row'>
      
-    <MainMyTrainings  />
+         <MainMyTrainings  />
   
- <Link to={"/education"}><div className="showMoreBtn">Daha Fazla Göster</div></Link>
+           <Link to={"/education"}><div className="showMoreBtn">Daha Fazla Göster</div></Link>
             </div>
 
 
 
           </div>
           <div className="tab-pane fade" id="bordered-contact" role="tabpanel" aria-labelledby="announcementandnews-tab">
-            Saepe animi et soluta ad odit soluta sunt. Nihil quos omnis animi debitis cumque. Accusantium quibusdam perspiciatis qui qui omnis magnam. Officiis accusamus impedit molestias nostrum veniam. Qui amet ipsum iure. Dignissimos fuga tempore dolor.
+            <AnnouncementAndNews/>
+            <Link to={"/announcements"}><div className="showMoreBtn">Daha Fazla Göster</div></Link>
+
           </div>
-          <div className="tab-pane fade" id="bordered-contact" role="tabpanel" aria-labelledby="surveys-tab">
-            Saepe animi et soluta ad odit soluta sunt. Nihil quos omnis animi debitis cumque. Accusantium quibusdam perspiciatis qui qui omnis magnam. Officiis accusamus impedit molestias nostrum veniam. Qui amet ipsum iure. Dignissimos fuga tempore dolor.
+          <div className="tab-pane fade" id="bordered-surveys" role="tabpanel" aria-labelledby="surveys-tab">
+           <Surveys/>
+           
           </div>
         </div>{/* End Bordered Tabs */}
       </div>

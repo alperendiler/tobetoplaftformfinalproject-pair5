@@ -5,7 +5,7 @@ import "../../styles/personalInformation.css";
 
 import React from 'react'
 import FormikInput from "../../components/FormikInput/FormikInput";
-import SidebarProfileInformation from "../../components/Content/SidebarProfileInformation/SidebarProfileInformation";
+import SidebarProfileInformation from "../../components/Content/ProfileInformation/SidebarProfile";
 import ReactDatePicker from "react-datepicker";
 
 type Props = {}
@@ -58,7 +58,7 @@ export default function Experience({}: Props) {
 
   return (
     <>
-    <div className="container">
+    <div className="container pt-5 profile-footer">
         <div className="row">
             <div className="col-12 col-lg-3 mb-8 mb-lg-0">
             <SidebarProfileInformation/>
@@ -102,6 +102,7 @@ export default function Experience({}: Props) {
                 </div>
                 <div className="col-12 col-md-6">
                 <label className="input-label-text">İş Başlangıcı*</label>
+                <br />
                 <div className="react-datepicker-wrapper">
                     <div className="react-datepicker__input-container">
                      <span role="alert" aria-live="polite" className="react-datepicker__aria-live"></span>
@@ -119,6 +120,7 @@ export default function Experience({}: Props) {
 
                 <div className="col-12 col-md-6">
                 <label className="input-label-text">İş Bitişi*</label>
+                <br />
                 <div className="react-datepicker-wrapper">
                     <div className="react-datepicker__input-container">
                      <span role="alert" aria-live="polite" className="react-datepicker__aria-live"></span>

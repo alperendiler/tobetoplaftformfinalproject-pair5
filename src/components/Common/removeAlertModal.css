@@ -1,0 +1,85 @@
+
+.alert-modal {
+   
+    z-index: 999991 !important; 
+  }
+.alert-modal .modal-body {
+    border-radius: 12px;
+    padding: 14px 0 0;
+}
+.alert-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.alert-message {
+    margin-top: 1em;
+    padding-left: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #282828;
+}
+.alert-message-light {
+    margin-top: -0.5em;
+    padding-left: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    color: #828282;
+}
+.alert-buttons .btn-no:hover {
+    color: #fff;
+    background: #93f;
+}
+.alert-buttons .btn-yes:hover {
+    color: #fff;
+    background: #93f;
+}
+.alert-buttons .btn-yes {
+    display: flex;
+    align-items: flex-start;
+    font-size: inherit;
+    background: #fff;
+    border-radius: 8px;
+    width: 100%;
+    justify-content: center;
+    gap: 8px;
+    color: #828282;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,.1);
+    font-weight: 500;
+    transform: scale(1);
+}
+.alert-buttons .btn-no {
+    display: flex;
+    align-items: flex-start;
+    font-size: inherit;
+    background: #fff;
+    border-radius: 8px;
+    width: 100%;
+    justify-content: center;
+    gap: 8px;
+    color: #828282;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,.1);
+    font-weight: 500;
+    transform: scale(1);
+}
+.alert-header .alert-icon:before {
+    content: "";
+    background-image: url(https://tobeto.com/_next/static/media/alert.309dc4c0.svg);
+    width: 3em;
+    height: 3em;
+    background-position: 50%;
+    display: flex;
+    background-repeat: no-repeat;
+    background-size: 3em 3em;
+}
+.alert-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #e0dddd;
+    margin-top: 3em;
+    padding: 8px 16px;
+    gap: 1em;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
