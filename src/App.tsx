@@ -12,7 +12,6 @@ import UserProfile from "./pages/UserProfile";
 import Catalog from "./pages/Catalog";
 import Calendar from "./pages/Calendar";
 import Evaluations from "./pages/Evaluations";
-import PersonalInformation from "./pages/PersonalInformation";
 import ExamDetail from "./components/Content/HomePage/ExamDetail";
 import Trainings from "./pages/Trainings";
 import CourseDetail from "./pages/CourseDetail";
@@ -21,6 +20,10 @@ import Experience from "./pages/Profile/Experience";
 import Competence from "./pages/Profile/Competence";
 import Certificate from "./pages/Profile/Certificate";
 import MediaAccount from "./pages/Profile/MediaAccount";
+import ProfileInformation from "./pages/ProfileInformation/ProfileInformation";
+import PersonalInformation from "./pages/ProfileInformation/PersonalInformation";
+import EducationInformation from "./pages/ProfileInformation/EducationInformation";
+import LanguageInformation from "./pages/ProfileInformation/LanguageInformation";
 
 interface Props {}
 function App({}: Props) {
@@ -96,7 +99,7 @@ function App({}: Props) {
         }
       />
       <PrivateRoot
-        path="/egitimler"
+        path="/education"
         element={
           <div>
             <Navbar />
@@ -106,7 +109,7 @@ function App({}: Props) {
         }
       />
       <PrivateRoot
-        path="/kurslar/:id"
+        path="/course/:id"
         element={
           <div>
             <CourseDetail />
@@ -124,7 +127,27 @@ function App({}: Props) {
         }
       />
       <PrivateRoot
-        path="/personal-information"
+        path="/experience"
+        element={
+          <div>
+            <Navbar />
+            <Experience />
+            <Footer />
+          </div>
+        }
+      />
+      <PrivateRoot
+        path="/profile-information"
+        element={
+          <div>
+            <Navbar />
+            <ProfileInformation />
+            <Footer />
+          </div>
+        }
+      />
+      <PrivateRoot
+        path="/edit-profile/personal-information"
         element={
           <div>
             <Navbar />
@@ -166,6 +189,48 @@ function App({}: Props) {
           </div>
         }
         
+      />
+      <PrivateRoot
+        path="/edit-profile/education-information"
+        element={
+          <div>
+            <Navbar />
+            <EducationInformation />
+            <Footer />
+          </div>
+        }
+      />
+
+<PrivateRoot
+        path="/edit-profile/language-information"
+        element={
+          <div>
+            <Navbar />
+            <LanguageInformation />
+            <Footer />
+          </div>
+        }
+      />
+      <PrivateRoot
+        path="/edit-profile/education-information"
+        element={
+          <div>
+            <Navbar />
+            <EducationInformation />
+            <Footer />
+          </div>
+        }
+      />
+
+<PrivateRoot
+        path="/edit-profile/language-information"
+        element={
+          <div>
+            <Navbar />
+            <LanguageInformation />
+            <Footer />
+          </div>
+        }
       />
     </>
   );

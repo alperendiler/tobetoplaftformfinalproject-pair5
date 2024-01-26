@@ -10,7 +10,7 @@ const PackageCardsRow = ({}: Props) => {
         <div className='row'>
         <PackageCard route='/personal-information' title="Profilini oluştur"/>
         <PackageCard route='/evaluations' title="Kendini değerlendir"/>
-        <PackageCard route='/platform-egitimler' title="Öğrenmeye başla"/>
+        <PackageCard route='/platform-educations' title="Öğrenmeye başla"/>
         </div>
     </div>
   )
