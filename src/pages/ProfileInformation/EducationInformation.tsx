@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import FormikInput from "../../components/FormikInput/FormikInput";
 import "react-phone-number-input/style.css";
@@ -19,13 +19,23 @@ interface EducationInformationForm {
   startYear: string;
   graduationYear: string;
   isGraduated: boolean;
-  isContinue: boolean;
 }
 
-export default function EducationInformation({}: Props) {
+const EducationInformation: React.FC = ({}:Props) => {
+  const [selectedStatus, setSelectedStatus] = useState("");
+  const [university, setUniversity] = useState("");
+  const [department, setDepartment] = useState("");
   const [startYear, setStartYear] = useState<Date | null>(null);
   const [graduationYear, setGraduationYear] = useState<Date | null>(null);
   const [isGraduated, setIsGraduated] = useState(false);
+  const [EducationList, setEducationList] = useState<
+    Array<{ status: string; university: string; department: string;
+      startYear: string;
+      graduationYear: string; isGraduated: boolean;
+     }>
+  >([]);
+
+ 
 
   const initialValues: EducationInformationForm = {
     status: "",
@@ -34,10 +44,22 @@ export default function EducationInformation({}: Props) {
     startYear: "",
     graduationYear: "",
     isGraduated: false,
-    isContinue: false,
   };
 
   const validationSchema = Yup.object({});
+  useEffect(() => {
+    if (selectedStatus && university  && department  && startYear  && graduationYear || isGraduated  ) {
+      setEducationList((prevList) => [
+        ...prevList,
+        { status: selectedStatus, 
+          university, 
+          department, 
+          startYear: startYear ? startYear.toISOString() : "", 
+          graduationYear: graduationYear ? graduationYear.toISOString() : "", 
+          isGraduated  },
+      ]);
+    }
+  }, [selectedStatus, university, department, startYear, graduationYear, isGraduated]);
 
   return (
     <>
@@ -50,15 +72,39 @@ export default function EducationInformation({}: Props) {
             <Formik
               validationSchema={validationSchema}
               initialValues={initialValues}
-              onSubmit={async (values) => {
-                console.log(values);
+              onSubmit={async (values, actions) => {
+                setSelectedStatus(values.status);
+          setUniversity(values.university);
+          setDepartment(values.department);
+          setStartYear(values.startYear ? new Date(values.startYear) : null);
+          setGraduationYear(values.graduationYear ? new Date(values.graduationYear) : null);
+          setIsGraduated(values.isGraduated);
+          actions.setSubmitting(false);
+              
               }}
             >
               {({ values }) => (
                 <Form>
                   <div className="row">
                     <div className="col-12 col-md-6">
-                      <FormikInput name="status" label="Eğitim Durumu*" />
+                    <label className="form-label">Eğitim Durumu*</label>
+                      <Field
+                        name="status"
+                        as="select"
+                        className="form-control form-select"
+                      >
+                        <option value="">Seviye Seçiniz*</option>
+                        <option value="Önlisans">
+                          Önlisans
+                        </option>
+                        <option value="Lisans">
+                          Lisans
+                        </option>
+                        <option value="Yüksek Lisans">
+                          Yüksek Lisans
+                        </option>
+                        <option value="Doktora">Doktora</option>
+                      </Field>
                       <FormikInput
                         name="department"
                         label="Bölüm*"
@@ -87,7 +133,7 @@ export default function EducationInformation({}: Props) {
                             onChange={() => setIsGraduated(!isGraduated)}
                           />
                           <label
-                            htmlFor="isContinue"
+                            htmlFor="isGraduated"
                             className="form-check-label"
                           >
                             Devam Ediyor
@@ -122,9 +168,23 @@ export default function EducationInformation({}: Props) {
                 </Form>
               )}
             </Formik>
+            <div className="row  mt-3">
+        {EducationList.map((item, index) => (
+          <div key={index} className="col-md-4 language-item">
+                {item.status}
+                {item.university}
+                {item.department}
+                {item.startYear}
+                {item.graduationYear}
+                {item.isGraduated}
+          </div>
+        ))}
+      </div>
           </div>
         </div>
       </div>
     </>
   );
 }
+
+export default EducationInformation;
