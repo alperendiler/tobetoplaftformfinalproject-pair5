@@ -7,6 +7,7 @@ type Props = {
 	type?: string;
 	as?: string;
 	rows?:number;
+	cols?:number
 	className?:string;
 };
 

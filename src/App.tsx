@@ -17,6 +17,10 @@ import ExamDetail from "./components/Content/HomePage/ExamDetail";
 import Trainings from "./pages/Trainings";
 import CourseDetail from "./pages/CourseDetail";
 import PrivateRoot from "./components/PrivateRoot";
+import Experience from "./pages/Profile/Experience";
+import Competence from "./pages/Profile/Competence";
+import Certificate from "./pages/Profile/Certificate";
+import MediaAccount from "./pages/Profile/MediaAccount";
 
 interface Props {}
 function App({}: Props) {
@@ -110,6 +114,16 @@ function App({}: Props) {
         }
       />
       <PrivateRoot
+        path="/experience"
+        element={
+          <div>
+            <Navbar />
+            <Experience />
+            <Footer />
+          </div>
+        }
+      />
+      <PrivateRoot
         path="/personal-information"
         element={
           <div>
@@ -118,6 +132,40 @@ function App({}: Props) {
             <Footer />
           </div>
         }
+        
+      />
+      <PrivateRoot
+        path="/profilim/competence"
+        element={
+          <div>
+            <Navbar />
+            <Competence />
+            <Footer />
+          </div>
+        }
+        
+      />
+       <PrivateRoot
+        path="/profilim/certificate"
+        element={
+          <div>
+            <Navbar />
+            <Certificate />
+            <Footer />
+          </div>
+        }
+        
+      />
+       <PrivateRoot
+        path="/profilim/media-account"
+        element={
+          <div>
+            <Navbar />
+            <MediaAccount />
+            <Footer />
+          </div>
+        }
+        
       />
     </>
   );

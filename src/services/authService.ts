@@ -2,7 +2,7 @@
 import axios from "axios";
 import axiosInstance from "../core/interceptors/axiosInterceptor";
 import { AuthLoginRequest } from "../models/requests/auth/AuthLoginRequest";
-import {AddUserRequest } from "../models/requests/user/addUserRequest";
+import { AddUserRequest } from "../models/requests/user/addUserRequest";
 
 
 class AuthService {
@@ -18,7 +18,7 @@ class AuthService {
               throw new Error("Token not found in the response data");
             }
           } catch (error) {
-
+ 
             throw new Error("Authentication error"); // Bu kısmı düzeltmek gerekebilir, duruma göre değişebilir.
           }
         }
@@ -29,10 +29,17 @@ class AuthService {
     register(model: AddUserRequest) {
       return axios.post("http://localhost:5155/api/Auth/Register", model);
     }
-
-   /*getCurrentUser() {
-	return JSON.parse(localStorage.getItem('user'));
-}*/
+    
+  async isEmailRegistered(model:AddUserRequest) {
+      const response = await axiosInstance.get(`Auth/IsEmailRegistered?email=${model.email}`);
+      return response.data; // Bu, e-posta kayıtlıysa `true`, değilse `false` dönecek bir API'yi varsayalım
+    
+  }
 }
+    /*getCurrentUser() {
+      return JSON.parse(localStorage.getItem('user'));
+    }*/
+
+
 
 export default new AuthService();

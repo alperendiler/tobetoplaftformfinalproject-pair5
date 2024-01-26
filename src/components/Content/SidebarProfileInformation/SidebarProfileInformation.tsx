@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 type Props= {}
 
@@ -14,11 +15,11 @@ function SidebarProfileInformation({}:Props) {
                 <span className="personel-informations"></span>
                 <span className="sidebar-text">Kişisel Bilgilerim</span>
               </a>
-              <a className="btn mb-2 text-start w-100  sidebar-link form-text-style " href="#">
+              <Link className="btn mb-2 text-start w-100  sidebar-link form-text-style " to="/profilim/deneyimlerim">
                 <img src="https://tobeto.com/business.svg" className="me-2"/>
                 <span className="experience"></span>
                 <span className="sidebar-text">Deneyimlerim</span>
-              </a>
+              </Link>
               <a className="btn mb-2 text-start w-100  sidebar-link form-text-style " href="#">
               <img src="https://tobeto.com/book.svg" className="me-2"/>
                 <span className="educations"></span>

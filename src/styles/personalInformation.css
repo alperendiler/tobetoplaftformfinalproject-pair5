@@ -10,13 +10,43 @@
     width: 90px;
     border-radius:40px 40px !important;
 }
-
+.profile-footer{
+padding-bottom: 31%;  
+}
 .btn-personal-information:hover {
     background-color: #7a29cc !important;
     color: #fff !important;
 
 }
-
+.upload-area {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1em;
+  justify-content: center;
+  border: 2px dashed #a486c3;
+  padding: 2em 0;
+  border-radius: 8px;
+}
+.upload-area span {
+  font-size: 1em;
+  color: #828282;
+  font-weight: 500;
+}
+.section-header .header-text {
+  font-size: 18px ;
+  font-weight: 500;
+}
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  color: #93f;
+}
+.upload-svg{
+  display: flex ;
+  
+  margin-top: 12% !important;
+}
 .date-picker{
     width: 380px;
 }
