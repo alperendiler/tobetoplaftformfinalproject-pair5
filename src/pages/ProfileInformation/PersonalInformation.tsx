@@ -88,7 +88,7 @@ export default function PersonalInformation({}: Props) {
 
   return (
 <>
-      <div className="container p-5">
+      <div className="container pt-5">
         <div className="row">
           <div className="col-12 col-lg-3 mb-8 mb-lg-0">
             <SidebarProfileInformation />

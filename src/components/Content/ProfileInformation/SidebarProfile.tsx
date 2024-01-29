@@ -50,6 +50,7 @@ function SidebarProfileInformation({}:Props) {
                 <span className="settings"></span>
                 <span className="sidebar-text">Ayarlar</span>
               </Link>
+              
             </div>
         
     </div>
