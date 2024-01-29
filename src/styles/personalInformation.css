@@ -43,3 +43,19 @@
 .profile-footer{
   padding-bottom: 31% !important;
   }
+
+.btn-personal-information-second{
+    margin-top: 12px;
+    background-color: #93f !important;
+    color: #fff !important;
+    width: 400px;
+    border-radius:40px 40px !important;
+}
+
+.btn-personal-information-third{
+  margin-top: 12px;
+  background-color: #fc5c46 !important;
+  color: #fff !important;
+  width: 400px;
+  border-radius:40px 40px !important;
+}

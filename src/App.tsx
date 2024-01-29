@@ -20,6 +20,7 @@ import ProfileInformation from "./pages/ProfileInformation/ProfileInformation";
 import PersonalInformation from "./pages/ProfileInformation/PersonalInformation";
 import EducationInformation from "./pages/ProfileInformation/EducationInformation";
 import LanguageInformation from "./pages/ProfileInformation/LanguageInformation";
+import Setting from "./pages/ProfileInformation/Setting";
 
 interface Props {}
 function App({}: Props) {
@@ -143,12 +144,22 @@ function App({}: Props) {
         }
       />
 
-<PrivateRoot
+      <PrivateRoot
         path="/edit-profile/language-information"
         element={
           <div>
             <Navbar />
             <LanguageInformation />
+            <Footer />
+          </div>
+        }
+      />
+      <PrivateRoot
+        path="/edit-profile/setting"
+        element={
+          <div>
+            <Navbar />
+            <Setting />
             <Footer />
           </div>
         }
