@@ -165,6 +165,16 @@ function App({}: Props) {
           </div>
         }
       />
+       <PrivateRoot
+        path="/announcements"
+        element={
+          <div>
+            <Navbar />
+            <Announcements />
+            <Footer />
+          </div>
+        }
+      />
     </>
   );
 }
