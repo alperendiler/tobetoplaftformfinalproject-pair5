@@ -84,7 +84,7 @@ export default function  ({}: Props) {
                       <option value="Android (İşletim Sistemleri)">Android (İşletim Sistemleri)</option>
                       <option value="Yönetim Ve İdare">Yönetim Ve İdare</option>
                       <option value="Apache Ambari">Apache Ambari</option>
-                      <option value="Uygulama Mağzası (IOS)">Uygulama Mağzası (IOS)</option>
+                      <option value="Uygulama Mağzası (IOS)">Uygulama Mağazası (IOS)</option>
                       <option value="Apple Sağlık Kiti">Apple Sağlık Kiti</option>
                       <option value="Apple IOS">Apple IOS</option>
                       <option value="Apple Xcode">Apple Xcode</option>
