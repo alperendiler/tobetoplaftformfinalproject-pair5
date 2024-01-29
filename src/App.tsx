@@ -21,6 +21,7 @@ import PersonalInformation from "./pages/ProfileInformation/PersonalInformation"
 import EducationInformation from "./pages/ProfileInformation/EducationInformation";
 import LanguageInformation from "./pages/ProfileInformation/LanguageInformation";
 import Setting from "./pages/ProfileInformation/Setting";
+import Announcements from "./pages/Announcements";
 
 interface Props {}
 function App({}: Props) {
