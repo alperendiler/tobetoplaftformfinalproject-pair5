@@ -74,27 +74,25 @@ export default function PersonalInformation({}: Props) {
     email: Yup.string()
       .required("Doldurulması zorunlu alan*")
       .email("Geçerli bir e-posta adresi giriniz"),
-      country: Yup.string()
-      .required("Doldurulması zorunlu alan*"),
-      city: Yup.string()
-      .required("Doldurulması zorunlu alan*"),
-      county: Yup.string()
-      .required("Doldurulması zorunlu alan*"),
-      neighbourhood: Yup.string()
-      .max(200,"En fazla 200 karakter girebilirsiniz"),
-      about: Yup.string()
-      .max(300, "En fazla 300 karakter girebilirsiniz")
+    country: Yup.string().required("Doldurulması zorunlu alan*"),
+    city: Yup.string().required("Doldurulması zorunlu alan*"),
+    county: Yup.string().required("Doldurulması zorunlu alan*"),
+    neighbourhood: Yup.string().max(
+      200,
+      "En fazla 200 karakter girebilirsiniz"
+    ),
+    about: Yup.string().max(300, "En fazla 300 karakter girebilirsiniz"),
   });
 
   return (
-<>
+    <>
       <div className="container pt-5">
         <div className="row">
           <div className="col-12 col-lg-3 mb-8 mb-lg-0">
             <SidebarProfileInformation />
           </div>
           <div className="col-12 col-lg-9">
-          <div className=" d-flex justify-content-center profile-picture-form">
+            <div className=" d-flex justify-content-center profile-picture-form">
               <img
                 className="profile-picture-image"
                 src="https://tobeto.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fimages.19a45d39.png&w=384&q=75"
@@ -132,7 +130,11 @@ export default function PersonalInformation({}: Props) {
                         name="identityNumber"
                         label="TC Kimlik No*"
                       />
-                      <div className="mb-3"><i className="text-danger">*Aboneliklerde fatura için doldurulması zorunlu alan</i></div>
+                      <div className="mb-3">
+                        <i className="text-danger">
+                          *Aboneliklerde fatura için doldurulması zorunlu alan
+                        </i>
+                      </div>
                     </div>
                   </div>
                   <div className="col-12 col-md-6">
@@ -216,8 +218,5 @@ export default function PersonalInformation({}: Props) {
         </div>
       </div>
     </>
-
-
-  
   );
 }
