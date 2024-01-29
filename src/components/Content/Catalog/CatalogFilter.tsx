@@ -36,6 +36,7 @@ const Filter: React.FC<FilterProps> = ({ title, options }) => {
               className="form-control fw-medium mb-3"
               placeholder="Arama"
               value={search}
+
               onChange={(e) => setSearch(e.target.value)}
             />
             <ul>

@@ -2,7 +2,40 @@
     resize: none;
     height: 120px;
   }
+  .grade-details-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    min-width: 25%;
+}
+.grade-delete:after {
+  content: url(https://tobeto.com/trash.svg);
+  background-color: #fc6d6d;
+  width: 24px;
+  height: 24px;
+  padding-top: 3px;
+  
+}
 
+.grade-delete {
+  position: absolute; 
+  right: 14%;
+
+}
+.my-grade {
+  box-shadow: 0 10px 24px 0 hsla(0,0%,9%,.05);
+  background-color: #fff;
+  padding: 12px 18px;
+  margin-top: 8px;
+  top: 0% !important;
+}
+.grade-delete:after, .photo-delete {
+  display: flex;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+}
 .btn-personal-information{
     margin-top: 12px;
     background-color: #93f !important;
@@ -10,13 +43,43 @@
     width: 90px;
     border-radius:40px 40px !important;
 }
-
+.profile-footer{
+padding-bottom: 31%;  
+}
 .btn-personal-information:hover {
     background-color: #7a29cc !important;
     color: #fff !important;
 
 }
-
+.upload-area {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1em;
+  justify-content: center;
+  border: 2px dashed #a486c3;
+  padding: 2em 0;
+  border-radius: 8px;
+}
+.upload-area span {
+  font-size: 1em;
+  color: #828282;
+  font-weight: 500;
+}
+.section-header .header-text {
+  font-size: 18px ;
+  font-weight: 500;
+}
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  color: #93f;
+}
+.upload-svg{
+  display: flex ;
+  
+  margin-top: 12% !important;
+}
 .date-picker{
     width: 380px;
 }

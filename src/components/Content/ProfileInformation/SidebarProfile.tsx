@@ -25,7 +25,7 @@ function SidebarProfileInformation({}:Props) {
                 <span className="educations"></span>
                 <span className="sidebar-text">Eğitim Hayatım</span>
               </Link>
-              <Link className="btn mb-2 text-start w-100  sidebar-link form-text-style " to="/edit-profile/competence-profile">
+              <Link className="btn mb-2 text-start w-100  sidebar-link form-text-style " to="/edit-profile/competence-information">
               <img src="https://tobeto.com/award.svg" className="me-2"/>
                 <span className="abilities"></span>
                 <span className="sidebar-text">Yetkinliklerim</span>
@@ -35,7 +35,7 @@ function SidebarProfileInformation({}:Props) {
                 <span className="certificates"></span>
                 <span className="sidebar-text">Sertifikalarım</span>
               </Link>
-              <Link className="btn mb-2 text-start w-100  sidebar-link form-text-style " to="/edit-profile/media-information">
+              <Link className="btn mb-2 text-start w-100  sidebar-link form-text-style " to="/edit-profile/media-account-information">
               <img src="https://tobeto.com/globe.svg" className="me-2"/>
                 <span className="languages"></span>
                 <span className="sidebar-text">Medya Hesaplarım</span>

@@ -20,7 +20,7 @@ export default function ({onClose }: Props) {
               </div>
               <div className="join-screen">
                 <br />
-                <p>
+              
                   <p>Sevgili Adayımız,</p>
                     <br />    
                   <p> 
@@ -32,7 +32,7 @@ export default function ({onClose }: Props) {
                   <p>&nbsp;</p>
                   <p>Sevgiler,</p>
                   <p>TOBETO</p>
-                </p>
+                
                 <br />
                 <div>
                   <span>Sınav Süresi : 45 Dakika</span>

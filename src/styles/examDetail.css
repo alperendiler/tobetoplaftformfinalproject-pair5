@@ -1,7 +1,7 @@
 
 .modal{
-    background: rgba(0, 0, 0, 0.5); /* Arkaplan rengi ve şeffaflık */
-  backdrop-filter: blur(5px); /* Blur efekti */
+    background: rgba(0, 0, 0, 0.5); 
+  backdrop-filter: blur(5px); 
   text-align: start;
 
 }

@@ -19,7 +19,7 @@ export default function MainExams({}: Props) {
     {isModalOpen && (
         <ExamDetail onClose={handleCloseModal} />
       )}
-<section className="my-2">
+<section className="my-2 pt-4">
       <div className="container">
         <div className="row cv-box cv-padding">
           <div className="col-12 position-relative">

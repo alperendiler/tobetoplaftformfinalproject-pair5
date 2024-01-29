@@ -44,8 +44,8 @@ export default function LoginForm({}: Props) {
 
       dispatch(setToken(token));
       localStorage.setItem("user", JSON.stringify(token));
-      navigate("/home-page");
-      
+      navigate("home-page");
+    
     } catch (error) {
 
       console.error("Kimlik doğrulama hatası:", (error as Error).message);

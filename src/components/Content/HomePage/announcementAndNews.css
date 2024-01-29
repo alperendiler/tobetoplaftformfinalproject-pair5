@@ -1,0 +1,62 @@
+.notfy-card.notify {
+    border-left: 6px solid #00956e;
+}
+.notfy-card {
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 1px 15px 1px rgba(0,0,0,.25);
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 14px;
+}
+.notfy-card.notify .type {
+    color: #00956e;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.notfy-card.notify .type {
+    color: #00956e;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.notfy-card .date {
+    color: #9397a0;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    display: flex;
+    align-items: center;
+}
+.notfy-card .date:before {
+    content: url(https://tobeto.com/_next/static/media/noty-date.c4b4d342.svg);
+    margin-right: 6px;
+}
+.notfy-card .header {
+    color: #767676;
+    text-align: start;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    min-height: 45px!important;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.notfy-card span {
+    color: #9397a0;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.notfy-card span.read-more {
+    cursor: pointer!important;
+}
