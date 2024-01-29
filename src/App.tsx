@@ -20,7 +20,6 @@ import Experience from "./pages/ProfileInformation/ExperienceInformation";
 import Competence from "./pages/ProfileInformation/CompetenceInformation";
 import Certificate from "./pages/ProfileInformation/CertificateInformation";
 import MediaAccount from "./pages/ProfileInformation/MediaAccountInformation";
-import ProfileInformation from "./pages/ProfileInformation/ProfileInformation";
 import PersonalInformation from "./pages/ProfileInformation/PersonalInformation";
 import EducationInformation from "./pages/ProfileInformation/EducationInformation";
 import LanguageInformation from "./pages/ProfileInformation/LanguageInformation";
@@ -124,16 +123,6 @@ function App({}: Props) {
           <div>
             <Navbar />
             <Experience />
-            <Footer />
-          </div>
-        }
-      />
-      <PrivateRoot
-        path="/profile-information"
-        element={
-          <div>
-            <Navbar />
-            <ProfileInformation />
             <Footer />
           </div>
         }
