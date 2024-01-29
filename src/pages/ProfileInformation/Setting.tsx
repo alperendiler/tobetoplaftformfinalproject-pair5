@@ -5,7 +5,6 @@ import SidebarProfileInformation from "../../components/Content/ProfileInformati
 import "../../styles/personalInformation.css";
 import FormikInput from "../../components/FormikInput/FormikInput";
 
-
 type Props = {};
 
 interface SettingForm {
@@ -41,27 +40,45 @@ export default function Setting({}: Props) {
               <Form>
                 <div className="row form-text-style">
                   <div className="col-12 col-md-4">
-                  <FormikInput name="name" label="Eski Şifre*" placeholder="Eski Şifre" />
+                    <FormikInput
+                      name="name"
+                      label="Eski Şifre*"
+                      placeholder="Eski Şifre"
+                    />
                   </div>
                   <div className="col-12 col-md-4">
-                  <FormikInput name="name" label="Yeni Şifre*" placeholder="Yeni Şifre"/>
+                    <FormikInput
+                      name="name"
+                      label="Yeni Şifre*"
+                      placeholder="Yeni Şifre"
+                    />
                   </div>
                   <div className="col-12 col-md-4">
-                  <FormikInput name="name" label="Yeni Şifre Tekrar*" placeholder="Yeni Şifre Tekrar" />
+                    <FormikInput
+                      name="name"
+                      label="Yeni Şifre Tekrar*"
+                      placeholder="Yeni Şifre Tekrar"
+                    />
                   </div>
                 </div>
                 <div className="row">
-                    <div className="col-12 col-md-6">
-                    <button type="submit" className="btn btn-personal-information-second">
-                  Şifre Değiştir
-                </button>
-                    </div>
-                    <div className="col-12 col-md-6">
-                    <button type="submit" className="btn btn-personal-information-third"> Üyeliği Sonlandır
-                </button>
-                    </div>
+                  <div className="col-12 col-md-6">
+                    <button
+                      type="submit"
+                      className="btn btn-personal-information-second"
+                    >
+                      Şifre Değiştir
+                    </button>
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <button
+                      type="submit"
+                      className="btn btn-personal-information-third"
+                    >
+                      Üyeliği Sonlandır
+                    </button>
+                  </div>
                 </div>
-                
               </Form>
             </Formik>
           </div>

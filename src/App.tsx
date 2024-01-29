@@ -25,6 +25,7 @@ import EducationInformation from "./pages/ProfileInformation/EducationInformatio
 import LanguageInformation from "./pages/ProfileInformation/LanguageInformation";
 import Setting from "./pages/ProfileInformation/Setting";
 import Announcements from "./pages/Announcements";
+import ForgottenPassword from "./pages/ForgottenPassword";
 
 interface Props {}
 function App({}: Props) {
@@ -230,6 +231,16 @@ function App({}: Props) {
             <Navbar />
             <Announcements />
             <Footer />
+          </div>
+        }
+      />
+      <PrivateRoot
+        path="/forgotPassword"
+        element={
+          <div>
+            <NavbarLogin />
+            <ForgottenPassword/>
+            <FooterLogin />
           </div>
         }
       />

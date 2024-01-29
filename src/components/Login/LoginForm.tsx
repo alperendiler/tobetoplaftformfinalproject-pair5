@@ -109,10 +109,9 @@ export default function LoginForm({}: Props) {
               <ToastContainer />
               <div className="col-12 ">
                 <p className="  mt-2 d-block">
-                  {" "}
                   <Link
                     className="nav-link link-secondary center-footer"
-                    to="pages-register.html"
+                    to="/forgotPassword"
                   >
                     Şifremi Unuttum
                   </Link>
