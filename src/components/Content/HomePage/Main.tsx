@@ -6,6 +6,7 @@ import "../../../styles/main.css";
 import { Link } from 'react-router-dom';
 import AnnouncementAndNews from './AnnouncementAndNews';
 import Surveys from './Surveys';
+import Applications from './Applications';
 
 type Props = {
 
@@ -14,66 +15,7 @@ type Props = {
 
 export default function Main({}: Props) {
 
-  const [applications, setApplications] = useState<{ id: number; title: string; status: string; description: string; }[]>([]);
-
-  const [myTrainings, setmMyTrainings] = useState<{ id: number; title: string; date: string; thumbnail: string; }[]>([]);
-  const testMyTrainings = [
-    {
-      id: 1,
-      title: 'İstanbul Kodluyor Bilgilendirme',
-      date: '11.11.1111 22.22', 
-      thumbnail: 'https://tobeto.s3.cloud.ngn.com.tr/23_EAH_1_45f7232003.jpg', 
-    },
-    {
-      id: 2,
-      title: 'İstanbul Kodluyor Bilgilendirme',
-      date: '11.11.1111 22.22', 
-      thumbnail: 'https://tobeto.s3.cloud.ngn.com.tr/23_ENK_1_b4d858c1a9.jpg', 
-    }
-   
-  ];
-  const testApplications = [
-    {
-      id: 1,
-      title: 'İstanbul Kodluyor Bilgilendirme',
-      status: 'Kabul edildi', 
-      description: 'Lorem ipsum dolor sit a Lorem ipsum dolor sit aLorem ipsum dolor sit a', 
-    },
-    {
-      id: 2,
-      title: 'İstanbul Kodluyor Bilgilendirme',
-      status: 'Kabul edildi', 
-      description: 'Lorem ipsum dolor sit a Lorem ipsum dolor sit aLorem ipsum dolor sit a', 
-    }
-   
-  ];
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-
-
-        setApplications(testApplications);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-
-
-        setmMyTrainings(testMyTrainings);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
+ 
 
   return (
     <>
@@ -110,42 +52,7 @@ export default function Main({}: Props) {
     
         <div className="tab-content pt-2" id="borderedTabContent">
           <div className="tab-pane fade show active" id="bordered-home" role="tabpanel" aria-labelledby="applications-tab">
-          {applications && applications.length > 0 ? (
-  applications.map((application) => (
-        <div className="col-md-6 col-12 mt-2" key={application.id}>
-      <div className={`status-card ${application.status ? 'status_accepted' : ''}`}>
-        <span className="form_name fw-bold">{application.title}</span>
-        <span className="form_status"></span>
-        <span className="pull_back"></span>
-        <span className="form_name">Bilgilendirme</span>
-        <div>
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="green" className="bi bi-check" viewBox="0 0 16 16">
-  <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>
-</svg>              <span className="form_date">{application.description}</span>
-            </div>
-          </div>
-          
-        </div>
-        <div>
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="green" className="bi bi-check" viewBox="0 0 16 16">
-  <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>
-</svg>              <span className="form_date">{application.description}</span>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-  </div>
-  ))
-  ) : (
-    <p>Başvurular bulunamadı.</p>
-  )}
-          
-
+            <Applications/>
           </div>
           <div className="tab-pane fade" id="bordered-profile" role="tabpanel" aria-labelledby="educations-tab">
                     <div className='row'>

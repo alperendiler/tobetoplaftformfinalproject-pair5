@@ -3,15 +3,7 @@ import RegisterForm from "../components/Register/RegisterForm";
 import RegisterApplication from "../components/Register/RegisterApplication";
 import "../components/Register/register.css"
 const Register = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [acceptTerms, setAcceptTerms] = useState(false);
-
-  const handleSubmit = () => {
-    // Handle form submission here
-  };
+ 
 
   return (
     <>

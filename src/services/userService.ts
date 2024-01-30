@@ -19,23 +19,7 @@ class userService extends BaseService<
 		super();
 		this.apiUrl = "User";
 	}
-    async getByUser() {
-        try {
-          const response = await axiosInstance.get("User/get", {
-            headers: {
-              Authorization: `Bearer `,
-            },
-          });
-    
-          // Handle the response as needed
-          return response.data;
-        } catch (error) {
-          // Handle errors
-          console.error("Error fetching user data:", error);
-          throw error;
-        }
-      }
-      
+   
     }
     
 
