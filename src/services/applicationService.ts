@@ -18,11 +18,9 @@ class ApplicationService extends BaseService<
 >{
     constructor() {
 		super();
-		this.apiUrl = "Application";
+		this.apiUrl = "Applications/getlist";
 	}
-	getAllApplication(pageIndex: number=0, pageSize: number=6): Promise<AxiosResponse<GetAllApplicationResponse>> {
-		return axiosInstance.get<GetAllApplicationResponse>("getall/");
-	}
+
 
 }
 export default new ApplicationService();

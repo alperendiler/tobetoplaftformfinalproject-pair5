@@ -1,6 +1,9 @@
 export interface GetAllApplicationResponse{
-    Id:string ,
+    id:string ,
     StudentId: string  ,
-    Description: string  ,
+    description: string  ,
     IsAccepted:boolean  
    }
+   export interface GetAllApplicationResponse{
+    items : GetAllApplicationResponse[]; 
+} 
