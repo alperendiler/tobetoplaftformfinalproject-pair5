@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import FormikInput from "../../components/FormikInput/FormikInput";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import * as Yup from "yup";
-import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../../styles/MyProfileStyles/profilePicture.css";
 import "../../styles/personalInformation.css";
 import SidebarProfileInformation from "../../components/Content/ProfileInformation/SidebarProfile";
+import axios from "axios";
 
 type Props = {};
 
@@ -27,9 +27,50 @@ interface PersonalInformationForm {
   about: string;
 }
 
+interface District {
+  id: number;
+  name: string;
+}
+interface Province {
+  id: number;
+  name: string;
+  districts: District[];
+}
+
 export default function PersonalInformation({}: Props) {
   const [value, setValue] = useState<string | undefined>(undefined);
   const [startDate, setStartDate] = useState(new Date());
+
+  const [provinces, setProvinces] = useState<Province[]>([]);
+  const [selectedProvince, setSelectedProvince] = useState<string>("");
+  const [districts, setDistricts] = useState<District[]>([]);
+
+  useEffect(() => {
+    axios
+      .get<{ status: string; data: Province[] }>(
+        "https://turkiyeapi.dev/api/v1/provinces"
+      )
+      .then((response) => setProvinces(response.data.data))
+      .catch((error) => console.error("API hatası:", error));
+  }, []);
+
+  useEffect(() => {
+    if (selectedProvince) {
+      const selectedProvinceData = provinces.find(
+        (province) => province.name === selectedProvince
+      );
+      if (selectedProvinceData) {
+        axios
+          .get<{ status: string; data: Province }>(
+            "https://turkiyeapi.dev/api/v1/provinces/" + selectedProvinceData.id
+          )
+          .then((response) => setDistricts(response.data.data.districts))
+          .catch((error) => console.error("API hatası:", error));
+      }
+    } else {
+      setDistricts([]);
+    }
+  }, [selectedProvince, provinces]);
 
   const initialValues: PersonalInformationForm = {
     name: "",
@@ -101,7 +142,7 @@ export default function PersonalInformation({}: Props) {
             <Formik
               validationSchema={validationSchema}
               initialValues={initialValues}
-              onSubmit={async (values) => {
+              onSubmit={(values) => {
                 console.log(values);
               }}
             >
@@ -174,9 +215,15 @@ export default function PersonalInformation({}: Props) {
                       name="city"
                       as="select"
                       className=" form-control form-select"
+                      onChange={(e: any) => setSelectedProvince(e.target.value)}
+                      value={selectedProvince}
                     >
-                      <option value={0}>Bir şehir seçin</option>
-                      <option value={1}>Ankara</option>
+                      <option value="">Bir şehir seçin</option>
+                      {provinces.map((province) => (
+                        <option value={province.name} key={province.id}>
+                          {province.name}
+                        </option>
+                      ))}
                     </Field>
                   </div>
                   <div className="col-md-6 col-12">
@@ -187,10 +234,12 @@ export default function PersonalInformation({}: Props) {
                       as="select"
                       className=" form-control form-select"
                     >
-                      <option value={0}>Bir ilçe seçin</option>
-                      <option value={1}>Çankaya</option>
-                      <option value={2}>Sincan</option>
-                      <option value={3}>Yenimahalle</option>
+                      <option value="">Bir ilçe seçin</option>
+                      {districts.map((district) => (
+                        <option key={district.id} value={district.name}>
+                          {district.name}
+                        </option>
+                      ))}
                     </Field>
                   </div>
                 </div>
