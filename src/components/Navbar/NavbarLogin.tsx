@@ -1,6 +1,7 @@
 import React from 'react'
 import '../../styles/navbar.css';
 import "../../styles/btn-rainbow.css"
+import { Link } from 'react-router-dom';
 
 type Props = {}
 
@@ -16,11 +17,11 @@ export default function NavbarLogin({}: Props) {
       <img className="navbar-logo" src='https://tobeto.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FTebeto-logo-yatay-beyaz.8c2d6927.png&w=384&q=75'/>
       </a>
       <ul className="d-none d-xxl-flex navbar-nav">
-      <li className="nav-item nav-active  fw-bold flex-grow-5 me-4"><a className="nav-link text-light nav-active" href="#">  Biz Kimiz?</a></li>
-      <li className="nav-item fw-bold me-4" ><a className="nav-link text-light c-gray-3" href="#">Neler Sunuyoruz?</a></li>
-      <li className="nav-item fw-bold me-4"><a className="nav-link text-light c-gray-3" href="#">Katalog</a></li>
-      <li className="nav-item fw-bold me-4"><a className="nav-link text-light c-gray-3" href="#">Codecademy</a></li>
-      <li className="nav-item fw-bold me-4"><a className="nav-link text-light c-gray-3" href="#">Tobeto'da Bu Ay</a></li>
+      <li className="nav-item nav-active  fw-bold flex-grow-5 me-4"><Link className="nav-link text-light nav-active" to="#">  Biz Kimiz?</Link></li>
+      <li className="nav-item fw-bold me-4" ><Link className="nav-link text-light c-gray-3" to="#">Neler Sunuyoruz?</Link></li>
+      <li className="nav-item fw-bold me-4"><Link className="nav-link text-light c-gray-3" to="#">Katalog</Link></li>
+      <li className="nav-item fw-bold me-4"><Link className="nav-link text-light c-gray-3" to="/codecademy">Codecademy</Link></li>
+      <li className="nav-item fw-bold me-4"><Link className="nav-link text-light c-gray-3" to="#">Tobeto'da Bu Ay</Link></li>
 
     </ul>
     <div className="btn-group navbar-text">

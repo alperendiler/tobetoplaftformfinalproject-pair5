@@ -26,6 +26,9 @@ import LanguageInformation from "./pages/ProfileInformation/LanguageInformation"
 import Setting from "./pages/ProfileInformation/Setting";
 import Announcements from "./pages/Announcements";
 import ForgottenPassword from "./pages/ForgottenPassword";
+import NotFound from "./pages/NotFound";
+
+
 
 interface Props {}
 function App({}: Props) {
@@ -48,6 +51,7 @@ function App({}: Props) {
             </div>
           }
         />
+
       </Routes>
 
       <PrivateRoot
@@ -241,6 +245,14 @@ function App({}: Props) {
             <NavbarLogin />
             <ForgottenPassword/>
             <FooterLogin />
+          </div>
+        }
+      />
+       <PrivateRoot
+        path="/notFound"
+        element={
+          <div>
+            <NotFound/>
           </div>
         }
       />
