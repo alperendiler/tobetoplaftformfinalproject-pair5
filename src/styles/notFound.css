@@ -1,0 +1,17 @@
+.not-found-number{
+    color: #afabab;
+    font-size: 300px;
+    letter-spacing: .6px;
+    margin-bottom: 40px;
+    text-shadow: 6px 6px 10px #32243e;
+    padding-top: 20%;
+    
+}
+
+.not-found-text{
+    color: #716e6e;
+    font-size: 50px;
+    letter-spacing: .6px;
+    margin-bottom: 40px;
+    text-shadow: 6px 6px 10px #32243e;
+}
