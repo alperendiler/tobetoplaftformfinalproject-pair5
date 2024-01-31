@@ -18,9 +18,9 @@ export default function UserProfile({}: Props) {
   return (
     <>
       <div className="container p-5">
-        <div className="text-end mb-3">
-          <span>
-            <svg
+        <div className="text-end  mb-3">
+        <Link className="nav-link  d-inline-block" to="/edit-profile/personal-information" > 
+           <svg
               xmlns="http://www.w3.org/2000/svg"
               width="25"
               height="25"
@@ -34,7 +34,7 @@ export default function UserProfile({}: Props) {
                 d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"
               />
             </svg>
-          </span>
+          </Link>
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
