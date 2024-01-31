@@ -142,7 +142,7 @@ export default function PersonalInformation({}: Props) {
             <Formik
               validationSchema={validationSchema}
               initialValues={initialValues}
-              onSubmit={async (values) => {
+              onSubmit={(values) => {
                 console.log(values);
               }}
             >
@@ -203,7 +203,8 @@ export default function PersonalInformation({}: Props) {
                     as="select"
                     className=" form-control form-select"
                   >
-                    <option value="">Bir ülke seçin</option>
+                    <option value={0}>Bir ülke seçin</option>
+                    <option value={1}>Türkiye</option>
                   </Field>
                 </div>
                 <div className=" row mb-3 ">
