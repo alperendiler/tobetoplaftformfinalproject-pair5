@@ -5,17 +5,17 @@ import { GetAllApplicationResponse } from '../../../models/responses/application
 type Props = {}
 
 export default function Applications({}: Props) { 
-    const [applications, setApplications] =  useState<GetAllApplicationResponse []>([]);
+    const [applications, setApplications] =  useState<GetAllApplicationResponse [] >([]);
 
-    // useEffect(() => {
-    //   fetchApplications();
+     useEffect(() => {
+       fetchApplications();
 
-    // }, []); 
-    // const fetchApplications = () => {
-    //   applicationService.getAll(0,4).then(response=> {
-    //     setApplications(response.data.items)
-    //           });
-    // };
+     }, []); 
+     const fetchApplications = () => {
+       applicationService.getAll(0,4).then(response=> {
+         setApplications(response.data.items)
+               });
+     };
     
   
   return (
