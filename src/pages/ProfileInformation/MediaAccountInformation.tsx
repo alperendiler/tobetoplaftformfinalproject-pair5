@@ -1,5 +1,4 @@
 import React from "react";
-import SidebarProfileInformation from "../../components/Content/ProfileInformation/SidebarProfile";
 import "../../styles/personalInformation.css";
 import FormikInput from "../../components/FormikInput/FormikInput";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -9,7 +8,7 @@ type Props = {};
 interface MediaAccountForm {
   socialMediaUrl: string;
 }
-export default function MediaAccount({}: Props) {
+export default function MediaAccountInformation({}: Props) {
   const initialValues: MediaAccountForm = {
     socialMediaUrl: "",
   };
@@ -20,12 +19,6 @@ export default function MediaAccount({}: Props) {
   });
   return (
     <>
-      <div className="container pt-5 profile-footer">
-        <div className="row">
-          <div className="col-12 col-lg-3 mb-8 mb-lg-0">
-            <SidebarProfileInformation />
-          </div>
-          <div className="col-12 col-lg-9">
             <div className="row">
               <div className="">
                 <div className="row">
@@ -75,9 +68,6 @@ export default function MediaAccount({}: Props) {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
     </>
   );
 }

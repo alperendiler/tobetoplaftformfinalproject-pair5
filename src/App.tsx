@@ -27,6 +27,7 @@ import Setting from "./pages/ProfileInformation/Setting";
 import Announcements from "./pages/Announcements";
 import ForgottenPassword from "./pages/ForgottenPassword";
 import NotFound from "./pages/NotFound";
+import EditProfile from "./pages/ProfileInformation/EditProfile";
 
 
 
@@ -137,7 +138,7 @@ function App({}: Props) {
         element={
           <div>
             <Navbar />
-            <PersonalInformation />
+            <EditProfile/>
             <Footer />
           </div>
         }
