@@ -1,7 +1,5 @@
 import React, {useState} from "react";
-
 import "react-phone-number-input/style.css";
-
 import "react-datepicker/dist/react-datepicker.css";
 import "../../styles/MyProfileStyles/profilePicture.css";
 import "../../styles/personalInformation.css";
@@ -19,7 +17,7 @@ type Props = {};
 
 
 export default function EditProfile({}: Props) {
-  const [activeTab, setActiveTab] = useState<string>("kisiselbilgilerim");
+  const [activeTab, setActiveTab] = useState<string>("PersonalInformation");
 
   const handleActiveTab = (text: string) => {
     setActiveTab(text);
@@ -44,14 +42,14 @@ export default function EditProfile({}: Props) {
       case "Setting":
         return <Setting />
       default:
-        return "İçerik bulunamadı."
+        return <PersonalInformation />
     }
   };
 
   
   return (
     <>
-      <div className="container pt-5">
+      <div className="container pt-5 profile-footer">
         <div className="row">
           <div className="col-12 col-lg-3 mb-8 mb-lg-0">
             <SidebarProfileInformation activeTab ={activeTab} setActiveTab={setActiveTab}/>
