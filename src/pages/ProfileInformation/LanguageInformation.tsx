@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import SidebarProfileInformation from "../../components/Content/ProfileInformation//SidebarProfile";
-import "../../styles/personalInformation.css"
+import "../../styles/personalInformation.css";
 
 interface LanguageInformationForm {
   language: string;
@@ -36,14 +35,7 @@ const LanguageInformation: React.FC = () => {
   }, [selectedLanguage, selectedLevel]);
 
   return (
-
-<>
-      <div className="container pt-5 profile-footer">
-        <div className="row">
-          <div className="col-12 col-lg-3 mb-8 mb-lg-0">
-            <SidebarProfileInformation />
-          </div>
-          <div className="col-12 col-lg-9">
+    <>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -132,12 +124,7 @@ const LanguageInformation: React.FC = () => {
           </div>
         ))}
       </div>
-          </div>
-        </div>
-      </div>
     </>
-
-   
   );
 };
 

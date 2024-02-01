@@ -2,13 +2,11 @@ import React, { useState,useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import FormikInput from "../../components/FormikInput/FormikInput";
 import "react-phone-number-input/style.css";
-import PhoneInput from "react-phone-number-input";
 import * as Yup from "yup";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../../styles/MyProfileStyles/profilePicture.css";
 import "../../styles/personalInformation.css";
-import SidebarProfileInformation from "../../components/Content/ProfileInformation/SidebarProfile";
 
 type Props = {};
 
@@ -63,12 +61,6 @@ const EducationInformation: React.FC = ({}:Props) => {
 
   return (
     <>
-      <div className="container pt-5 profile-footer">
-        <div className="row">
-          <div className="col-12 col-lg-3 mb-8 mb-lg-0">
-            <SidebarProfileInformation />
-          </div>
-          <div className="col-12 col-lg-9">
             <Formik
               validationSchema={validationSchema}
               initialValues={initialValues}
@@ -179,9 +171,6 @@ const EducationInformation: React.FC = ({}:Props) => {
                 {item.isGraduated}
           </div>
         ))}
-      </div>
-          </div>
-        </div>
       </div>
     </>
   );

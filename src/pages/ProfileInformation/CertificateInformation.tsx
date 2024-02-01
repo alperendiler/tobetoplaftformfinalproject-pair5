@@ -1,10 +1,9 @@
 import React, { ChangeEvent } from "react";
-import SidebarProfileInformation from "../../components/Content/ProfileInformation/SidebarProfile";
 import "../../styles/personalInformation.css";
 
 type Props = {};
 
-export default function Certificate({}: Props) {
+export default function CertificateInformation({}: Props) {
   const handleFileUpload = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
 
@@ -19,12 +18,6 @@ export default function Certificate({}: Props) {
   };
   return (
     <>
-      <div className="container pt-5  profile-footer">
-        <div className="row">
-          <div className="col-12 col-lg-3 mb-8 mb-lg-0">
-            <SidebarProfileInformation />
-          </div>
-          <div className="col-12 col-lg-9">
             <div className="row">
               <div className="section-header">
                 <span className="header-text">Sertifikalarım</span>
@@ -73,9 +66,6 @@ export default function Certificate({}: Props) {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
     </>
   );
 }

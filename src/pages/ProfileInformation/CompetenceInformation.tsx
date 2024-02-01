@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react";
-import SidebarProfileInformation from "../../components/Content/ProfileInformation/SidebarProfile";
 import "../../styles/personalInformation.css";
-import FormikInput from "../../components/FormikInput/FormikInput";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field} from "formik";
 import * as Yup from "yup";
-import ExamDetail from "../../components/Content/HomePage/ExamDetail";
 import RemoveAlertModal from "../../components/Common/RemoveAlertModal";
 
 type Props = {};
 interface CompetenceForm {
   company: string;
 }
-export default function ({}: Props) {
+export default function CompetenceInformation ({}: Props) {
   const [isModalOpen, setModalOpen] = useState(false);
   const handleOpenModal = () => {
     setModalOpen(true);
@@ -37,12 +34,6 @@ export default function ({}: Props) {
   }, [selectedCompany]);
   return (
     <>
-      <div className="container pt-5 profile-footer">
-        <div className="row">
-          <div className="col-12 col-lg-3 mb-8 mb-lg-0">
-            <SidebarProfileInformation />
-          </div>
-          <div className="col-12 col-lg-9">
             <Formik
               validationSchema={validationSchema}
               initialValues={initialValues}
@@ -113,9 +104,6 @@ export default function ({}: Props) {
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-      </div>
       {isModalOpen && <RemoveAlertModal onClose={handleCloseModal} />}
     </>
   );
