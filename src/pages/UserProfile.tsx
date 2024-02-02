@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import ProfileCard from "../components/Content/MyProfile/ProfileCard";
 import AboutMe from "../components/Content/MyProfile/AboutMe";
 import MyCompetence from "../components/Content/MyProfile/MyCompetence";
@@ -11,16 +10,23 @@ import SuccessModel from "../components/Content/MyProfile/SuccessModel";
 import MyExam from "../components/Content/MyProfile/MyExam";
 import MyBadge from "../components/Content/MyProfile/MyBadge";
 import MyActivityMap from "../components/Content/MyProfile/MyActivityMap";
+import CopyUrl from "../components/Content/MyProfile/CopyUrl";
+import "../styles/userProfile.css";
 
 type Props = {};
 
 export default function UserProfile({}: Props) {
+  const url = "http://localhost:3000/user-profile";
+
   return (
     <>
       <div className="container p-5">
         <div className="text-end  mb-3">
-        <Link className="nav-link  d-inline-block" to="/edit-profile/personal-information" > 
-           <svg
+          <Link
+            className="nav-link  d-inline-block"
+            to="/edit-profile/personal-information"
+          >
+            <svg
               xmlns="http://www.w3.org/2000/svg"
               width="25"
               height="25"
@@ -35,18 +41,38 @@ export default function UserProfile({}: Props) {
               />
             </svg>
           </Link>
-          <span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="25"
-              height="25"
-              fill="currentColor"
-              className="bi bi-share ms-3"
-              viewBox="0 0 16 16"
+          <div className="dropdown  d-inline-block ">
+            <button
+              className="btn dropdown-toggle ps-0"
+              type="button"
+              id="dropdownMenuButton1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
             >
-              <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5m-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3" />
-            </svg>
-          </span>
+              <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25"
+                  height="25"
+                  fill="currentColor"
+                  className="bi bi-share ms-3"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5m-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3" />
+                </svg>
+              </span>
+            </button>
+            <div className="dropdown-menu text-muted drop-text-content p-3 border-color">
+              <div className="text-secondary mb-3">
+                Profilimi Paylaş
+              </div>
+              <p> Profil Linki</p>
+              <div className="border border-2">
+                
+                <CopyUrl url={url} />
+              </div>
+            </div>
+          </div>
         </div>
         <div className="row">
           <div className="col-md-4 col-12">

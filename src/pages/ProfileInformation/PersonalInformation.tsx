@@ -115,7 +115,6 @@ export default function PersonalInformation({}: Props) {
       .required("Doldurulması zorunlu alan*")
       .email("Geçerli bir e-posta adresi giriniz"),
     country: Yup.string().required("Doldurulması zorunlu alan*"),
-    city: Yup.string().required("Doldurulması zorunlu alan*"),
     county: Yup.string().required("Doldurulması zorunlu alan*"),
     neighbourhood: Yup.string().max(
       200,
