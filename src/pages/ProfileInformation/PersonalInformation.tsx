@@ -111,12 +111,11 @@ export default function PersonalInformation({}: Props) {
       })
       .min(11, "TC Kimlik Numaranızı 11 karakterli olacak şekilde giriniz")
       .max(11, "TC Kimlik Numaranızı 11 karakterli olacak şekilde giriniz"),
-    email: Yup.string()
+      email: Yup.string()
       .required("Doldurulması zorunlu alan*")
       .email("Geçerli bir e-posta adresi giriniz"),
-    country: Yup.string().required("Doldurulması zorunlu alan*"),
-    city: Yup.string().required("Doldurulması zorunlu alan*"),
-    county: Yup.string().required("Doldurulması zorunlu alan*"),
+      country: Yup.string().required("Doldurulması zorunlu alan*"),
+     county: Yup.string().required("Doldurulması zorunlu alan*"),
     neighbourhood: Yup.string().max(
       200,
       "En fazla 200 karakter girebilirsiniz"
@@ -252,7 +251,7 @@ export default function PersonalInformation({}: Props) {
                   as="textarea"
                   placeholder="Kendini kısaca tanıt"
                 />
-                <button type="submit" className="btn btn-personal-information">
+                <button type='submit' className="btn btn-personal-information">
                   Kaydet
                 </button>
               </Form>

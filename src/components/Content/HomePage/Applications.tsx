@@ -11,11 +11,12 @@ export default function Applications({}: Props) {
        fetchApplications();
 
      }, []); 
-     const fetchApplications = () => {
-       applicationService.getAll(0,4).then(response=> {
-         setApplications(response.data.items)
-               });
-     };
+     const fetchApplications = async () => {
+      
+        const response = await applicationService.getAll(0, 4);
+        setApplications(response.data.items);
+     
+    };
     
   
   return (
