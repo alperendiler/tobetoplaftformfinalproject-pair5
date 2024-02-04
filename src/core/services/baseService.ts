@@ -24,13 +24,13 @@ export class BaseService<
 	}
 
 	add(request: AddRequestType): Promise<AxiosResponse<AddResponseType, any>> {
-		return axiosInstance.post<AddResponseType>(this.apiUrl, request);
+		return axiosInstance.post<AddResponseType>(this.apiUrl+"/add", request);
 	}
 
 	update(
 		request: UpdateRequestType,
 	): Promise<AxiosResponse<UpdateResponseType, any>> {
-		return axiosInstance.put<UpdateResponseType>(this.apiUrl, request);
+		return axiosInstance.put<UpdateResponseType>(this.apiUrl+'/update', request);
 	}
 
 	delete(id: number) {

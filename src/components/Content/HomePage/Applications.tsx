@@ -14,7 +14,7 @@ export default function Applications({}: Props) {
      const fetchApplications = async () => {
       
         const response = await applicationService.getAll(0, 4);
-        setApplications(response.data.items);
+        console.log(response.data.items);
      
     };
     

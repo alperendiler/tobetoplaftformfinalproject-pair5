@@ -18,10 +18,8 @@ export default function MainMyTrainings({}: Props) {
   const fetchCourses = async () => {
     try {
       const response = await courseService.getAll(0, 4);
-      setCourses(response.data.items);console.log(response.data.items)
-    } catch (error) {
-      console.error("Veri getirme hatası:", error);
-    }
+      setCourses(response.data.items);
+    
   };
   return (
     <>
