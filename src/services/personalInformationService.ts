@@ -6,8 +6,6 @@ import { GetAllPersonalInformationResponse } from './../models/responses/persona
 import { BaseService } from "../core/services/baseService";
 import { AddPersonalInformationRequest } from '../models/requests/personalInformation/addPersonalInformationRequest';
 
-
-
 class PersonalInformationService extends BaseService<
 	GetAllPersonalInformationResponse,
 	GetPersonalInformationResponse,
@@ -18,9 +16,7 @@ class PersonalInformationService extends BaseService<
 >{
     constructor() {
 		super();
-		this.apiUrl = "Applications/getlist";
+		this.apiUrl = "PersonalInformations";
 	}
-
-
 }
 export default new PersonalInformationService();

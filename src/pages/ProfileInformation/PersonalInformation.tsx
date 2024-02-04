@@ -48,16 +48,6 @@ export default function PersonalInformation({}: Props) {
 
   const [personalInformations, setPersonalInformations] =  useState<GetAllPersonalInformationResponse [] >([]);
 
-     useEffect(() => {
-       fetchPersonalInformations();
-
-     }, []); 
-     const fetchPersonalInformations = async () => {
-      
-        const response = await personalInformationService.getAll(0, 4);
-        console.log(response.data.items);
-     
-    };
 
   useEffect(() => {
     axios
