@@ -13,14 +13,13 @@ export default function MainMyTrainings({}: Props) {
 
   useEffect(() => {
     fetchCourses();
-    console.log("Component rendered");
   }, []); 
   const fetchCourses = async () => {
-    try {
+  
       const response = await courseService.getAll(0, 4);
       setCourses(response.data.items);
     
-  };
+  }
   return (
     <>
     <div className='row'>
