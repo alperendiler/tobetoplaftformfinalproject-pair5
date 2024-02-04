@@ -9,6 +9,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import "../../styles/MyProfileStyles/profilePicture.css";
 import "../../styles/personalInformation.css";
 import axios from "axios";
+import personalInformationService from "../../services/personalInformationService";
+import { GetAllPersonalInformationResponse } from "../../models/responses/personalInformation/getAllPersonalInformationResponse";
 
 type Props = {};
 
@@ -43,6 +45,19 @@ export default function PersonalInformation({}: Props) {
   const [provinces, setProvinces] = useState<Province[]>([]);
   const [selectedProvince, setSelectedProvince] = useState<string>("");
   const [districts, setDistricts] = useState<District[]>([]);
+
+  const [personalInformations, setPersonalInformations] =  useState<GetAllPersonalInformationResponse [] >([]);
+
+     useEffect(() => {
+       fetchPersonalInformations();
+
+     }, []); 
+     const fetchPersonalInformations = async () => {
+      
+        const response = await personalInformationService.getAll(0, 4);
+        console.log(response.data.items);
+     
+    };
 
   useEffect(() => {
     axios

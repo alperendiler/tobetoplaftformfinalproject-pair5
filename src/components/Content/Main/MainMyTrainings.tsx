@@ -18,7 +18,7 @@ export default function MainMyTrainings({}: Props) {
   const fetchCourses = async () => {
     
       const response = await courseService.getAll(0, 4);
-      setCourses(response.data.items);
+      console.log(response.data.items);
     
   };
   return (
