@@ -13,13 +13,15 @@ export default function MainMyTrainings({}: Props) {
 
   useEffect(() => {
     fetchCourses();
-
+    console.log("Component rendered");
   }, []); 
   const fetchCourses = async () => {
-    
+    try {
       const response = await courseService.getAll(0, 4);
-      setCourses(response.data.items);
-    
+      setCourses(response.data.items);console.log(response.data.items)
+    } catch (error) {
+      console.error("Veri getirme hatası:", error);
+    }
   };
   return (
     <>
@@ -27,15 +29,17 @@ export default function MainMyTrainings({}: Props) {
 
         {courses && courses.length > 0 ? (
   courses.map((course) => ( 
-    <div key={course.Id} className='col-md-3 col-12 mb-4'>
+    
+    <div key={course.id} className='col-md-3 col-12 mb-4'>
       <div className="corp-edu-card">
-      <div className="card-img" style={{ backgroundImage: `url(${course.ImageUrl})` }}></div>
+      <div className="card-img" style={{ backgroundImage: `url(${course.imageUrl})` }}></div>
       <div className="card-content">
         <div className="d-flex flex-column">
-          <span>{course.Name}</span>
-          <span className="platform-course-date">{course.EndDate}</span>
+    
+          <span>{course.name}   </span>
+          <span className="platform-course-date">{course.estimatedTime}</span>
         </div>
-        <Link  className="apply-btn" to={"/courses/" + course.Id}>Eğitime Git</Link>
+        <Link  className="apply-btn" to={"/courses/" + course.id}>Eğitime Git</Link>
       </div>
     </div>
     </div>
