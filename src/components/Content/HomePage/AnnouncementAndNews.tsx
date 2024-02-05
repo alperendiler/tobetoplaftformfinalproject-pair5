@@ -1,44 +1,32 @@
 import React, { useEffect, useState } from 'react'
 import "./announcementAndNews.css"
 import AnnouncementDetail from './AnnouncementDetail';
-type Props = {}
+import { getAllAnnouncementResponse } from '../../../models/responses/announcement/getAllAnnouncementResponse';
+import announcementService from '../../../services/announcementService';
+type Props = {
+}
 
 export default function AnnouncementAndNews({}: Props) {
-    const [announcementAndNews, setAnnouncementAndNews] = useState<{ id: number; title: string;type: string, date: string; company: string }[]>([]);
-    const testAnnouncementAndNews = [
-      {
-        id: 1,
-        title: 'İstanbul Kodluyor Bilgilendirme',
-        type:"Duyuru",
-        date: '11.11.1111 22.22', 
-        company : "İstanbul Kodluyor",
-      },
-      {
-        id: 2,
-        title: 'İstanbul Kodluyor Bilgilendirme',
-        type:"Haber",
-        date: '11.11.1111 22.22', 
-        company : "İstanbul Kodluyor",
-      }
-     
-    ];
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-  
-  
-            setAnnouncementAndNews(testAnnouncementAndNews);
-        } catch (error) {
-          console.error("Error fetching products:", error);
-        }
-      };
-  
-      fetchData();
-    }, []);
-    const [isModalOpen, setModalOpen] = useState(false);
+  const [announcements, setAnnouncements] =  useState<getAllAnnouncementResponse [] >([]);
 
-    const handleOpenModal = () => {
-      setModalOpen(true);
+  useEffect(() => {
+    fetchApplications();
+
+  }, []); 
+  const fetchApplications = async () => {
+   
+     const response = await announcementService.getAll(0, 4);
+     setAnnouncements(response.data.items);
+  
+ };
+     
+  
+    const [isModalOpen, setModalOpen] = useState(false);
+    const [selectedAnnouncementId, setSelectedAnnouncementId] = useState<string >('');
+    const handleOpenModal = (announcementId: string ) => {
+        setSelectedAnnouncementId(announcementId);
+        setModalOpen(true);
+      
     };
   
     const handleCloseModal = () => {
@@ -47,29 +35,29 @@ export default function AnnouncementAndNews({}: Props) {
   return (
     <>
       {isModalOpen && (
-        <AnnouncementDetail onClose={handleCloseModal} />
+        <AnnouncementDetail announcementId={selectedAnnouncementId} onClose={handleCloseModal} />
       )}
     <div className='row'>
-       {announcementAndNews && announcementAndNews.length > 0 ? (
-  announcementAndNews.map((announcementAndNew) => ( 
-         <div key={announcementAndNew.id} className="col-md-4 col-12 my-4">
+       {announcements && announcements.length > 0 ? (
+  announcements.map((announcement) => ( 
+         <div key={announcement.id} className="col-md-4 col-12 my-4">
     <div className="notfy-card notify">
       <div className="d-flex flex-column">
         <div className="d-flex justify-content-between mb-4">
-          <span className="type">{announcementAndNew.type}</span>
-          <span className="corp-names type">{announcementAndNew.company}</span>
+          <span className="type">{announcement.type}</span>
+          <span className="corp-names type">{announcement.organization}</span>
         </div>
-        <span className="header">{announcementAndNew.title}</span>
+        <span className="header">{announcement.title}</span>
       </div>
       <div className="d-flex justify-content-between">
-        <span className="date">{announcementAndNew.date}</span>
-        <span  onClick={handleOpenModal} className="read-more" >Devamını Oku</span>
+        <span className="date">{announcement.createdDate}</span>
+        <span  onClick={() => handleOpenModal(announcement.id)}  className="read-more" >Devamını Oku</span>
       </div>            
     </div>
   </div>
    ))
    ) : (
-     <p>Başvurular bulunamadı.</p>
+     <p>Duyurular bulunamadı.</p>
    )}  
    </div>
     </>

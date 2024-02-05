@@ -1,14 +1,14 @@
 export interface GetAllCourseResponse {
-    Id: string;
-    CategoryId: string;
-    CompanyId: string;
-    Name: string;
-    ImageUrl: string;
-    About: string;
-    StartDate: string;
-    EndDate: string;
-    SpentTime: string;
-    EstimatedTime: string;
+    id: string;
+    categoryId: string;
+    companyId: string;
+    name: string;
+    imageUrl: string;
+    about: string;
+    startDate: string;
+    endDate: string;
+    spentTime: string;
+    estimatedTime: string;
   }
   export interface GetAllCourseResponse{
     items : GetAllCourseResponse[]; 

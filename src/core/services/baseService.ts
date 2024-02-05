@@ -16,11 +16,12 @@ export class BaseService<
 	}
 
 	getAll(pageIndex: number, pageSize: number): Promise<AxiosResponse<GetAllType, any>> {
-		return axiosInstance.get<GetAllType>(this.apiUrl+'/getlist'+`?Index=${pageIndex}&Size=${pageSize}`);
+
+		return axiosInstance.get<GetAllType>(this.apiUrl+"/getlist"+`?Index=${pageIndex}&Size=${pageSize}`);
 	}
 
-	getById(id: number): Promise<AxiosResponse<GetByIdType, any>> {
-		return axiosInstance.get<GetByIdType>(this.apiUrl + "/" + id);
+	getById(id: string): Promise<AxiosResponse<GetByIdType, any>> {
+		return axiosInstance.get<GetByIdType>(this.apiUrl + "/get?Id=" + id);
 	}
 
 	add(request: AddRequestType): Promise<AxiosResponse<AddResponseType, any>> {
