@@ -54,9 +54,22 @@ useEffect(() => {
 const fetchStudentLanguages = async () => {
  
    const response = await studentLanguageService.getAll(0, 50);
+   console.log(response);
    setStudentLanguages(response.data.items);
 
 };
+
+const handleDelete = async (studentLanguageId:string) => {
+  const response = await studentLanguageService.delete(studentLanguageId);
+  setStudentLanguages(studentLanguages.filter(i => i.id !== studentLanguageId))
+}
+
+const handleSubmit = async (language:string, level:string) =>{
+  const response = await studentLanguageService.add({ studentId:"0d0d673c-54f8-4178-9bff-08dc26371272" ,
+    languageId: language,
+    languageLevelId: level})
+    setStudentLanguages(studentLanguages => [...studentLanguages, response.data])
+}
 
   const initialValues: LanguageInformationForm = {
     language: "",
@@ -82,10 +95,12 @@ const fetchStudentLanguages = async () => {
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={(values, actions) => {
+        onSubmit={async (values, actions) => {
+          console.log(values);
           setSelectedLanguage(values.language);
           setSelectedLevel(values.level);
           actions.setSubmitting(false);
+          handleSubmit(values.language, values.level);
         }}
       >
         <Form>
@@ -102,7 +117,6 @@ const fetchStudentLanguages = async () => {
                   ))
                 }
                 
-
               </Field>
             </div>
             <div className="col-12 col-md-6">
@@ -125,7 +139,7 @@ const fetchStudentLanguages = async () => {
         </Form>
       </Formik>
       <div className="row  mt-3">
-        {languagesList.map((item, index) => (
+        {studentLanguages.map((item, index) => (
           <div key={index} className="col-md-4 language-item">
             <div className="row rounded-pill shadow mb-3 text-muted bg-white">
               <div className="col-md-2 pt-3 ">
@@ -141,9 +155,8 @@ const fetchStudentLanguages = async () => {
                 </svg>
               </div>
               <div className="col-md-8">
-                {item.language}
-                <br />
-                {item.level}
+                {item.languageName}
+                {item.languageLevel}
               </div>
               <div className="col-md-2 pt-3">
                 <svg
@@ -156,6 +169,7 @@ const fetchStudentLanguages = async () => {
                 >
                   <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z" />
                 </svg>
+              <button className="delete-lang" onClick={()=>handleDelete(item.id)}>-</button>
               </div>
             </div>
           </div>

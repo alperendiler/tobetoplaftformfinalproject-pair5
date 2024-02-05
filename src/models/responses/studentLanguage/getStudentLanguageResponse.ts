@@ -1,8 +1,8 @@
 export interface GetStudentLanguageResponse{
-    id: string
+    id: string,
     studentId: string,
     languageId: string,
-    language: {name:string},
+    languageName: string,
     languageLevelId: string,
-    languageLevel:{level:string}
+    languageLevel:string
    }
