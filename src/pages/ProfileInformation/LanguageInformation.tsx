@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import "../../styles/personalInformation.css";
+import {GetLanguageResponse} from '../../models/responses/language/getLanguageResponse'
+import languageService from "../../services/languageService";
+import {GetLanguageLevelResponse} from '../../models/responses/languageLevel/getLanguageLevelResponse'
+import languageLevelService from "../../services/languageLevelService";
 
 interface LanguageInformationForm {
   language: string;
@@ -14,6 +18,31 @@ const LanguageInformation: React.FC = () => {
   const [languagesList, setLanguagesList] = useState<
     Array<{ language: string; level: string }>
   >([]);
+
+  const [languages, setLanguages] = useState<GetLanguageResponse[]>([]);
+  const [languageLevels, setLanguageLevels] = useState<GetLanguageLevelResponse[]>([]);
+
+  useEffect(() => {
+    fetchLanguages();
+
+  }, []); 
+  const fetchLanguages = async () => {
+   
+     const response = await languageService.getAll(0, 50);
+     setLanguages(response.data.items);
+  
+ };
+
+ useEffect(() => {
+  fetchLanguageLevels();
+
+}, []); 
+const fetchLanguageLevels = async () => {
+ 
+   const response = await languageLevelService.getAll(0, 50);
+   setLanguageLevels(response.data.items);
+
+};
 
   const initialValues: LanguageInformationForm = {
     language: "",
@@ -54,18 +83,12 @@ const LanguageInformation: React.FC = () => {
                 className="form-control form-select"
               >
                 <option value="">Dil Seçiniz*</option>
-                <option value="Almanca">Almanca</option>
-                <option value="Arapça">Arapça</option>
-                <option value="Çekçe">Çekçe</option>
-                <option value="Çince">Çince</option>
-                <option value="Danca">Danca</option>
-                <option value="Fince">Fince</option>
-                <option value="Fransızca">Fransızca</option>
-                <option value="Hindi">Hindi</option>
-                <option value="Hollandaca">Hollandaca</option>
-                <option value="İbranice">İbranice</option>
-                <option value="İngilizce">İngilizce</option>
-                <option value="İspanyolca">İspanyolca</option>
+                {languages.map((item,index)=>(
+                  <option key={index} value={item.id}>{item.name}</option>
+                  ))
+                }
+                
+
               </Field>
             </div>
             <div className="col-12 col-md-6">
@@ -75,10 +98,10 @@ const LanguageInformation: React.FC = () => {
                 className="form-control form-select"
               >
                 <option value="">Seviye Seçiniz*</option>
-                <option value="Temel Seviye(A1,A2)">Temel Seviye(A1,A2)</option>
-                <option value="Orta Seviye(B1,B2)">Orta Seviye(B1,B2)</option>
-                <option value="İleri Seviye(C1,C2)">İleri Seviye(C1,C2)</option>
-                <option value="Anadil">Anadil</option>
+                {languageLevels.map((item,index)=>(
+                  <option key={index} value={item.id}>{item.level}</option>
+                  ))
+                }
               </Field>
             </div>
           </div>
