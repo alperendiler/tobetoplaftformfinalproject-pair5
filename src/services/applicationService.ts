@@ -18,7 +18,7 @@ class ApplicationService extends BaseService<
 >{
     constructor() {
 		super();
-		this.apiUrl = "Applications/getlist";
+		this.apiUrl = "Applications";
 	}
 
 

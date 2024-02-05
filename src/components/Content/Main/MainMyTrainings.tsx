@@ -34,7 +34,7 @@ export default function MainMyTrainings({}: Props) {
         <div className="d-flex flex-column">
     
           <span>{course.name}   </span>
-          <span className="platform-course-date">{course.estimatedTime}</span>
+          <span className="platform-course-date">{course.endDate}</span>
         </div>
         <Link  className="apply-btn" to={"/courses/" + course.id}>Eğitime Git</Link>
       </div>

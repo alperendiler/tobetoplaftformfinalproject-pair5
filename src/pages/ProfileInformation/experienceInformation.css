@@ -1,0 +1,80 @@
+.grade-header .grade-date:before {
+    content: url(https://tobeto.com/grade-date.svg);
+    display: flex;
+    margin-right: 8px;
+}
+.grade-header .grade-date {
+    color: rgba(153,51,255,.66);
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+}
+.grade-details-header {
+    color: #828282!important;
+    font-size: 16px;
+    font-weight: 500;
+}
+.grade-details-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    min-width: 25%;
+}
+.grade-info {
+    display: flex;
+    align-items: flex-end;
+    position: absolute;
+    right: -31px;
+    top: 5%;
+}
+.grade-details-content {
+    color: #171717!important;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: capitalize;
+    word-break: break-word;
+}
+.grade-delete:after {
+    content: url(https://tobeto.com/trash.svg);
+    background-color: #fc6d6d;
+    width: 24px;
+    height: 24px;
+    padding-top: 3px;
+}
+.grade-delete {
+    display: flex;
+    align-items: flex-end;
+    position: absolute;
+    right: -31px;
+    top: 75%;
+}
+.grade-info:after {
+    content: url(https://tobeto.com/_next/static/media/alert-circle.bd20fb51.svg);
+    display: flex;    
+    cursor:pointer;
+    background-color: #ac59ff;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    justify-content: center;
+    padding-top: 3px;
+}
+.my-grade {
+    box-shadow: 0 10px 24px 0 hsla(0,0%,9%,.05);
+    background-color: #fff;
+    padding: 12px 18px;
+    margin-top: 8px;
+}
+.grade-header {
+    display: flex;
+    justify-content: space-between;
+}
+.grade-details {
+    display: flex;
+    gap: 1.5em;
+    justify-content: flex-start;
+    margin-top: 0.5em;
+    align-items: baseline;
+    position: relative;
+}

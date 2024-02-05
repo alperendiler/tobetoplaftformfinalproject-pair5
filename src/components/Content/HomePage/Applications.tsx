@@ -14,7 +14,7 @@ export default function Applications({}: Props) {
      const fetchApplications = async () => {
       
         const response = await applicationService.getAll(0, 4);
-        console.log(response.data.items);
+        setApplications(response.data.items);
      
     };
     
@@ -24,7 +24,7 @@ export default function Applications({}: Props) {
             {applications && applications.length > 0 ? (
   applications.map((application) => (
         <div className="col-md-6 col-12 mt-2" key={application.id}>
-      <div className={`status-card ${application.IsAccepted ? 'status_accepted' : ''}`}>
+      <div className={`status-card ${application.isAccepted ? 'status_accepted' : ''}`}>
         <span className="form_name fw-bold">{application.description}</span>
         <span className="form_status"></span>
         <span className="pull_back"></span>

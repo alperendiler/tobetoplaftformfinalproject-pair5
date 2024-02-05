@@ -1,8 +1,8 @@
 export interface GetAllApplicationResponse{
     id:string ,
-    StudentId: string  ,
+    studentId: string  ,
     description: string  ,
-    IsAccepted:boolean  
+    isAccepted:boolean  
    }
    export interface GetAllApplicationResponse{
     items : GetAllApplicationResponse[]; 

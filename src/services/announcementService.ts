@@ -17,7 +17,7 @@ class AnnouncementService extends BaseService<
 >{
     constructor() {
 		super();
-		this.apiUrl = "Applications/getlist";
+		this.apiUrl = "Announcements";
 	}
 
 

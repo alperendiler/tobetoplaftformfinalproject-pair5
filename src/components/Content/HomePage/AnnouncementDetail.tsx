@@ -1,36 +1,46 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import announcementService from '../../../services/announcementService';
+import { GetAnnouncementResponse } from '../../../models/responses/announcement/getAnnouncementResponse';
 type Props = {
     onClose: () => void;
+    announcementId: string  ;
 }
 
-export default function AnnouncementDetail({onClose}: Props) {
+export default function AnnouncementDetail({ onClose, announcementId}: Props) {
+  const [announcement, setAnnouncements] =  useState<GetAnnouncementResponse  >();
+
+  useEffect(() => {
+    fetchApplications();
+
+  }, []); 
+  const fetchApplications = async () => {
+   
+     const response = await announcementService.getById(announcementId);
+     setAnnouncements(response.data);
+  
+ };
+     
   return (
     <>
-        <div role="dialog" aria-modal="true" className="fade modal show" aria-labelledby="contained-modal-title-vcenter" style={{ display: 'block' }}>
+   {announcement ? (
+        <div  key={announcement.id} role="dialog" aria-modal="true" className="fade modal show" aria-labelledby="contained-modal-title-vcenter" style={{ display: 'block' }}>
     <div className="modal-dialog modal-lg modal-fullscreen-sm-down">
       <div className="modal-content">
         <div className="modal-header">
           <div className="d-flex flex-column">
-            <span className="text-dark">11 Ocak Kampüs Buluşması</span>
+            <span className="text-dark">{announcement.title}</span>
           </div>
           <button type="button" className="btn-close" onClick={onClose}  aria-label="Close"></button>
         </div>
         <div className="news-body modal-body">
-          <p>
-            <strong>Herkes için Kodlama</strong> eğitimini bitiren kişilerin katılabileceği kampüs buluşmamız 11 Ocak 2024 tarihindedir. Discorddan form paylaşılmıştır. Bu katılım formunu doldurmayan arkadaşların doldurması önemlidir.
-          </p>
-          <p><br /></p>
-          <p>
-            Not: Henüz eğitime hiç başlamamış adayların buluşması, eğitimlerini bitirdikten sonra 20 Şubat 2024 tarihinde yapılacaktır.
-          </p>
-          <p><br /></p>
-          <p>
-            Sevgiler,
-          </p>
+        {announcement.description}
         </div>
       </div>
     </div>
   </div>
+  ) : (
+    <p>Duyurular bulunamadı.</p>
+  )}
     </>
   )
 }

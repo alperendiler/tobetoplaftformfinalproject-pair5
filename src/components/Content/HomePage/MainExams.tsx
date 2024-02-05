@@ -1,10 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "../../../styles/mainExams.css";
 import ExamDetail from './ExamDetail';
+import { GetAllExamResponse } from '../../../models/responses/exam/getAllExamResponse';
+import examService from '../../../services/examService';
 
 type Props = {}
 
 export default function MainExams({}: Props) {
+  const [exams, setExams] =  useState<GetAllExamResponse []  >([]);
+
+  useEffect(() => {
+    fetchExams();
+
+  }, []); 
+  const fetchExams = async () => {
+   
+     //const response = await examService.getAll(0,5);
+     //setExams(response.data.items);
+  
+ };
     const [isModalOpen, setModalOpen] = useState(false);
 
     const handleOpenModal = () => {
@@ -19,13 +33,16 @@ export default function MainExams({}: Props) {
     {isModalOpen && (
         <ExamDetail onClose={handleCloseModal} />
       )}
+              
 <section className="my-2 pt-4">
       <div className="container">
         <div className="row cv-box cv-padding">
           <div className="col-12 position-relative">
             <span className="exams-header fw-bold ">Sınavlarım</span>
           </div>
-          <div className="exams my-3">
+          {exams && exams.length > 0 ? (
+  exams.map((exam) => (
+          <div key={exam.id} className="exams my-3">
             <div className="exam-card "  onClick={handleOpenModal}>
           
               <div className="exam-header">
@@ -40,10 +57,18 @@ export default function MainExams({}: Props) {
               </div>
               <span className="status-done"></span>
             </div>
+            
           </div>
+             ))
+             ) : (
+               <div>
+                 <p>Henüz sınav bulunamadı</p>
+               </div>
+             )}
         </div>
       </div>
     </section>
+ 
     </>
   )
 }

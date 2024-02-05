@@ -3,6 +3,7 @@ export interface getAllAnnouncementResponse{
     type: string  ,
     organization: string  ,
     title:string ,
+    createdDate: string  ,
     description: string  ,
     isRead:boolean  
    }

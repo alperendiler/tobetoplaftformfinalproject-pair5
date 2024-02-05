@@ -1,35 +1,86 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../../styles/personalInformation.css";
-
+import "./experienceInformation.css"
 import React from "react";
 import FormikInput from "../../components/FormikInput/FormikInput";
 import ReactDatePicker from "react-datepicker";
+import experienceService from "../../services/experienceService";
+import studentService from "../../services/studentService";
+import { jwtDecode } from "jwt-decode";
+import { GetAllExperienceResponse } from "../../models/responses/experience/getAllExperienceResponse";
+import ExperienceDetailModal from "../../components/Content/ProfileInformation/ExperienceDetailModal";
 
 type Props = {};
+
+
+   
 interface ExperienceForm {
-  company: string;
+  companyName: string;
   sector: string;
   position: string;
+  isContinued:boolean ,
   jobDescription: string;
-  city: string;
-  startDate: string;
-  finishDate: string;
+  startDate: Date | null ;
+  endDate: Date | null;
+  studentId:string ;
 }
 export default function ExperienceInformation({}: Props) {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [selectedjobDescription, setJobDescription] = useState<string >('');
+
+  const handleOpenModal = (jobDescription:string) => {
+    setJobDescription(jobDescription);
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
+  const [studentId, setStudentId] = useState<string  >("");
+  const [experiences, setExperiences] = useState<GetAllExperienceResponse [] >([]);
+
+  useEffect(() => {
+   
+    const getStudentId = async () => {
+      const token = localStorage.getItem("user");
+
+      const decodedToken: any = token ? jwtDecode(token) : null;
+  
+      const userId =
+        decodedToken[
+          "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
+        ];
+  
+      const student = await studentService.getByUserId(userId);
+      setStudentId(student.data.id);
+      const response = await experienceService.getListStudentId(0, 11,student.data.id);
+      setExperiences(response.data.items);
+
+    };
+    getStudentId();
+   
+  }, []); 
+
+const addExperience = async (values: ExperienceForm) => {
+    await experienceService.add(values);
+
+}; 
   const initialValues: ExperienceForm = {
-    company: "",
+    companyName: "",
     sector: "",
     position: "",
+    isContinued: false,
     jobDescription: "",
-    city: "",
-    startDate: "",
-    finishDate: "",
+    startDate: null ,
+    endDate: null,
+    studentId: ""
+
   };
 
   const validationSchema = Yup.object({
-    company: Yup.string()
+    companyName: Yup.string()
       .required("Doldurulması zorunlu alan*")
       .matches(/^[a-zA-ZğüşıöçĞÜŞİÖÇ]+$/, "Geçersiz karakter girişi*")
       .min(2, "En az 2 haneden oluşmalıdır.")
@@ -51,22 +102,30 @@ export default function ExperienceInformation({}: Props) {
     ),
   });
   const [startDate, setStartDate] = useState<Date | null>(null);
-  const [finishDate, setFinishDate] = React.useState<Date | null>(null);
+  const [endDate, setFinishDate] = React.useState<Date | null>(null);
 
   return (
     <>
+      {isModalOpen && (
+        <ExperienceDetailModal jobDescription={selectedjobDescription} onClose={handleCloseModal} />
+      )}
       <Formik
         validationSchema={validationSchema}
         initialValues={initialValues}
-        onSubmit={async (values) => {
-          console.log(values);
-        }}
+        onSubmit={(values) => {
+          values.startDate = startDate;
+          values.endDate = endDate;
+          values.studentId = studentId;
+          addExperience(values)
+
+        } 
+      }
       >
         <Form>
           <div className="row">
             <div className="col-12 col-md-6">
               <FormikInput
-                name="company"
+                name="companyName"
                 label="Kurum Adı*"
                 placeholder="Kampüs 365"
               />
@@ -112,7 +171,9 @@ export default function ExperienceInformation({}: Props) {
                     name="startDate"
                     className="form-control tobeto-input react-datepicker-ignore-onclickoutside"
                     selected={startDate}
-                    onChange={(date) => setStartDate(date)}
+                    onChange={(date) => {
+                      setStartDate(date);
+                    }}
                     dateFormat="dd.MM.yyyy"
                   />
                 </div>
@@ -130,10 +191,10 @@ export default function ExperienceInformation({}: Props) {
                     className="react-datepicker__aria-live"
                   ></span>
                   <ReactDatePicker
-                    name="finishDate"
+                    name="endDate"
                     placeholderText="gg.aa.yyyy"
                     className="form-control tobeto-input react-datepicker-ignore-onclickoutside"
-                    selected={finishDate}
+                    selected={endDate}
                     onChange={(date) => setFinishDate(date)}
                     dateFormat="dd.MM.yyyy"
                   />
@@ -160,6 +221,45 @@ export default function ExperienceInformation({}: Props) {
           </div>
         </Form>
       </Formik>
+      <div className="col-12">
+      {experiences && experiences.length > 0 ? (
+  experiences.map((experience) => ( 
+        <div key={experience.id} className="my-grade">
+          <div className="grade-header">
+            <span className="grade-date">{experience.startDate} - {experience.endDate} </span>
+          </div>
+          <div className="grade-details">
+            <div className="grade-details-col">
+              <div className="grade-details-header">
+                Kurum Adı
+              </div>
+              <div className="grade-details-content">
+                {experience.companyName}
+              </div>
+            </div>
+            <div className="grade-details-col">
+              <div className="grade-details-header">Pozisyon</div>
+              <div className="grade-details-content">{experience.position}</div>
+              </div>
+              <div className="grade-details-col">
+              <div className="grade-details-header">Sektör</div>
+              <div className="grade-details-content">{experience.sector}</div>
+              </div>
+              <div className="grade-details-col">
+              <div className="grade-details-header">Şehir</div>
+              <div className="grade-details-content">{"experience.city"}</div>
+              </div>
+              <div><span className=" grade-delete"></span><span onClick={()=>handleOpenModal(experience.jobDescription)} className=" grade-info"></span></div>
+             </div>
+
+  </div>
+
+   ))
+   ) : (
+    <div></div>
+   )}  
+      </div>
+      
     </>
   );
 }

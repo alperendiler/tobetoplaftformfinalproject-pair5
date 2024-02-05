@@ -1,0 +1,3 @@
+div[role=dialog][aria-modal=true]:last-child {
+    z-index: 1125 !important;
+}
