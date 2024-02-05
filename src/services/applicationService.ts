@@ -4,8 +4,6 @@ import { UpdateApplicationRequest } from "../models/requests/application/updateA
 import { AddApplicationResponse } from "../models/responses/application/addApplicationResponse";
 import { GetAllApplicationResponse } from "../models/responses/application/getAllAplicationResponse";
 import { GetApplicationResponse } from "../models/responses/application/getApplicationResponse";
-import { AxiosResponse } from "axios";
-import axiosInstance from "../core/interceptors/axiosInterceptor";
 import { UpdateApplicationResponse } from "../models/responses/application/updateApplicationResponse";
 
 class ApplicationService extends BaseService<
