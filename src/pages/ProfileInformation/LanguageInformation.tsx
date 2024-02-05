@@ -49,7 +49,7 @@ const LanguageInformation: React.FC = () => {
     fetchStudentLanguages();
   }, []);
   const fetchStudentLanguages = async () => {
-    const response = await studentLanguageService.getAll(0, 50);
+    const response = await studentLanguageService.GetListByStudent(0,50,"0d0d673c-54f8-4178-9bff-08dc26371272");
     console.log(response);
     setStudentLanguages(response.data.items);
   };
