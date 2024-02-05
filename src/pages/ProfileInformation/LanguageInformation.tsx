@@ -6,6 +6,8 @@ import {GetLanguageResponse} from '../../models/responses/language/getLanguageRe
 import languageService from "../../services/languageService";
 import {GetLanguageLevelResponse} from '../../models/responses/languageLevel/getLanguageLevelResponse'
 import languageLevelService from "../../services/languageLevelService";
+import { GetStudentLanguageResponse } from "../../models/responses/studentLanguage/getStudentLanguageResponse";
+import studentLanguageService from "../../services/studentLanguageService";
 
 interface LanguageInformationForm {
   language: string;
@@ -21,6 +23,7 @@ const LanguageInformation: React.FC = () => {
 
   const [languages, setLanguages] = useState<GetLanguageResponse[]>([]);
   const [languageLevels, setLanguageLevels] = useState<GetLanguageLevelResponse[]>([]);
+  const [studentLanguages, setStudentLanguages] = useState<GetStudentLanguageResponse[]>([]);
 
   useEffect(() => {
     fetchLanguages();
@@ -41,6 +44,17 @@ const fetchLanguageLevels = async () => {
  
    const response = await languageLevelService.getAll(0, 50);
    setLanguageLevels(response.data.items);
+
+};
+
+useEffect(() => {
+  fetchStudentLanguages();
+
+}, []); 
+const fetchStudentLanguages = async () => {
+ 
+   const response = await studentLanguageService.getAll(0, 50);
+   setStudentLanguages(response.data.items);
 
 };
 

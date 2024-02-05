@@ -1,10 +1,10 @@
 import { AxiosResponse } from 'axios';
-import { UpdateStudentLanguageResponse } from './../models/responses/studentLanguage/updateStudentLanguageResponse';
-import { UpdateStudentLanguageRequest } from './../models/requests/studentLanguageRequest.ts/updateStudentLanguageRequest';
-import { AddStudentLanguageResponse } from './../models/responses/studentLanguage/addStudentLanguageResponse';
-import { AddStudentLanguageRequest } from './../models/requests/studentLanguageRequest.ts/addStudentLanguageRequest';
-import { GetStudentLanguageResponse } from './../models/responses/studentLanguage/getStudentLanguageResponse';
-import { GetAllStudentLanguageResponse } from './../models/responses/studentLanguage/getAllStudentLanguageResponse';
+import { UpdateStudentLanguageResponse } from '../models/responses/studentLanguage/updateStudentLanguageResponse';
+import { UpdateStudentLanguageRequest } from '../models/requests/studentLanguageRequest.ts/updateStudentLanguageRequest';
+import { AddStudentLanguageResponse } from '../models/responses/studentLanguage/addStudentLanguageResponse';
+import { AddStudentLanguageRequest } from '../models/requests/studentLanguageRequest.ts/addStudentLanguageRequest';
+import { GetStudentLanguageResponse } from '../models/responses/studentLanguage/getStudentLanguageResponse';
+import { GetAllStudentLanguageResponse } from '../models/responses/studentLanguage/getAllStudentLanguageResponse';
 import { BaseService } from "../core/services/baseService";
 import axiosInstance from '../core/interceptors/axiosInterceptor';
 

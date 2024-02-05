@@ -18,7 +18,7 @@ UpdateCourseResponse
 >{ 
     constructor() {
     super();
-    this.apiUrl = "Courses/getlist";
+    this.apiUrl = "Courses";
 }
 
 
