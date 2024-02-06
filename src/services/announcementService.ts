@@ -3,12 +3,12 @@ import { AddAnnouncementRequest } from "../models/requests/announcement/addAnnou
 import { UpdateAnnouncementRequest } from "../models/requests/announcement/updateAnnouncementRequest";
 import { AddAnnouncementResponse } from "../models/responses/announcement/addAnnouncementResponse";
 import { GetAnnouncementResponse } from "../models/responses/announcement/getAnnouncementResponse";
-import { getAllAnnouncementResponse } from "../models/responses/announcement/getAllAnnouncementResponse";
+import { GetAllAnnouncementResponse } from "../models/responses/announcement/getAllAnnouncementResponse";
 import { UpdateAnnouncementResponse } from "../models/responses/announcement/updateAnnouncementResponse";
 
 
 class AnnouncementService extends BaseService<
-	getAllAnnouncementResponse,
+	GetAllAnnouncementResponse,
 	GetAnnouncementResponse,
 	AddAnnouncementRequest,
 	AddAnnouncementResponse,

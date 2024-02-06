@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import "./announcementAndNews.css"
 import AnnouncementDetail from './AnnouncementDetail';
-import { getAllAnnouncementResponse } from '../../../models/responses/announcement/getAllAnnouncementResponse';
+import { GetAllAnnouncementResponse } from '../../../models/responses/announcement/getAllAnnouncementResponse';
 import announcementService from '../../../services/announcementService';
 type Props = {
 }
 
 export default function AnnouncementAndNews({}: Props) {
-  const [announcements, setAnnouncements] =  useState<getAllAnnouncementResponse [] >([]);
+  const [announcements, setAnnouncements] =  useState<GetAllAnnouncementResponse [] >([]);
 
   useEffect(() => {
     fetchApplications();

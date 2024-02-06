@@ -4,7 +4,7 @@ export interface GetAllStudentLanguageResponse{
     languageId: string,
     languageName: string,
     languageLevelId: string,
-    languageLevel:string
+    languageLevel:string,
    }
 
 export interface GetAllStudentLanguageResponse{
