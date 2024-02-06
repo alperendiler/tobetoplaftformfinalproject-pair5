@@ -30,8 +30,6 @@ export default function CompetenceInformation({}: Props) {
 
   const handleSubmit = async (competenceName:string) => {
     //todo: studentId localstoragedan okunacak
-    console.log("Gelen parametre"+competenceName);
-    console.log("Gelen parametre"+competenceName);
     const response = await competenceService.add({studentId:"69c4b730-10e9-49f3-9939-08dc24ff9ac4", name: competenceName});
     setCompetences(competences => [...competences, response.data]);
   }
