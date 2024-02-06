@@ -1,5 +1,5 @@
 export interface UpdateSocialMediaResponse{
-    Id:string,
+    id:string,
     name: string,
-    url: string    
+   
    }

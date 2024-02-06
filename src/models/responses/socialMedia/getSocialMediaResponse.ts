@@ -1,5 +1,5 @@
 export interface GetSocialMediaResponse{
-    Id:string,
+    id:string,
     name: string,
-    url: string    
+       
    }

@@ -1,7 +1,6 @@
 export interface GetAllSocialMediaResponse{
-    Id:string,
-    name: string,
-    url: string    
+    id:string,
+    name: string,   
    }
 
 export interface GetAllSocialMediaResponse{
