@@ -1,14 +1,29 @@
-import React from "react";
+import React, {useState, useEffect}from "react";
 import "../../styles/personalInformation.css";
 import FormikInput from "../../components/FormikInput/FormikInput";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { GetSocialMediaResponse } from "../../models/responses/socialMedia/getSocialMediaResponse";
+import socialMediaService from "../../services/socialMediaService";
+
 
 type Props = {};
 interface MediaAccountForm {
   socialMediaUrl: string;
 }
 export default function MediaAccountInformation({}: Props) {
+
+const [socialMedias, setSocialMedias] = useState<GetSocialMediaResponse[]>([]);
+
+useEffect(() => {
+  fetchSocialMedias();
+}, []);
+const fetchSocialMedias = async () => {
+  const response = await socialMediaService.getAll(0, 50);
+  //getbyuserid
+  setSocialMedias(response.data.items);
+};
+
   const initialValues: MediaAccountForm = {
     socialMediaUrl: "",
   };
