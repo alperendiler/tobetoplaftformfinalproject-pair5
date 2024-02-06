@@ -8,5 +8,6 @@ export interface UpdateExperienceResponse{
     startDate: string  ,
     endDate: string  ,
     jobDescription:string ,
-    
+    city:string 
+
    }

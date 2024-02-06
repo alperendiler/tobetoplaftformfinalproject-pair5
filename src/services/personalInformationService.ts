@@ -5,6 +5,8 @@ import { AddPersonalInformationResponse } from './../models/responses/personalIn
 import { GetAllPersonalInformationResponse } from './../models/responses/personalInformation/getAllPersonalInformationResponse';
 import { BaseService } from "../core/services/baseService";
 import { AddPersonalInformationRequest } from '../models/requests/personalInformation/addPersonalInformationRequest';
+import { AxiosResponse } from 'axios';
+import axiosInstance from '../core/interceptors/axiosInterceptor';
 
 class PersonalInformationService extends BaseService<
 	GetAllPersonalInformationResponse,
@@ -17,6 +19,9 @@ class PersonalInformationService extends BaseService<
     constructor() {
 		super();
 		this.apiUrl = "PersonalInformations";
+	}
+	getByStudentId(id: string): Promise<AxiosResponse<GetPersonalInformationResponse, any>> {
+		return axiosInstance.get<GetPersonalInformationResponse>(this.apiUrl + "/getbystudentid?Id=" + id);
 	}
 }
 export default new PersonalInformationService();

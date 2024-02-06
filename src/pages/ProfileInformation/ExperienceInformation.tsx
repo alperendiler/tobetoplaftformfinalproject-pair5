@@ -11,6 +11,7 @@ import studentService from "../../services/studentService";
 import { jwtDecode } from "jwt-decode";
 import { GetAllExperienceResponse } from "../../models/responses/experience/getAllExperienceResponse";
 import ExperienceDetailModal from "../../components/Content/ProfileInformation/ExperienceDetailModal";
+import { toast } from "react-toastify";
 
 type Props = {};
 
@@ -25,6 +26,7 @@ interface ExperienceForm {
   startDate: Date | null ;
   endDate: Date | null;
   studentId:string ;
+  city:string ;
 }
 export default function ExperienceInformation({}: Props) {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -55,18 +57,34 @@ export default function ExperienceInformation({}: Props) {
   
       const student = await studentService.getByUserId(userId);
       setStudentId(student.data.id);
-      const response = await experienceService.getListStudentId(0, 11,student.data.id);
+      const response = await experienceService.getListStudentId(0, 111,student.data.id);
       setExperiences(response.data.items);
 
     };
     getStudentId();
-   
+
   }, []); 
 
 const addExperience = async (values: ExperienceForm) => {
     await experienceService.add(values);
-
+    toast.success("Kayıt Başarılı", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme:"colored"
+    });
+    const response = await experienceService.getListStudentId(0, 11, studentId);
+    setExperiences(response.data.items);
 }; 
+
+ const deleteExperience= async(experienceId:any)=>{
+      await experienceService.delete(experienceId)
+      const response = await experienceService.getListStudentId(0, 11, studentId);
+      setExperiences(response.data.items);
+ }
   const initialValues: ExperienceForm = {
     companyName: "",
     sector: "",
@@ -75,7 +93,8 @@ const addExperience = async (values: ExperienceForm) => {
     jobDescription: "",
     startDate: null ,
     endDate: null,
-    studentId: ""
+    studentId: "",
+    city:"" 
 
   };
 
@@ -112,11 +131,12 @@ const addExperience = async (values: ExperienceForm) => {
       <Formik
         validationSchema={validationSchema}
         initialValues={initialValues}
-        onSubmit={(values) => {
+        onSubmit={(values,actions) => {
           values.startDate = startDate;
           values.endDate = endDate;
           values.studentId = studentId;
           addExperience(values)
+          actions.resetForm()
 
         } 
       }
@@ -153,7 +173,7 @@ const addExperience = async (values: ExperienceForm) => {
                 className=" form-control form-select"
               >
                 <option value={0}>İl Seçiniz</option>
-                <option value={1}>Isparta</option>
+                <option value={"Isparta"}>Isparta</option>
               </Field>
             </div>
             <div className="col-12 col-md-6">
@@ -215,7 +235,7 @@ const addExperience = async (values: ExperienceForm) => {
               />
             </div>
 
-            <button type="submit" className="btn btn-personal-information">
+            <button type="submit"  className="btn btn-personal-information">
               Kaydet
             </button>
           </div>
@@ -247,9 +267,9 @@ const addExperience = async (values: ExperienceForm) => {
               </div>
               <div className="grade-details-col">
               <div className="grade-details-header">Şehir</div>
-              <div className="grade-details-content">{"experience.city"}</div>
+              <div className="grade-details-content">{experience.city}</div>
               </div>
-              <div><span className=" grade-delete"></span><span onClick={()=>handleOpenModal(experience.jobDescription)} className=" grade-info"></span></div>
+              <div><span onClick={()=>deleteExperience(experience.id)} className=" grade-delete"></span><span onClick={()=>handleOpenModal(experience.jobDescription)} className=" grade-info"></span></div>
              </div>
 
   </div>

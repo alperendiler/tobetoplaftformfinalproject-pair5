@@ -8,7 +8,8 @@ export interface GetAllExperienceResponse{
     startDate: string  ,
     endDate: string  ,
     jobDescription:string ,
-    
+    city:string 
+
    } export interface GetAllExperienceResponse{
     items : GetAllExperienceResponse[]; 
 } 

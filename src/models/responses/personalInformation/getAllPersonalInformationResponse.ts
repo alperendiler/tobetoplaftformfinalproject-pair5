@@ -1,17 +1,14 @@
 export interface GetAllPersonalInformationResponse{
-    Id:string ,
-    StudentId: string ,
-    FirstName: string ,
-    LastName: string ,
-    IdentityNo: string,
-    Country: string,
-    City: string,
-    County: string,
-    Address: string,
-    PhoneNumber: string,
-    About: string,
-    BirthDate: Date,
+    id:string ,
+    studentId: string ,
+    firstName: string ,
+    lastName: string ,
+    identityNo: string,
+    country: string,
+    city: string,
+    county: string,
+    address: string,
+    phoneNumber: string,
+    about: string,
+    birthDate: Date,
    }
-   export interface GetAllPersonalInformationResponse{
-    items : GetAllPersonalInformationResponse[]; 
-} 

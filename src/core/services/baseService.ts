@@ -33,7 +33,7 @@ export class BaseService<
 		return axiosInstance.put<UpdateResponseType>(this.apiUrl+'/update', request);
 	}
 
-	delete(id: number) {
-		return axiosInstance.delete(this.apiUrl + "/" + id);
+	delete(id: string) {
+		return axiosInstance.delete(this.apiUrl + "/delete?Id=" + id);
 	}
 }

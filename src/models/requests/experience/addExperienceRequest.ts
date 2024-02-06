@@ -7,5 +7,6 @@ export interface AddExperienceRequest{
     startDate: Date| null  ,
     endDate: Date| null  ,
     jobDescription:string ,
-    
+    city:string 
+
    }

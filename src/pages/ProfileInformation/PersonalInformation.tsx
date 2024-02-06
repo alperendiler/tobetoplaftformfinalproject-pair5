@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field, ErrorMessage, FormikContext } from "formik";
 import FormikInput from "../../components/FormikInput/FormikInput";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
@@ -11,20 +11,27 @@ import "../../styles/personalInformation.css";
 import axios from "axios";
 import personalInformationService from "../../services/personalInformationService";
 import { GetAllPersonalInformationResponse } from "../../models/responses/personalInformation/getAllPersonalInformationResponse";
+import { jwtDecode } from "jwt-decode";
+import userService from "../../services/userService";
+import { GetUserDetailResponse } from "../../models/responses/user/getUserDetailResponse";
+import studentService from "../../services/studentService";
+import { GetPersonalInformationResponse } from "../../models/responses/personalInformation/getPersonalInfırmationResponse";
 
 type Props = {};
 
 interface PersonalInformationForm {
-  name: string;
-  surname: string;
-  phoneNumber: string;
-  birthDate: string;
-  identityNumber: string;
+  studentId:string,
+  id:string|undefined ,
+  firstName: string ;
+  lastName: string;
+  phoneNumber: string |undefined;
+  birthDate: Date | null ;
+  identityNo: string;
   email: string;
   country: string;
   city: string;
   county: string;
-  neighbourhood: string;
+  address: string;
   about: string;
 }
 
@@ -40,13 +47,16 @@ interface Province {
 
 export default function PersonalInformation({}: Props) {
   const [value, setValue] = useState<string | undefined>(undefined);
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState<Date | null>(null);
 
   const [provinces, setProvinces] = useState<Province[]>([]);
   const [selectedProvince, setSelectedProvince] = useState<string>("");
   const [districts, setDistricts] = useState<District[]>([]);
 
   const [personalInformations, setPersonalInformations] =  useState<GetAllPersonalInformationResponse [] >([]);
+  const [users, setUsers] = useState<GetUserDetailResponse >();
+  const [studentId, setStudentId] = useState<string  >("");
+  const [personalInformationValues, setPersonalInformationValues] = useState<GetPersonalInformationResponse>();
 
 
   useEffect(() => {
@@ -56,6 +66,7 @@ export default function PersonalInformation({}: Props) {
       )
       .then((response) => setProvinces(response.data.data))
       .catch((error) => console.error("API hatası:", error));
+      getUser();
   }, []);
 
   useEffect(() => {
@@ -75,35 +86,100 @@ export default function PersonalInformation({}: Props) {
       setDistricts([]);
     }
   }, [selectedProvince, provinces]);
+  const getUser= async ()=>{
+    const token = localStorage.getItem("user");
 
-  const initialValues: PersonalInformationForm = {
-    name: "",
-    surname: "",
+    const decodedToken: any = token ? jwtDecode(token) : null;
+
+    const userId =
+      decodedToken[
+        "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
+      ];
+      const userResponse= await userService.getById(userId)
+      setUsers(userResponse.data)
+      console.log(userResponse.data)
+      const student = await studentService.getByUserId(userId);
+      setStudentId(student.data.id)
+      const personalInformationResponse = await personalInformationService.getByStudentId(student.data.id)     
+      setPersonalInformationValues(personalInformationResponse.data)
+      console.log(personalInformationResponse.data)
+
+  }
+ const addPersonelInformation= async (values:PersonalInformationForm)=>{
+ 
+    const personalInformationResponse = await personalInformationService.getByStudentId(studentId)     
+  
+    //setPersonalInformationId(personalInformationResponse.data.id)
+    if(personalInformationResponse==null){
+      console.log("merhaba")
+
+      await personalInformationService.add(values)
+      const personalInformationResponse = await personalInformationService.getByStudentId(studentId)     
+      setPersonalInformationValues(personalInformationResponse.data)
+
+    }else{
+      console.log(values)
+      const personalInformationResponse = await personalInformationService.update(values)
+      setPersonalInformationValues(personalInformationResponse.data)
+    }
+  }
+  const [initialValues, setInitialValues] = useState<PersonalInformationForm>({
+    id:"",
+    studentId: "",
+    firstName: "",
+    lastName: "",
     phoneNumber: "",
-    birthDate: "",
-    identityNumber: "",
+    birthDate: null,
+    identityNo: "",
     email: "",
     country: "",
     city: "",
     county: "",
-    neighbourhood: "",
+    address: "",
     about: "",
-  };
+  });
+  const [initialValuesKey, setInitialValuesKey] = useState<number>(0); // key değerini saklamak için bir state tanımlayın
+
+  useEffect(() => {
+    if (users != null) {
+      const newInitialValues: PersonalInformationForm = {
+        id:"",
+        firstName: users.firstName ?? "",
+        lastName: users.lastName,
+        phoneNumber: personalInformationValues?.phoneNumber,
+        birthDate: null ,
+        identityNo:personalInformationValues?.identityNo ?? "",
+        email: users.email,
+        country: personalInformationValues?.country ?? "",
+        studentId: personalInformationValues?.studentId ?? "",
+        city: personalInformationValues?.city ?? "",
+        county: personalInformationValues?.county ?? "",
+        address: personalInformationValues?.address ?? "",
+        about: personalInformationValues?.about ?? "",
+      };
+      console.log(personalInformationValues?.about)
+
+      setInitialValues(newInitialValues);
+      setInitialValuesKey(prevKey => prevKey + 1); // key değerini güncelleyin
+
+
+    }
+  }, [personalInformationValues]);
 
   const validationSchema = Yup.object({
-    name: Yup.string()
+    firstName: Yup.string()
       .required("Doldurulması zorunlu alan*")
       .matches(/^[a-zA-ZğüşıöçĞÜŞİÖÇ]+$/, "Geçersiz karakter girişi*")
       .min(2, "En az 2 haneden oluşmalıdır.")
       .max(100, "En fazla 100 karakter girebilirsiniz"),
-    surname: Yup.string()
+    lastName: Yup.string()
       .required("Doldurulması zorunlu alan*")
       .matches(/^[a-zA-ZğüşıöçĞÜŞİÖÇ]+$/, "Geçersiz karakter girişi*")
       .min(2, "En az 2 haneden oluşmalıdır.")
       .max(100, "En fazla 200 karakter girebilirsiniz"),
     // phoneNumber: Yup.string()
-    // .matches(/^[0-9]{10}$/, 'Geçerli bir telefon numarası girin')
-    identityNumber: Yup.string()
+     //.matches(/^[0-9]{10}$/, 'Geçerli bir telefon numarası girin'),
+    identityNo: Yup.string()
       .required("Doldurulması zorunlu alan*")
       .test(function (value) {
         if (value && value[0] !== "0") {
@@ -119,10 +195,10 @@ export default function PersonalInformation({}: Props) {
       email: Yup.string()
       .required("Doldurulması zorunlu alan*")
       .email("Geçerli bir e-posta adresi giriniz"),
-    country: Yup.string().required("Doldurulması zorunlu alan*"),
-    city: Yup.string().required("Doldurulması zorunlu alan*"),
-    county: Yup.string().required("Doldurulması zorunlu alan*"),
-    neighbourhood: Yup.string().max(
+    // country: Yup.string().required("Doldurulması zorunlu alan*"),
+    //city: Yup.string().required("Doldurulması zorunlu alan*"),
+      county: Yup.string().required("Doldurulması zorunlu alan*"),
+     address: Yup.string().max(
       200,
       "En fazla 200 karakter girebilirsiniz"
     ),
@@ -139,16 +215,24 @@ export default function PersonalInformation({}: Props) {
               />
             </div>
             <Formik
+            key={initialValuesKey} 
               validationSchema={validationSchema}
               initialValues={initialValues}
               onSubmit={(values) => {
-                console.log(values);
+                values.birthDate = startDate;
+                values.city=selectedProvince;
+                values.phoneNumber=value
+                values.studentId=studentId;
+                values.id=personalInformationValues?.id;
+                
+                addPersonelInformation(values);
               }}
             >
+              
               <Form>
                 <div className="row">
                   <div className="col-12 col-md-6">
-                    <FormikInput name="name" label="Adınız*" />
+                    <FormikInput name="firstName" label="Adınız*" />
                     <div className="mb-3">
                       <label className="form-label">Telefon Numaranız*</label>
                       <PhoneInput
@@ -167,7 +251,7 @@ export default function PersonalInformation({}: Props) {
 
                     <div className="mt-3">
                       <FormikInput
-                        name="identityNumber"
+                        name="identityNo"
                         label="TC Kimlik No*"
                       />
                       <div className="mb-3">
@@ -178,7 +262,7 @@ export default function PersonalInformation({}: Props) {
                     </div>
                   </div>
                   <div className="col-12 col-md-6">
-                    <FormikInput name="surname" label="Soyadınız*" />
+                    <FormikInput name="lastName" label="Soyadınız*" />
                     <div className="mb-3">
                       <label className="form-label">Doğum Tarihiniz*</label>
                       <br />
@@ -186,7 +270,9 @@ export default function PersonalInformation({}: Props) {
                         className="date-picker"
                         name="birthDate"
                         selected={startDate}
-                        onChange={(date: Date) => setStartDate(date)}
+                        onChange={(date) => {
+                          setStartDate(date);
+                        }}
                       />
                     </div>
                     <div>
@@ -244,7 +330,7 @@ export default function PersonalInformation({}: Props) {
                 </div>
                 <FormikInput
                   className="no-resize"
-                  name="neighbourhood"
+                  name="address"
                   label="Mahalle/Sokak"
                   as="textarea"
                   placeholder=""

@@ -17,9 +17,9 @@ class userService extends BaseService<
 >{
     constructor() {
 		super();
-		this.apiUrl = "User";
+		this.apiUrl = "Users";
 	}
    
     }
-    
+    export default new userService();
 
