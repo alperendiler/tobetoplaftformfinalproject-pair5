@@ -57,118 +57,116 @@ function App({}: Props) {
 
         }
       />
-      </Routes>
-
-      
-      <PrivateRoot
+          
+      <Route
         path="/user-profile"
         element={
-          <div>
+          <ProtectedRoute> 
             <Navbar />
-            <UserProfile />
-            <Footer />
-          </div>
+          <UserProfile />
+          <Footer />
+          </ProtectedRoute>
         }
       />
-      <PrivateRoot
+      <Route
         path="/catalog"
         element={
-          <div>
+          <ProtectedRoute> 
             <Navbar />
             <Catalog />
             <Footer />
-          </div>
+          </ProtectedRoute> 
         }
       />
-      <PrivateRoot
+      <Route
         path="/calendar"
         element={
-          <div>
+          <ProtectedRoute> 
             <Navbar />
             <Calendar />
             <Footer />
-          </div>
+        </ProtectedRoute> 
         }
       />
-      <PrivateRoot
+      <Route
         path="/evaluations"
         element={
-          <div>
+          <ProtectedRoute> 
             <Navbar />
             <Evaluations />
             <Footer />
-          </div>
+          </ProtectedRoute> 
         }
       />
-      <PrivateRoot
+      <Route
         path="/education"
         element={
-          <div>
+          <ProtectedRoute> 
             <Navbar />
             <Trainings />
             <Footer />
-          </div>
+          </ProtectedRoute> 
         }
       />
-      <PrivateRoot
+      <Route
         path="/course/:id"
         element={
-          <div>
+          <ProtectedRoute> 
             <CourseDetail />
-          </div>
+            </ProtectedRoute> 
         }
       />
-      <PrivateRoot
+      <Route
         path="/edit-profile/experience-information"
         element={
-          <div>
+          <ProtectedRoute> 
             <Navbar />
             <Experience />
             <Footer />
-          </div>
+            </ProtectedRoute> 
         }
       />
-      <PrivateRoot
+      <Route
         path="/edit-profile/personal-information"
         element={
-          <div>
+          <ProtectedRoute> 
             <Navbar />
             <EditProfile/>
             <Footer />
-          </div>
+          </ProtectedRoute> 
         }
         
       />
-
       
-       <PrivateRoot
+       <Route
         path="/announcements"
         element={
-          <div>
+          <ProtectedRoute> 
             <Navbar />
             <Announcements />
             <Footer />
-          </div>
+            </ProtectedRoute> 
         }
       />
-      <PrivateRoot
+      <Route
         path="/forgotPassword"
         element={
-          <div>
+          <ProtectedRoute> 
             <NavbarLogin />
             <ForgottenPassword/>
             <FooterLogin />
-          </div>
+            </ProtectedRoute> 
         }
       />
-       <PrivateRoot
+       <Route
         path="/notFound"
         element={
-          <div>
+          <ProtectedRoute> 
             <NotFound/>
-          </div>
+          </ProtectedRoute> 
         }
       />
+      </Routes>
     </>
     
   );
