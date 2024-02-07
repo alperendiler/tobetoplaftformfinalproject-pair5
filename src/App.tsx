@@ -21,6 +21,7 @@ import ForgottenPassword from "./pages/ForgottenPassword";
 import NotFound from "./pages/NotFound";
 import EditProfile from "./pages/ProfileInformation/EditProfile";
 import { ToastContainer } from 'react-toastify';
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 interface Props {}
 function App({}: Props) {
@@ -44,19 +45,21 @@ function App({}: Props) {
             </div>
           }
         />
-
-      </Routes>
-
-      <PrivateRoot
+<Route
         path="/home-page"
         element={
-          <div>
-            <Navbar />
+          <ProtectedRoute>
+ <Navbar />
             <HomePage />
             <Footer />
-          </div>
+          </ProtectedRoute>
+           
+
         }
       />
+      </Routes>
+
+      
       <PrivateRoot
         path="/user-profile"
         element={
