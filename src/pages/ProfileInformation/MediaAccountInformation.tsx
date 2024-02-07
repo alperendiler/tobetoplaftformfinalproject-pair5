@@ -8,16 +8,19 @@ import socialMediaService from "../../services/socialMediaService";
 import studentSocialMediaService from "../../services/socialMediaStudentService";
 import { GetSocialMediaStudentResponse } from "../../models/responses/SocialMediaStudentResponse.ts/getSocialMediaStudentResponse";
 import { jwtDecode } from "jwt-decode";
+import socialMediaStudentService from "../../services/socialMediaStudentService";
+import studentService from "../../services/studentService";
 
 type Props = {};
 interface MediaAccountForm {
   socialMediaUrl: string;
+  socialMediaName: string
 }
 export default function MediaAccountInformation({}: Props) {
   const [socialMedias, setSocialMedias] = useState<GetSocialMediaResponse[]>(
     []
   );
-  const [studentSocialMedias, setStudentSocialMedias] = useState<
+  const [socialMediaStudents, setSocialMediaStudents] = useState<
     GetSocialMediaStudentResponse[]
   >([]);
   const [userId, setUserId] = useState<string>("");
@@ -46,11 +49,31 @@ export default function MediaAccountInformation({}: Props) {
       50,
       userId
     );
-    setStudentSocialMedias(response.data.items);
+    setSocialMediaStudents(response.data.items);
+  };
+
+  const handleSubmit = async (socialMediaName: string, url: string) => {
+    const token = localStorage.getItem("user");
+    const decodedToken: any = token ? jwtDecode(token) : null;
+    const userId =
+      decodedToken[
+        "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
+      ];
+    const student = await studentService.getByUserId(userId);
+    const response = await socialMediaStudentService.add({
+      studentId: student.data.id,
+      socialMediaId: socialMediaName,
+      url: url,
+    });
+    setSocialMediaStudents((socialMediaStudents) => [
+      ...socialMediaStudents,
+      response.data,
+    ]);
   };
 
   const initialValues: MediaAccountForm = {
     socialMediaUrl: "",
+    socialMediaName:""
   };
   const validationSchema = Yup.object({
     socialMediaUrl: Yup.string()
@@ -65,16 +88,17 @@ export default function MediaAccountInformation({}: Props) {
             <Formik
               validationSchema={validationSchema}
               initialValues={initialValues}
-              onSubmit={async (values) => {
+              onSubmit={async (values, actions) => {
                 console.log(values);
+                handleSubmit(values.socialMediaName,values.socialMediaUrl);
               }}
             >
               <Form>
                 <div className="row">
                   <div className="col-md-4 col-12">
                     <Field
-                      label="Yetkinlik"
-                      name="competence"
+                      label=""
+                      name="socialMediaName"
                       as="select"
                       className=" form-control form-select"
                     >
@@ -98,6 +122,7 @@ export default function MediaAccountInformation({}: Props) {
                   <button
                     type="submit"
                     className="btn btn-personal-information"
+
                   >
                     Kaydet
                   </button>
@@ -106,7 +131,7 @@ export default function MediaAccountInformation({}: Props) {
             </Formik>
           </div>
           <div>
-             {studentSocialMedias.map((item) => ( 
+             {socialMediaStudents.map((item) => ( 
                 <div>
                   <span>
                     {item.socialMediaName}
