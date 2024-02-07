@@ -63,16 +63,6 @@ export default function LoginForm({}: Props) {
 
       console.error("Kimlik doğrulama hatası:", (error as Error).message);
       setErrors({ password: "Kimlik doğrulama hatası" }); 
-      toast.error("E-posta veya şifre geçersiz", {
-        position: "top-right",
-        autoClose: 5000, // 5 saniye sonra otomatik olarak kapat
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme:"colored"
-      });
     } finally {
       setSubmitting(false);
     }
@@ -85,6 +75,7 @@ export default function LoginForm({}: Props) {
 
   return (
     <div>
+      <ToastContainer/>
       <Formik
         validationSchema={validationSchema}
         initialValues={initialValues}
@@ -119,7 +110,6 @@ export default function LoginForm({}: Props) {
               >
                 Giriş Yap
               </button>
-              <ToastContainer />
               <div className="col-12 ">
                 <p className="  mt-2 d-block">
                   <Link
