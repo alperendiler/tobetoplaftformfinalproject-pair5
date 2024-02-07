@@ -24,14 +24,12 @@ export default function MediaAccountInformation({}: Props) {
   const [socialMediaStudents, setSocialMediaStudents] = useState<
     GetSocialMediaStudentResponse[]
   >([]);
-  const [userId, setUserId] = useState<string>("");
 
   useEffect(() => {
     fetchSocialMedias();
   }, []);
   const fetchSocialMedias = async () => {
     const response = await socialMediaService.getAll(0, 50);
-    //getbyuserid
     setSocialMedias(response.data.items);
   };
 
@@ -39,30 +37,20 @@ export default function MediaAccountInformation({}: Props) {
     fetchStudentSocialMedias();
   }, []);
   const fetchStudentSocialMedias = async () => {
-    const token = localStorage.getItem("user");
-    const decodedToken: any = token ? jwtDecode(token) : null;
-    const userId =
-      decodedToken[
-        "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
-      ];
-    const response = await studentSocialMediaService.GetListByUserId(
-      0,
-      50,
-      userId
-    );
-    setSocialMediaStudents(response.data.items);
+    const userId = localStorage.getItem("userId")!;
+     const response = await studentSocialMediaService.GetListByUserId(
+       0,
+       50,
+       userId
+     );
+     setSocialMediaStudents(response.data.items);
   };
 
   const handleSubmit = async (socialMediaName: string, url: string) => {
-    const token = localStorage.getItem("user");
-    const decodedToken: any = token ? jwtDecode(token) : null;
-    const userId =
-      decodedToken[
-        "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
-      ];
-    const student = await studentService.getByUserId(userId);
+    const studentId = localStorage.getItem("studentId")!;
+
     const response = await socialMediaStudentService.add({
-      studentId: student.data.id,
+      studentId: studentId,
       socialMediaId: socialMediaName,
       url: url,
     });
@@ -99,7 +87,6 @@ export default function MediaAccountInformation({}: Props) {
               validationSchema={validationSchema}
               initialValues={initialValues}
               onSubmit={async (values, actions) => {
-                console.log(values);
                 handleSubmit(values.socialMediaName, values.socialMediaUrl);
               }}
             >
@@ -138,8 +125,8 @@ export default function MediaAccountInformation({}: Props) {
             </Formik>
           </div>
           <div>
-            {socialMediaStudents.map((item) => (
-              <div className="row mt-2">
+            {socialMediaStudents.map((item, index) => (
+              <div className="row mt-2" key={index}>
                 <div className="col-10">
                   <span>{item.socialMediaName}</span>-<span>{item.url}</span>
                 </div>

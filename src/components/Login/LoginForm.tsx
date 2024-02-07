@@ -13,6 +13,8 @@ import tokenService from "../../core/services/tokenService";
 import "./loginForm.css"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { jwtDecode } from "jwt-decode";
+import studentService from "../../services/studentService";
 
 type Props = {};
 interface LoginForm {
@@ -44,6 +46,17 @@ export default function LoginForm({}: Props) {
     
       dispatch(setToken(token));
       localStorage.setItem("user", JSON.stringify(token));
+
+      const decodedToken: any = token ? jwtDecode(token) : null;
+      const userId = decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"];
+      const student = await studentService.getByUserId(userId);
+
+
+      
+        
+      localStorage.setItem("userId", JSON.stringify(userId).replaceAll('"',''));
+      localStorage.setItem("studentId", JSON.stringify(student.data.id).replaceAll('"',''));
+
       navigate("home-page");
    
     } catch (error) {
