@@ -10,6 +10,7 @@ import { GetSocialMediaStudentResponse } from "../../models/responses/SocialMedi
 import { jwtDecode } from "jwt-decode";
 import socialMediaStudentService from "../../services/socialMediaStudentService";
 import studentService from "../../services/studentService";
+import { toast } from "react-toastify";
 
 type Props = {};
 interface MediaAccountForm {

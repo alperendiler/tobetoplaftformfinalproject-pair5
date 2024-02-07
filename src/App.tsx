@@ -20,13 +20,13 @@ import Announcements from "./pages/Announcements";
 import ForgottenPassword from "./pages/ForgottenPassword";
 import NotFound from "./pages/NotFound";
 import EditProfile from "./pages/ProfileInformation/EditProfile";
-
-
+import { ToastContainer } from 'react-toastify';
 
 interface Props {}
 function App({}: Props) {
   return (
     <>
+        <ToastContainer/>
       <Routes>
         <Route
           path="/"
