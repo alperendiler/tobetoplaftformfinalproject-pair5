@@ -99,7 +99,6 @@ export default function PersonalInformation({}: Props) {
       ];
       const userResponse= await userService.getById(userId)
       setUsers(userResponse.data)
-      console.log(userResponse.data)
       const student = await studentService.getByUserId(userId);
       setStudentId(student.data.id)
       const personalInformationResponse = await personalInformationService.getByStudentId(student.data.id)     
@@ -197,10 +196,10 @@ export default function PersonalInformation({}: Props) {
       email: Yup.string()
       .required("Doldurulması zorunlu alan*")
       .email("Geçerli bir e-posta adresi giriniz"),
-    // country: Yup.string().required("Doldurulması zorunlu alan*"),
-    //city: Yup.string().required("Doldurulması zorunlu alan*"),
+      country: Yup.string().required("Doldurulması zorunlu alan*"),
+      city: Yup.string().required("Doldurulması zorunlu alan*"),
       county: Yup.string().required("Doldurulması zorunlu alan*"),
-     address: Yup.string().max(
+      address: Yup.string().max(
       200,
       "En fazla 200 karakter girebilirsiniz"
     ),
@@ -290,8 +289,8 @@ export default function PersonalInformation({}: Props) {
                     as="select"
                     className=" form-control form-select"
                   >
-                    <option value={0}>Bir ülke seçin</option>
-                    <option value={1}>Türkiye</option>
+                    <option value="">Bir ülke seçin</option>
+                    <option value={0}>Türkiye</option>
                   </Field>
                 </div>
                 <div className=" row mb-3 ">

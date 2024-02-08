@@ -12,6 +12,7 @@ import { jwtDecode } from "jwt-decode";
 import { GetAllExperienceResponse } from "../../models/responses/experience/getAllExperienceResponse";
 import ExperienceDetailModal from "../../components/Content/ProfileInformation/ExperienceDetailModal";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 type Props = {};
 
@@ -28,9 +29,14 @@ interface ExperienceForm {
   studentId:string ;
   city:string ;
 }
+interface Province {
+  id: number;
+  name: string;
+}
 export default function ExperienceInformation({}: Props) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedjobDescription, setJobDescription] = useState<string >('');
+  const [provinces, setProvinces] = useState<Province[]>([]);
 
   const handleOpenModal = (jobDescription:string) => {
     setJobDescription(jobDescription);
@@ -64,6 +70,16 @@ export default function ExperienceInformation({}: Props) {
     getStudentId();
 
   }, []); 
+
+  useEffect(() => {
+    axios
+      .get<{ status: string; data: Province[] }>(
+        "https://turkiyeapi.dev/api/v1/provinces"
+      )
+      .then((response) => setProvinces(response.data.data))
+      .catch((error) => console.error("API hatası:", error));
+  }, []);
+
 
 const addExperience = async (values: ExperienceForm) => {
     await experienceService.add(values);
@@ -101,24 +117,28 @@ const addExperience = async (values: ExperienceForm) => {
   const validationSchema = Yup.object({
     companyName: Yup.string()
       .required("Doldurulması zorunlu alan*")
-      .matches(/^[a-zA-ZğüşıöçĞÜŞİÖÇ]+$/, "Geçersiz karakter girişi*")
+      .matches(/^[a-zA-ZğüşıöçĞÜŞİÖÇ\s]{2,}$/, "Geçersiz karakter girişi*")
       .min(2, "En az 2 haneden oluşmalıdır.")
-      .max(100, "En fazla 100 karakter girebilirsiniz"),
+      .max(50, "En fazla 50 karakter girebilirsiniz"),
     sector: Yup.string()
       .required("Doldurulması zorunlu alan*")
-      .matches(/^[a-zA-ZğüşıöçĞÜŞİÖÇ]+$/, "Geçersiz karakter girişi*")
+      .matches(/^[a-zA-ZğüşıöçĞÜŞİÖÇ\s]{2,}$/, "Geçersiz karakter girişi*")
       .min(2, "En az 2 haneden oluşmalıdır.")
-      .max(100, "En fazla 200 karakter girebilirsiniz"),
+      .max(50, "En fazla 50 karakter girebilirsiniz"),
     position: Yup.string()
       .required("Doldurulması zorunlu alan*")
-      .matches(/^[a-zA-ZğüşıöçĞÜŞİÖÇ]+$/, "Geçersiz karakter girişi*")
+      .matches(/^[a-zA-ZğüşıöçĞÜŞİÖÇ\s]{2,}$/, "Geçersiz karakter girişi*")
       .min(2, "En az 2 haneden oluşmalıdır.")
-      .max(100, "En fazla 200 karakter girebilirsiniz"),
+      .max(50, "En fazla 50 karakter girebilirsiniz"),
     city: Yup.string().required("Doldurulması zorunlu alan*"),
     jobDescription: Yup.string().max(
       300,
       "En fazla 300 karakter girebilirsiniz"
     ),
+    startDate: Yup.string()
+    .required("Doldurulması zorunlu alan*"),
+    endDate: Yup.string()
+    .required("Doldurulması zorunlu alan*"),
   });
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setFinishDate] = React.useState<Date | null>(null);
@@ -132,6 +152,7 @@ const addExperience = async (values: ExperienceForm) => {
         validationSchema={validationSchema}
         initialValues={initialValues}
         onSubmit={(values,actions) => {
+          console.log(values);
           values.startDate = startDate;
           values.endDate = endDate;
           values.studentId = studentId;
@@ -172,9 +193,16 @@ const addExperience = async (values: ExperienceForm) => {
                 as="select"
                 className=" form-control form-select"
               >
-                <option value={0}>İl Seçiniz</option>
-                <option value={"Isparta"}>Isparta</option>
+                <option>İl Seçiniz</option>
+                {provinces.map((province) => (
+                        <option value={province.name} key={province.id}>
+                          {province.name}
+                        </option>
+                      ))}
               </Field>
+              <ErrorMessage name="city">
+				        {message => <p className="text-danger">{message}</p>}
+			        </ErrorMessage>
             </div>
             <div className="col-12 col-md-6">
               <label className="input-label-text">İş Başlangıcı*</label>
@@ -196,6 +224,9 @@ const addExperience = async (values: ExperienceForm) => {
                     }}
                     dateFormat="dd.MM.yyyy"
                   />
+                 <ErrorMessage name="startDate">
+				        {message => <p className="text-danger">{message}</p>}
+			        </ErrorMessage>
                 </div>
               </div>
             </div>
@@ -218,6 +249,9 @@ const addExperience = async (values: ExperienceForm) => {
                     onChange={(date) => setFinishDate(date)}
                     dateFormat="dd.MM.yyyy"
                   />
+                   <ErrorMessage name="endDate">
+				        {message => <p className="text-danger">{message}</p>}
+			        </ErrorMessage>
                 </div>
               </div>
               <label>
