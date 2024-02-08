@@ -16,6 +16,8 @@ import userService from "../../services/userService";
 import { GetUserDetailResponse } from "../../models/responses/user/getUserDetailResponse";
 import studentService from "../../services/studentService";
 import { GetPersonalInformationResponse } from "../../models/responses/personalInformation/getPersonalInfırmationResponse";
+import { ToastContainer } from 'react-toastify';
+
 
 type Props = {};
 
@@ -205,7 +207,7 @@ export default function PersonalInformation({}: Props) {
 
   return (
     <>
-          
+          <ToastContainer/>
             <div className=" d-flex justify-content-center profile-picture-form">
               <img
                 className="profile-picture-image"

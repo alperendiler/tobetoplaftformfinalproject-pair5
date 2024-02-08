@@ -20,13 +20,14 @@ import Announcements from "./pages/Announcements";
 import ForgottenPassword from "./pages/ForgottenPassword";
 import NotFound from "./pages/NotFound";
 import EditProfile from "./pages/ProfileInformation/EditProfile";
-
-
+import { ToastContainer } from 'react-toastify';
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 interface Props {}
 function App({}: Props) {
   return (
     <>
+        <ToastContainer/>
       <Routes>
         <Route
           path="/"
@@ -44,128 +45,128 @@ function App({}: Props) {
             </div>
           }
         />
-
-      </Routes>
-
-      <PrivateRoot
+<Route
         path="/home-page"
         element={
-          <div>
-            <Navbar />
+          <ProtectedRoute>
+ <Navbar />
             <HomePage />
             <Footer />
-          </div>
+          </ProtectedRoute>
+           
+
         }
       />
-      <PrivateRoot
+          
+      <Route
         path="/user-profile"
         element={
-          <div>
+          <ProtectedRoute> 
             <Navbar />
-            <UserProfile />
-            <Footer />
-          </div>
+          <UserProfile />
+          <Footer />
+          </ProtectedRoute>
         }
       />
-      <PrivateRoot
+      <Route
         path="/catalog"
         element={
-          <div>
+          <ProtectedRoute> 
             <Navbar />
             <Catalog />
             <Footer />
-          </div>
+          </ProtectedRoute> 
         }
       />
-      <PrivateRoot
+      <Route
         path="/calendar"
         element={
-          <div>
+          <ProtectedRoute> 
             <Navbar />
             <Calendar />
             <Footer />
-          </div>
+        </ProtectedRoute> 
         }
       />
-      <PrivateRoot
+      <Route
         path="/evaluations"
         element={
-          <div>
+          <ProtectedRoute> 
             <Navbar />
             <Evaluations />
             <Footer />
-          </div>
+          </ProtectedRoute> 
         }
       />
-      <PrivateRoot
+      <Route
         path="/education"
         element={
-          <div>
+          <ProtectedRoute> 
             <Navbar />
             <Trainings />
             <Footer />
-          </div>
+          </ProtectedRoute> 
         }
       />
-      <PrivateRoot
+      <Route
         path="/course/:id"
         element={
-          <div>
+          <ProtectedRoute> 
             <CourseDetail />
-          </div>
+            </ProtectedRoute> 
         }
       />
-      <PrivateRoot
+      <Route
         path="/edit-profile/experience-information"
         element={
-          <div>
+          <ProtectedRoute> 
             <Navbar />
             <Experience />
             <Footer />
-          </div>
+            </ProtectedRoute> 
         }
       />
-      <PrivateRoot
+      <Route
         path="/edit-profile/personal-information"
         element={
-          <div>
+          <ProtectedRoute> 
             <Navbar />
             <EditProfile/>
             <Footer />
-          </div>
+          </ProtectedRoute> 
         }
         
       />
-
       
-       <PrivateRoot
+       <Route
         path="/announcements"
         element={
-          <div>
+          <ProtectedRoute> 
             <Navbar />
             <Announcements />
             <Footer />
-          </div>
+            </ProtectedRoute> 
         }
       />
-      <PrivateRoot
+      <Route
         path="/forgotPassword"
         element={
-          <div>
+          <ProtectedRoute> 
             <NavbarLogin />
             <ForgottenPassword/>
             <FooterLogin />
-          </div>
+            </ProtectedRoute> 
         }
       />
-       <PrivateRoot
+       <Route
         path="/notFound"
         element={
-          <div>
+          <ProtectedRoute> 
             <NotFound/>
-          </div>
+          </ProtectedRoute> 
         }
       />
+      </Routes>
     </>
     
   );

@@ -19,18 +19,19 @@ export default function CompetenceInformation({}: Props) {
     fetchCompetences();
   }, []);
   const fetchCompetences = async () => {
-    //TODO: student id test için yazıldı, localStorage dan okunmalı
+    const studentId = localStorage.getItem("studentId")!;
+
     const response = await competenceService.GetListByStudent(
       0,
       10,
-      "69c4b730-10e9-49f3-9939-08dc24ff9ac4"
+      studentId
     );
     setCompetences(response.data.items);
   };
 
   const handleSubmit = async (competenceName:string) => {
-    //todo: studentId localstoragedan okunacak
-    const response = await competenceService.add({studentId:"69c4b730-10e9-49f3-9939-08dc24ff9ac4", name: competenceName});
+    const studentId = localStorage.getItem("studentId")!;
+    const response = await competenceService.add({studentId:studentId, name: competenceName});
     setCompetences(competences => [...competences, response.data]);
   }
 
