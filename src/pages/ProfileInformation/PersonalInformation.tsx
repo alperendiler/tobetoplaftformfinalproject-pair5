@@ -164,7 +164,7 @@ export default function PersonalInformation({}: Props) {
 
 
     }
-  }, [personalInformationValues]);
+  }, [personalInformationValues,users]);
 
   const validationSchema = Yup.object({
     firstName: Yup.string()
