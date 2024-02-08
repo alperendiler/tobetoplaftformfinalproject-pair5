@@ -2,7 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useEffect, useState } from "react";
 import "../../styles/personalInformation.css";
-import "./experienceInformation.css"
+import "./experienceInformation.css";
 import React from "react";
 import FormikInput from "../../components/FormikInput/FormikInput";
 import ReactDatePicker from "react-datepicker";
@@ -16,29 +16,39 @@ import axios from "axios";
 
 type Props = {};
 
-
-   
 interface ExperienceForm {
   companyName: string;
   sector: string;
   position: string;
-  isContinued:boolean ,
+  isContinued: boolean;
   jobDescription: string;
-  startDate: Date | null ;
+  startDate: Date | null;
   endDate: Date | null;
-  studentId:string ;
-  city:string ;
+  studentId: string;
+  city: string;
 }
 interface Province {
   id: number;
   name: string;
 }
+
+// interface TouchedFields {
+//   startDate: boolean;
+//   endDate: boolean;
+// }
+
 export default function ExperienceInformation({}: Props) {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [selectedjobDescription, setJobDescription] = useState<string >('');
+  const [selectedjobDescription, setJobDescription] = useState<string>("");
   const [provinces, setProvinces] = useState<Province[]>([]);
+  const [startDate, setStartDate] = useState<Date | null>(null);
+  const [endDate, setFinishDate] = React.useState<Date | null>(null);
+  // const [touched, setTouched] = useState<TouchedFields>({
+  //   startDate: false,
+  //   endDate: false,
+  // });
 
-  const handleOpenModal = (jobDescription:string) => {
+  const handleOpenModal = (jobDescription: string) => {
     setJobDescription(jobDescription);
     setModalOpen(true);
   };
@@ -46,30 +56,33 @@ export default function ExperienceInformation({}: Props) {
   const handleCloseModal = () => {
     setModalOpen(false);
   };
-  const [studentId, setStudentId] = useState<string  >("");
-  const [experiences, setExperiences] = useState<GetAllExperienceResponse [] >([]);
+  const [studentId, setStudentId] = useState<string>("");
+  const [experiences, setExperiences] = useState<GetAllExperienceResponse[]>(
+    []
+  );
 
   useEffect(() => {
-   
     const getStudentId = async () => {
       const token = localStorage.getItem("user");
 
       const decodedToken: any = token ? jwtDecode(token) : null;
-  
+
       const userId =
         decodedToken[
           "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
         ];
-  
+
       const student = await studentService.getByUserId(userId);
       setStudentId(student.data.id);
-      const response = await experienceService.getListStudentId(0, 111,student.data.id);
+      const response = await experienceService.getListStudentId(
+        0,
+        111,
+        student.data.id
+      );
       setExperiences(response.data.items);
-
     };
     getStudentId();
-
-  }, []); 
+  }, []);
 
   useEffect(() => {
     axios
@@ -80,8 +93,7 @@ export default function ExperienceInformation({}: Props) {
       .catch((error) => console.error("API hatası:", error));
   }, []);
 
-
-const addExperience = async (values: ExperienceForm) => {
+  const addExperience = async (values: ExperienceForm) => {
     await experienceService.add(values);
     toast.success("Kayıt Başarılı", {
       position: "top-right",
@@ -90,28 +102,27 @@ const addExperience = async (values: ExperienceForm) => {
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
-      theme:"colored"
+      theme: "colored",
     });
     const response = await experienceService.getListStudentId(0, 11, studentId);
     setExperiences(response.data.items);
-}; 
+  };
 
- const deleteExperience= async(experienceId:any)=>{
-      await experienceService.delete(experienceId)
-      const response = await experienceService.getListStudentId(0, 11, studentId);
-      setExperiences(response.data.items);
- }
+  const deleteExperience = async (experienceId: any) => {
+    await experienceService.delete(experienceId);
+    const response = await experienceService.getListStudentId(0, 11, studentId);
+    setExperiences(response.data.items);
+  };
   const initialValues: ExperienceForm = {
     companyName: "",
     sector: "",
     position: "",
     isContinued: false,
     jobDescription: "",
-    startDate: null ,
+    startDate: null,
     endDate: null,
     studentId: "",
-    city:"" 
-
+    city: "",
   };
 
   const validationSchema = Yup.object({
@@ -135,32 +146,29 @@ const addExperience = async (values: ExperienceForm) => {
       300,
       "En fazla 300 karakter girebilirsiniz"
     ),
-    startDate: Yup.string()
-    .required("Doldurulması zorunlu alan*"),
-    endDate: Yup.string()
-    .required("Doldurulması zorunlu alan*"),
+    startDate: Yup.date().required("Doldurulması zorunlu alan*"),
+    endDate: Yup.date().required("Doldurulması zorunlu alan*"),
   });
-  const [startDate, setStartDate] = useState<Date | null>(null);
-  const [endDate, setFinishDate] = React.useState<Date | null>(null);
 
   return (
     <>
       {isModalOpen && (
-        <ExperienceDetailModal jobDescription={selectedjobDescription} onClose={handleCloseModal} />
+        <ExperienceDetailModal
+          jobDescription={selectedjobDescription}
+          onClose={handleCloseModal}
+        />
       )}
       <Formik
         validationSchema={validationSchema}
         initialValues={initialValues}
-        onSubmit={(values,actions) => {
+        onSubmit={(values, actions) => {
           console.log(values);
           values.startDate = startDate;
           values.endDate = endDate;
           values.studentId = studentId;
-          addExperience(values)
-          actions.resetForm()
-
-        } 
-      }
+          addExperience(values);
+          actions.resetForm();
+        }}
       >
         <Form>
           <div className="row">
@@ -195,14 +203,14 @@ const addExperience = async (values: ExperienceForm) => {
               >
                 <option>İl Seçiniz</option>
                 {provinces.map((province) => (
-                        <option value={province.name} key={province.id}>
-                          {province.name}
-                        </option>
-                      ))}
+                  <option value={province.name} key={province.id}>
+                    {province.name}
+                  </option>
+                ))}
               </Field>
               <ErrorMessage name="city">
-				        {message => <p className="text-danger">{message}</p>}
-			        </ErrorMessage>
+                {(message) => <p className="text-danger">{message}</p>}
+              </ErrorMessage>
             </div>
             <div className="col-12 col-md-6">
               <label className="input-label-text">İş Başlangıcı*</label>
@@ -221,12 +229,18 @@ const addExperience = async (values: ExperienceForm) => {
                     selected={startDate}
                     onChange={(date) => {
                       setStartDate(date);
+                      // setTouched({ ...touched, startDate: true });
                     }}
                     dateFormat="dd.MM.yyyy"
                   />
-                 <ErrorMessage name="startDate">
-				        {message => <p className="text-danger">{message}</p>}
-			        </ErrorMessage>
+                  <ErrorMessage name="startDate">
+  {message => {
+    if (!startDate ) {
+      return <p className="text-danger">{message}</p>;
+    }
+    return null; 
+  }}
+</ErrorMessage>
                 </div>
               </div>
             </div>
@@ -249,9 +263,22 @@ const addExperience = async (values: ExperienceForm) => {
                     onChange={(date) => setFinishDate(date)}
                     dateFormat="dd.MM.yyyy"
                   />
-                   <ErrorMessage name="endDate">
-				        {message => <p className="text-danger">{message}</p>}
-			        </ErrorMessage>
+                  <ErrorMessage name="endDate">
+                    {(message) => {
+                      if (!endDate) {
+                        return <p className="text-danger">{message}</p>;
+                      }
+                      return null;
+                    }}
+                  </ErrorMessage>
+                  {/* <ErrorMessage name="startDate">
+  {message => {
+    if (!startDate && touched.startDate) {
+      return <p className="text-danger">{message}</p>;
+    }
+    return null;
+  }}
+</ErrorMessage> */}
                 </div>
               </div>
               <label>
@@ -269,51 +296,61 @@ const addExperience = async (values: ExperienceForm) => {
               />
             </div>
 
-            <button type="submit"  className="btn btn-personal-information">
+            <button type="submit" className="btn btn-personal-information">
               Kaydet
             </button>
           </div>
         </Form>
       </Formik>
       <div className="col-12">
-      {experiences && experiences.length > 0 ? (
-  experiences.map((experience) => ( 
-        <div key={experience.id} className="my-grade">
-          <div className="grade-header">
-            <span className="grade-date">{experience.startDate} - {experience.endDate} </span>
-          </div>
-          <div className="grade-details">
-            <div className="grade-details-col">
-              <div className="grade-details-header">
-                Kurum Adı
+        {experiences && experiences.length > 0 ? (
+          experiences.map((experience) => (
+            <div key={experience.id} className="my-grade">
+              <div className="grade-header">
+                <span className="grade-date">
+                  {experience.startDate} - {experience.endDate}{" "}
+                </span>
               </div>
-              <div className="grade-details-content">
-                {experience.companyName}
+              <div className="grade-details">
+                <div className="grade-details-col">
+                  <div className="grade-details-header">Kurum Adı</div>
+                  <div className="grade-details-content">
+                    {experience.companyName}
+                  </div>
+                </div>
+                <div className="grade-details-col">
+                  <div className="grade-details-header">Pozisyon</div>
+                  <div className="grade-details-content">
+                    {experience.position}
+                  </div>
+                </div>
+                <div className="grade-details-col">
+                  <div className="grade-details-header">Sektör</div>
+                  <div className="grade-details-content">
+                    {experience.sector}
+                  </div>
+                </div>
+                <div className="grade-details-col">
+                  <div className="grade-details-header">Şehir</div>
+                  <div className="grade-details-content">{experience.city}</div>
+                </div>
+                <div>
+                  <span
+                    onClick={() => deleteExperience(experience.id)}
+                    className=" grade-delete"
+                  ></span>
+                  <span
+                    onClick={() => handleOpenModal(experience.jobDescription)}
+                    className=" grade-info"
+                  ></span>
+                </div>
               </div>
             </div>
-            <div className="grade-details-col">
-              <div className="grade-details-header">Pozisyon</div>
-              <div className="grade-details-content">{experience.position}</div>
-              </div>
-              <div className="grade-details-col">
-              <div className="grade-details-header">Sektör</div>
-              <div className="grade-details-content">{experience.sector}</div>
-              </div>
-              <div className="grade-details-col">
-              <div className="grade-details-header">Şehir</div>
-              <div className="grade-details-content">{experience.city}</div>
-              </div>
-              <div><span onClick={()=>deleteExperience(experience.id)} className=" grade-delete"></span><span onClick={()=>handleOpenModal(experience.jobDescription)} className=" grade-info"></span></div>
-             </div>
-
-  </div>
-
-   ))
-   ) : (
-    <div></div>
-   )}  
+          ))
+        ) : (
+          <div></div>
+        )}
       </div>
-      
     </>
   );
 }

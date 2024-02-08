@@ -16,18 +16,17 @@ import userService from "../../services/userService";
 import { GetUserDetailResponse } from "../../models/responses/user/getUserDetailResponse";
 import studentService from "../../services/studentService";
 import { GetPersonalInformationResponse } from "../../models/responses/personalInformation/getPersonalInfırmationResponse";
-import { ToastContainer } from 'react-toastify';
-
+import { ToastContainer } from "react-toastify";
 
 type Props = {};
 
 interface PersonalInformationForm {
-  studentId:string,
-  id:string|undefined ,
-  firstName: string ;
+  studentId: string;
+  id: string | undefined;
+  firstName: string;
   lastName: string;
-  phoneNumber: string |undefined;
-  birthDate: Date | null ;
+  phoneNumber: string | undefined;
+  birthDate: Date | null;
   identityNo: string;
   email: string;
   country: string;
@@ -55,11 +54,13 @@ export default function PersonalInformation({}: Props) {
   const [selectedProvince, setSelectedProvince] = useState<string>("");
   const [districts, setDistricts] = useState<District[]>([]);
 
-  const [personalInformations, setPersonalInformations] =  useState<GetAllPersonalInformationResponse [] >([]);
-  const [users, setUsers] = useState<GetUserDetailResponse >();
-  const [studentId, setStudentId] = useState<string  >("");
-  const [personalInformationValues, setPersonalInformationValues] = useState<GetPersonalInformationResponse>();
-
+  const [personalInformations, setPersonalInformations] = useState<
+    GetAllPersonalInformationResponse[]
+  >([]);
+  const [users, setUsers] = useState<GetUserDetailResponse>();
+  const [studentId, setStudentId] = useState<string>("");
+  const [personalInformationValues, setPersonalInformationValues] =
+    useState<GetPersonalInformationResponse>();
 
   useEffect(() => {
     axios
@@ -68,7 +69,7 @@ export default function PersonalInformation({}: Props) {
       )
       .then((response) => setProvinces(response.data.data))
       .catch((error) => console.error("API hatası:", error));
-      getUser();
+    getUser();
   }, []);
 
   useEffect(() => {
@@ -88,7 +89,7 @@ export default function PersonalInformation({}: Props) {
       setDistricts([]);
     }
   }, [selectedProvince, provinces]);
-  const getUser= async ()=>{
+  const getUser = async () => {
     const token = localStorage.getItem("user");
 
     const decodedToken: any = token ? jwtDecode(token) : null;
@@ -97,35 +98,36 @@ export default function PersonalInformation({}: Props) {
       decodedToken[
         "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
       ];
-      const userResponse= await userService.getById(userId)
-      setUsers(userResponse.data)
-      const student = await studentService.getByUserId(userId);
-      setStudentId(student.data.id)
-      const personalInformationResponse = await personalInformationService.getByStudentId(student.data.id)     
-      setPersonalInformationValues(personalInformationResponse.data)
-      console.log(personalInformationResponse.data)
+    const userResponse = await userService.getById(userId);
+    setUsers(userResponse.data);
+    const student = await studentService.getByUserId(userId);
+    setStudentId(student.data.id);
+    const personalInformationResponse =
+      await personalInformationService.getByStudentId(student.data.id);
+    setPersonalInformationValues(personalInformationResponse.data);
+    console.log(personalInformationResponse.data);
+  };
+  const addPersonelInformation = async (values: PersonalInformationForm) => {
+    const personalInformationResponse =
+      await personalInformationService.getByStudentId(studentId);
 
-  }
- const addPersonelInformation= async (values:PersonalInformationForm)=>{
- 
-    const personalInformationResponse = await personalInformationService.getByStudentId(studentId)     
-  
     //setPersonalInformationId(personalInformationResponse.data.id)
-    if(personalInformationResponse==null){
-      console.log("merhaba")
+    if (personalInformationResponse == null) {
+      console.log("merhaba");
 
-      await personalInformationService.add(values)
-      const personalInformationResponse = await personalInformationService.getByStudentId(studentId)     
-      setPersonalInformationValues(personalInformationResponse.data)
-
-    }else{
-      console.log(values)
-      const personalInformationResponse = await personalInformationService.update(values)
-      setPersonalInformationValues(personalInformationResponse.data)
+      await personalInformationService.add(values);
+      const personalInformationResponse =
+        await personalInformationService.getByStudentId(studentId);
+      setPersonalInformationValues(personalInformationResponse.data);
+    } else {
+      console.log(values);
+      const personalInformationResponse =
+        await personalInformationService.update(values);
+      setPersonalInformationValues(personalInformationResponse.data);
     }
-  }
+  };
   const [initialValues, setInitialValues] = useState<PersonalInformationForm>({
-    id:"",
+    id: "",
     studentId: "",
     firstName: "",
     lastName: "",
@@ -144,12 +146,12 @@ export default function PersonalInformation({}: Props) {
   useEffect(() => {
     if (users != null) {
       const newInitialValues: PersonalInformationForm = {
-        id:"",
+        id: "",
         firstName: users.firstName ?? "",
         lastName: users.lastName,
         phoneNumber: personalInformationValues?.phoneNumber,
-        birthDate: null ,
-        identityNo:personalInformationValues?.identityNo ?? "",
+        birthDate: null,
+        identityNo: personalInformationValues?.identityNo ?? "",
         email: users.email,
         country: personalInformationValues?.country ?? "",
         studentId: personalInformationValues?.studentId ?? "",
@@ -158,12 +160,10 @@ export default function PersonalInformation({}: Props) {
         address: personalInformationValues?.address ?? "",
         about: personalInformationValues?.about ?? "",
       };
-      console.log(personalInformationValues?.about)
+      console.log(personalInformationValues?.about);
 
       setInitialValues(newInitialValues);
-      setInitialValuesKey(prevKey => prevKey + 1); // key değerini güncelleyin
-
-
+      setInitialValuesKey((prevKey) => prevKey + 1); // key değerini güncelleyin
     }
   }, [personalInformationValues]);
 
@@ -172,19 +172,17 @@ export default function PersonalInformation({}: Props) {
       .required("Doldurulması zorunlu alan*")
       .matches(/^[a-zA-ZğüşıöçĞÜŞİÖÇ]+$/, "Geçersiz karakter girişi*")
       .min(2, "En az 2 haneden oluşmalıdır.")
-      .max(100, "En fazla 100 karakter girebilirsiniz"),
+      .max(50, "En fazla 50 karakter girebilirsiniz"),
     lastName: Yup.string()
       .required("Doldurulması zorunlu alan*")
       .matches(/^[a-zA-ZğüşıöçĞÜŞİÖÇ]+$/, "Geçersiz karakter girişi*")
       .min(2, "En az 2 haneden oluşmalıdır.")
-      .max(100, "En fazla 200 karakter girebilirsiniz"),
-    // phoneNumber: Yup.string()
-     //.matches(/^[0-9]{10}$/, 'Geçerli bir telefon numarası girin'),
+      .max(50, "En fazla 50 karakter girebilirsiniz"),
     identityNo: Yup.string()
       .required("Doldurulması zorunlu alan*")
       .test(function (value) {
         if (value && value[0] !== "0") {
-          return true; // Geçerli
+          return true;
         } else {
           return this.createError({
             message: "TC Kimlik Numaranızı doğru giriniz",
@@ -193,163 +191,174 @@ export default function PersonalInformation({}: Props) {
       })
       .min(11, "TC Kimlik Numaranızı 11 karakterli olacak şekilde giriniz")
       .max(11, "TC Kimlik Numaranızı 11 karakterli olacak şekilde giriniz"),
-      email: Yup.string()
+    email: Yup.string()
       .required("Doldurulması zorunlu alan*")
       .email("Geçerli bir e-posta adresi giriniz"),
-      country: Yup.string().required("Doldurulması zorunlu alan*"),
-      city: Yup.string().required("Doldurulması zorunlu alan*"),
-      county: Yup.string().required("Doldurulması zorunlu alan*"),
-      address: Yup.string().max(
-      200,
-      "En fazla 200 karakter girebilirsiniz"
-    ),
+    country: Yup.string().required("Doldurulması zorunlu alan*"),
+    city: Yup.string().required("Doldurulması zorunlu alan*"),
+    county: Yup.string().required("Doldurulması zorunlu alan*"),
+    address: Yup.string().max(200, "En fazla 200 karakter girebilirsiniz"),
+    phoneNumber: Yup.string().required("Doldurulması zorunlu alan*"),
+    birthDate: Yup.string().required("Doldurulması zorunlu alan*"),
     about: Yup.string().max(300, "En fazla 300 karakter girebilirsiniz"),
   });
 
   return (
     <>
-          <ToastContainer/>
-            <div className=" d-flex justify-content-center profile-picture-form">
-              <img
-                className="profile-picture-image"
-                src="https://tobeto.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fimages.19a45d39.png&w=384&q=75"
-              />
-            </div>
-            <Formik
-            key={initialValuesKey} 
-              validationSchema={validationSchema}
-              initialValues={initialValues}
-              onSubmit={(values) => {
-                values.birthDate = startDate;
-                values.city=selectedProvince;
-                values.phoneNumber=value
-                values.studentId=studentId;
-                values.id=personalInformationValues?.id;
-                
-                addPersonelInformation(values);
-              }}
-            >
-              
-              <Form>
-                <div className="row">
-                  <div className="col-12 col-md-6">
-                    <FormikInput name="firstName" label="Adınız*" />
-                    <div className="mb-3">
-                      <label className="form-label">Telefon Numaranız*</label>
-                      <PhoneInput
-                        placeholder="5** *** ** **"
-                        defaultCountry="TR"
-                        value={value}
-                        onChange={setValue}
-                        name="phoneNumber"
-                        limitMaxLength={true}
-                        rules={{ required: true }}
-                      />
-                      <ErrorMessage name="phoneNumber">
-                        {(message) => <p className="text-danger">{message}</p>}
-                      </ErrorMessage>
-                    </div>
+      <ToastContainer />
+      <div className=" d-flex justify-content-center profile-picture-form">
+        <img
+          className="profile-picture-image"
+          src="https://tobeto.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fimages.19a45d39.png&w=384&q=75"
+        />
+      </div>
+      <Formik
+        key={initialValuesKey}
+        validationSchema={validationSchema}
+        initialValues={initialValues}
+        onSubmit={(values) => {
+          values.birthDate = startDate;
+          values.city = selectedProvince;
+          values.phoneNumber = value;
+          values.studentId = studentId;
+          values.id = personalInformationValues?.id;
 
-                    <div className="mt-3">
-                      <FormikInput
-                        name="identityNo"
-                        label="TC Kimlik No*"
-                      />
-                      <div className="mb-3">
-                        <i className="text-danger">
-                          *Aboneliklerde fatura için doldurulması zorunlu alan
-                        </i>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-12 col-md-6">
-                    <FormikInput name="lastName" label="Soyadınız*" />
-                    <div className="mb-3">
-                      <label className="form-label">Doğum Tarihiniz*</label>
-                      <br />
-                      <DatePicker
-                        className="date-picker"
-                        name="birthDate"
-                        selected={startDate}
-                        onChange={(date) => {
-                          setStartDate(date);
-                        }}
-                      />
-                    </div>
-                    <div>
-                      <FormikInput name="email" label="E-posta" type="email" />
-                    </div>
-                  </div>
-                </div>
+          addPersonelInformation(values);
+        }}
+      >
+        <Form>
+          <div className="row">
+            <div className="col-12 col-md-6">
+              <FormikInput name="firstName" label="Adınız*" />
+              <div className="mb-3">
+                <label className="form-label">Telefon Numaranız*</label>
+                <PhoneInput
+                  placeholder="5** *** ** **"
+                  defaultCountry="TR"
+                  value={value}
+                  onChange={setValue}
+                  name="phoneNumber"
+                  limitMaxLength={true}
+                  rules={{ required: true }}
+                />
+                <ErrorMessage name="phoneNumber">
+                  {(message) => <p className="text-danger">{message}</p>}
+                </ErrorMessage>
+              </div>
+
+              <div className="mt-3">
+                <FormikInput name="identityNo" label="TC Kimlik No*" />
                 <div className="mb-3">
-                  <label className="form-label">Ülke*</label>
-                  <Field
-                    label="Ülke*"
-                    name="country"
-                    as="select"
-                    className=" form-control form-select"
-                  >
-                    <option value="">Bir ülke seçin</option>
-                    <option value={0}>Türkiye</option>
-                  </Field>
+                  <i className="text-danger">
+                    *Aboneliklerde fatura için doldurulması zorunlu alan
+                  </i>
                 </div>
-                <div className=" row mb-3 ">
-                  <div className="col-md-6 col-12">
-                    <label className="form-label">Şehir*</label>
-                    <Field
-                      label="Şehir*"
-                      name="city"
-                      as="select"
-                      className=" form-control form-select"
-                      onChange={(e: any) => setSelectedProvince(e.target.value)}
-                      value={selectedProvince}
-                    >
-                      <option value="">Bir şehir seçin</option>
-                      {provinces.map((province) => (
-                        <option value={province.name} key={province.id}>
-                          {province.name}
-                        </option>
-                      ))}
-                    </Field>
-                  </div>
-                  <div className="col-md-6 col-12">
-                    <label className="form-label">İlçe*</label>
-                    <Field
-                      label="İlçe*"
-                      name="county"
-                      as="select"
-                      className=" form-control form-select"
-                    >
-                      <option value="">Bir ilçe seçin</option>
-                      {districts.map((district) => (
-                        <option key={district.id} value={district.name}>
-                          {district.name}
-                        </option>
-                      ))}
-                    </Field>
-                  </div>
-                </div>
-                <FormikInput
-                  className="no-resize"
-                  name="address"
-                  label="Mahalle/Sokak"
-                  as="textarea"
-                  placeholder=""
+              </div>
+            </div>
+            <div className="col-12 col-md-6">
+              <FormikInput name="lastName" label="Soyadınız*" />
+              <div className="mb-3">
+                <label className="form-label">Doğum Tarihiniz*</label>
+                <br />
+                <DatePicker
+                  className="date-picker"
+                  name="birthDate"
+                  selected={startDate}
+                  onChange={(date) => {
+                    setStartDate(date);
+                  }}
                 />
+                <ErrorMessage name="birthDate">
+  {message => {
+    if (!startDate ) {
+      return <p className="text-danger">{message}</p>;
+    }
+    return null; 
+  }}
+</ErrorMessage>
+              </div>
+              <div>
+                <FormikInput name="email" label="E-posta" type="email" />
+              </div>
+            </div>
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Ülke*</label>
+            <Field
+              label="Ülke*"
+              name="country"
+              as="select"
+              className=" form-control form-select"
+            >
+              <option value="">Bir ülke seçin</option>
+              <option value={0}>Türkiye</option>
+            </Field>
+            <ErrorMessage name="country">
+              {(message) => <p className="text-danger">{message}</p>}
+            </ErrorMessage>
+          </div>
+          <div className=" row mb-3 ">
+            <div className="col-md-6 col-12">
+              <label className="form-label">Şehir*</label>
+              <Field
+                label="Şehir*"
+                name="city"
+                as="select"
+                className=" form-control form-select"
+                onChange={(e: any) => setSelectedProvince(e.target.value)}
+                value={selectedProvince}
+              >
+                <option value="">Bir şehir seçin</option>
+                {provinces.map((province) => (
+                  <option value={province.name} key={province.id}>
+                    {province.name}
+                  </option>
+                ))}
+              </Field>
+              <ErrorMessage name="city">
+                {(message) => <p className="text-danger">{message}</p>}
+              </ErrorMessage>
+            </div>
+            <div className="col-md-6 col-12">
+              <label className="form-label">İlçe*</label>
+              <Field
+                label="İlçe*"
+                name="county"
+                as="select"
+                className=" form-control form-select"
+              >
+                <option value="">Bir ilçe seçin</option>
+                {districts.map((district) => (
+                  <option key={district.id} value={district.name}>
+                    {district.name}
+                  </option>
+                ))}
+              </Field>
+              <ErrorMessage name="county">
+                {(message) => <p className="text-danger">{message}</p>}
+              </ErrorMessage>
+            </div>
+          </div>
+          <FormikInput
+            className="no-resize"
+            name="address"
+            label="Mahalle/Sokak"
+            as="textarea"
+            placeholder=""
+          />
 
-                <FormikInput
-                  className="no-resize"
-                  name="about"
-                  label="Hakkımda"
-                  as="textarea"
-                  placeholder="Kendini kısaca tanıt"
-                />
-                <button type='submit' className="btn btn-personal-information">
-                  Kaydet
-                </button>
-              </Form>
-            </Formik>
-         
+          <FormikInput
+            className="no-resize"
+            name="about"
+            label="Hakkımda"
+            as="textarea"
+            placeholder="Kendini kısaca tanıt"
+          />
+          <button type="submit" className="btn btn-personal-information">
+            Kaydet
+          </button>
+        </Form>
+      </Formik>
     </>
   );
 }
