@@ -9,6 +9,7 @@ type Props = {
 	rows?:number;
 	cols?:number
 	className?:string;
+	disabled?:boolean;
 };
 
 const FormikInput = (props: Props) => {
@@ -21,6 +22,7 @@ const FormikInput = (props: Props) => {
 				className={`form-control ${props.className}`}
 				as={props.as}
 				row={props.rows}
+				disabled={props.disabled}
 			/>
 			<ErrorMessage name={props.name}>
 				{message => <p className="text-danger">{message}</p>}
