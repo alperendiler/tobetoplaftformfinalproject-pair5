@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "../../styles/personalInformation.css";
 import { GetLanguageResponse } from "../../models/responses/language/getLanguageResponse";
@@ -8,7 +8,6 @@ import { GetLanguageLevelResponse } from "../../models/responses/languageLevel/g
 import languageLevelService from "../../services/languageLevelService";
 import { GetStudentLanguageResponse } from "../../models/responses/studentLanguage/getStudentLanguageResponse";
 import studentLanguageService from "../../services/studentLanguageService";
-
 interface LanguageInformationForm {
   language: string;
   level: string;
@@ -28,6 +27,7 @@ const LanguageInformation: React.FC = () => {
   const [studentLanguages, setStudentLanguages] = useState<
     GetStudentLanguageResponse[]
   >([]);
+
 
   useEffect(() => {
     fetchLanguages();
@@ -120,6 +120,9 @@ const LanguageInformation: React.FC = () => {
                   </option>
                 ))}
               </Field>
+              <ErrorMessage name="language">
+                  {(message) => <p className="text-danger">{message}</p>}
+                </ErrorMessage>
             </div>
             <div className="col-12 col-md-6">
               <Field
@@ -134,9 +137,12 @@ const LanguageInformation: React.FC = () => {
                   </option>
                 ))}
               </Field>
+              <ErrorMessage name="level">
+                  {(message) => <p className="text-danger">{message}</p>}
+                </ErrorMessage>
             </div>
           </div>
-          <button type="submit" className="btn btn-personal-information">
+          <button type="submit" className="btn btn-personal-information" >
             Kaydet
           </button>
         </Form>

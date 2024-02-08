@@ -112,8 +112,8 @@ export default function PersonalInformation({}: Props) {
       await personalInformationService.getByStudentId(studentId);
 
     //setPersonalInformationId(personalInformationResponse.data.id)
-    if (personalInformationResponse == null) {
-      console.log("merhaba");
+    if (personalInformationResponse.data.id == null) {
+  
 
       await personalInformationService.add(values);
       const personalInformationResponse =
@@ -194,11 +194,11 @@ export default function PersonalInformation({}: Props) {
     email: Yup.string()
       .required("Doldurulması zorunlu alan*")
       .email("Geçerli bir e-posta adresi giriniz"),
-    country: Yup.string().required("Doldurulması zorunlu alan*"),
-    city: Yup.string().required("Doldurulması zorunlu alan*"),
+    // country: Yup.string().required("Doldurulması zorunlu alan*"),
+    // city: Yup.string().required("Doldurulması zorunlu alan*"),
     county: Yup.string().required("Doldurulması zorunlu alan*"),
     address: Yup.string().max(200, "En fazla 200 karakter girebilirsiniz"),
-    phoneNumber: Yup.string().required("Doldurulması zorunlu alan*"),
+    // phoneNumber: Yup.string().required("Doldurulması zorunlu alan*"),
     birthDate: Yup.string().required("Doldurulması zorunlu alan*"),
     about: Yup.string().max(300, "En fazla 300 karakter girebilirsiniz"),
   });
