@@ -115,3 +115,6 @@
 .activity-detail .activity-detail-header .activity-process .activity-favorite span.add-favorite {
     background: url(https://lms.tobeto.com/tobeto/eep/Styles/assets/css/img/icon/learning-experience-platform/add-favorite.svg) no-repeat;
 }
+.activity-detail .activity-detail-header .activity-process .activity-favorite span.remove-favorite {
+    background: url(https://lms.tobeto.com/tobeto/eep/Styles/assets/css/img/icon/learning-experience-platform/remove-favorite.svg) no-repeat;
+}

@@ -20,6 +20,7 @@ import Announcements from "./pages/Announcements";
 import ForgottenPassword from "./pages/ForgottenPassword";
 import NotFound from "./pages/NotFound";
 import EditProfile from "./pages/ProfileInformation/EditProfile";
+import Connection from "./pages/Connection";
 
 
 
@@ -163,6 +164,16 @@ function App({}: Props) {
         element={
           <div>
             <NotFound/>
+          </div>
+        }
+      />
+       <PrivateRoot
+        path="/connection"
+        element={
+          <div>
+            <NavbarLogin />
+            <Connection/>
+            <FooterLogin />
           </div>
         }
       />

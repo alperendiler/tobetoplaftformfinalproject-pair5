@@ -1,0 +1,19 @@
+.info-item table{
+  
+    border-collapse:separate;
+    border-spacing:20px;
+    font-size: 14px;
+}
+
+.tab-hakkında{
+    margin-top:-30px;
+}
+
+
+.table-desc2{
+    color: blue;
+}
+
+.first-cols{
+    font-weight: bold;
+}
