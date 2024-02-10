@@ -48,8 +48,8 @@ interface Province {
 }
 
 export default function PersonalInformation({}: Props) {
-  const [phoneValue, setPhoneValue] = useState<string | undefined>(undefined  );
-  const [startDate, setStartDate] = useState<Date | null>(null);
+  const [phoneValue, setPhoneValue] = useState<string | undefined>("");
+  const [startDate, setStartDate] = useState<Date | null|undefined>(null);
 
   const [provinces, setProvinces] = useState<Province[]>([]);
   const [selectedProvince, setSelectedProvince] = useState<string>("");
@@ -68,6 +68,7 @@ export default function PersonalInformation({}: Props) {
       )
       .then((response) => setProvinces(response.data.data))
       .catch((error) => console.error("API hatası:", error));
+
       getUser();
   }, []);
 
@@ -138,7 +139,7 @@ export default function PersonalInformation({}: Props) {
     address: "",
     about: "",
   });
-  const [initialValuesKey, setInitialValuesKey] = useState<number>(0); // key değerini saklamak için bir state tanımlayın
+  const [initialValuesKey, setInitialValuesKey] = useState<number>(0); 
 
   useEffect(() => {
     if (users != null) {
@@ -160,8 +161,9 @@ export default function PersonalInformation({}: Props) {
       console.log(personalInformationValues?.about)
 
       setInitialValues(newInitialValues);
-      setInitialValuesKey(prevKey => prevKey + 1); // key değerini güncelleyin
-
+      setInitialValuesKey(prevKey => prevKey + 1);
+      setSelectedProvince(newInitialValues.city);
+      setPhoneValue(newInitialValues.phoneNumber);
 
     }
   }, [personalInformationValues,users]);
@@ -177,13 +179,14 @@ export default function PersonalInformation({}: Props) {
       .matches(/^[a-zA-ZğüşıöçĞÜŞİÖÇ]+$/, "Geçersiz karakter girişi*")
       .min(2, "En az 2 haneden oluşmalıdır.")
       .max(100, "En fazla 200 karakter girebilirsiniz"),
-    // phoneNumber: Yup.string()
-     //.matches(/^[0-9]{10}$/, 'Geçerli bir telefon numarası girin'),
+    //  phoneNumber: Yup.string()
+      //.matches(/^[0-9]{10}$/, 'Geçerli bir telefon numarası girin')
+    //  .required('Doldurulması zorunlu alan*'),
     identityNo: Yup.string()
       .required("Doldurulması zorunlu alan*")
       .test(function (value) {
         if (value && value[0] !== "0") {
-          return true; // Geçerli
+          return true; 
         } else {
           return this.createError({
             message: "TC Kimlik Numaranızı doğru giriniz",
@@ -195,9 +198,9 @@ export default function PersonalInformation({}: Props) {
       email: Yup.string()
       .required("Doldurulması zorunlu alan*")
       .email("Geçerli bir e-posta adresi giriniz"),
-    //country: Yup.string().required("Doldurulması zorunlu alan*"),
-    //city: Yup.string().required("Doldurulması zorunlu alan*"),
-      county: Yup.string().required("Doldurulması zorunlu alan*"),
+      //country: Yup.string().required("Doldurulması zorunlu alan*"),
+      // city: Yup.string().required("Doldurulması zorunlu alan*"),
+      //county: Yup.string().required("Doldurulması zorunlu alan*"),
      address: Yup.string().max(
       200,
       "En fazla 200 karakter girebilirsiniz"
@@ -235,6 +238,7 @@ export default function PersonalInformation({}: Props) {
                     <FormikInput name="firstName" label="Adınız*" disabled />
                     <div className="mb-3">
                       <label className="form-label">Telefon Numaranız*</label>
+                      
                       <PhoneInput
                         placeholder="5** *** ** **"
                         defaultCountry="TR"
@@ -242,7 +246,6 @@ export default function PersonalInformation({}: Props) {
                         onChange={setPhoneValue}
                         name="phoneNumber"
                         limitMaxLength={true}
-                        rules={{ required: true }}
                       />
                       <ErrorMessage name="phoneNumber">
                         {(message) => <p className="text-danger">{message}</p>}
@@ -269,9 +272,9 @@ export default function PersonalInformation({}: Props) {
                       <DatePicker
                         className="date-picker"
                         name="birthDate"
-                        selected={startDate}
+                        selected={startDate || undefined}
                         onChange={(date) => {
-                          setStartDate(date);
+                          setStartDate(date );
                         }}
                       />
                     </div>
@@ -301,14 +304,20 @@ export default function PersonalInformation({}: Props) {
                       as="select"
                       className=" form-control form-select"
                       onChange={(e: any) => setSelectedProvince(e.target.value)}
-                      value={selectedProvince}
+                      value={selectedProvince }
                     >
-                      <option value="">Bir şehir seçin</option>
-                      {provinces.map((province) => (
+                      <option value={undefined}>Bir şehir seçin</option>
+                      {provinces && provinces.length > 0 ? (
+                        provinces.map((province) => ( 
+              
                         <option value={province.name} key={province.id}>
                           {province.name}
                         </option>
-                      ))}
+                       ))
+                       ) : (
+                        <option value="hata">
+                      </option>
+                       )}  
                     </Field>
                   </div>
                   <div className="col-md-6 col-12">

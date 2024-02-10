@@ -100,11 +100,16 @@ export default function MediaAccountInformation({}: Props) {
                       className=" form-control form-select"
                     >
                       <option value="">Seçiniz</option>
-                      {socialMedias.map((item, index) => (
-                        <option key={index} value={item.id}>
-                          {item.name}
-                        </option>
-                      ))}
+                      {socialMedias && socialMedias.length > 0 ? (
+  socialMedias.map((socialMedia) => ( 
+                 <option key={socialMedia.id}>
+
+                    {socialMedia.name}
+                  </option>
+                  ))
+                  ) : (
+                   <div></div>
+                  )}  
                     </Field>
                   </div>
                   <div className="col-md-8 col-12">
