@@ -1,8 +1,15 @@
 import React from 'react'
 import "./courseDetailHeader.css"
+import { useState } from 'react'
 type Props = {}
 
+
 export default function CourseHeader({}: Props) {
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const toggleFavorite = () => {
+    setIsFavorite(!isFavorite);
+  };
   return (
     <>
         <div className='activity-detail-header'>
@@ -69,9 +76,9 @@ export default function CourseHeader({}: Props) {
                     </div>
                   </div>
                   <div className="ant-space-item" >
-                    <div className="activity-favorite">
-                      <span className="add-favorite"></span>
-                    </div>
+                  <div className="activity-favorite">
+                  <span className={isFavorite ? "remove-favorite" : "add-favorite"} onClick={toggleFavorite}></span>
+                 </div>
                   </div>
                   <div className="ant-space-item"></div>
                 </div>
