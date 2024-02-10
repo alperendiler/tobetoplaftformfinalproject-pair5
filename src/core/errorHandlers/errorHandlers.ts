@@ -1,5 +1,7 @@
 import toastr from "toastr";
 import {BUSINESS_ERROR, VALIDATION_ERROR} from "./errorTypes";
+import { toast } from 'react-toastify';
+
 
 export const handleError = (error: any) => {
 	if (error.code && error.code == "ERR_NETWORK") {
@@ -24,7 +26,16 @@ export const handleError = (error: any) => {
 };
 
 export const handleBusinessError = (error: any) => {
-	toastr.error(error.detail);
+	toast.error(error.detail, {
+        position: "top-right",
+        autoClose: 5000, // 5 saniye sonra otomatik olarak kapat
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme:"colored"
+      });
 };
 export const handleValidationError = (error: any) => {
 	console.log(error);

@@ -1,4 +1,4 @@
-export interface getAllAnnouncementResponse{
+export interface GetAllAnnouncementResponse{
     id:string,
     type: string  ,
     organization: string  ,
@@ -7,6 +7,6 @@ export interface getAllAnnouncementResponse{
     description: string  ,
     isRead:boolean  
    }
-   export interface getAllAnnouncementResponse{
-    items : getAllAnnouncementResponse[]; 
+   export interface GetAllAnnouncementResponse{
+    items : GetAllAnnouncementResponse[]; 
 } 

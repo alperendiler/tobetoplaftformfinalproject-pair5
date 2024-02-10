@@ -23,9 +23,9 @@ export default function RegisterForm({}: Props) {
   const navigate = useNavigate();
   const validationSchema = Yup.object({
     firstName: Yup.string().required("Doldurulması zorunlu alan*")
-    .matches(/^[a-zA-ZğüşıöçĞÜŞİÖÇ]+$/g, "Geçersiz karakter girişi*"),
+    .matches(/^[a-zA-ZğüşıöçĞÜŞİÖÇ\s]{2,}$/, "Geçersiz karakter girişi*"),
     lastName: Yup.string().required("Doldurulması zorunlu alan*")
-    .matches(/^[a-zA-ZğüşıöçĞÜŞİÖÇ]+$/g, "Geçersiz karakter girişi*"),
+    .matches(/^[a-zA-ZğüşıöçĞÜŞİÖÇ\s]{2,}$/, "Geçersiz karakter girişi*"),
     email: Yup.string().required("Doldurulması zorunlu alan*")
     .email("Geçersiz e-posta adresi*"),
     password: Yup.string()
@@ -52,18 +52,19 @@ export default function RegisterForm({}: Props) {
    try{
     const response = await authService.register(values);
     console.log(response);
-    
-    toast.success("Kayıt Başarılı", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      theme:"colored"
-    });
+    if(response.status==200){
+      navigate("/");
 
-    navigate("/");
+      toast.success("Kayıt Başarılı", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme:"colored"
+      }); 
+    }
    // onRegisterSuccess();
 
    

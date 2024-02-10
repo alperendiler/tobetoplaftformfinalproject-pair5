@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import RegisterForm from "../components/Register/RegisterForm";
 import RegisterApplication from "../components/Register/RegisterApplication";
 import "../components/Register/register.css"
+
 const Register = () => {
  
 

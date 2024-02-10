@@ -13,6 +13,8 @@ import tokenService from "../../core/services/tokenService";
 import "./loginForm.css"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { jwtDecode } from "jwt-decode";
+import studentService from "../../services/studentService";
 
 type Props = {};
 interface LoginForm {
@@ -42,26 +44,25 @@ export default function LoginForm({}: Props) {
     try {
       const token = await authService.login(values);
     
-
-    
       dispatch(setToken(token));
       localStorage.setItem("user", JSON.stringify(token));
+
+      const decodedToken: any = token ? jwtDecode(token) : null;
+      const userId = decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"];
+      const student = await studentService.getByUserId(userId);
+
+
+      
+        
+      localStorage.setItem("userId", JSON.stringify(userId).replaceAll('"',''));
+      localStorage.setItem("studentId", JSON.stringify(student.data.id).replaceAll('"',''));
+
       navigate("home-page");
    
     } catch (error) {
 
       console.error("Kimlik doğrulama hatası:", (error as Error).message);
       setErrors({ password: "Kimlik doğrulama hatası" }); 
-      toast.error("E-posta veya şifre geçersiz", {
-        position: "top-right",
-        autoClose: 5000, // 5 saniye sonra otomatik olarak kapat
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme:"colored"
-      });
     } finally {
       setSubmitting(false);
     }
@@ -74,6 +75,7 @@ export default function LoginForm({}: Props) {
 
   return (
     <div>
+      <ToastContainer/>
       <Formik
         validationSchema={validationSchema}
         initialValues={initialValues}
@@ -108,7 +110,6 @@ export default function LoginForm({}: Props) {
               >
                 Giriş Yap
               </button>
-              <ToastContainer />
               <div className="col-12 ">
                 <p className="  mt-2 d-block">
                   <Link

@@ -16,6 +16,8 @@ import userService from "../../services/userService";
 import { GetUserDetailResponse } from "../../models/responses/user/getUserDetailResponse";
 import studentService from "../../services/studentService";
 import { GetPersonalInformationResponse } from "../../models/responses/personalInformation/getPersonalInfırmationResponse";
+import { ToastContainer } from 'react-toastify';
+
 
 type Props = {};
 
@@ -25,7 +27,7 @@ interface PersonalInformationForm {
   firstName: string ;
   lastName: string;
   phoneNumber: string |undefined;
-  birthDate: Date | null ;
+  birthDate: Date | null |undefined ;
   identityNo: string;
   email: string;
   country: string;
@@ -46,7 +48,7 @@ interface Province {
 }
 
 export default function PersonalInformation({}: Props) {
-  const [value, setValue] = useState<string | undefined>(undefined);
+  const [phoneValue, setPhoneValue] = useState<string | undefined>(undefined  );
   const [startDate, setStartDate] = useState<Date | null>(null);
 
   const [provinces, setProvinces] = useState<Province[]>([]);
@@ -108,17 +110,15 @@ export default function PersonalInformation({}: Props) {
  const addPersonelInformation= async (values:PersonalInformationForm)=>{
  
     const personalInformationResponse = await personalInformationService.getByStudentId(studentId)     
-  
-    //setPersonalInformationId(personalInformationResponse.data.id)
-    if(personalInformationResponse==null){
-      console.log("merhaba")
+    console.log(personalInformationResponse.data)
+
+    if(personalInformationResponse.data===undefined){
 
       await personalInformationService.add(values)
       const personalInformationResponse = await personalInformationService.getByStudentId(studentId)     
       setPersonalInformationValues(personalInformationResponse.data)
 
     }else{
-      console.log(values)
       const personalInformationResponse = await personalInformationService.update(values)
       setPersonalInformationValues(personalInformationResponse.data)
     }
@@ -147,7 +147,7 @@ export default function PersonalInformation({}: Props) {
         firstName: users.firstName ?? "",
         lastName: users.lastName,
         phoneNumber: personalInformationValues?.phoneNumber,
-        birthDate: null ,
+        birthDate: personalInformationValues?.birthDate ,
         identityNo:personalInformationValues?.identityNo ?? "",
         email: users.email,
         country: personalInformationValues?.country ?? "",
@@ -164,7 +164,7 @@ export default function PersonalInformation({}: Props) {
 
 
     }
-  }, [personalInformationValues]);
+  }, [personalInformationValues,users]);
 
   const validationSchema = Yup.object({
     firstName: Yup.string()
@@ -195,7 +195,7 @@ export default function PersonalInformation({}: Props) {
       email: Yup.string()
       .required("Doldurulması zorunlu alan*")
       .email("Geçerli bir e-posta adresi giriniz"),
-    // country: Yup.string().required("Doldurulması zorunlu alan*"),
+    //country: Yup.string().required("Doldurulması zorunlu alan*"),
     //city: Yup.string().required("Doldurulması zorunlu alan*"),
       county: Yup.string().required("Doldurulması zorunlu alan*"),
      address: Yup.string().max(
@@ -207,7 +207,7 @@ export default function PersonalInformation({}: Props) {
 
   return (
     <>
-          
+          <ToastContainer/>
             <div className=" d-flex justify-content-center profile-picture-form">
               <img
                 className="profile-picture-image"
@@ -221,7 +221,7 @@ export default function PersonalInformation({}: Props) {
               onSubmit={(values) => {
                 values.birthDate = startDate;
                 values.city=selectedProvince;
-                values.phoneNumber=value
+                values.phoneNumber=phoneValue
                 values.studentId=studentId;
                 values.id=personalInformationValues?.id;
                 
@@ -232,14 +232,14 @@ export default function PersonalInformation({}: Props) {
               <Form>
                 <div className="row">
                   <div className="col-12 col-md-6">
-                    <FormikInput name="firstName" label="Adınız*" />
+                    <FormikInput name="firstName" label="Adınız*" disabled />
                     <div className="mb-3">
                       <label className="form-label">Telefon Numaranız*</label>
                       <PhoneInput
                         placeholder="5** *** ** **"
                         defaultCountry="TR"
-                        value={value}
-                        onChange={setValue}
+                        value={phoneValue}
+                        onChange={setPhoneValue}
                         name="phoneNumber"
                         limitMaxLength={true}
                         rules={{ required: true }}
@@ -262,7 +262,7 @@ export default function PersonalInformation({}: Props) {
                     </div>
                   </div>
                   <div className="col-12 col-md-6">
-                    <FormikInput name="lastName" label="Soyadınız*" />
+                    <FormikInput name="lastName" label="Soyadınız*" disabled />
                     <div className="mb-3">
                       <label className="form-label">Doğum Tarihiniz*</label>
                       <br />
@@ -276,7 +276,7 @@ export default function PersonalInformation({}: Props) {
                       />
                     </div>
                     <div>
-                      <FormikInput name="email" label="E-posta" type="email" />
+                      <FormikInput name="email" label="E-posta" type="email" disabled/>
                     </div>
                   </div>
                 </div>

@@ -1,23 +1,77 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import "../../styles/personalInformation.css";
+import { jwtDecode } from "jwt-decode";
+import studentService from "../../services/studentService";
+import certificateService from "../../services/certificateService";
+import { AddCertificateRequest } from "../../models/requests/certificate/addCertificateRequest";
 
 type Props = {};
 
 export default function CertificateInformation({}: Props) {
-  const handleFileUpload = (event: ChangeEvent<HTMLInputElement>) => {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [studentId, setStudentId] = useState<string  >("");
+
+  useEffect(() => {
+   
+    const getStudentId = async () => {
+      const token = localStorage.getItem("user");
+
+      const decodedToken: any = token ? jwtDecode(token) : null;
+  
+      const userId =
+        decodedToken[
+          "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
+        ];
+  
+      const student = await studentService.getByUserId(userId);
+      setStudentId(student.data.id);
+      //const response = await certificateService.add();
+
+    };
+    getStudentId();
+
+  }, []); 
+ 
+  const handleFileInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
 
     if (file) {
       console.log("Seçilen dosya bilgisi:", file);
-      setTimeout(() => {
-        console.log("Dosya başarıyla yüklendi.");
-      }, 2000);
+      try {
+        // Dosyayı yükleme işlemi
+        const fileReader = new FileReader();
+        fileReader.onload = async () => {
+          const fileData = new Uint8Array(fileReader.result as Uint8Array);
+          const certificateRequest: AddCertificateRequest = {
+           // Sertifika ID'si
+            studentId: studentId, // Öğrenci ID'si
+            name: file.name, // Dosya adı
+            folder: fileData // Dosya verisi
+          };
+  
+          // certificateService.add metodunu çağırırken AddCertificateRequest tipindeki nesneyi parametre olarak geçin
+          const response = await certificateService.add(certificateRequest);
+          
+          // Başarılı bir şekilde eklendiğinde kullanıcıya bilgi vermek için bir bildirim veya mesaj gösterin
+          console.log("Sertifika başarıyla eklendi:", response);
+        };
+        fileReader.readAsArrayBuffer(file);
+      } catch (error) {
+        console.error("Sertifika eklenirken bir hata oluştu:", error);
+      }
     } else {
       console.error("Lütfen geçerli bir PDF dosyası seçin.");
     }
   };
   return (
     <>
+    <input
+  type="file"
+  id="fileInput"
+  ref={fileInputRef}
+  style={{ display: "none" }}
+  onChange={handleFileInputChange}
+/>
             <div className="row">
               <div className="section-header">
                 <span className="header-text">Sertifikalarım</span>
@@ -26,14 +80,14 @@ export default function CertificateInformation({}: Props) {
                 <div className="row">
                   <div className="col-12 tobeto-light-bg ">
                     <div className="upload-area">
-                      <div className="upload-svg">
-                        <svg
+                      <div className="upload-svg"  > 
+                        <svg  
                           width="78"
                           height="78"
                           viewBox="0 0 78 78"
                           fill="none"
                         >
-                          <rect
+                          <rect onClick={() => fileInputRef.current?.click()}
                             x="2"
                             y="2"
                             width="74"
@@ -52,13 +106,9 @@ export default function CertificateInformation({}: Props) {
                       </div>
                       <div className="cursor-pointer">
                         <label htmlFor="fileInput"></label>
+                   
                       </div>
-                      <input
-                        type="file"
-                        id="fileInput"
-                        accept="application/pdf"
-                        onChange={handleFileUpload}
-                      />
+                    
 
                       <span>Dosya Yükle</span>
                     </div>

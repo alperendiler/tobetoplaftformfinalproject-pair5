@@ -50,7 +50,11 @@
     right: -31px;
     top: 75%;
 }
-.grade-info:after {
+.grade-header .grade-degree {
+    color: rgba(153,51,255,.66);
+    font-size: 13px;
+    font-weight: 500;
+}.grade-info:after {
     content: url(https://tobeto.com/_next/static/media/alert-circle.bd20fb51.svg);
     display: flex;    
     cursor:pointer;
