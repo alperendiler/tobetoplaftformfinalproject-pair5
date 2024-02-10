@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import LanguageCard from "./LanguageCard";
+import { GetLanguageResponse } from '../../../models/responses/language/getLanguageResponse';
+import languageService from '../../../services/languageService';
+import studentLanguageService from '../../../services/studentLanguageService';
+import { GetStudentLanguageResponse } from '../../../models/responses/studentLanguage/getStudentLanguageResponse';
 
 type Language = {
   title: string;
@@ -7,16 +11,20 @@ type Language = {
 };
 
 function MyLanguage() {
-  const userLanguages: Language[] = [
-    {
-      title: 'İngilizce',
-      level: 'İleri Seviye (C1, C2)',
-    },
-    {
-      title: 'Almanca',
-      level: 'Temel Seviye (B1, B2)',
-    },
-  ];
+  const [languages, setLanguages] = useState<GetStudentLanguageResponse[]>([]);
+  useEffect(() => {
+    getLanguages();
+  }, []);
+  const getLanguages = async () => {
+    const studentId = localStorage.getItem("studentId")!;
+
+    const response = await studentLanguageService.GetListByStudent(
+      0,
+      10,
+      studentId
+    );
+    setLanguages(response.data.items);
+  };
 
   return (
     <div>
@@ -24,9 +32,19 @@ function MyLanguage() {
         <div className="fw-bold h5">Yabancı Dillerim</div>
         <hr />
         <div className="p-2">
-          {userLanguages.map((language, index) => (
-            <LanguageCard key={index} language={language} />
-          ))}
+          
+            {languages && languages.length > 0 ? (
+  languages.map((language) => ( 
+              
+    <div key={language.id} className="p-2">
+            <LanguageCard key={language.id} title={language.languageName} level={language.languageLevel} />
+  </div>
+  ))
+  ) : (
+    <div  className="fw-bold">
+      Henüz bir dil eklemediniz
+    </div>
+  )}   
         </div>
       </div>
     </div>

@@ -7,12 +7,9 @@ type Media = {
   imageUrl?: string; 
 };
 
-type MediaCardProps = {
-  media: Media;
-};
 
-function MediaCard({ media }: MediaCardProps) {
-  const { mediaType, url, imageUrl } = media;
+
+function MediaCard({ mediaType,url,imageUrl }: Media) {
 
   return (
     <div className="col-4">
