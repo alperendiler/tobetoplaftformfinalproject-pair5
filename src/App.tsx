@@ -22,10 +22,8 @@ import EditProfile from "./pages/ProfileInformation/EditProfile";
 import Connection from "./pages/Connection";
 
 
-=======
 import { ToastContainer } from 'react-toastify';
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
->>>>>>> be0c7d4a636889bcfa598ffc089cd47b37319918
 
 interface Props { }
 function App({ }: Props) {
@@ -170,8 +168,7 @@ function App({ }: Props) {
           </ProtectedRoute> 
         }
       />
-<<<<<<< HEAD
-       <PrivateRoot
+       <Route
         path="/connection"
         element={
           <div>
@@ -181,7 +178,6 @@ function App({ }: Props) {
           </div>
         }
       />
-=======
       </Routes>
     </>
 
