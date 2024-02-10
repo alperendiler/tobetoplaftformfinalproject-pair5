@@ -16,6 +16,7 @@ export default function CourseDetailContent({ }: Props) {
   const handleWordClick = () => {
     setShowImage(false); // Resmi kaldır
     setShowVideo(true); // Videoyu göster
+    setShowVideo2(false); // Eski videoyu kaldırck
   };
 
   const handleWord2Click = () => {
