@@ -25,6 +25,7 @@ font-weight: bold;
 .accordion-content-title{
 font-size: 14px;
 font-weight: 600; 
+cursor: pointer;  /*imlec tıklanabilir olsun*/
 }
 
 .accordion-timer{
