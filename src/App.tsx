@@ -14,13 +14,13 @@ import Calendar from "./pages/Calendar";
 import Evaluations from "./pages/Evaluations";
 import Trainings from "./pages/Trainings";
 import CourseDetail from "./pages/CourseDetail";
-import PrivateRoot from "./components/PrivateRoot";
 import Experience from "./pages/ProfileInformation/ExperienceInformation";
 import Announcements from "./pages/Announcements";
 import ForgottenPassword from "./pages/ForgottenPassword";
 import NotFound from "./pages/NotFound";
 import EditProfile from "./pages/ProfileInformation/EditProfile";
 import Connection from "./pages/Connection";
+
 
 import { ToastContainer } from 'react-toastify';
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
@@ -57,129 +57,127 @@ function App({ }: Props) {
             </ProtectedRoute>
 
 
-          }
-        />
-
-        <Route
-          path="/user-profile"
-          element={
-            <ProtectedRoute>
-              <Navbar />
-              <UserProfile />
-              <Footer />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/catalog"
-          element={
-            <ProtectedRoute>
-              <Navbar />
-              <Catalog />
-              <Footer />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/calendar"
-          element={
-            <ProtectedRoute>
-              <Navbar />
-              <Calendar />
-              <Footer />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/evaluations"
-          element={
-            <ProtectedRoute>
-              <Navbar />
-              <Evaluations />
-              <Footer />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/education"
-          element={
-            <ProtectedRoute>
-              <Navbar />
-              <Trainings />
-              <Footer />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/course/:id"
-          element={
-            <ProtectedRoute>
-              <CourseDetail />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/edit-profile/experience-information"
-          element={
-            <ProtectedRoute>
-              <Navbar />
-              <Experience />
-              <Footer />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/edit-profile/personal-information"
-          element={
-            <ProtectedRoute>
-              <Navbar />
-              <EditProfile />
-              <Footer />
-            </ProtectedRoute>
-          }
-
-        />
-
-        <Route
-          path="/announcements"
-          element={
-            <ProtectedRoute>
-              <Navbar />
-              <Announcements />
-              <Footer />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/forgotPassword"
-          element={
-            <ProtectedRoute>
-              <NavbarLogin />
-              <ForgottenPassword />
-              <FooterLogin />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/notFound"
-          element={
-            <ProtectedRoute>
-              <NotFound />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/connection"
-          element={
-            <div>
-              <ProtectedRoute>
-                <NavbarLogin />
-                <Connection />
-                <FooterLogin />
-              </ProtectedRoute>
-            </div>
-          }
-        />
+        }
+      />
+          
+      <Route
+        path="/user-profile"
+        element={
+          <ProtectedRoute> 
+            <Navbar />
+          <UserProfile />
+          <Footer />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/catalog"
+        element={
+          <ProtectedRoute> 
+            <Navbar />
+            <Catalog />
+            <Footer />
+          </ProtectedRoute> 
+        }
+      />
+      <Route
+        path="/calendar"
+        element={
+          <ProtectedRoute> 
+            <Navbar />
+            <Calendar />
+            <Footer />
+        </ProtectedRoute> 
+        }
+      />
+      <Route
+        path="/evaluations"
+        element={
+          <ProtectedRoute> 
+            <Navbar />
+            <Evaluations />
+            <Footer />
+          </ProtectedRoute> 
+        }
+      />
+      <Route
+        path="/education"
+        element={
+          <ProtectedRoute> 
+            <Navbar />
+            <Trainings />
+            <Footer />
+          </ProtectedRoute> 
+        }
+      />
+      <Route
+        path="/course/:id"
+        element={
+          <ProtectedRoute> 
+            <CourseDetail />
+            </ProtectedRoute> 
+        }
+      />
+      <Route
+        path="/edit-profile/experience-information"
+        element={
+          <ProtectedRoute> 
+            <Navbar />
+            <Experience />
+            <Footer />
+            </ProtectedRoute> 
+        }
+      />
+      <Route
+        path="/edit-profile/personal-information"
+        element={
+          <ProtectedRoute> 
+            <Navbar />
+            <EditProfile/>
+            <Footer />
+          </ProtectedRoute> 
+        }
+        
+      />
+      
+       <Route
+        path="/announcements"
+        element={
+          <ProtectedRoute> 
+            <Navbar />
+            <Announcements />
+            <Footer />
+            </ProtectedRoute> 
+        }
+      />
+      <Route
+        path="/forgotPassword"
+        element={
+          <ProtectedRoute> 
+            <NavbarLogin />
+            <ForgottenPassword/>
+            <FooterLogin />
+            </ProtectedRoute> 
+        }
+      />
+       <Route
+        path="/notFound"
+        element={
+          <ProtectedRoute> 
+            <NotFound/>
+          </ProtectedRoute> 
+        }
+      />
+       <Route
+        path="/connection"
+        element={
+          <div>
+            <NavbarLogin />
+            <Connection/>
+            <FooterLogin />
+          </div>
+        }
+      />
       </Routes>
     </>
 

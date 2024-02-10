@@ -5,12 +5,8 @@ type Language = {
   level: string;
 };
 
-type LanguageCardProps = {
-  language: Language;
-};
 
-function LanguageCard({ language }: LanguageCardProps) {
-  const { title, level } = language;
+function LanguageCard({ title,level }: Language) {
 
   return (
     <div>
