@@ -23,8 +23,13 @@
   /*z-index: 1200;*/
 
 }
+
+.space-left{
+  width: 50px;
+}
+
 .col-left{
-  width:1000px;
+  width:600px;
 }
 
 .close-button {
@@ -33,9 +38,9 @@
   background-color: blueviolet;
   width: 10px;
   height: 20px;
-  
+  padding-left: 20px;
   color: white;
-  text-align: left;
+  text-align: center;
    /* Kenarlıkları kaldır */
   box-shadow: none; /* Gölgeyi kaldır */
   outline: none;
@@ -72,7 +77,7 @@
 }
 edu-title-c {
   margin-left: 15px;
-  width: 300;
+  width: 400;
   font-size: 18px;
   font-family: Poppins, Helvetica, Arial, sans-serif;
   font-weight: 600;
@@ -109,9 +114,11 @@ edu-title-c {
 }
 .go-edu-area{
   display: flex;
-  margin-left: 55px;
+  margin-left: 100px;
+  margin-right: 60px;
   height: 40px;
   margin-top: 25px;
+
 }
 .row1{
   display: flex;
@@ -120,48 +127,67 @@ edu-title-c {
   
   background-color: #9933FF;
   color: #fff;
-  width: 120px;
-  height: 40px;
+  text-align: center;
   text-decoration: none;
   padding: 6.42857px;
   border-radius: 6px;
   font-family: 'Poppins', sans-serif;
   font-weight: bold;
-  text-align: center;
-  margin-left: 55px;
- 
+  margin-left: 100px;
+
 
 }
+
 .dots{
-  
-  border: none;
-  
+  cursor: pointer;
+  margin-top:10px;
+  text-align: center;
+  width: 50px;
 }
-
 
 .edu-time-detail {
   color: #3dcb79;
   margin-left: 5px;
   margin-right: 5px;
+
   
 }
 
+.ok-icon{
+  padding-left: 0px;
+  padding-top: 5px;
+  font-size: 14px;
+  color: #3DCB79;
+  display: flex;
+
+}
+
+
 .col-score{
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
+  margin-bottom: 35px;
+  padding-top: 5px;
 }
 
 
 .c-edu-detail {
   text-align: left;
-  padding-left: 80px;
+  padding-left: -50px;
 }
 
 .col-all2{
+  width: 450px;
   display: flex;
 }
+
+.congrulations{
+  text-align: right;
+  padding-top: 7px;
+}
+
 .c-edu-detail-cont {
-  padding-left: 50px;
+  padding-left: 20px;
   margin-top: 35px;
   text-align: left;
   font-family: 'Poppins', sans-serif;
@@ -172,20 +198,16 @@ edu-title-c {
 .like-button{
   border-inline-color: white;
   border: none;
-  padding-right: 65px;
-
+ text-align: left;
 }
 
+.row-button-heart{
+  margin-top: 10px;
+  margin-left: 70px;
+}
 
 .c-edu-detail-cont table{ 
   border-collapse:separate;
-border-spacing:15px;
-
-}
-.ok-icon{
-  padding-left: 0px;
-  padding-top: 10px;
-  font-size: 12px;
-  color: #3DCB79;
+  border-spacing:10px;
 
 }

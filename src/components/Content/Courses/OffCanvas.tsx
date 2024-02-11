@@ -34,13 +34,16 @@ const OffCanvas = () => {
       <div className={`off-canvas-panel ${isOpen ? "open" : ""}`}>
         {isOpen && (
           <>
+            <div className="close-button-con">
+              <button className="close-button" onClick={togglePanel}>
+                ×
+              </button>
+            </div>
+
+
+
             <div className="row-all">
-              <div className="close-button-con">
-                <button className="close-button" onClick={togglePanel}>
-                  ×
-                </button>
-              </div>
-              <div className=""></div>
+              <div className="space-left"></div>
               <div className="image-canvas" style={{ width: " 160px" }}>
                 <img
                   src="https://lms.tobeto.com/tobeto/eep/common_show_picture_cached.aspx?pQS=DiBldjEKnwJCe69nG2MNIKN8WyVXbzKN"
@@ -48,18 +51,17 @@ const OffCanvas = () => {
                   alt="Eğitim Resmi"
                 />
               </div>
+              <div className="col-left">
 
-              <div className="col-left ">
-
-                <div className="  edu-title-c ">
+                <div className="  edu-title-c">
                   <div
-                    className="row "
+                    className="row"
                     style={{
                       marginTop: "25px",
                       marginLeft: "20px",
                       fontSize: "16px",
                       fontWeight: "bold",
-                      width: "420px",
+                      width: "400px",
                     }}
                   >
                     Sözcük İşleyici (Word Processor / MS Word){" "}
@@ -75,11 +77,11 @@ const OffCanvas = () => {
                         width: "75px",
                       }}
                     >
-                      <div className="video-detail-btn-c">VİDEO</div>
+                      <div className="video-detail-btn-c ">VİDEO</div>
                     </div>
 
                     <div
-                      className="row"
+                      className="row "
                       style={{
                         marginTop: "7px",
                         marginLeft: "0px",
@@ -136,37 +138,43 @@ const OffCanvas = () => {
                     >
                       157
                     </div>
+                  </div>
+
+                  <div className="col-5 row-button-heart">
                     <button
                       className={`like-button ${liked ? "liked" : ""}`}
                       onClick={toggleLike}
                     >
-                      <span className="heart-icon">{liked ? "❤️" : "🤍"}</span>
-                      <span className="like-count">{liked ? 51 : 50}</span>
+                      <span className="heart-icon  col">{liked ? "❤️" : "🤍"}</span>
+                      <span className="like-count col">{liked ? 51 : 50}</span>
                     </button>
                   </div>
+
                 </div>
 
               </div>
               <div className="col-right">
-                <div className="go-edu-area  " >
-                  <a className="go-edu-btn " href="http://localhost:3000/course/:id" role="button">EĞİTİME GİT</a>
-                  <button className="dots" >
-                    <i className="bi bi-three-dots" ></i>
-                  </button>
+                <div className="go-edu-area col " >
+                  <a className="go-edu-btn col" href="http://localhost:3000/course/:id" role="button">EĞİTİME GİT</a>
+                  <div className="dots " >
+                    <i className="bi bi-three-dots"></i>
+                  </div>
                 </div>
-
-                <div className="col-all2 row bordered" style={{ marginTop: "6px" }}>
-                  <div className="edu-time-detail col">
-                    <div className="ok-icon row bordered">
-                      <i className="bi bi-hand-thumbs-up col-1 bordered"></i>
+                <div className="col-all2 row " style={{ marginTop: "6px" }}>
+                  <div className="edu-time-detail row">
+                    <div className="ok-icon row">
+                      <div className="congrulations col-7 ">
+                      <i className="bi bi-hand-thumbs-up"></i>
                       Tebrikler,&nbsp;&nbsp;&nbsp;tamamladın!
-                    
-                      <div className="col-score col-5 bordered">100 PUAN</div>
+                      </div>
+
+                      <div className="col-score col-5 ">100 PUAN</div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
             <div className="row">
               <div className="col">
                 <div className="c-edu-detail-cont  row">
