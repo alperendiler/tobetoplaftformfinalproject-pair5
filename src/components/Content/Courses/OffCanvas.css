@@ -106,11 +106,11 @@ edu-title-c {
 
 .clock-icon {
   padding-top: 7px;
-  color: #626263;
+  color: black;
 }
 
 .time-c {
-  color: #626263;
+  color: black;
 }
 .go-edu-area{
   display: flex;
@@ -148,8 +148,6 @@ edu-title-c {
 .edu-time-detail {
   color: #3dcb79;
   margin-left: 5px;
-  margin-right: 5px;
-
   
 }
 
@@ -162,12 +160,18 @@ edu-title-c {
 
 }
 
+.ok-icon-space{
+  width: 10px;
+}
+
 
 .col-score{
-  font-size: 16px;
+
+  font-size: 14px;
   font-weight: bold;
   margin-bottom: 35px;
   padding-top: 5px;
+  text-align: left;
 }
 
 
@@ -179,11 +183,13 @@ edu-title-c {
 .col-all2{
   width: 450px;
   display: flex;
+
 }
 
 .congrulations{
   text-align: right;
   padding-top: 7px;
+ 
 }
 
 .c-edu-detail-cont {

@@ -162,13 +162,14 @@ const OffCanvas = () => {
                 </div>
                 <div className="col-all2 row " style={{ marginTop: "6px" }}>
                   <div className="edu-time-detail row">
-                    <div className="ok-icon row">
-                      <div className="congrulations col-7 ">
+                    <div className="ok-icon row ">
+                      <div className="ok-icon-space  col-2"></div>
+                      <div className="congrulations col-7  ">
                       <i className="bi bi-hand-thumbs-up"></i>
-                      Tebrikler,&nbsp;&nbsp;&nbsp;tamamladın!
+                      Tebrikler,&nbsp;&nbsp;tamamladın!
                       </div>
 
-                      <div className="col-score col-5 ">100 PUAN</div>
+                      <div className="col-score col-3 ">100 PUAN</div>
                     </div>
                   </div>
                 </div>
@@ -214,16 +215,16 @@ const OffCanvas = () => {
               </div>
             </div>
             <div className="row">
-              <div className="row" style={{
-                paddingLeft: "80px", fontWeight: "bold", fontFamily: "'Poppins', sans-serif",
-                fontSize: "14px"
+              <div className="row" style={{ paddingTop:"10px",
+                paddingLeft: "60px", fontWeight: "bold", fontFamily: "'Poppins', sans-serif",
+                fontSize: "15px"
               }}>
                 İçerik
               </div>
               <div className="row"
                 style={{
-                  paddingLeft: "80px",
-                  paddingTop: "20px",
+                  paddingLeft: "60px",
+                  paddingTop: "10px",
                   textAlign: "left",
                   fontFamily: "'Poppins', sans-serif",
                   fontSize: "14px"
