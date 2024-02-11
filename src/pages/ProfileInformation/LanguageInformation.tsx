@@ -21,13 +21,8 @@ const LanguageInformation: React.FC = () => {
   >([]);
 
   const [languages, setLanguages] = useState<GetLanguageResponse[]>([]);
-  const [languageLevels, setLanguageLevels] = useState<
-    GetLanguageLevelResponse[]
-  >([]);
-  const [studentLanguages, setStudentLanguages] = useState<
-    GetStudentLanguageResponse[]
-  >([]);
-
+  const [languageLevels, setLanguageLevels] = useState<GetLanguageLevelResponse[]>([]);
+  const [studentLanguages, setStudentLanguages] = useState<GetStudentLanguageResponse[]>([]);
 
   useEffect(() => {
     fetchLanguages();
@@ -49,9 +44,13 @@ const LanguageInformation: React.FC = () => {
     fetchStudentLanguages();
   }, []);
   const fetchStudentLanguages = async () => {
-      const response = await studentLanguageService.GetListByStudent(0,50,"0d0d673c-54f8-4178-9bff-08dc26371272");
-      setStudentLanguages(response.data.items);
-    
+    const studentId = localStorage.getItem("studentId")!;
+    const response = await studentLanguageService.GetListByStudent(
+      0,
+      50,
+      studentId
+    );
+    setStudentLanguages(response.data.items);
   };
 
   const handleDelete = async (studentLanguageId: string) => {
@@ -62,15 +61,13 @@ const LanguageInformation: React.FC = () => {
   };
 
   const handleSubmit = async (language: string, level: string) => {
+    const studentId = localStorage.getItem("studentId")!;
     const response = await studentLanguageService.add({
-      studentId: "0d0d673c-54f8-4178-9bff-08dc26371272",
+      studentId: studentId,
       languageId: language,
       languageLevelId: level,
     });
-    setStudentLanguages((studentLanguages) => [
-      ...studentLanguages,
-      response.data,
-    ]);
+    setStudentLanguages((studentLanguages) => [...studentLanguages,response.data]);
   };
 
   const initialValues: LanguageInformationForm = {
@@ -98,7 +95,6 @@ const LanguageInformation: React.FC = () => {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={async (values, actions) => {
-          console.log(values);
           setSelectedLanguage(values.language);
           setSelectedLevel(values.level);
           actions.setSubmitting(false);
@@ -121,8 +117,8 @@ const LanguageInformation: React.FC = () => {
                 ))}
               </Field>
               <ErrorMessage name="language">
-                  {(message) => <p className="text-danger">{message}</p>}
-                </ErrorMessage>
+                {(message) => <p className="text-danger">{message}</p>}
+              </ErrorMessage>
             </div>
             <div className="col-12 col-md-6">
               <Field
@@ -138,11 +134,11 @@ const LanguageInformation: React.FC = () => {
                 ))}
               </Field>
               <ErrorMessage name="level">
-                  {(message) => <p className="text-danger">{message}</p>}
-                </ErrorMessage>
+                {(message) => <p className="text-danger">{message}</p>}
+              </ErrorMessage>
             </div>
           </div>
-          <button type="submit" className="btn btn-personal-information" >
+          <button type="submit" className="btn btn-personal-information">
             Kaydet
           </button>
         </Form>
