@@ -5,6 +5,7 @@
     width: 100%;
     height: auto;
 }
+
 .activity-detail .activity-detail-header .activity-info h3 {
     margin-top: 0;
     margin-right: 10px;
@@ -13,18 +14,24 @@
     display: inline;
     vertical-align: middle;
 }
-.ant-progress .ant-progress-success-bg, .ant-progress .ant-progress-bg {
+
+.ant-progress .ant-progress-success-bg,
+.ant-progress .ant-progress-bg {
     position: relative;
     background-color: #1677ff;
-    border-radius: 100px;    background: linear-gradient(to right,#2ddfff,#b7df2d);
+    border-radius: 100px;
+    background: linear-gradient(to right, #2ddfff, #b7df2d);
     transition: all 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
 }
+
 .activity-detail .activity-detail-header .activity-progress-bar .ant-progress .ant-progress-outer .ant-progress-inner .ant-progress-bg {
     height: 6.5px !important;
 }
+
 .activity-detail .activity-detail-header .activity-progress-bar .ant-progress {
     text-align: left;
 }
+
 .ant-progress {
     box-sizing: border-box;
     margin: 0;
@@ -33,9 +40,10 @@
     font-size: 14px;
     line-height: 1.5714285714285714;
     list-style: none;
-    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
     display: inline-block;
 }
+
 .ant-progress-line {
     position: relative;
     width: 100%;
@@ -43,14 +51,17 @@
     margin-inline-end: 8px;
     margin-bottom: 8px;
 }
+
 .activity-detail .activity-detail-header .activity-info h3 {
     margin-right: 10px;
-        font-size: 18px;
-        font-weight: 600;
-        color: #000;
-    
-  
-}.activity-detail .activity-detail-header .activity-process .activity-score {
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+
+
+}
+
+.activity-detail .activity-detail-header .activity-process .activity-score {
     display: inline-block;
     vertical-align: middle;
     border-radius: 5px;
@@ -62,24 +73,31 @@
     text-align: center;
     margin-right: 12px;
 }
+
 .activity-detail .activity-detail-header .activity-info .date-info-container span:first-of-type {
     display: flex;
 }
+
 .background-green {
     background: #3dcb79;
 }
+
 .text-lg-right {
     text-align: right;
 }
+
 .text-green {
     color: #3dcb79 !important;
 }
+
 .ant-space {
     display: inline-flex;
 }
+
 .ant-space-align-center {
     align-items: center;
 }
+
 #main-content {
     display: flex;
     align-items: center;
@@ -87,34 +105,82 @@
     text-align: center;
     height: 35px;
 }
+
 .activity-detail .activity-detail-header .activity-process .activity-favorite span {
     width: 100%;
     height: 100%;
     display: block;
     background-size: 100% !important;
 }
+
 .activity-detail .activity-detail-header .activity-process .like .like-area span {
     color: #7f7f7f !important;
     cursor: pointer;
 }
+
 .activity-detail .activity-detail-header .activity-process .like .like-area span.like-text {
     font-size: 30px;
     z-index: 1;
-    transform: translate(0.2em,-0.15ex);
+    transform: translate(0.2em, -0.15ex);
     margin-right: 17px;
     line-height: 1;
 }
+
+
+.notification {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    height: 100px;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    padding: 10px 20px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+  }
+  
+  .notification-header {
+    border-top: 4px solid #00cc00; /* Yeşil çizgi */
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .notification-message {
+    color: #333333;
+    font-size: 14px;
+    text-align: left;
+  }
+  
+  .notification-icon{
+    text-align: center;
+    justify-content: center;
+    padding:5px;
+  }
+
+  .notification-close{
+    padding-top:20px;
+  }
+  
+
+.like-text {
+    margin-left: -35px;
+}
+
 .activity-detail .activity-detail-header .activity-process .activity-favorite {
     width: 35px;
     height: 35px;
     display: inline-block;
     vertical-align: middle;
-    
+
     cursor: pointer;
 }
+
 .activity-detail .activity-detail-header .activity-process .activity-favorite span.add-favorite {
     background: url(https://lms.tobeto.com/tobeto/eep/Styles/assets/css/img/icon/learning-experience-platform/add-favorite.svg) no-repeat;
 }
+
+
 .activity-detail .activity-detail-header .activity-process .activity-favorite span.remove-favorite {
     background: url(https://lms.tobeto.com/tobeto/eep/Styles/assets/css/img/icon/learning-experience-platform/remove-favorite.svg) no-repeat;
 }

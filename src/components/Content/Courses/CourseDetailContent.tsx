@@ -309,6 +309,10 @@ export default function CourseDetailContent({ }: Props) {
               </div>
               <div className="content-video-detail">
                 <div className="col-9">
+                {showImage && (
+                  <div className="course-title  col-10"> Sözcük İşleyici (Word Processor / MS Word)
+                  </div>
+                  )}
                   {showVideo && (
                   <div className="course-title  col-10 onClick={handleWordClick}"> Sözcük İşleyici (Word Processor / MS Word)
                   </div>
@@ -325,7 +329,7 @@ export default function CourseDetailContent({ }: Props) {
                       <i className="bi bi-hand-thumbs-up"></i>&nbsp;Tebrikler,&nbsp;&nbsp;tamamladın!</div>
                   </div>
                 </div>
-                <div className="col-3 button-detail-all">
+                <div className="col-3 button-detail-all ">
                   <div className="button-detail">
                     <OffCanvas />
                   </div>
