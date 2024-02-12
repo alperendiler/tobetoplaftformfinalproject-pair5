@@ -50,7 +50,7 @@ export default function AnnouncementAndNews({}: Props) {
         <span className="header">{announcement.title}</span>
       </div>
       <div className="d-flex justify-content-between">
-        <span className="date">{announcement.createdDate}</span>
+        <span className="date">{new Date(announcement.createdDate).getDate()}.{new Date(announcement.createdDate).getMonth()}.{new Date(announcement.createdDate).getFullYear()}</span>
         <span  onClick={() => handleOpenModal(announcement.id)}  className="read-more" >Devamını Oku</span>
       </div>            
     </div>

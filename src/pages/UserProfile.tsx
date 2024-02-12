@@ -12,6 +12,7 @@ import MyBadge from "../components/Content/MyProfile/MyBadge";
 import MyActivityMap from "../components/Content/MyProfile/MyActivityMap";
 import CopyUrl from "../components/Content/MyProfile/CopyUrl";
 import "../styles/userProfile.css";
+import MyEducationLifeAndExperiences from "../components/Content/MyProfile/MyEducationLifeAndExperiences";
 
 type Props = {};
 
@@ -99,6 +100,7 @@ export default function UserProfile({}: Props) {
             <MyExam />
             <MyBadge />
             <MyActivityMap />
+            <MyEducationLifeAndExperiences/>
           </div>
         </div>
       </div>

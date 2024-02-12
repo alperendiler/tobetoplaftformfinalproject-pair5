@@ -184,7 +184,7 @@ const EducationInformation: React.FC = ({}:Props) => {
              
                 <div key={education.id} className="my-grade">
           <div className="grade-header">
-            <span className="grade-date">{education.startYear} - {education.graduationYear} </span>
+            <span className="grade-date">{new Date(education.startYear).getFullYear()} - {new Date(education.graduationYear).getFullYear()} </span>
             <span className="grade-degree">{education.educationalStatus}</span>
           </div>
           <div className="grade-details">

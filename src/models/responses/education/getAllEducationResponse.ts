@@ -4,8 +4,8 @@ export interface GetAllEducationResponse{
     educationalStatus: string;
     university: string;
     department: string;
-    startYear: string ;
-    graduationYear: string ;
+    startYear: Date ;
+    graduationYear: Date ;
     isContinued: boolean;
 } export interface GetAllEducationResponse{
     items : GetAllEducationResponse[]; 
