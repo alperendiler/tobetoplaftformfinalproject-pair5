@@ -1,6 +1,10 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import "../../styles/personalInformation.css";
 import axios from "axios";
+import certificateService from "../../services/certificateService";
+import { add } from "date-fns";
+import { AddCertificateRequest } from "../../models/requests/certificate/addCertificateRequest";
+
 
 type Props = {};
 
@@ -19,20 +23,23 @@ export default function CertificateInformation({}: Props) {
 
     if (!selectedFile) return;
 
-    const formData = new FormData();
-    formData.append("file", selectedFile);
-    formData.append("studentId", studentId);
+    const addCertificateRequest:AddCertificateRequest = {
+      file : selectedFile,
+      studentId : studentId
+    }
 
     try {
-      const response = await axios.post(
-        "http://localhost:5155/api/Certificates/add",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await certificateService.add(addCertificateRequest)
+
+      // const response = await axios.post(
+      //   "http://localhost:5155/api/Certificates/add",
+      //   formData,
+      //   {
+      //     headers: {
+      //       "Content-Type": "multipart/form-data",
+      //     },
+      //   }
+      // );
 
       if (response.status === 200) {
         console.log(response.data.filePath);
