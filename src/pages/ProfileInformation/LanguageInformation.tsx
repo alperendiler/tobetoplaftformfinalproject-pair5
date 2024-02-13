@@ -167,6 +167,7 @@ const LanguageInformation: React.FC = () => {
               </div>
               <div className="col-md-6">
                 {item.languageName}
+                <br/>
                 {item.languageLevel}
               </div>
               <div className="col-md-2 pt-3">
