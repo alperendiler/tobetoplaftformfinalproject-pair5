@@ -1,7 +1,7 @@
 export interface UpdatePasswordRequest{
-    UserId :string
-    OldPassword : string
-    NewPassword : string
-    NewPasswordAgain : string
+    userId :string
+    password : string
+    newPassword : string
+    ReNewPassword : string
 }
 
