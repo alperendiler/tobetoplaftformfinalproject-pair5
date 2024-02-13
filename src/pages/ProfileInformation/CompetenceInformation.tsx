@@ -35,6 +35,14 @@ export default function CompetenceInformation({}: Props) {
     setCompetences(competences => [...competences, response.data]);
   }
 
+  const handleDelete = async (competenceId: string) => {
+    const response = await competenceService.delete(competenceId);
+    setCompetences(
+      competences.filter((i) => i.id !== competenceId)
+    );
+  };
+
+
   const handleOpenModal = () => {
     setModalOpen(true);
   };
@@ -116,7 +124,7 @@ export default function CompetenceInformation({}: Props) {
                 <span className="grade-details-content">{item.name}</span>
               </div>
               <span
-                onClick={handleOpenModal}
+                onClick={()=> handleDelete(item.id)}
                 className=" grade-delete g-del"
               ></span>
             </div>

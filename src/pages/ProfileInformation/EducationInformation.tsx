@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import FormikInput from "../../components/FormikInput/FormikInput";
 import "react-phone-number-input/style.css";
@@ -69,7 +69,19 @@ const EducationInformation: React.FC = ({}:Props) => {
   };
 
   const validationSchema = Yup.object({
-
+    status: Yup.string().required("Doldurulması zorunlu alan*"),
+    university: Yup.string()
+      .required("Doldurulması zorunlu alan*")
+      .matches(/^[a-zA-ZğüşıöçĞÜŞİÖÇ\s]{2,}$/, "Geçersiz karakter girişi*")
+      .min(2, "En az 2 haneden oluşmalıdır.")
+      .max(100, "En fazla 100 karakter girebilirsiniz"),
+    department: Yup.string()
+      .required("Doldurulması zorunlu alan*")
+      .matches(/^[a-zA-ZğüşıöçĞÜŞİÖÇ\s]{2,}$/, "Geçersiz karakter girişi*")
+      .min(2, "En az 2 haneden oluşmalıdır.")
+      .max(100, "En fazla 100 karakter girebilirsiniz"),
+    startYear: Yup.string().required("Doldurulması zorunlu alan*"),
+    graduationYear: Yup.string().required("Doldurulması zorunlu alan*"),
   });
 
   return (
@@ -213,6 +225,6 @@ const EducationInformation: React.FC = ({}:Props) => {
       </div>
     </>
   );
-}
+};
 
 export default EducationInformation;

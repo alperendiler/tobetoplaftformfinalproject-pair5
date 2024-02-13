@@ -16,15 +16,14 @@ import userService from "../../services/userService";
 import { GetUserDetailResponse } from "../../models/responses/user/getUserDetailResponse";
 import studentService from "../../services/studentService";
 import { GetPersonalInformationResponse } from "../../models/responses/personalInformation/getPersonalInfırmationResponse";
-import { ToastContainer } from 'react-toastify';
-
+import { ToastContainer } from "react-toastify";
 
 type Props = {};
 
 interface PersonalInformationForm {
-  studentId:string,
-  id:string|undefined ,
-  firstName: string ;
+  studentId: string;
+  id: string | undefined;
+  firstName: string;
   lastName: string;
   phoneNumber: string |undefined;
   birthDate: Date | null |undefined ;
@@ -55,11 +54,13 @@ export default function PersonalInformation({}: Props) {
   const [selectedProvince, setSelectedProvince] = useState<string>("");
   const [districts, setDistricts] = useState<District[]>([]);
 
-  const [personalInformations, setPersonalInformations] =  useState<GetAllPersonalInformationResponse [] >([]);
-  const [users, setUsers] = useState<GetUserDetailResponse >();
-  const [studentId, setStudentId] = useState<string  >("");
-  const [personalInformationValues, setPersonalInformationValues] = useState<GetPersonalInformationResponse>();
-
+  const [personalInformations, setPersonalInformations] = useState<
+    GetAllPersonalInformationResponse[]
+  >([]);
+  const [users, setUsers] = useState<GetUserDetailResponse>();
+  const [studentId, setStudentId] = useState<string>("");
+  const [personalInformationValues, setPersonalInformationValues] =
+    useState<GetPersonalInformationResponse>();
 
   useEffect(() => {
     axios
@@ -89,7 +90,7 @@ export default function PersonalInformation({}: Props) {
       setDistricts([]);
     }
   }, [selectedProvince, provinces]);
-  const getUser= async ()=>{
+  const getUser = async () => {
     const token = localStorage.getItem("user");
 
     const decodedToken: any = token ? jwtDecode(token) : null;
@@ -123,9 +124,9 @@ export default function PersonalInformation({}: Props) {
       const personalInformationResponse = await personalInformationService.update(values)
       setPersonalInformationValues(personalInformationResponse.data)
     }
-  }
+  };
   const [initialValues, setInitialValues] = useState<PersonalInformationForm>({
-    id:"",
+    id: "",
     studentId: "",
     firstName: "",
     lastName: "",
@@ -144,7 +145,7 @@ export default function PersonalInformation({}: Props) {
   useEffect(() => {
     if (users != null) {
       const newInitialValues: PersonalInformationForm = {
-        id:"",
+        id: "",
         firstName: users.firstName ?? "",
         lastName: users.lastName,
         phoneNumber: personalInformationValues?.phoneNumber,
@@ -158,7 +159,7 @@ export default function PersonalInformation({}: Props) {
         address: personalInformationValues?.address ?? "",
         about: personalInformationValues?.about ?? "",
       };
-      console.log(personalInformationValues?.about)
+      console.log(personalInformationValues?.about);
 
       setInitialValues(newInitialValues);
       setInitialValuesKey(prevKey => prevKey + 1);
@@ -173,7 +174,7 @@ export default function PersonalInformation({}: Props) {
       .required("Doldurulması zorunlu alan*")
       .matches(/^[a-zA-ZğüşıöçĞÜŞİÖÇ]+$/, "Geçersiz karakter girişi*")
       .min(2, "En az 2 haneden oluşmalıdır.")
-      .max(100, "En fazla 100 karakter girebilirsiniz"),
+      .max(50, "En fazla 50 karakter girebilirsiniz"),
     lastName: Yup.string()
       .required("Doldurulması zorunlu alan*")
       .matches(/^[a-zA-ZğüşıöçĞÜŞİÖÇ]+$/, "Geçersiz karakter girişi*")
@@ -195,7 +196,7 @@ export default function PersonalInformation({}: Props) {
       })
       .min(11, "TC Kimlik Numaranızı 11 karakterli olacak şekilde giriniz")
       .max(11, "TC Kimlik Numaranızı 11 karakterli olacak şekilde giriniz"),
-      email: Yup.string()
+    email: Yup.string()
       .required("Doldurulması zorunlu alan*")
       .email("Geçerli bir e-posta adresi giriniz"),
       //country: Yup.string().required("Doldurulması zorunlu alan*"),
@@ -345,19 +346,18 @@ export default function PersonalInformation({}: Props) {
                   placeholder=""
                 />
 
-                <FormikInput
-                  className="no-resize"
-                  name="about"
-                  label="Hakkımda"
-                  as="textarea"
-                  placeholder="Kendini kısaca tanıt"
-                />
-                <button type='submit' className="btn btn-personal-information">
-                  Kaydet
-                </button>
-              </Form>
-            </Formik>
-         
+          <FormikInput
+            className="no-resize"
+            name="about"
+            label="Hakkımda"
+            as="textarea"
+            placeholder="Kendini kısaca tanıt"
+          />
+          <button type="submit" className="btn btn-personal-information">
+            Kaydet
+          </button>
+        </Form>
+      </Formik>
     </>
   );
 }

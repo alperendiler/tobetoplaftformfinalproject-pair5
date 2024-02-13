@@ -1,7 +1,8 @@
 export interface AddCertificateResponse{
-    id:string,
-    studentId: string,
-    name : string,
-    folder:Uint8Array
 
-}
+        id :string
+        studentId: string
+        fileName: string
+        fileExtension :string
+        filePath: string 
+ }

@@ -1,0 +1,19 @@
+.row-feature{
+    border: 2px solid rgb(218, 218, 218);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.row-feature:hover {
+    border-color: #93f; /* mor border üzerine gelindiğinde */
+}
+
+.button-feature-1{
+    border-radius: 50px !important;
+    background-color: #fc6d6d;
+}
+
+.button-feature-2{
+    border-radius: 50px !important;
+    background-color:black;
+}
