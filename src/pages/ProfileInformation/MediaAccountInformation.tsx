@@ -101,8 +101,8 @@ export default function MediaAccountInformation({}: Props) {
                       <option value="">Seçiniz</option>
                       {socialMedias && socialMedias.length > 0 ? (
   socialMedias.map((socialMedia) => ( 
-                 <option key={socialMedia.id}>
-
+                 <option key={socialMedia.id}  value={socialMedia.id}>
+                   
                     {socialMedia.name}
                   </option>
                   ))
