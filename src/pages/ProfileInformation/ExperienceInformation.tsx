@@ -2,7 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useEffect, useState } from "react";
 import "../../styles/personalInformation.css";
-import "./experienceInformation.css";
+import "../../styles/MyProfileStyles/experienceInformation.css"
 import React from "react";
 import FormikInput from "../../components/FormikInput/FormikInput";
 import ReactDatePicker from "react-datepicker";
@@ -282,7 +282,7 @@ export default function ExperienceInformation({}: Props) {
                 </div>
               </div>
               <label>
-                <Field type="checkbox" name="checked" value="One" />
+                <Field name="isContinued"  type="checkbox" />
                 &nbsp;Çalışmaya hala devam ediyorum.
               </label>{" "}
             </div>

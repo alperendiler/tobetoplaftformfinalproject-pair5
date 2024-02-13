@@ -10,5 +10,5 @@ export interface GetPersonalInformationResponse{
     address: string,
     phoneNumber: string,
     about: string,
-    birthDate: Date | null ,
+    birthDate: Date  ,
    }

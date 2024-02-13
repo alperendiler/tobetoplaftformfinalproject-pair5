@@ -1,0 +1,123 @@
+.course-all {
+  background-color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+.container-course {
+  background-color: #ffffff;
+  height: 1000px;
+}
+
+.course-rigth,
+course-left {
+  height: 600px;
+}
+
+.accordion-button{
+font-weight: bold;
+}
+
+.accordion-content-all{
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.accordion-content-title{
+font-size: 14px;
+font-weight: 600; 
+cursor: pointer;  /*imlec tıklanabilir olsun*/
+}
+
+.accordion-timer{
+    font-size: 11px;
+    color: gray;
+ 
+}
+
+.video iframe {
+  border-radius: 10px;
+  height: 400px;
+}
+
+.content-video-detail {
+  height: 90px;
+  display: flex;
+  padding-top: 10px;
+}
+
+
+.video img{
+
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.course-title {
+  margin-left: 15px;
+  font-weight: bold;
+  font-size: 13px;
+  height: 25px;
+
+}
+
+.sarma {
+  margin-left: 15px;
+  display: flex;
+}
+
+.video-ml {
+  margin-top: 8px;
+  color: gray;
+  font-size: 11px;
+  margin-right: 25px;
+
+}
+
+.score {
+  
+  margin-top: 8px;
+  font-size: 11px;
+  color: #3DCB79;
+}
+
+.status-continue {
+  padding-left: 8px;
+  margin-top: 8px;
+  font-size: 11px;
+  color: #3DCB79;
+  text-decoration: none solid rgb(61, 203, 121);
+  word-spacing: 0px;
+}
+
+.activity-content-info {
+  height: 400px;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.button-detail-all button {
+  margin-left: -60px;  /*Buton yana kaydır*/
+  margin-top: 2px;
+  width: 120px;
+  height: 30px;
+  background-color: white;
+  color: blueviolet;
+  border-radius: 10px;
+  border-color: blueviolet;
+  border-width: 1px;
+  font-size: 15px;
+  font-family: "Poppins";
+  font-size: medium;
+}
+
+.isaret{
+  width: 13px;
+  height: 13px;
+  text-align: right;
+}

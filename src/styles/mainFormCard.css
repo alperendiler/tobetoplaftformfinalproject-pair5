@@ -31,6 +31,8 @@
     font-size: 12px;
     width: calc(100% - 140px);
     min-width: 200px;
+    max-width: 200px;
+
     text-align: start;
 }
 .status-card .form_name {

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import "../../styles/footer.css"
 
 
@@ -15,7 +16,7 @@ export default function Footer({}: Props) {
                     </div>
 
                     <div className="col-2 d-flex flex-row-reverse">
-                        <button className='btn btn-light fw-bold rounded-pill'>Bize Ulaşın</button>
+                    <Link className='btn btn-light fw-bold rounded-pill' to='/connection'>Bize Ulaşın</Link>
                     </div>
                 </div> 
             </div>

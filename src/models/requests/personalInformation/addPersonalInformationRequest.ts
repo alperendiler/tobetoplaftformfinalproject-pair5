@@ -9,5 +9,5 @@ export interface AddPersonalInformationRequest{
     address: string,
     phoneNumber: string|undefined,
     about: string,
-    birthDate: Date | null,
+    birthDate: Date | null|undefined,
    }

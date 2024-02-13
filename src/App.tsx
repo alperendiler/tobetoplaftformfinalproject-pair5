@@ -14,20 +14,22 @@ import Calendar from "./pages/Calendar";
 import Evaluations from "./pages/Evaluations";
 import Trainings from "./pages/Trainings";
 import CourseDetail from "./pages/CourseDetail";
-import PrivateRoot from "./components/PrivateRoot";
 import Experience from "./pages/ProfileInformation/ExperienceInformation";
 import Announcements from "./pages/Announcements";
 import ForgottenPassword from "./pages/ForgottenPassword";
 import NotFound from "./pages/NotFound";
 import EditProfile from "./pages/ProfileInformation/EditProfile";
+import Connection from "./pages/Connection";
+
+
 import { ToastContainer } from 'react-toastify';
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
-interface Props {}
-function App({}: Props) {
+interface Props { }
+function App({ }: Props) {
   return (
     <>
-        <ToastContainer/>
+      <ToastContainer />
       <Routes>
         <Route
           path="/"
@@ -45,15 +47,15 @@ function App({}: Props) {
             </div>
           }
         />
-<Route
-        path="/home-page"
-        element={
-          <ProtectedRoute>
- <Navbar />
-            <HomePage />
-            <Footer />
-          </ProtectedRoute>
-           
+        <Route
+          path="/home-page"
+          element={
+            <ProtectedRoute>
+              <Navbar />
+              <HomePage />
+              <Footer />
+            </ProtectedRoute>
+
 
         }
       />
@@ -166,9 +168,19 @@ function App({}: Props) {
           </ProtectedRoute> 
         }
       />
+       <Route
+        path="/connection"
+        element={
+          <div>
+            <NavbarLogin />
+            <Connection/>
+            <FooterLogin />
+          </div>
+        }
+      />
       </Routes>
     </>
-    
+
   );
 }
 

@@ -1,0 +1,143 @@
+.cv-box .cv-box-header span {
+    font-weight: 600;
+    font-size: 18px;
+    color: #323232;
+}.timeline .line .circle:first-child .before {
+    margin-right: 5px;
+    padding: 0 0 2em;
+    position: relative;
+    min-height: 100px;
+}
+.timeline .line .circle .before {
+    transform: translateY(-100%);
+    border-left: 3px solid #a442ff;
+    margin-left: 5px;
+    padding: 0 0 2em;
+    position: relative;
+    min-height: 100px;
+    cursor: default;
+}
+
+.timeline .line .circle .before .content ul {
+    list-style: none;
+    margin-left: 0!important;
+    padding-left: 4px;
+    min-width: 172px;
+}
+.timeline .line .circle .before .content li {
+    list-style: none;
+    margin-left: 0!important;
+    padding-left: 4px;
+    min-width: 172px;
+}
+.timeline .line .circle .before .content {
+    position: absolute;
+    top: -16px;
+    cursor: default;
+}
+.timeline .line .circle .before .content ul li {
+    font-size: 12px;
+    text-align: left;
+}
+.timeline .line {
+    height: 6px;
+    width: -moz-fit-content;
+    width: fit-content;
+    min-width: 100%;
+    background: #ccc;
+    border-radius: 5px;
+    margin: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    gap: 248px;
+    position: relative;
+    display: flex;
+    cursor: default;
+}
+.cv-box .cv-box-header hr {
+    margin: 0.5rem 0;
+    color: rgba(153,51,255,.4);
+    border: 0;
+    border-top: 2px solid;
+    opacity: .4;
+}
+.cv-box {
+    background: #fff;
+    box-shadow: 0 7px 29px rgba(0,0,0,.13);
+    border-radius: 12px;
+    margin-top: 1em;
+}
+.timeline {
+    height: 300px ;
+    overflow-x: auto;
+    cursor: default;
+}
+.timeline .line .circle2 .after {
+    border-right: 3px solid #488ff6;
+    margin-right: 5px;
+    padding: 2em 0 0;
+    position: relative;
+    min-height: 100px;
+    cursor: default;
+}
+.timeline .line .circle {
+    width: 20px;
+    height: 20px;
+    background: #a442ff;
+    border-radius: 15px;
+    position: relative;
+    top: -7px;
+    border: 3px solid #fff;
+    cursor: default;
+}
+.timeline .line .circle2 {
+    width: 20px;
+    height: 20px;
+    background: #488ff6;
+    border-radius: 15px;
+    position: relative;
+    top: -7px;
+    border: 3px solid #fff;
+    cursor: default;
+}
+.timeline .line .circle:first-child .before .content {
+    position: absolute;
+    top: -16px;
+    left: 8px!important;
+    cursor: default;
+}
+.timeline .line .circle2:first-child .after .content ul li {
+    font-size: 12px;
+    text-align: left;
+}
+.timeline .line .circle2:first-child .after .content {
+    position: absolute;
+    top: 5px;
+    left: 8px;
+    cursor: default;
+}
+.timeline .line .circle2:first-child .after .content ul {
+    list-style: none;
+    margin-left: 0!important;
+    padding-left: 4px;
+    width: max-content;
+    max-width: 150px;
+}
+.timeline .line .circle2 .after .content {
+    position: absolute;
+    top: 1px;
+    right: 8px;
+    cursor: default;
+}
+.timeline .line .circle2 .after .content ul li {
+    font-size: 12px;
+    text-align: right;
+}
+.timeline .line .circle2 .after .content ul {
+    list-style: none;
+    margin-left: 0!important;
+    padding-left: 4px;
+    width: -moz-max-content;
+    width: max-content;
+    max-width: 150px;
+}

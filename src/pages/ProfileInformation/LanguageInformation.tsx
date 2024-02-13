@@ -128,11 +128,16 @@ const LanguageInformation: React.FC = () => {
                 className="form-control form-select"
               >
                 <option value="">Seviye Seçiniz*</option>
-                {languageLevels.map((item, index) => (
-                  <option key={index} value={item.id}>
-                    {item.level}
+                {languageLevels && languageLevels.length > 0 ? (
+  languageLevels.map((languageLevel) => ( 
+                 <option>
+
+                    {languageLevel.level}
                   </option>
-                ))}
+                  ))
+                  ) : (
+                   <div></div>
+                  )}  
               </Field>
               <ErrorMessage name="level">
                 {(message) => <p className="text-danger">{message}</p>}
