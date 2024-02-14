@@ -130,8 +130,7 @@ const LanguageInformation: React.FC = () => {
                 <option value="">Seviye Seçiniz*</option>
                 {languageLevels && languageLevels.length > 0 ? (
   languageLevels.map((languageLevel) => ( 
-                 <option>
-
+                 <option value={languageLevel.id}>
                     {languageLevel.level}
                   </option>
                   ))
