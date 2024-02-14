@@ -40,7 +40,7 @@
     margin-top: 12px;
     background-color: #93f !important;
     color: #fff !important;
-    width: 90px;
+    width: 90px !important;
     border-radius:40px 40px !important;
 }
 .profile-footer{

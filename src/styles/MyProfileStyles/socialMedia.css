@@ -5,7 +5,7 @@
 }
 
 .row-feature:hover {
-    border-color: #93f; /* mor border üzerine gelindiğinde */
+    border-color: #93f; 
 }
 
 .button-feature-1{
@@ -16,4 +16,25 @@
 .button-feature-2{
     border-radius: 50px !important;
     background-color:black;
+}
+
+.edit-feature{
+    width: 500px !important;
+    height: 37px !important;
+}
+
+.edit-feature:hover {
+    border-color: #93f; 
+    box-shadow: 0 0 5px #93f;
+    
+}
+
+.select-feature:hover{
+    border-color: #93f; 
+    box-shadow: 0 0 5px #93f;
+}
+
+.modal-button{
+    background-color: #93f;
+    border-radius:40px 40px !important;
 }

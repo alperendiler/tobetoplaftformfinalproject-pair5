@@ -38,7 +38,7 @@ class AuthService {
 
   async updatePassword(model:UpdatePasswordRequest){
     const response = await axiosInstance.post("Auth/UpdatePassword", model);
-    return response.data;
+    return response;
   }
 }
 

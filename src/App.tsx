@@ -20,10 +20,10 @@ import ForgottenPassword from "./pages/ForgottenPassword";
 import NotFound from "./pages/NotFound";
 import EditProfile from "./pages/ProfileInformation/EditProfile";
 import Connection from "./pages/Connection";
-
-
 import { ToastContainer } from 'react-toastify';
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import TestModal from "./pages/TestModal";
+ 
 
 interface Props { }
 function App({ }: Props) {
@@ -175,6 +175,16 @@ function App({ }: Props) {
             <NavbarLogin />
             <Connection/>
             <FooterLogin />
+          </div>
+        }
+      />
+      <Route
+        path="/testModal"
+        element={
+          <div>
+          
+            <TestModal/>
+           
           </div>
         }
       />
