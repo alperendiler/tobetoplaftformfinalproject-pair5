@@ -5,7 +5,8 @@
   }
   
 .btn-primary:hover {
-    background-color: #9300ff; 
+    background-color: #9300ff !important;
+    color: white !important;
   }
   
 .btn-secondary {
@@ -16,7 +17,8 @@
   }
   
 .btn-secondary:hover {
-    background-color: #9300ff;
+    background-color: #9300ff !important;
+    color: white !important;
 }
 
 .modal-footer-feature{

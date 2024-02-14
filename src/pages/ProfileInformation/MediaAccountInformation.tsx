@@ -139,26 +139,78 @@ export default function MediaAccountInformation({}: Props) {
                     <span>{item.socialMediaName}</span>-<span>{item.url}</span>
                   </div>
                   <div className="col-1">
-                    <button className="button-shape button-feature-1 border border-1">
+                    <button className="button-shape button-feature-1 border border-1"  
+                    type="button"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal">
                       <svg
                         xmlns="https://tobeto.com/trash.svg"
                         width="23"
                         height="23"
                         fill="white"
-                        onClick={() => handleDelete(item.id)}
                         className="ms-1 mt-1"
                       >
                         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
                         <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
                       </svg>
                     </button>
+                    <div
+                  className="modal fade"
+                  id="exampleModal"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div className="modal-dialog  modal-dialog-centered ">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <img src="https://tobeto.com/_next/static/media/alert.309dc4c0.svg"></img>
+                        <br />
+                        <br />
+                        <h6 className="modal-title">
+                          <b>
+                          Seçilen sosyal medya hesabını silmek istediğinize emin misiniz?
+                          </b>
+                        </h6>
+                        <button
+                          type="button"
+                          className="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div className="modal-body text-muted">
+                        <p>
+                        Bu işlem geri alınamaz.
+                        </p>
+                      </div>
+                      <div className=" modal-footer modal-footer-feature">
+                        <button
+                          type="button"
+                          className="btn btn-secondary-2"
+                          data-bs-dismiss="modal"
+                        >
+                          Hayır
+                        </button>
+
+                        <button
+                          type="button"
+                          className="btn btn-primary-2"
+                          data-bs-dismiss="modal"
+                          onClick={() => handleDelete(item.id)}
+                        >
+                          Evet
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                   </div>
                   <div className="col-1">
                     <button
                       className="button-shape button-feature-2"
                       type="button"
                       data-bs-toggle="modal"
-                      data-bs-target="#exampleModal"
+                      data-bs-target="#sampleModal"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -176,14 +228,14 @@ export default function MediaAccountInformation({}: Props) {
                     </button>
                     <div
                       className="modal fade"
-                      id="exampleModal"
-                      aria-labelledby="exampleModalLabel"
+                      id="sampleModal"
+                      aria-labelledby="sampleModalLabel"
                       aria-hidden="true"
                     >
                       <div className="modal-dialog modal-dialog-centered modal-lg">
                         <div className="modal-content">
                           <div className="modal-header">
-                            <h4 className="modal-title" id="exampleModalLabel">
+                            <h4 className="modal-title" id="sampleModalLabel">
                               <b>Medya Hesabı Güncelleme</b>
                             </h4>
                           </div>
