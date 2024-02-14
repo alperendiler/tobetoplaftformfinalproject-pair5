@@ -8,7 +8,7 @@ import { GetLanguageLevelResponse } from "../../models/responses/languageLevel/g
 import languageLevelService from "../../services/languageLevelService";
 import { GetStudentLanguageResponse } from "../../models/responses/studentLanguage/getStudentLanguageResponse";
 import studentLanguageService from "../../services/studentLanguageService";
-import RemoveAlertModal from "../../components/Common/RemoveAlertModal";
+
 interface LanguageInformationForm {
   language: string;
   level: string;
