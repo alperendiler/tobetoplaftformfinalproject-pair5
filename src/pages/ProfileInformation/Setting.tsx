@@ -5,6 +5,8 @@ import "../../styles/personalInformation.css";
 import FormikInput from "../../components/FormikInput/FormikInput";
 import authService from "../../services/authService";
 import { UpdatePasswordRequest } from "../../models/requests/auth/UpdatePasswordRequest";
+import { toast,ToastContainer  } from "react-toastify";
+
 
 type Props = {};
 
@@ -28,13 +30,44 @@ export default function Setting({}: Props) {
       password: passwordRequest.password,
       newPassword: passwordRequest.newPassword,
       ReNewPassword: passwordRequest.reNewPassword});
-    console.log(response);
+      console.log(response);
+      if (response.status==200) {
+        toast.success("Şifre başarıyla değiştirildi", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme:"colored"
+        });
+    
+      } 
+      // else {
+      //   toast.error("Şifre değiştirme başarısız", {
+      //     position: "top-right",
+      //     autoClose: 5000, 
+      //     hideProgressBar: false,
+      //     closeOnClick: true,
+      //     pauseOnHover: true,
+      //     draggable: true,
+      //     progress: undefined,
+      //     theme:"colored"
+      //   });
+      // }
   };
 
-  const validationSchema = Yup.object();
+  const validationSchema = Yup.object().shape({
+    password: Yup.string().required("Eski Şifre gereklidir"),
+    newPassword: Yup.string().required("Yeni Şifre gereklidir"),
+    reNewPassword: Yup.string()
+      .oneOf([Yup.ref("newPassword"), ""], "Yeni şifreler eşleşmiyor")
+      .required("Yeni Şifre Tekrar gereklidir")
+  });
 
   return (
     <>
+    <ToastContainer/>
       <Formik
         validationSchema={validationSchema}
         initialValues={initialValues}

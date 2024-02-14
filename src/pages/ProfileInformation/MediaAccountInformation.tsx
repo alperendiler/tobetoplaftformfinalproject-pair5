@@ -152,7 +152,7 @@ export default function MediaAccountInformation({}: Props) {
                   </button>
                 </div>
                 <div className="col-1">
-                  <button className="button-shape button-feature-2">
+                  <button className="button-shape button-feature-2" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="23"
@@ -168,7 +168,43 @@ export default function MediaAccountInformation({}: Props) {
                     />
                   </svg>
                   </button>
-                  
+                  <div className="modal fade" id="exampleModal"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div className="modal-dialog modal-dialog-centered modal-lg">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h4 className="modal-title" id="exampleModalLabel"><b>Medya Hesabı Güncelleme</b></h4>
+      </div>
+      <div className="modal-body row">
+        <div className="col-md-4 ">
+        <select className="form-select select-feature"  name="socialMediaName" aria-label="Default select example">
+        <option value="">Seçiniz</option>
+                      {socialMedias && socialMedias.length > 0 ? (
+  socialMedias.map((socialMedia) => ( 
+                 <option key={socialMedia.id}  value={socialMedia.id}>
+                   
+                    {socialMedia.name}
+                  </option>
+                  ))
+                  ) : (
+                   <div></div>
+                  )} 
+</select>  
+        </div>
+        <div className="col-md-8 ">
+        <input className="edit-feature"
+                      name="socialMediaUrl"
+                      type="text"
+                      placeholder="https://"
+                    />
+        </div>
+      </div>
+      <div className="modal-footer"> 
+        <button type="button" className="btn btn-primary modal-button">Güncelle</button>
+        <button type="button" className="btn btn-secondary modal-button" data-bs-dismiss="modal">Kapat</button>
+      </div>
+    </div>
+  </div>
+</div>
                 </div>
               </div>
               </>

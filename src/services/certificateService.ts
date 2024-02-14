@@ -8,9 +8,6 @@ import { GetAllCertificateResponse } from './../models/responses/certificate/get
 import { BaseService } from "../core/services/baseService";
 import axiosInstance from '../core/interceptors/axiosInterceptor';
 
-
-
-
 class CertificateService extends BaseService<
 GetAllCertificateResponse,
 GetCertificateResponse,
