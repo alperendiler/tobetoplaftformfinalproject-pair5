@@ -15,6 +15,7 @@ interface MediaAccountForm {
   socialMediaUrl: string;
   socialMediaName: string;
 }
+
 export default function MediaAccountInformation({}: Props) {
   const [socialMedias, setSocialMedias] = useState<GetSocialMediaResponse[]>(
     []
@@ -22,6 +23,10 @@ export default function MediaAccountInformation({}: Props) {
   const [socialMediaStudents, setSocialMediaStudents] = useState<
     GetSocialMediaStudentResponse[]
   >([]);
+  const [
+    selectForUpdateSocialMediaStudent,
+    setSelectForUpdateSocialMediaStudent,
+  ] = useState<GetSocialMediaStudentResponse>();
 
   useEffect(() => {
     fetchSocialMedias();
@@ -139,10 +144,12 @@ export default function MediaAccountInformation({}: Props) {
                     <span>{item.socialMediaName}</span>-<span>{item.url}</span>
                   </div>
                   <div className="col-1">
-                    <button className="button-shape button-feature-1 border border-1"  
-                    type="button"
+                    <button
+                      className="button-shape button-feature-1 border border-1"
+                      type="button"
                       data-bs-toggle="modal"
-                      data-bs-target="#exampleModal">
+                      data-bs-target="#exampleModal"
+                    >
                       <svg
                         xmlns="https://tobeto.com/trash.svg"
                         width="23"
@@ -155,55 +162,54 @@ export default function MediaAccountInformation({}: Props) {
                       </svg>
                     </button>
                     <div
-                  className="modal fade"
-                  id="exampleModal"
-                  aria-labelledby="exampleModalLabel"
-                  aria-hidden="true"
-                >
-                  <div className="modal-dialog  modal-dialog-centered ">
-                    <div className="modal-content">
-                      <div className="modal-header">
-                        <img src="https://tobeto.com/_next/static/media/alert.309dc4c0.svg"></img>
-                        <br />
-                        <br />
-                        <h6 className="modal-title">
-                          <b>
-                          Seçilen sosyal medya hesabını silmek istediğinize emin misiniz?
-                          </b>
-                        </h6>
-                        <button
-                          type="button"
-                          className="btn-close"
-                          data-bs-dismiss="modal"
-                          aria-label="Close"
-                        ></button>
-                      </div>
-                      <div className="modal-body text-muted">
-                        <p>
-                        Bu işlem geri alınamaz.
-                        </p>
-                      </div>
-                      <div className=" modal-footer modal-footer-feature">
-                        <button
-                          type="button"
-                          className="btn btn-secondary-2"
-                          data-bs-dismiss="modal"
-                        >
-                          Hayır
-                        </button>
+                      className="modal fade"
+                      id="exampleModal"
+                      aria-labelledby="exampleModalLabel"
+                      aria-hidden="true"
+                    >
+                      <div className="modal-dialog  modal-dialog-centered ">
+                        <div className="modal-content">
+                          <div className="modal-header">
+                            <img src="https://tobeto.com/_next/static/media/alert.309dc4c0.svg"></img>
+                            <br />
+                            <br />
+                            <h6 className="modal-title">
+                              <b>
+                                Seçilen sosyal medya hesabını silmek
+                                istediğinize emin misiniz?
+                              </b>
+                            </h6>
+                            <button
+                              type="button"
+                              className="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <div className="modal-body text-muted">
+                            <p>Bu işlem geri alınamaz.</p>
+                          </div>
+                          <div className=" modal-footer modal-footer-feature">
+                            <button
+                              type="button"
+                              className="btn btn-secondary-2"
+                              data-bs-dismiss="modal"
+                            >
+                              Hayır
+                            </button>
 
-                        <button
-                          type="button"
-                          className="btn btn-primary-2"
-                          data-bs-dismiss="modal"
-                          onClick={() => handleDelete(item.id)}
-                        >
-                          Evet
-                        </button>
+                            <button
+                              type="button"
+                              className="btn btn-primary-2"
+                              data-bs-dismiss="modal"
+                              onClick={() => handleDelete(item.id)}
+                            >
+                              Evet
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
                   </div>
                   <div className="col-1">
                     <button
@@ -211,6 +217,9 @@ export default function MediaAccountInformation({}: Props) {
                       type="button"
                       data-bs-toggle="modal"
                       data-bs-target="#sampleModal"
+                      onClick={() => {
+                        setSelectForUpdateSocialMediaStudent(item);
+                      }}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -245,12 +254,13 @@ export default function MediaAccountInformation({}: Props) {
                                 className="form-select select-feature"
                                 name="socialMediaName"
                                 aria-label="Default select example"
+                                value={selectForUpdateSocialMediaStudent?.socialMediaId}
                               >
                                 <option value="">Seçiniz</option>
                                 {socialMedias && socialMedias.length > 0 ? (
-                                  socialMedias.map((socialMedia) => (
+                                  socialMedias.map((socialMedia,index) => (
                                     <option
-                                      key={socialMedia.id}
+                                      key={index}
                                       value={socialMedia.id}
                                     >
                                       {socialMedia.name}
@@ -267,6 +277,7 @@ export default function MediaAccountInformation({}: Props) {
                                 name="socialMediaUrl"
                                 type="text"
                                 placeholder="https://"
+                                value={selectForUpdateSocialMediaStudent?.url}
                               />
                             </div>
                           </div>
