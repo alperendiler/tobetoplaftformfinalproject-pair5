@@ -168,7 +168,7 @@ export default function MediaAccountInformation({}: Props) {
                         <br />
                         <h6 className="modal-title">
                           <b>
-                            Seçilen yetkinliği silmek istediğinize emin misiniz?
+                          Seçilen sosyal medya hesabını silmek istediğinize emin misiniz?
                           </b>
                         </h6>
                         <button
