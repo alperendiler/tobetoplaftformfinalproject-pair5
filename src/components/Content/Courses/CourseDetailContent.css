@@ -3,13 +3,16 @@
   font-family: 'Poppins', sans-serif;
 }
 
+.imageWord{
+  max-width: 540px;
+}
+
 .container-course {
   background-color: #ffffff;
   height: 1000px;
 }
 
-.course-rigth,
-course-left {
+.course-rigth .course-left {
   height: 600px;
 }
 
@@ -21,6 +24,7 @@ font-weight: bold;
   display: flex;
   margin-bottom: 10px;
 }
+
 
 .accordion-content-title{
 font-size: 14px;
@@ -43,6 +47,7 @@ cursor: pointer;  /*imlec tıklanabilir olsun*/
   height: 90px;
   display: flex;
   padding-top: 10px;
+  
 }
 
 
@@ -50,6 +55,8 @@ cursor: pointer;  /*imlec tıklanabilir olsun*/
 
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  max-width: 100%;
+  
 }
 
 .course-title {

@@ -17,16 +17,19 @@ export default function CourseHeader({ }: Props) {
 
 
   const toggleFavorite = () => {
-    setIsFavorite(!isFavorite);
+    setIsFavorite(!isFavorite);  //Tıklanınca isFavorite true ise false, false ise true yapar
     setShowNotification(!isClick); // Favorilere eklenip çıkarıldığında bildirimi göster veya gizle
   };
 
   const handleLikeClick = () => {
-
     if (!isClick) {
       setLikeCount(likeCount + 1); // Beğeni artışı sadece bir kere gerçekleşecek
       setClick(true); // Tıklama gerçekleştiğinde isClick durumunu true yap
-    };
+    } else {
+      setLikeCount(likeCount - 1); // Beğeni azaltma
+      setClick(false); 
+    }
+   
   }
 
   useEffect(() => {
@@ -39,12 +42,13 @@ export default function CourseHeader({ }: Props) {
   }, [isFavorite]);
 
   useEffect(() => {
-    if (showNotification) {
+    if (showNotification) {   //Bildiri gösterme kutusu
       setTimeout(() => {
         setShowNotification(false);
       }, 5000);
     }
-  }, [showNotification]);
+  }, [showNotification]);  
+
 
 /* Kapatma tuşuna basınca kapansın mesaj kutusu */
   const handleCloseNotification = () => {
@@ -120,7 +124,7 @@ export default function CourseHeader({ }: Props) {
                           {showNotification && (
                             <div className="notification row">
                               <div className="notification-header"></div>
-                              <div className="notification-icon col-1">
+                              <div className="notiafication-icon col-1">
                               <img width="20px" height="20px" src="https://lms.tobeto.com/tobeto/eep/Styles/assets/css/img/icon/learning-experience-platform/unit-completed.svg" />
                               </div>
                               <div className="notification-message col-9 ">

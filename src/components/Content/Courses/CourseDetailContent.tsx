@@ -31,9 +31,9 @@ export default function CourseDetailContent({ }: Props) {
   return (
     <>
       <div className='course-all'>
-        <div className="container-course col-12 ">
+        <div className="container col-12 " style={{backgroundColor:"white", height:"1000px"}}>
           <div className="row">
-            <div className="col-5 course-left">
+            <div className="container col-5 course-left col-lg-5 ">
               <div className="activity-content-menu">
 
                 <div className="accordion" id="accordionExample">
@@ -263,13 +263,13 @@ export default function CourseDetailContent({ }: Props) {
               </div>
             </div>
 
-            <div className="col-7 course-rigth">
-              <div className="activity-content-info ">
+            <div className="container col-7 course-rigth col-lg-7 ">
+              <div className="activity-content-info bordered">
                 {/* Resmi gösterme durumuna bağlı olarak resmi veya videoyu göster */}
                 {showImage && (
-                  <div className="imageWord" onClick={handleWordClick}>
+                  <div className="imageWord " onClick={handleWordClick}>
                     {/* Resim buraya eklenebilir */}
-                    <img width="540" height="400"
+                    <img width="480" height="400"
                       src="https://lms.tobeto.com/tobeto/eep/common_show_picture_cached.aspx?pQS=DiBldjEKnwJCe69nG2MNIKN8WyVXbzKN" />
 
                   </div>
@@ -307,7 +307,7 @@ export default function CourseDetailContent({ }: Props) {
 
 
               </div>
-              <div className="content-video-detail">
+              <div className="content-video-detail ">
                 <div className="col-9">
                 {showImage && (
                   <div className="course-title  col-10"> Sözcük İşleyici (Word Processor / MS Word)
