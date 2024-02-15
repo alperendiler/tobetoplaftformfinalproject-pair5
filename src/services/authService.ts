@@ -3,7 +3,7 @@ import axios from "axios";
 import axiosInstance from "../core/interceptors/axiosInterceptor";
 import { AuthLoginRequest } from "../models/requests/auth/AuthLoginRequest";
 import { AddUserRequest } from "../models/requests/user/addUserRequest";
-
+import { UpdatePasswordRequest } from "../models/requests/auth/UpdatePasswordRequest";
 
 class AuthService {
 	async login(model : AuthLoginRequest) {
@@ -19,7 +19,7 @@ class AuthService {
             }
           } catch (error) {
  
-            throw new Error("Authentication error"); // Bu kısmı düzeltmek gerekebilir, duruma göre değişebilir.
+            throw new Error("Authentication error");
           }
         }
 
@@ -32,13 +32,15 @@ class AuthService {
     
   async isEmailRegistered(model:AddUserRequest) {
       const response = await axiosInstance.get(`Auth/IsEmailRegistered?email=${model.email}`);
-      return response.data; // Bu, e-posta kayıtlıysa `true`, değilse `false` dönecek bir API'yi varsayalım
+      return response.data; 
     
   }
+
+  async updatePassword(model:UpdatePasswordRequest){
+    const response = await axiosInstance.post("Auth/UpdatePassword", model);
+    return response;
+  }
 }
-    /*getCurrentUser() {
-      return JSON.parse(localStorage.getItem('user'));
-    }*/
 
 
 

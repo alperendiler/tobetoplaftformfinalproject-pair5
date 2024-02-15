@@ -1,28 +1,84 @@
 import React from 'react'
 import "../styles/connection.css";
 import { useState } from 'react';
+import FormikInput from "../components/FormikInput/FormikInput";
+import * as Yup from "yup";
+import { Formik, Form, Field } from "formik";
+import ReCAPTCHA from "react-google-recaptcha";
 
+type Props = {}
 
-type Props = {
+const key = "6LeBsHMpAAAAABkznEGjEKudHplJpTumSoHiXL-y";
+function onChange(value: any) {
+}
+
+interface ConnectionForm {
+    name: string;
+    email: string;
+    message: string;
+
 
 }
 
 const Connection = ({ }: Props) => {
+
+
+    const initialValues: ConnectionForm = {
+        name: "",
+        message: "",
+        email: ""
+    };
+
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
+    const [isCaptcha, setIsCaptcha] = useState(false);
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        console.log('Form submitted:', { name, email, message });
+        if (isCaptcha) { 
+            console.log('Form submitted');
+            // Burada formun gerçek gönderim işlemleri yapılacak
+        } else {
+            console.log('Recaptcha not verified');  
+        }
+    };
+    const handleRecaptchaChange = (value: any) => {
+        setIsCaptcha(true);   //  Recaptcha doğrulandıysa
+                            //set'i true yap ve butonu aktif et
     };
 
+    const validationSchema = Yup.object({
+        name: Yup.string()
+            .required("Doldurulması zorunlu alan*"),
+        message: Yup.string()
+            .required("Doldurulması zorunlu alan*"),
+        email: Yup.string()
+            .required("Doldurulması zorunlu alan*")
+
+    });
+
     return (
-        <div className="all">
-            <div className="container-cn col-8 ">
-                <div className="row">
-                    <div className="col-6 connection-left">
-                        <div><button className="top-span">İletişime Geçin</button></div>
+        <div className="container-fluid connection-all"
+            style={{ backgroundColor: '#181717' }}>
+
+            <div className="container col-8 pt-5 mt-8 pb-5 justify-content-center "
+                style={{ backgroundColor: '#181717' }}>
+
+                <div className="row "
+                    style={{
+                        marginTop: '25px',
+                        paddingTop: '20px',
+                        paddingLeft: '30px',
+                        paddingRight: '30px',
+                        paddingBottom: '100px',
+                        backgroundColor: '#FFFFFF',
+                        borderRadius: '10px'
+                    }}>
+                    <div className="course-left col-12 col-lg-6 pt-15 ml-8 
+                    shadow-lg justify-content-center">
+
+                        <div><button className="top-span ">İletişime Geçin</button></div>
                         <br />
                         <h2>İletişim Bilgileri</h2>
                         <div className="table-cn">
@@ -32,11 +88,11 @@ const Connection = ({ }: Props) => {
                                     <td className="td2">TOBETO</td>
                                 </tr>
                                 <tr>
-                                    <td className="td1">Firma<br/>Unvan:</td>
+                                    <td className="td1">Firma<br />Unvan:</td>
                                     <td className="td2">Avez Elektronik İletişim Eğitim Danışmanlığı Ticaret Anonim Şirketi</td>
                                 </tr>
                                 <tr>
-                                    <td className="td1">Vergi<br/>Dairesi:</td>
+                                    <td className="td1">Vergi<br />Dairesi:</td>
                                     <td className="td2">Beykoz</td>
                                 </tr>
                                 <tr>
@@ -57,10 +113,10 @@ const Connection = ({ }: Props) => {
                                     <td className="td2">Kavacık, Rüzgarlıbahçe Mah. Çampınarı Sok. No:4 Smart Plaza B Blok Kat:3 34805, Beykoz/İstanbul</td>
                                 </tr>
                             </table>
-                        </div><br/><br/>
+                        </div><br /><br />
                         <div className='table-cn2'>
                             <table>
-                            <tr>
+                                <tr>
                                     <td className="td3">İstanbul Kodluyor için Telefon:</td>
                                     <td className="td4">(0216) 969 22 40</td>
                                 </tr>
@@ -75,44 +131,75 @@ const Connection = ({ }: Props) => {
                     </div>
 
 
-                    <div className="col-6 connection-right">
+                    <div className="course-right col-12 col-lg-6 pl-6 pt-5  shadow-lg justify-content-center ">
                         <div><button className="top-span">Mesaj Bırakın</button></div>
                         <br />
                         <h2>İletişim Formu</h2>
-
-                        <form className="contact-form" onSubmit={handleSubmit}>
-                            <label htmlFor="name"></label>
-                            <input
-                                type="text"
-                                id="name"
-                                placeholder='Adınız Soyadınız'
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                            />
-
-                            <label htmlFor="email"></label>
-                            <input
-                                type="email"
-                                id="email"
-                                placeholder='E-Mail'
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-
-                            <label htmlFor="message"></label>
-                            <textarea
-                                id="message"
-                                placeholder='Mesajınız'
-                                value={message}
-                                onChange={(e) => setMessage(e.target.value)}
-                            />
-                            <div className="enoc">
-                                Yukarıdaki form ile toplanan kişisel verileriniz Enocta tarafından talebinize dair işlemlerin yerine getirilmesi ve paylaşmış olduğunuz iletişim adresi üzerinden tanıtım, bülten ve pazarlama içerikleri gönderilmesi amacıyla <a href="#">Aydınlatma Metni </a>çerçevesinde işlenebilecektir.
-                            </div><br />
-                            <button type="submit">Gönder</button>
-                        </form>
+                        <Formik
+                            validationSchema={validationSchema}
+                            initialValues={initialValues}
+                            onSubmit={async (values) => {
+                                console.log(values);
+                            }}
+                        >
 
 
+                            <form className="contact-form" onSubmit={handleSubmit}>
+                                <label htmlFor="name"></label>
+
+                                <FormikInput name="name"
+                                    type="text"
+                                    placeholder='Adınız Soyadınız'
+
+                                />
+
+                                <label htmlFor="email"></label>
+                                <FormikInput
+                                    type="email"
+                                    name="email"
+                                    placeholder='E-Mail'
+                                />
+
+                                {/* <label htmlFor="email"></label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    placeholder='E-Mail'
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                /> */}
+
+                                <label htmlFor="message"></label>
+                                <Field
+                                    as="textarea"
+                                    id="message"
+                                    name="message"
+                                    placeholder='Mesajınız'
+                                />
+                                {/* <textarea
+                                    id="message"
+                                    placeholder='Mesajınız'
+                                    value={message}
+                                    onChange={(e) => setMessage(e.target.value)}
+                                /> */}
+                                <div className="enoc">
+                                    Yukarıdaki form ile toplanan kişisel verileriniz Enocta tarafından talebinize dair işlemlerin yerine getirilmesi ve paylaşmış olduğunuz iletişim adresi üzerinden tanıtım, bülten ve pazarlama içerikleri gönderilmesi amacıyla <a href="#">Aydınlatma Metni </a>çerçevesinde işlenebilecektir.
+                                </div><br />
+                                <div className="capture-style mt-2">
+                                    <ReCAPTCHA
+                                        sitekey={key}
+                                        size="normal"
+                                        hl="tr"
+                                        theme="light"
+                                        onChange={handleRecaptchaChange}
+                                    />
+                                </div><br />
+                                <div className="connection-button">
+                                    <button type="submit" disabled={!isCaptcha}>Gönder</button></div>
+                                    {/* isCaptcha true(doğrulanma) olmuşsa disabled false olacak ve buton görünecek */}
+                            </form>
+
+                        </Formik>
                     </div>
 
                 </div>

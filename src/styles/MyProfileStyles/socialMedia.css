@@ -1,0 +1,67 @@
+.row-feature{
+    border: 2px solid rgb(218, 218, 218);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.row-feature:hover {
+    border-color: #93f; 
+}
+
+.button-feature-1{
+    border-radius: 50px !important;
+    background-color: #fc6d6d;
+}
+
+.button-feature-2{
+    border-radius: 50px !important;
+    background-color:black !important;
+}
+
+.edit-feature{
+    width: 500px !important;
+    height: 37px !important;
+}
+
+.edit-feature:hover { 
+    border-color: #93f !important; 
+    box-shadow: 0 0 5px #93f !important;
+    
+}
+
+.select-feature:hover{
+    border-color: #93f !important; 
+    box-shadow: 0 0 5px #93f !important;
+}
+
+.modal-button{
+    background-color: #93f !important;
+    border-radius:40px 40px !important;
+}
+
+.btn-primary-2 {
+    background-color: #e0dddd !important;
+    color: #020202 !important;
+    width: 222px !important;
+  }
+  
+.btn-primary-2:hover {
+    background-color: #9300ff !important; 
+    color: white !important;
+  }
+  
+.btn-secondary-2 {
+    background-color: #e0dddd !important;
+    color: #020202 !important;
+    width: 222px !important;
+    
+  }
+  
+.btn-secondary-2:hover {
+    background-color: #9300ff !important;
+    color: white !important;
+}
+
+.modal-footer-feature{
+    background-color: #b3b5b6 !important;
+}

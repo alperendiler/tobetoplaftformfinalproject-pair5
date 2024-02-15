@@ -1,0 +1,35 @@
+.table-row-feature{
+    background-color: #DCDCDC !important;
+    height: 30px;
+    padding-top: 5px;
+}
+.sub-table-row{
+    background-color: #EEEEEE !important;
+}
+
+.btn-primary {
+    background-color: #e0dddd; 
+    color: #020202; 
+    width: 222px;
+  }
+  
+.btn-primary:hover {
+    background-color: #9300ff !important;
+    color: white !important;
+  }
+  
+.btn-secondary {
+    background-color: #e0dddd;
+    color: #020202;
+    width: 222px;
+    
+  }
+  
+.btn-secondary:hover {
+    background-color: #9300ff !important;
+    color: white !important;
+}
+
+.modal-footer-feature{
+    background-color: #b3b5b6 !important;
+}

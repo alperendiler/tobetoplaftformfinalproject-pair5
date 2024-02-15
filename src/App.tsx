@@ -20,10 +20,9 @@ import ForgottenPassword from "./pages/ForgottenPassword";
 import NotFound from "./pages/NotFound";
 import EditProfile from "./pages/ProfileInformation/EditProfile";
 import Connection from "./pages/Connection";
-
-
 import { ToastContainer } from 'react-toastify';
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+ 
 
 interface Props { }
 function App({ }: Props) {
@@ -178,6 +177,7 @@ function App({ }: Props) {
           </div>
         }
       />
+    
       </Routes>
     </>
 

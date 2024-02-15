@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "../../styles/personalInformation.css";
 import { GetLanguageResponse } from "../../models/responses/language/getLanguageResponse";
@@ -8,6 +8,7 @@ import { GetLanguageLevelResponse } from "../../models/responses/languageLevel/g
 import languageLevelService from "../../services/languageLevelService";
 import { GetStudentLanguageResponse } from "../../models/responses/studentLanguage/getStudentLanguageResponse";
 import studentLanguageService from "../../services/studentLanguageService";
+import "../../styles/language.css"
 
 interface LanguageInformationForm {
   language: string;
@@ -22,12 +23,8 @@ const LanguageInformation: React.FC = () => {
   >([]);
 
   const [languages, setLanguages] = useState<GetLanguageResponse[]>([]);
-  const [languageLevels, setLanguageLevels] = useState<
-    GetLanguageLevelResponse[]
-  >([]);
-  const [studentLanguages, setStudentLanguages] = useState<
-    GetStudentLanguageResponse[]
-  >([]);
+  const [languageLevels, setLanguageLevels] = useState<GetLanguageLevelResponse[]>([]);
+  const [studentLanguages, setStudentLanguages] = useState<GetStudentLanguageResponse[]>([]);
 
   useEffect(() => {
     fetchLanguages();
@@ -49,9 +46,13 @@ const LanguageInformation: React.FC = () => {
     fetchStudentLanguages();
   }, []);
   const fetchStudentLanguages = async () => {
-      const response = await studentLanguageService.GetListByStudent(0,50,"0d0d673c-54f8-4178-9bff-08dc26371272");
-      setStudentLanguages(response.data.items);
-    
+    const studentId = localStorage.getItem("studentId")!;
+    const response = await studentLanguageService.GetListByStudent(
+      0,
+      50,
+      studentId
+    );
+    setStudentLanguages(response.data.items);
   };
 
   const handleDelete = async (studentLanguageId: string) => {
@@ -62,17 +63,15 @@ const LanguageInformation: React.FC = () => {
   };
 
   const handleSubmit = async (language: string, level: string) => {
+    const studentId = localStorage.getItem("studentId")!;
     const response = await studentLanguageService.add({
-      studentId: "0d0d673c-54f8-4178-9bff-08dc26371272",
+      studentId: studentId,
       languageId: language,
       languageLevelId: level,
     });
-    setStudentLanguages((studentLanguages) => [
-      ...studentLanguages,
-      response.data,
-    ]);
+    setStudentLanguages((studentLanguages) => [...studentLanguages,response.data]);
   };
-
+  
   const initialValues: LanguageInformationForm = {
     language: "",
     level: "",
@@ -98,7 +97,6 @@ const LanguageInformation: React.FC = () => {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={async (values, actions) => {
-          console.log(values);
           setSelectedLanguage(values.language);
           setSelectedLevel(values.level);
           actions.setSubmitting(false);
@@ -120,6 +118,9 @@ const LanguageInformation: React.FC = () => {
                   </option>
                 ))}
               </Field>
+              <ErrorMessage name="language">
+                {(message) => <p className="text-danger">{message}</p>}
+              </ErrorMessage>
             </div>
             <div className="col-12 col-md-6">
               <Field
@@ -130,8 +131,7 @@ const LanguageInformation: React.FC = () => {
                 <option value="">Seviye Seçiniz*</option>
                 {languageLevels && languageLevels.length > 0 ? (
   languageLevels.map((languageLevel) => ( 
-                 <option>
-
+                 <option value={languageLevel.id}>
                     {languageLevel.level}
                   </option>
                   ))
@@ -139,6 +139,9 @@ const LanguageInformation: React.FC = () => {
                    <div></div>
                   )}  
               </Field>
+              <ErrorMessage name="level">
+                {(message) => <p className="text-danger">{message}</p>}
+              </ErrorMessage>
             </div>
           </div>
           <button type="submit" className="btn btn-personal-information">
@@ -164,9 +167,10 @@ const LanguageInformation: React.FC = () => {
               </div>
               <div className="col-md-6">
                 {item.languageName}
+                <br/>
                 {item.languageLevel}
               </div>
-              <div className="col-md-2 pt-3">
+              <div className="col-md-2 pt-3" >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="25"
@@ -178,19 +182,69 @@ const LanguageInformation: React.FC = () => {
                   <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z" />
                 </svg>
               </div>
-              <div className="col-md-2 pt-3">
+              <div className="col-md-2 pt-3"  data-bs-toggle="modal"
+                data-bs-target="#exampleModal">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="25"
-                  height="25"
-                  fill="currentColor"
+                  width="23"
+                  height="23"
+                  fill="red"
                   className="bi bi-trash"
                   viewBox="0 0 16 16"
-                  onClick={() => handleDelete(item.id)}
                 >
                   <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
                   <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
                 </svg>
+                <div
+                  className="modal fade"
+                  id="exampleModal"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div className="modal-dialog  modal-dialog-centered ">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <img src="https://tobeto.com/_next/static/media/alert.309dc4c0.svg"></img>
+                        <br />
+                        <br />
+                        <h6 className="modal-title">
+                          <b>
+                          Seçilen yabancı dili silmek istediğinize emin misiniz?
+                          </b>
+                        </h6>
+                        <button
+                          type="button"
+                          className="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div className="modal-body text-muted">
+                        <p>
+                        Bu işlem geri alınamaz.
+                        </p>
+                      </div>
+                      <div className=" modal-footer modal-footer-feature">
+                        <button
+                          type="button"
+                          className="btn btn-secondary"
+                          data-bs-dismiss="modal"
+                        >
+                          Hayır
+                        </button>
+
+                        <button
+                          type="button"
+                          className="btn btn-primary"
+                          data-bs-dismiss="modal"
+                          onClick={() => handleDelete(item.id)}
+                        >
+                          Evet
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

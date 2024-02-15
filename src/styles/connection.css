@@ -1,185 +1,188 @@
-.all{
-  background-color:#181717;
-  padding-bottom: 15px;
+.yup-error-message {
+  font-size: 8px;
+  text-align: left;
+  color: red;
+  /* İsteğe bağlı olarak hata mesajının rengini de belirleyebilirsiniz */
+}
+
+.capture-style {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bordered {
+  border: 1px solid red;
+}
+
+.course-left {
+  padding-top: 40px;
+  justify-content: center;
+  text-align: center;
+}
+
+.course-right {
   padding-top: 20px;
-  font-family: 'Poppins', sans-serif;
-  }
-  
-  
-  .container-cn{
-     background-color: #ffffff;
-     height: 800px;
-     text-align: center;
-     margin-top: 80px;
-     margin-left: auto;
-     margin-right: auto;
-     border-radius: 10px;
-     padding-right: 30px;
-  }
-  
-  .bordered{
-      border: 1px solid red;
-  }
-  
-  .connection-left{
-  height:800px;
-  padding :15px;
-  padding-left: 30px;
-  padding-top: 30px;
-  
-  }
-  
-  .connection-right{
-  height: 800px;
-  padding :15px;
-  padding-top: 30px;
-  padding-left: 40px;
-  }
-  
-  .top-span{
-      
-      font-size: 11px;
-      width: 100px;
-      font-weight: bold;
-      text-align: center;
-      background-color: blueviolet;
-      color:white;
-      height: 22px;
-      justify-content: center;
-      box-shadow: none;
-      border: none;
-      border-radius: 3px;
-  }
-  
-  .container-cn h2{
-      font-weight: bold;
-  }
-  
-  .container-cn table{
-      text-align: left;
-      font-size: 11px;
-      width:100% !important;
-  }
-  
-  .td1{
-     
-      font-weight: bold;
-      width:80px;
-  }
-  
-  .td2{
-     padding-left: -20px;
-     color:gray;
-  }
-  .td3{
-      font-weight: bold;
-      width:180px;
-  }
-  
-  .td4{
-      color:gray;
-  }
-  
-  .container-cn table tr{
-      border-bottom: 1px solid rgba(202, 202, 202,30%);
-      margin-left: 30px;          
-      height: 45px;
-      border-width: 100;
-  }
-  
-  .table-cn{
-      padding-left:50px;
-      padding-right: 30px;
-  }
-  
-  .form-center{
-      text-align: center;
-  }
-  .table-cn2{
-  padding-left:50px;
+  justify-content: center;
+  text-align: center;
+}
+
+.top-span {
+
+  font-size: 11px;
+  width: 100px;
+  font-weight: bold;
+  text-align: center;
+  background-color: blueviolet;
+  color: white;
+  height: 22px;
+  justify-content: center;
+  box-shadow: none;
+  border: none;
+  border-radius: 3px;
+
+}
+
+.container h2 {
+  font-weight: bold;
+}
+
+.container table {
+  text-align: left;
+  font-size: 11px;
+  width: 100% !important;
+}
+
+.td1 {
+
+  font-weight: bold;
+  width: 80px;
+}
+
+.td2 {
+  padding-left: -20px;
+  color: gray;
+}
+
+.td3 {
+  font-weight: bold;
+  width: 180px;
+}
+
+.td4 {
+  color: gray;
+}
+
+.container table tr {
+  border-bottom: 1px solid rgba(202, 202, 202, 30%);
+  margin-left: 30px;
+  height: 45px;
+  border-width: 100;
+}
+
+.table-cn {
+  padding-left: 50px;
+  padding-right: 30px;
+}
+
+.form-center {
+  text-align: center;
+}
+
+.table-cn2 {
+  padding-left: 50px;
   padding-right: 30px;
   font-size: 11px;
-  }
-  
-  .contact-form {
-      display: flex;
-      flex-direction: column;
-      max-width: 350px;
-      margin: 0 auto;
-    }
-    
-    .contact-form label {
-      margin-bottom: 0.5rem;
-    }
-    
-    .contact-form input {
-      padding-left: 10px;
-      margin-bottom: 1rem;
-      padding: 0.5rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-family: 'Poppins', sans-serif;
-      font-size: small;
-    }
-    .contact-form input:hover{
-     
-      padding-left: 10px;
-      margin-bottom: 1rem;
-      padding: 0.5rem;
-      border: 4px outset rgb(194, 149, 236);
-      border-radius: 4px;
-      font-family: 'Poppins', sans-serif;
-      font-size: small;
-  
-    }
-  
-    .contact-form textarea{
-      height:200px;
-      margin-bottom: 1rem;
-      padding: 0.5rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-family: 'Poppins', sans-serif;
-      font-size: small;
-  
-    }
-    .contact-form textarea:hover{
-      height:200px;
-      margin-bottom: 1rem;
-      padding: 0.5rem;
-      border: 4px outset rgb(194, 149, 236);
-      border-radius: 4px;
-      font-family: 'Poppins', sans-serif;
-      font-size: small;
-  
-    }
-    
-    .contact-form button {
-      padding: 0.5rem 0.5rem;
-      background-color: blueviolet;
-      color: #fff;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      width: 80px;
-      text-align: center;
-      justify-content: center;
-      margin-left: 80px;
-      font-size: small;
-      font-weight: bold;
-      
-    }
-    
-    .contact-form button:hover {
-      background-color: rgb(103, 26, 175);
-    }
-    .enoc{
-      font-size: 9px;
-      text-align: center;
-     
-     
-    }
-  
-    .a{
-      color:purple;
-    }
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+.contact-form label {
+  margin-bottom: 0.5rem;
+}
+
+.contact-form input {
+  height: 30px;
+  padding-left: 10px;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-size: small;
+}
+
+.contact-form input:focus {
+  height: 30px;
+  padding-left: 10px;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border: 4px solid rgba(194, 149, 236, 0.8);
+
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-size: small;
+}
+
+.contact-form textarea {
+  height: 200px;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-size: small;
+}
+
+.contact-form textarea:focus {
+  height: 200px;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border: 4px solid rgba(194, 149, 236, 0.8);
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-size: small;
+}
+
+.connection-button {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-form button {
+  padding: 0.5rem 0.5rem;
+  background-color: blueviolet;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  width: 80px;
+  font-size: small;
+  font-weight: bold;
+
+}
+
+.contact-form button:hover {
+  background-color: rgb(103, 26, 175);
+}
+
+button:disabled {
+  opacity: 0.5;
+  /* Opaklığı azalttık */
+
+}
+
+.enoc {
+  font-size: 9px;
+  text-align: center;
+}
+
+.a {
+  color: purple;
+}
