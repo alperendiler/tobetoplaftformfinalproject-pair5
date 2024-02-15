@@ -5,5 +5,5 @@ export interface AddCertificateResponse{
         fileName: string
         fileExtension :string
         filePath: string 
-        createdDate: string
+        createdDate: Date
  }

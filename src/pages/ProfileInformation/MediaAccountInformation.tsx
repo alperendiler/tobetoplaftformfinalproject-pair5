@@ -40,11 +40,11 @@ export default function MediaAccountInformation({}: Props) {
     fetchStudentSocialMedias();
   }, []);
   const fetchStudentSocialMedias = async () => {
-    const userId = localStorage.getItem("userId")!;
+    const studentId = localStorage.getItem("studentId")!;
     const response = await studentSocialMediaService.getListByStudentId(
       0,
       50,
-      userId
+      studentId
     );
     setSocialMediaStudents(response.data.items);
   };

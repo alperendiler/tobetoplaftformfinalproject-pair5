@@ -5,6 +5,7 @@ import { AddCertificateRequest } from "../../models/requests/certificate/addCert
 import { GetCertificateResponse } from "../../models/responses/certificate/getCertificateResponse";
 import "../../styles/certificate.css";
 import { Link } from "react-router-dom";
+import { format } from "date-fns";
 
 
 type Props = {};
@@ -137,7 +138,7 @@ export default function CertificateInformation({}: Props) {
                     </div>
                     <div className="col-md-2 mt-3"> {file.fileExtension}
                     </div>
-                    <div className="col-md-2 mt-3"> {file.createdDate}
+                    <div className="col-md-2 mt-3"> { format(new Date(file.createdDate), 'dd/MM/yyyy')}
                     </div>
                     <div className="col-md-2 mt-3"> 
                     <div className="row">
