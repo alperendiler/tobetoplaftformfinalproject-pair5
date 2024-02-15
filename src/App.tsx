@@ -111,7 +111,7 @@ function App({ }: Props) {
         }
       />
       <Route
-        path="/course/:id"
+        path="/courses/:id"
         element={
           <ProtectedRoute> 
             <CourseDetail />

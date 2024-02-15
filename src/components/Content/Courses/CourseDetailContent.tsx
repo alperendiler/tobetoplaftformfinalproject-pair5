@@ -290,10 +290,10 @@ export default function CourseDetailContent({ }: Props) {
                 {showVideo2 && (
                   <div className="video">
                     {/* Video buraya eklenebilir */}
-                    <iframe
-                      width="540"
+                    <iframe 
+                      width="225%"
                       height="400"
-                      src="https://www.youtube.com/embed/JQK97_0gtho?si=BGpAX8vK11AbqCG0"
+                      src="https://lms.tobeto.com/tobeto/eep/main/activity/896?isPopup=True&aActiveTab=content"
                       title="YouTube video player"
 
                     ></iframe>
