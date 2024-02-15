@@ -18,7 +18,7 @@ function MyMedia() {
   }, []);
   const getMedias = async () => {
     const studentId = localStorage.getItem("studentId")!;
-
+    console.log(studentId)
     const response = await socialMediaStudentService.GetListByUserId(
       0,
       10,
