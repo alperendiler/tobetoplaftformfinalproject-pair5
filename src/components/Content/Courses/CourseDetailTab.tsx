@@ -1,7 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CourseDetailContent from './CourseDetailContent';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./CourseDetailTab.css";
+import { useParams } from 'react-router';
+import { GetCourseResponse } from '../../../models/responses/course/getCourseResponse';
+import courseService from '../../../services/courseService';
 
 
 
@@ -9,6 +12,20 @@ import "./CourseDetailTab.css";
 type Props = {}
 
 export default function CourseDetailTab({}: Props) {
+  const [course, setCourse] =  useState<GetCourseResponse |any >();
+  useEffect(() => {
+    getCourse()
+  }, [])
+  let {id} = useParams();
+  const getCourse = async ()=>{
+    if(id)
+    {
+      const response = await courseService.getById(id);
+      setCourse(response.data);
+
+    }
+  }
+
   
   return (
     <div>
@@ -36,14 +53,14 @@ export default function CourseDetailTab({}: Props) {
                           <i className="bi bi-calendar-minus"></i>
                           </td>
                           <td className="first-cols">Başlangıç</td>
-                          <td className="table-desc">01.01.2024</td>
+                          <td className="table-desc">{course?.startDate}</td>
                         </tr>
 
                         <tr className="table-row">
                           <td>
                           </td>
                           <td className="first-cols">Bitiş</td>
-                          <td className="table-desc">01.02.2024</td>
+                          <td className="table-desc">{course?.endDate}</td>
                         </tr>
 
                         <tr className="table-row">
@@ -51,14 +68,14 @@ export default function CourseDetailTab({}: Props) {
                           <i className="bi bi-stopwatch"></i>
                           </td>
                           <td className="first-cols">Geçirdiğin Süre</td>
-                          <td className="table-desc">28 sa 28 dk</td>
+                          <td className="table-desc">{course?.spentTime}</td>
                         </tr>
                         <tr>
                           <td>
                           <i className="bi bi-stopwatch"></i>
                           </td>
                           <td className="first-cols">Tahmini Süre</td>
-                          <td className="table-desc">65 g 36 sa 30 dk</td>
+                          <td className="table-desc">{course?.estimatedTime}</td>
                         </tr>
 
                         <tr>

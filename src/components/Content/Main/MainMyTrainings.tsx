@@ -42,7 +42,7 @@ export default function MainMyTrainings({}: Props) {
     </div>
   ))
   ) : (
-    <p>Başvurular bulunamadı.</p>
+    <p>Eğitimler bulunamadı.</p>
   )}  
 
     

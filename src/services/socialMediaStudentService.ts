@@ -25,6 +25,9 @@ constructor() {
 GetListByUserId(pageIndex: number, pageSize: number, userId: string): Promise<AxiosResponse<GetAllSocialMediaStudentResponse, any>> {
     return axiosInstance.get<GetAllSocialMediaStudentResponse>('SocialMediaStudents/getlistByUserId'+`?Index=${pageIndex}&Size=${pageSize}&UserId=${userId}`);
 }
+getListByStudentId(pageIndex: number, pageSize: number,id: string|null): Promise<AxiosResponse<GetAllSocialMediaStudentResponse, any>> {
+    return axiosInstance.get<GetAllSocialMediaStudentResponse>(this.apiUrl + "/getlistByStudentId"+`?Index=${pageIndex}&Size=${pageSize}`+"&id=" + id);
+}
 }
 
 export default new SocialMediaStudentService();
