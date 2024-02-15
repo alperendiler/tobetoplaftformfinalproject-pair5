@@ -116,7 +116,7 @@ export default function CertificateInformation({}: Props) {
                 </form>
               </div>
               <div >
-                <div className="row mt-4 mb-4 table-row-feature">
+                <div className="row mt-4 mb-2 table-row-feature">
                 <div className="col-md-6 text-muted"> 
                 Dosya Adı
                     </div>
