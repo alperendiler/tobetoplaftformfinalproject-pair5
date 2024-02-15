@@ -22,7 +22,6 @@ import EditProfile from "./pages/ProfileInformation/EditProfile";
 import Connection from "./pages/Connection";
 import { ToastContainer } from 'react-toastify';
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
-import TestModal from "./pages/TestModal";
  
 
 interface Props { }
@@ -178,16 +177,7 @@ function App({ }: Props) {
           </div>
         }
       />
-      <Route
-        path="/testModal"
-        element={
-          <div>
-          
-            <TestModal/>
-           
-          </div>
-        }
-      />
+    
       </Routes>
     </>
 
