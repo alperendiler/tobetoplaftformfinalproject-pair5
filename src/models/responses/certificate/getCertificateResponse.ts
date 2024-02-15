@@ -4,4 +4,5 @@ export interface GetCertificateResponse{
     fileName: string
     fileExtension :string
     filePath: string 
+    createdDate :string
 }
