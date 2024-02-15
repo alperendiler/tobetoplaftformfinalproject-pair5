@@ -1,10 +1,10 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import "../../styles/personalInformation.css";
-import axios from "axios";
 import certificateService from "../../services/certificateService";
-import { add } from "date-fns";
 import { AddCertificateRequest } from "../../models/requests/certificate/addCertificateRequest";
 import { GetCertificateResponse } from "../../models/responses/certificate/getCertificateResponse";
+import "../../styles/certificate.css";
+import { Link } from "react-router-dom";
 
 
 type Props = {};
@@ -12,6 +12,7 @@ type Props = {};
 export default function CertificateInformation({}: Props) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [fileList, setFileList] = useState<GetCertificateResponse[]>([]);
+  
 
   useEffect(() => {
     fetchCertificates();
@@ -55,6 +56,22 @@ export default function CertificateInformation({}: Props) {
     }
   };
 
+  const handleDownload = (filePath:any, fileName:any) => {
+    
+    const downloadUrl = `${process.env.PUBLIC_URL}/${filePath}`;
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleDelete = async (fileId: string) => {
+    const response = await certificateService.delete(fileId);
+    setFileList(fileList.filter((i) => i.id !== fileId));
+  };
+  
   return (
     <>
       <div className="row">
@@ -94,17 +111,112 @@ export default function CertificateInformation({}: Props) {
                     accept="application/pdf"
                     onChange={handleFileChange}
                   />
-                  <span>Dosya Yükle</span>
-                  <button type="submit">Kaydet</button>
+                
+                  <button type="submit">Dosya Yükle</button>
                 </form>
               </div>
-              <div>
+              <div >
+                <div className="row mt-4 mb-4 table-row-feature">
+                <div className="col-md-6 text-muted"> 
+                Dosya Adı
+                    </div>
+                    <div className="col-md-2 text-muted"> 
+                    Dosya Türü
+                    </div>
+                    <div className="col-md-2 text-muted"> 
+                    Tarih
+                    </div>
+                    <div className="col-md-2 text-muted"> 
+                    işlem 
+                    </div>
+                </div>
+                
                 {fileList.map((file,index) => (
-                  <div key={index}>
-                    <p>Name: {file.fileName}</p>
-                    <p>Ext: {file.fileExtension}</p>
-                    <p>Path: {file.filePath}</p>
-                    <p>Id: {file.id}</p>
+                  <div key={index} className="row sub-table-row mt-2 mb-2">
+                    <div className="col-md-6 mt-3"> {file.fileName}
+                    </div>
+                    <div className="col-md-2 mt-3"> {file.fileExtension}
+                    </div>
+                    <div className="col-md-2 mt-3"> {file.createdDate}
+                    </div>
+                    <div className="col-md-2 mt-3"> 
+                    <div className="row">
+                    <div className="col-md-6">
+                    <span onClick={() => handleDownload(file.filePath, file.fileName)} style={{ cursor: 'pointer' }} title="indirme" >
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="LightBlue" className="bi bi-file-earmark-fill mt-2" viewBox="0 0 16 16">
+      <path d="M4 0h5.293A1 1 0 0 1 10 .293L13.707 4a1 1 0 0 1 .293.707V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2m5.5 1.5v2a1 1 0 0 0 1 1h2z"/>
+    </svg>
+  </span>
+                    </div>
+                    <div className="col-md-6">
+                    <span
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                title="silme">
+                   <svg
+                        xmlns="https://tobeto.com/trash.svg"
+                        width="23"
+                        height="23"
+                        fill="red"
+                        className="ms-1 mt-2"
+                      >
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+                      </svg>
+                  </span> 
+                  <div
+                  className="modal fade"
+                  id="exampleModal"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div className="modal-dialog  modal-dialog-centered ">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <img src="https://tobeto.com/_next/static/media/alert.309dc4c0.svg"></img>
+                        <br />
+                        <br />
+                        <h6 className="modal-title">
+                          <b>
+                          Seçilen sertifikayı silmek istediğinize emin misiniz?
+                          </b>
+                        </h6>
+                        <button
+                          type="button"
+                          className="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div className="modal-body text-muted">
+                        <p>
+                        Bu işlem geri alınamaz.
+                        </p>
+                      </div>
+                      <div className=" modal-footer modal-footer-feature">
+                        <button
+                          type="button"
+                          className="btn btn-secondary"
+                          data-bs-dismiss="modal"
+                        >
+                          Hayır
+                        </button>
+
+                        <button
+                          type="button"
+                          className="btn btn-primary"
+                          data-bs-dismiss="modal"
+                          onClick={() => handleDelete(file.id)}
+                        >
+                          Evet
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div> 
+                    </div>
+                    </div>
+                    </div>
                   </div>
                   ))}
               </div>
