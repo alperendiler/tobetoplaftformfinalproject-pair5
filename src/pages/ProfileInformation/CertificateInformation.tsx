@@ -1,15 +1,28 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import "../../styles/personalInformation.css";
 import axios from "axios";
 import certificateService from "../../services/certificateService";
 import { add } from "date-fns";
 import { AddCertificateRequest } from "../../models/requests/certificate/addCertificateRequest";
+import { GetCertificateResponse } from "../../models/responses/certificate/getCertificateResponse";
 
 
 type Props = {};
 
 export default function CertificateInformation({}: Props) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [fileList, setFileList] = useState<GetCertificateResponse[]>([]);
+
+  useEffect(() => {
+    fetchCertificates();
+  }, []);
+  const fetchCertificates = async () => {
+    const studentId = localStorage.getItem("studentId")!;
+
+    const response = await certificateService.GetListByStudent(0, 10, studentId);
+    console.log(response);
+    setFileList(response.data.items);
+  };
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -29,21 +42,11 @@ export default function CertificateInformation({}: Props) {
     }
 
     try {
-      const response = await certificateService.add(addCertificateRequest)
-
-      // const response = await axios.post(
-      //   "http://localhost:5155/api/Certificates/add",
-      //   formData,
-      //   {
-      //     headers: {
-      //       "Content-Type": "multipart/form-data",
-      //     },
-      //   }
-      // );
+      const response = await certificateService.UploadCertificate(addCertificateRequest);
+      console.log(response);
 
       if (response.status === 200) {
-        console.log(response.data.filePath);
-        console.log("PDF uploaded successfully!");
+        setFileList((fileList) => [...fileList, response.data])
       } else {
         console.error("Failed to upload PDF!");
       }
@@ -94,6 +97,16 @@ export default function CertificateInformation({}: Props) {
                   <span>Dosya Yükle</span>
                   <button type="submit">Kaydet</button>
                 </form>
+              </div>
+              <div>
+                {fileList.map((file,index) => (
+                  <div key={index}>
+                    <p>Name: {file.fileName}</p>
+                    <p>Ext: {file.fileExtension}</p>
+                    <p>Path: {file.filePath}</p>
+                    <p>Id: {file.id}</p>
+                  </div>
+                  ))}
               </div>
             </div>
           </div>

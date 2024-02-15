@@ -7,6 +7,7 @@ import { GetCertificateResponse } from './../models/responses/certificate/getCer
 import { GetAllCertificateResponse } from './../models/responses/certificate/getAllCertificateResponse';
 import { BaseService } from "../core/services/baseService";
 import axiosInstance from '../core/interceptors/axiosInterceptor';
+import { strict } from 'assert';
 
 class CertificateService extends BaseService<
 GetAllCertificateResponse,
@@ -22,8 +23,20 @@ constructor() {
 }
 
 GetListByStudent(pageIndex: number, pageSize: number, studentId: string): Promise<AxiosResponse<GetAllCertificateResponse, any>> {
-    return axiosInstance.get<GetAllCertificateResponse>('Certificates/getlistByStudent'+`?Index=${pageIndex}&Size=${pageSize}&StudentId=${studentId}`);
+    return axiosInstance.get<GetAllCertificateResponse>(this.apiUrl+'/getlistByStudentId'+`?Index=${pageIndex}&Size=${pageSize}&StudentId=${studentId}`);
 }
+
+UploadCertificate(formData:AddCertificateRequest):Promise<AxiosResponse<AddCertificateResponse,any>> {
+    return axiosInstance.post(this.apiUrl+"/add",
+       formData,
+       {
+         headers: {
+           "Content-Type": "multipart/form-data",
+         },
+       }
+     );
+}
+
 }
 
 export default new CertificateService();
