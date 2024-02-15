@@ -254,7 +254,6 @@ export default function MediaAccountInformation({}: Props) {
                                 className="form-select select-feature"
                                 name="socialMediaName"
                                 aria-label="Default select example"
-                                value={selectForUpdateSocialMediaStudent?.socialMediaId}
                               >
                                 <option value="">Seçiniz</option>
                                 {socialMedias && socialMedias.length > 0 ? (
@@ -277,7 +276,6 @@ export default function MediaAccountInformation({}: Props) {
                                 name="socialMediaUrl"
                                 type="text"
                                 placeholder="https://"
-                                value={selectForUpdateSocialMediaStudent?.url}
                               />
                             </div>
                           </div>
