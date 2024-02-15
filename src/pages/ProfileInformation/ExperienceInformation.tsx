@@ -146,8 +146,7 @@ export default function ExperienceInformation({}: Props) {
       300,
       "En fazla 300 karakter girebilirsiniz"
     ),
-    startDate: Yup.date().required("Doldurulması zorunlu alan*"),
-    endDate: Yup.date().required("Doldurulması zorunlu alan*"),
+  
   });
 
   return (
