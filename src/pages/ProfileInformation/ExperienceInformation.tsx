@@ -307,7 +307,8 @@ export default function ExperienceInformation({}: Props) {
             <div key={experience.id} className="my-grade">
               <div className="grade-header">
                 <span className="grade-date">
-                  {experience.startDate} - {experience.endDate}{" "}
+                {new Date(experience.startDate).getDate()}.{new Date(experience.startDate).getMonth()}.{new Date(experience.startDate).getFullYear()}
+                  -        {new Date(experience.endDate).getDate()}.{new Date(experience.endDate).getMonth()}.{new Date(experience.endDate).getFullYear()}{" "}
                 </span>
               </div>
               <div className="grade-details">

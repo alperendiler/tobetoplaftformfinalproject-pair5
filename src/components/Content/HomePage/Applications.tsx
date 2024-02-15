@@ -12,8 +12,8 @@ export default function Applications({}: Props) {
 
      }, []); 
      const fetchApplications = async () => {
-      
-        const response = await applicationService.getAll(0, 4);
+      const studentId = localStorage.getItem("studentId")
+        const response = await applicationService.getListByStudentId(0, 1,studentId);
         setApplications(response.data.items);
      
     };

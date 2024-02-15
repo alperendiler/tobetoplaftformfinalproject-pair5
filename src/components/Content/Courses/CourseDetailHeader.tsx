@@ -2,6 +2,10 @@
 import "./courseDetailHeader.css"
 import React, { useState, useEffect } from "react";
 import Heart from "react-animated-heart";
+import { GetAllCourseResponse } from "../../../models/responses/course/getAllCourseResponse";
+import courseService from "../../../services/courseService";
+import { useParams } from "react-router";
+import { GetCourseResponse } from "../../../models/responses/course/getCourseResponse";
 type Props = {}
 
 
@@ -12,9 +16,20 @@ export default function CourseHeader({ }: Props) {
   const [isClick, setClick] = useState(false);
   const [likeCount, setLikeCount] = useState(104); // Başlangıç değeri
   const [showNotification, setShowNotification] = useState(false);
- 
+  const [courses, setCourses] =  useState<GetCourseResponse |any >();
 
+useEffect(() => {
+  getCourse()
+}, [])
+let {id} = useParams();
+  const getCourse = async ()=>{
+    if(id)
+    {
+      const response = await courseService.getById(id);
+      setCourses(response.data);
 
+    }
+  }
 
   const toggleFavorite = () => {
     setIsFavorite(!isFavorite);
@@ -70,7 +85,7 @@ export default function CourseHeader({ }: Props) {
                       data-gtm-vis-total-visible-time103964688_7="100"
                       data-gtm-vis-has-fired103964688_7="1"
                     >
-                      <h3>Softskill: İş Becerileri</h3>
+                      <h3>{courses?.name}</h3>
 
                       <div className="date-info-container">
                         <span>

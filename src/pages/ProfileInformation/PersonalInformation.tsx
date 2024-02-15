@@ -103,6 +103,7 @@ export default function PersonalInformation({}: Props) {
       setUsers(userResponse.data)
       console.log(userResponse.data)
       const student = await studentService.getByUserId(userId);
+      console.log(userId)
       setStudentId(student.data.id)
       const personalInformationResponse = await personalInformationService.getByStudentId(student.data.id)     
       setPersonalInformationValues(personalInformationResponse.data)
