@@ -9,6 +9,8 @@ import studentSocialMediaService from "../../services/socialMediaStudentService"
 import { GetSocialMediaStudentResponse } from "../../models/responses/SocialMediaStudentResponse.ts/getSocialMediaStudentResponse";
 import socialMediaStudentService from "../../services/socialMediaStudentService";
 import "../../styles/MyProfileStyles/socialMedia.css";
+import { ToastContainer } from "react-toastify";
+import { ca } from "date-fns/locale";
 
 type Props = {};
 interface MediaAccountForm {
@@ -51,16 +53,17 @@ export default function MediaAccountInformation({}: Props) {
 
   const handleSubmit = async (socialMediaName: string, url: string) => {
     const studentId = localStorage.getItem("studentId")!;
-
-    const response = await socialMediaStudentService.add({
-      studentId: studentId,
-      socialMediaId: socialMediaName,
-      url: url,
-    });
-    setSocialMediaStudents((socialMediaStudents) => [
-      ...socialMediaStudents,
-      response.data,
-    ]);
+      const response = await socialMediaStudentService.add({
+        studentId: studentId,
+        socialMediaId: socialMediaName,
+        url: url,
+      });
+      if(response.status == 200){
+        setSocialMediaStudents((socialMediaStudents) => [
+          ...socialMediaStudents,
+          response.data,
+        ]);
+      }
   };
 
   const handleDelete = async (socialMediaStudentId: string) => {
@@ -83,6 +86,7 @@ export default function MediaAccountInformation({}: Props) {
   });
   return (
     <>
+      <ToastContainer />
       <div className="row">
         <div className="">
           <div className="row">
@@ -229,9 +233,7 @@ export default function MediaAccountInformation({}: Props) {
                         className="bi bi-pencil-square ms-1 mt-1"
                       >
                         <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                        <path
-                          d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"
-                        />
+                        <path d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
                       </svg>
                     </button>
                     <div
@@ -256,11 +258,8 @@ export default function MediaAccountInformation({}: Props) {
                               >
                                 <option value="">Seçiniz</option>
                                 {socialMedias && socialMedias.length > 0 ? (
-                                  socialMedias.map((socialMedia,index) => (
-                                    <option
-                                      key={index}
-                                      value={socialMedia.id}
-                                    >
+                                  socialMedias.map((socialMedia, index) => (
+                                    <option key={index} value={socialMedia.id}>
                                       {socialMedia.name}
                                     </option>
                                   ))
