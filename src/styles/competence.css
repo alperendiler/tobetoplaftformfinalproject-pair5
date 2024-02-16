@@ -1,7 +1,7 @@
 .btn-primary {
-    background-color: #e0dddd; 
-    color: #020202; 
-    width: 222px;
+  background-color: #e0dddd !important;
+  color: #020202 !important;
+  width: 222px !important;
   }
   
 .btn-primary:hover {
@@ -10,9 +10,9 @@
   }
   
 .btn-secondary {
-    background-color: #e0dddd;
-    color: #020202;
-    width: 222px;
+  background-color: #e0dddd !important;
+  color: #020202 !important;
+  width: 222px !important;
     
   }
   
