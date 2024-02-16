@@ -4,7 +4,7 @@ export interface GetAllCertificateResponse{
         fileName: string
         fileExtension :string
         filePath: string 
-        createdDate: string
+        createdDate: Date
  }
 
 export interface GetAllCertificateResponse{
