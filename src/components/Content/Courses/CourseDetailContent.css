@@ -1,15 +1,7 @@
-.course-all {
-  background-color: white;
-  font-family: 'Poppins', sans-serif;
-}
+
 
 .imageWord{
   max-width: 540px;
-}
-
-.container-course {
-  background-color: #ffffff;
-  height: 1000px;
 }
 
 .course-rigth .course-left {
@@ -18,6 +10,7 @@
 
 .accordion-button{
 font-weight: bold;
+text-align: left;
 }
 
 .accordion-content-all{
@@ -30,11 +23,13 @@ font-weight: bold;
 font-size: 14px;
 font-weight: 600; 
 cursor: pointer;  /*imlec tıklanabilir olsun*/
+text-align: left;
 }
 
 .accordion-timer{
     font-size: 11px;
     color: gray;
+    text-align: left;
  
 }
 

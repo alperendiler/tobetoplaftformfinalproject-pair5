@@ -30,15 +30,16 @@ export default function CourseDetailContent({ }: Props) {
 
   return (
     <>
-      <div className='course-all'>
-        <div className="container col-12 " style={{backgroundColor:"white", height:"1000px"}}>
-          <div className="row">
-            <div className="container col-5 course-left col-lg-5 ">
-              <div className="activity-content-menu">
+      <div className="container-fluid " 
+            style={{ backgroundColor: 'white' }}>
+        <div className="container col-12  " style={{backgroundColor:"white", height:"1000px"}}>
+          <div className="row ">
+            <div className="container col-12 course-left col-lg-5  pt-0">
+              <div className="activity-content-menu ">
 
                 <div className="accordion" id="accordionExample">
 
-                  <div className="accordion-item">
+                  <div className="accordion-item ">
                     <h2 className="accordion-header" id="headingTwo">
                       <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                         Microsoft Word - Word Processor
@@ -47,7 +48,7 @@ export default function CourseDetailContent({ }: Props) {
                     <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                       <div className="accordion-body">
                         <div className="accordion-content-all col-12">
-                          <div className="accordion-content-two col-10">
+                          <div className="accordion-content-two col-11">
                             <div className="accordion-content-title"
                               // Başlık tıklandığında setShowVideo(true) çağrılır ve video gösterilir
                               onClick={handleWordClick}>
@@ -57,7 +58,7 @@ export default function CourseDetailContent({ }: Props) {
                               Video - 4 dk
                             </div>
                           </div>
-                          <div className="isaret col-2">
+                          <div className="isaret col-1">
                             <img width="13px" height="13px" src="https://lms.tobeto.com/tobeto/eep/Styles/assets/css/img/icon/learning-experience-platform/unit-completed.svg" />
                           </div>
                         </div>
@@ -263,13 +264,13 @@ export default function CourseDetailContent({ }: Props) {
               </div>
             </div>
 
-            <div className="container col-7 course-rigth col-lg-7 ">
-              <div className="activity-content-info bordered">
+            <div className="container col-12 course-rigth col-lg-7">
+              <div className="activity-content-info ">
                 {/* Resmi gösterme durumuna bağlı olarak resmi veya videoyu göster */}
                 {showImage && (
                   <div className="imageWord " onClick={handleWordClick}>
                     {/* Resim buraya eklenebilir */}
-                    <img width="480" height="400"
+                    <img width="100%" height="auto"
                       src="https://lms.tobeto.com/tobeto/eep/common_show_picture_cached.aspx?pQS=DiBldjEKnwJCe69nG2MNIKN8WyVXbzKN" />
 
                   </div>
@@ -292,7 +293,7 @@ export default function CourseDetailContent({ }: Props) {
                     {/* Video buraya eklenebilir */}
                     <iframe 
                       width="225%"
-                      height="400"
+                      height="auto"
                       src="https://lms.tobeto.com/tobeto/eep/main/activity/896?isPopup=True&aActiveTab=content"
                       title="YouTube video player"
 
