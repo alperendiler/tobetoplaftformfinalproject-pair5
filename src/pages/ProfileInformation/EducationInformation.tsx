@@ -212,7 +212,59 @@ const EducationInformation: React.FC = ({}:Props) => {
               <div className="grade-details-content">{education.department}</div>
               </div>
            
-              <div><span onClick={()=>deleteEducation(education.id)} className=" grade-delete"></span></div>
+              <div>
+                <span  className=" grade-delete"  data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
+                </span>
+                <div
+                            className="modal fade"
+                            id="exampleModal"
+                            aria-labelledby="exampleModalLabel"
+                            aria-hidden="true"
+                          >
+                            <div className="modal-dialog  modal-dialog-centered ">
+                              <div className="modal-content">
+                                <div className="modal-header">
+                                  <img src="https://tobeto.com/_next/static/media/alert.309dc4c0.svg"></img>
+                                  <br />
+                                  <br />
+                                  <h6 className="modal-title">
+                                    <b>
+                                    Seçilen eğitimi silmek istediğinize emin misiniz?
+                                    </b>
+                                  </h6>
+                                  <button
+                                    type="button"
+                                    className="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                  ></button>
+                                </div>
+                                <div className="modal-body text-muted">
+                                  <p>Bu işlem geri alınamaz.</p>
+                                </div>
+                                <div className=" modal-footer modal-footer-feature">
+                                  <button
+                                    type="button"
+                                    className="btn btn-secondary"
+                                    data-bs-dismiss="modal"
+                                  >
+                                    Hayır
+                                  </button>
+
+                                  <button
+                                    type="button"
+                                    className="btn btn-primary"
+                                    data-bs-dismiss="modal"
+                                    onClick={()=>deleteEducation(education.id)}
+                                  >
+                                    Evet
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                </div>
              </div>
 
 
