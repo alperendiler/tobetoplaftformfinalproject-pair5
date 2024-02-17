@@ -17,13 +17,12 @@ interface ConnectionForm {
     email: string;
     message: string;
 
-
 }
 
 const Connection = ({ }: Props) => {
 
 
-    const initialValues: ConnectionForm = {
+    const initialValues = {
         name: "",
         message: "",
         email: ""
@@ -33,19 +32,12 @@ const Connection = ({ }: Props) => {
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
     const [isCaptcha, setIsCaptcha] = useState(false);
+    const [formSubmitted, setFormSubmitted] = useState(false);
 
-    const handleSubmit = (e: any) => {
-        e.preventDefault();
-        if (isCaptcha) { 
-            console.log('Form submitted');
-            // Burada formun gerçek gönderim işlemleri yapılacak
-        } else {
-            console.log('Recaptcha not verified');  
-        }
-    };
+
     const handleRecaptchaChange = (value: any) => {
         setIsCaptcha(true);   //  Recaptcha doğrulandıysa
-                            //set'i true yap ve butonu aktif et
+        //set'i true yap ve butonu aktif et
     };
 
     const validationSchema = Yup.object({
@@ -138,67 +130,74 @@ const Connection = ({ }: Props) => {
                         <Formik
                             validationSchema={validationSchema}
                             initialValues={initialValues}
-                            onSubmit={async (values) => {
-                                console.log(values);
+                            onSubmit={(values, formikProps) => {
+                                if (isCaptcha) {
+                                    console.log("Form submitted");
+                                    // formun başarıyla gönderildikten sonra formSubmitted bayrağı 
+                                    //sıfırlanır, 1 kere form submitted olur
+                                    setFormSubmitted(false);
+                                } else {
+                                    console.log("Recaptcha not verified");
+                                }
                             }}
+                            validateOnBlur={false} // Blur olduğunda doğrulama yapılmasını devre dışı bırakır
+                            validateOnChange={false} // Değer değiştiğinde doğrulama yapılmasını devre dışı bırakır
+                            //Sadece form submit olduğunda doğrulama yapar 
                         >
 
-
-                            <form className="contact-form" onSubmit={handleSubmit}>
-                                <label htmlFor="name"></label>
-
-                                <FormikInput name="name"
-                                    type="text"
-                                    placeholder='Adınız Soyadınız'
-
-                                />
-
-                                <label htmlFor="email"></label>
-                                <FormikInput
-                                    type="email"
-                                    name="email"
-                                    placeholder='E-Mail'
-                                />
-
-                                {/* <label htmlFor="email"></label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    placeholder='E-Mail'
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                /> */}
-
-                                <label htmlFor="message"></label>
-                                <Field
-                                    as="textarea"
-                                    id="message"
-                                    name="message"
-                                    placeholder='Mesajınız'
-                                />
-                                {/* <textarea
-                                    id="message"
-                                    placeholder='Mesajınız'
-                                    value={message}
-                                    onChange={(e) => setMessage(e.target.value)}
-                                /> */}
-                                <div className="enoc">
-                                    Yukarıdaki form ile toplanan kişisel verileriniz Enocta tarafından talebinize dair işlemlerin yerine getirilmesi ve paylaşmış olduğunuz iletişim adresi üzerinden tanıtım, bülten ve pazarlama içerikleri gönderilmesi amacıyla <a href="#">Aydınlatma Metni </a>çerçevesinde işlenebilecektir.
-                                </div><br />
-                                <div className="capture-style mt-2">
-                                    <ReCAPTCHA
-                                        sitekey={key}
-                                        size="normal"
-                                        hl="tr"
-                                        theme="light"
-                                        onChange={handleRecaptchaChange}
+                            {formik => (
+                                <form className="contact-form" onSubmit={formik.handleSubmit}>
+                                    {/* İsim alanı */}
+                                    <label htmlFor="name"></label>
+                                    <FormikInput
+                                        name="name"
+                                        type="text"
+                                        placeholder='Adınız Soyadınız'
                                     />
-                                </div><br />
-                                <div className="connection-button">
-                                    <button type="submit" disabled={!isCaptcha}>Gönder</button></div>
-                                    {/* isCaptcha true(doğrulanma) olmuşsa disabled false olacak ve buton görünecek */}
-                            </form>
+                                    {formik.errors.name && formik.touched.name && (
+                                        <div className="form-error-message">Doldurulması zorunlu alan*</div>
+                                    )}
 
+                                    {/* E-posta alanı */}
+                                    <label htmlFor="email"></label>
+                                    <FormikInput
+                                        type="email"
+                                        name="email"
+                                        placeholder='E-Mail'
+                                    />
+                                    {formik.errors.email && formik.touched.email && (
+                                        <div className="form-error-message">Doldurulması zorunlu alan*</div>
+                                    )}
+
+                                    {/* Mesaj alanı */}
+                                    <label htmlFor="message"></label>
+                                    <Field
+                                        as="textarea"
+                                        id="message"
+                                        name="message"
+                                        placeholder='Mesajınız'
+                                    />
+                                    {formik.errors.message && formik.touched.message && (
+                                        <div className="form-error-message">Doldurulması zorunlu alan*</div>
+                                    )}
+                                    <div className="enoc">
+                                        Yukarıdaki form ile toplanan kişisel verileriniz Enocta tarafından talebinize dair işlemlerin yerine getirilmesi ve paylaşmış olduğunuz iletişim adresi üzerinden tanıtım, bülten ve pazarlama içerikleri gönderilmesi amacıyla
+                                        <a href="https://tobeto.com/yasal-metinler/kvkk-aydinlatma-metni" target="_blank"> Aydınlatma Metni</a> çerçevesinde işlenebilecektir.
+                                    </div><br />
+                                    <div className="capture-style mt-2">
+                                        <ReCAPTCHA
+                                            sitekey={key}
+                                            size="normal"
+                                            hl="tr"
+                                            theme="light"
+                                            onChange={handleRecaptchaChange}
+                                        />
+                                    </div><br />
+                                    <div className="connection-button">
+                                        <button type="submit" disabled={!isCaptcha}>Gönder</button></div>
+                                    {/* isCaptcha true(doğrulanma) olmuşsa disabled false olacak ve buton görünecek */}
+                                </form>
+                            )}
                         </Formik>
                     </div>
 
@@ -208,4 +207,4 @@ const Connection = ({ }: Props) => {
     );
 }
 
-export default Connection;
+export default Connection; 
