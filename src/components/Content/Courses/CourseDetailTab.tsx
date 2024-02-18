@@ -83,7 +83,7 @@ export default function CourseDetailTab({}: Props) {
                           <i className="bi bi-tag"></i>
                           </td>
                           <td className="first-cols">Kategori</td>
-                          <td className="table-desc">Genel</td>
+                          <td className="table-desc">{course?.categoryName}</td>
                         </tr>
 
                         <tr>

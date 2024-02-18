@@ -43,6 +43,8 @@ export default function ExperienceInformation({}: Props) {
   const [provinces, setProvinces] = useState<Province[]>([]);
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setFinishDate] = React.useState<Date | null>(null);
+  const [isContinued, setIsContinued] = useState(false); 
+
   // const [touched, setTouched] = useState<TouchedFields>({
   //   startDate: false,
   //   endDate: false,
@@ -145,7 +147,8 @@ export default function ExperienceInformation({}: Props) {
     jobDescription: Yup.string().max(
       300,
       "En fazla 300 karakter girebilirsiniz"
-    ),
+    ), 
+    
   
   });
 
@@ -165,6 +168,7 @@ export default function ExperienceInformation({}: Props) {
           values.startDate = startDate;
           values.endDate = endDate;
           values.studentId = studentId;
+          values.isContinued = isContinued;
           addExperience(values);
           actions.resetForm();
         }}
@@ -261,6 +265,7 @@ export default function ExperienceInformation({}: Props) {
                     selected={endDate}
                     onChange={(date) => setFinishDate(date)}
                     dateFormat="dd.MM.yyyy"
+                    disabled={isContinued} 
                   />
                   <ErrorMessage name="endDate">
                     {(message) => {
@@ -281,7 +286,7 @@ export default function ExperienceInformation({}: Props) {
                 </div>
               </div>
               <label>
-                <Field name="isContinued"  type="checkbox" />
+                <Field name="isContinued"  type="checkbox"  checked={isContinued}   onChange={() => setIsContinued(prevState => !prevState)}  />
                 &nbsp;Çalışmaya hala devam ediyorum.
               </label>{" "}
             </div>
@@ -308,7 +313,15 @@ export default function ExperienceInformation({}: Props) {
               <div className="grade-header">
                 <span className="grade-date">
                 {new Date(experience.startDate).getDate()}.{new Date(experience.startDate).getMonth()}.{new Date(experience.startDate).getFullYear()}
-                  -        {new Date(experience.endDate).getDate()}.{new Date(experience.endDate).getMonth()}.{new Date(experience.endDate).getFullYear()}{" "}
+                  -     {experience.isContinued ? (
+  <span>Devam Ediyor</span>
+) : (
+  <span>
+    {new Date(experience.endDate).getDate()}.
+    {new Date(experience.endDate).getMonth()}.
+    {new Date(experience.endDate).getFullYear()}
+  </span>
+)}
                 </span>
               </div>
               <div className="grade-details">
