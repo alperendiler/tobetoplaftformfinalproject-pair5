@@ -1,5 +1,5 @@
-.yup-error-message {
-  font-size: 8px;
+.form-error-message {
+  font-size: 10px;
   text-align: left;
   color: red;
   /* İsteğe bağlı olarak hata mesajının rengini de belirleyebilirsiniz */
