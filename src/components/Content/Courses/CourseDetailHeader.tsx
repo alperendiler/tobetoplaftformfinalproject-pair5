@@ -6,17 +6,19 @@ import { GetAllCourseResponse } from "../../../models/responses/course/getAllCou
 import courseService from "../../../services/courseService";
 import { useParams } from "react-router";
 import { GetCourseResponse } from "../../../models/responses/course/getCourseResponse";
+import { GetCourseDetailResponse } from "../../../models/responses/course/getCourseDetailResponse";
 type Props = {}
 
 
 
-export default function CourseHeader({ }: Props) {
+export default function CourseHeader(props:{ courseDetail?:GetCourseDetailResponse}) {
+  const { courseDetail } = props;
   const [isFavorite, setIsFavorite] = useState(false);
 
   const [isClick, setClick] = useState(false);
   const [likeCount, setLikeCount] = useState(104); // Başlangıç değeri
   const [showNotification, setShowNotification] = useState(false);
-  const [courses, setCourses] =  useState<GetCourseResponse |any >();
+  //const [courses, setCourses] =  useState<GetCourseResponse |any >();
 
 useEffect(() => {
   getCourse()
@@ -25,8 +27,8 @@ let {id} = useParams();
   const getCourse = async ()=>{
     if(id)
     {
-      const response = await courseService.getById(id);
-      setCourses(response.data);
+      //const response = await courseService.getById(id);
+      //setCourses(response.data);
 
     }
   }
@@ -89,7 +91,7 @@ let {id} = useParams();
                       data-gtm-vis-total-visible-time103964688_7="100"
                       data-gtm-vis-has-fired103964688_7="1"
                     >
-                      <h3>{courses?.name}</h3>
+                      <h3>{courseDetail?.name}</h3>
 
                       <div className="date-info-container">
                         <span>
