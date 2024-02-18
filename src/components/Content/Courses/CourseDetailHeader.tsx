@@ -77,7 +77,7 @@ let {id} = useParams();
       <div className='activity-detail-header'>
         <div className="row">
           <div className="col-lg-1 col-md-1 col-sm-2 col-xs-12 show-text-lg show-text-md show-text-sm hidden-text-xs">
-            <img className="activity-image" src="https://lms.tobeto.com/tobeto/eep/common_show_picture_cached.aspx?pQS=eaAjNZ0uaOEJMI14cKs7Ww%3d%3d" alt="Softskill: İş Becerileri" />
+            <img className="activity-image" src={courseDetail?.imageUrl} alt={courseDetail?.name} />
           </div>
           <div className="col-lg-11 col-md-11 col-sm-10 col-xs-12">
             <div className="row">

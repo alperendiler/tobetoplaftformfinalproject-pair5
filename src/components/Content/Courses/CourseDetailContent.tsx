@@ -3,18 +3,31 @@ import "./CourseDetailContent.css";
 import OffCanvas from "./OffCanvas";
 import { useState } from "react";
 import ButtonGroup from "antd/es/button/button-group";
-import { GetCourseDetailResponse } from "../../../models/responses/course/getCourseDetailResponse";
+import {
+  CourseTopicTitle,
+  GetCourseDetailResponse,
+} from "../../../models/responses/course/getCourseDetailResponse";
+import { title } from "process";
 type Props = {};
 
 export default function CourseDetailContent(props: {
   courseDetail?: GetCourseDetailResponse;
 }) {
   const { courseDetail } = props;
+  const [selectedTitle, setSelectedTitle] = useState<CourseTopicTitle>();
 
   // Videoyu gösterme durumu ve resmin gösterilme durumu için birer state tanımlandı
   const [showVideo, setShowVideo] = useState(false);
   const [showVideo2, setShowVideo2] = useState(false);
   const [showImage, setShowImage] = useState(true);
+
+  const handleSelectTitle = (title: CourseTopicTitle) => {
+    setSelectedTitle(title);
+    console.log(title);
+    setShowImage(false); // Resmi kaldır
+    setShowVideo(true); // Videoyu göster
+    setShowVideo2(false); // Eski videoyu kaldırck
+  };
 
   // Resmin üzerine tıklama olayını dinleyen bir fonksiyon
   const handleWordClick = () => {
@@ -45,18 +58,49 @@ export default function CourseDetailContent(props: {
                 <div className="accordion" id="accordionExample">
                   {courseDetail?.courseTopics.map((item, index) => (
                     <div className="accordion-item">
-                      <h2 className="accordion-header" id={"heading"+item.topic.id}>
+                      <h2
+                        className="accordion-header"
+                        id={"heading" + item.topic.id}
+                      >
                         <button
                           className="accordion-button collapsed"
                           type="button"
                           data-bs-toggle="collapse"
-                          data-bs-target={"#collapse"+item.topic.id}
+                          data-bs-target={"#collapse" + item.topic.id}
                           aria-expanded="false"
-                          aria-controls={"collapse"+item.topic.id}
+                          aria-controls={"collapse" + item.topic.id}
                         >
                           {item.topic.name}
                         </button>
                       </h2>
+                      <div
+                        id={"collapse" + item.topic.id}
+                        className="accordion-collapse collapse"
+                        aria-labelledby={"heading" + item.topic.id}
+                        data-bs-parent="#accordionExample"
+                      >
+                        <div className="accordion-body">
+                          {item.topic.titles.map((title, index) => (
+                            <div
+                              className="accordion-content-all col-12"
+                              key={index}
+                            >
+                              <div className="accordion-content-two col-11">
+                                <div
+                                  className="accordion-content-title"
+                                  // Başlık tıklandığında setShowVideo(true) çağrılır ve video gösterilir
+                                  onClick={() => handleSelectTitle(title)}
+                                >
+                                  {title.name}
+                                </div>
+                                <div className="accordion-timer">
+                                  Video - 4 dk
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   ))}
                   <div className="accordion-item ">
@@ -361,10 +405,18 @@ export default function CourseDetailContent(props: {
                     <iframe
                       width="540"
                       height="400"
-                      src="https://www.youtube.com/embed/4iuC9Hcds8o?si=y_u-ELs3X8_azw24"
+                      // src="https://www.youtube.com/embed/4iuC9Hcds8o?si=y_u-ELs3X8_azw24"
+                      src={selectedTitle?.videoLink}
                       title="YouTube video player"
                     ></iframe>
                   </div>
+                  // <div className="video">
+                  //   {/* Video buraya eklenebilir */}
+                  //   <video width="540" height="400" controls>
+                  //     <source src="videos\testvideo.mp4" type="video/mp4" />
+                  //     Your browser does not support the video tag.
+                  //   </video>
+                  // </div>
                 )}
 
                 {showVideo2 && (
@@ -387,14 +439,12 @@ export default function CourseDetailContent(props: {
                 <div className="col-9">
                   {showImage && (
                     <div className="course-title  col-10">
-                      {" "}
-                      Sözcük İşleyici (Word Processor / MS Word)
+                      {selectedTitle?.name}
                     </div>
                   )}
                   {showVideo && (
                     <div className="course-title  col-10 onClick={handleWordClick}">
-                      {" "}
-                      Sözcük İşleyici (Word Processor / MS Word)
+                      {selectedTitle?.name}
                     </div>
                   )}
                   {showVideo2 && (
@@ -406,7 +456,9 @@ export default function CourseDetailContent(props: {
 
                   <div className="sarma">
                     <div className="video-ml col-2.5 ">Video - 4 dk</div>
-                    <div className="score col-2 ">100 puan</div>
+                    <div className="score col-2 ">
+                      {selectedTitle && selectedTitle?.point + " puan"}
+                    </div>
                     <div className="status-continue col-5 ">
                       <i className="bi bi-hand-thumbs-up"></i>
                       &nbsp;Tebrikler,&nbsp;&nbsp;tamamladın!
