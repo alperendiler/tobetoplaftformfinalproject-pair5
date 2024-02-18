@@ -9,8 +9,6 @@ import emailjs from 'emailjs-com';
 
 type Props = {}
 
-//const nodemailer = require('nodemailer');
-
 const key = "6LeBsHMpAAAAABkznEGjEKudHplJpTumSoHiXL-y";
 function onChange(value: any) {
 }
@@ -47,71 +45,7 @@ const Connection = ({ }: Props) => {
           });
       }
 
-    // let transporter = nodemailer.createTransport({
-    //     host: 'smtp.elasticemail.com',
-    //     port: 587,
-    //     secure: false, // true for 465, false for other ports
-    //     auth: {
-    //         user: 'busraknar37@gmail.com', // e-posta hesabınızın kullanıcı adı
-    //         pass: 'Ah21011973.' // e-posta hesabınızın şifresi
-    //     }
-    // });
     
-    // // E-posta seçenekleri
-    // let mailOptions = {
-    //     from: email, // gönderen adres
-    //     to: 'busraknar37@gmail.com', // alıcı adres
-    //     text: message// e-posta içeriği (metin)
-    // };
-    
-    // // E-posta gönderme işlemi
-    // transporter.sendMail(mailOptions, (error:any, info:any) => {
-    //     if (error) {
-    //         return console.log(error);
-    //     }
-    //     console.log('Message sent: %s', info.messageId);
-    // });
-//---------------------
-
-
-// Gönderen ve alıcı bilgileri
-// const from = `"${name}" <${email}>`;
-// const to = 'busraknar37@gmail.com';
-
-// // E-posta içeriği
-
-// const text = message;
-
-// // SMTP sunucu ayarları
-// const smtpConfig = {
-//     host: 'smtp.gmail.com',
-//     port: 465,
-//     secure: true, // SSL/TLS
-//     auth: {
-//         user: 'busraknar37@gmail.com',
-//         pass: 'Ah21011973.',
-//     },
-// };
-
-// // Transporter oluşturma
-// const transporter = nodemailer.createTransport(smtpConfig);
-
-// // E-posta gönderme
-// transporter.sendMail({
-//     from,
-//     to,
-//     text,
-// }, (error: any, info: any) => {
-//     if (error) {
-//         console.log(error);
-//     } else {
-//         console.log('E-posta başarıyla gönderildi: ' + info.response);
-//     }
-// });
-
-
-
-
     const handleRecaptchaChange = (value: any) => {
         setIsCaptcha(true);   //  Recaptcha doğrulandıysa
         //set'i true yap ve butonu aktif et
@@ -279,8 +213,7 @@ const Connection = ({ }: Props) => {
                             )}
                         </Formik>
                     </div>
-                     {/* <script src="../script.tsx"></script>
-                    <script src="https://smtpjs.com/v3/smtp.js"></script> */}
+                  
                 </div>
             </div>
         </div>
