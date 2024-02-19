@@ -196,8 +196,8 @@ export default function CourseDetailContent(props: {
                       {selectedTitle && selectedTitle?.point + " puan"}
                     </div>
                     <div className="status-continue col-5 ">
-                      <i className="bi bi-hand-thumbs-up"></i>
-                      &nbsp;Tebrikler,&nbsp;&nbsp;tamamladın!
+                      {/* <i className="bi bi-hand-thumbs-up"></i>
+                      &nbsp;Tebrikler,&nbsp;&nbsp;tamamladın! */}
                     </div>
                   </div>
                 </div>
