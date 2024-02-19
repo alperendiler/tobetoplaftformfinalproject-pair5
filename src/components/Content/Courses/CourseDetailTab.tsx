@@ -4,6 +4,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "./CourseDetailTab.css";
 import { GetCourseResponse } from "../../../models/responses/course/getCourseResponse";
 import { GetCourseDetailResponse, Topic } from "../../../models/responses/course/getCourseDetailResponse";
+import SyncCourseDetailContent from "./SyncCourse/SyncCourseDetailContent";
 
 type Props = {};
 
@@ -71,6 +72,7 @@ export default function CourseDetailTab(props:{ courseDetail?:GetCourseDetailRes
           aria-labelledby="content-tab"
         >
           <CourseDetailContent courseDetail={courseDetail} />
+          <SyncCourseDetailContent/>
         </div>
         <div
           className="tab-pane fade"
