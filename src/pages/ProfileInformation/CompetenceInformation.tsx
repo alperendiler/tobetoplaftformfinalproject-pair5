@@ -129,63 +129,63 @@ export default function CompetenceInformation({}: Props) {
                   className=" grade-delete g-del"
                   data-bs-toggle="modal"
                   data-bs-target="#exampleModal"
-                  onClick={() => {setSelectForDeleteId(item.id)}}
-                ></span>    
+                  onClick={() => {
+                    setSelectForDeleteId(item.id);
+                  }}
+                ></span>
               </div>
             </div>
           </div>
         ))}
-          <div
-                  className="modal fade"
-                  id="exampleModal"
-                  aria-labelledby="exampleModalLabel"
-                  aria-hidden="true"
+        <div
+          className="modal fade"
+          id="exampleModal"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog  modal-dialog-centered ">
+            <div className="modal-content">
+              <div className="modal-header">
+                <img src="https://tobeto.com/_next/static/media/alert.309dc4c0.svg"></img>
+                <br />
+                <br />
+                <h6 className="modal-title">
+                  <b>Seçilen yetkinliği silmek istediğinize emin misiniz?</b>
+                </h6>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div className="modal-body text-muted">
+                <p>
+                  Daha sonra tekrardan listeden istediğiniz yetkinliği
+                  ekleyebilirsiniz.
+                </p>
+              </div>
+              <div className=" modal-footer modal-footer-feature">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-bs-dismiss="modal"
                 >
-                  <div className="modal-dialog  modal-dialog-centered ">
-                    <div className="modal-content">
-                      <div className="modal-header">
-                        <img src="https://tobeto.com/_next/static/media/alert.309dc4c0.svg"></img>
-                        <br />
-                        <br />
-                        <h6 className="modal-title">
-                          <b>
-                            Seçilen yetkinliği silmek istediğinize emin misiniz?
-                          </b>
-                        </h6>
-                        <button
-                          type="button"
-                          className="btn-close"
-                          data-bs-dismiss="modal"
-                          aria-label="Close"
-                        ></button>
-                      </div>
-                      <div className="modal-body text-muted">
-                        <p>
-                          Daha sonra tekrardan listeden istediğiniz yetkinliği
-                          ekleyebilirsiniz.
-                        </p>
-                      </div>
-                      <div className=" modal-footer modal-footer-feature">
-                        <button
-                          type="button"
-                          className="btn btn-secondary"
-                          data-bs-dismiss="modal"
-                        >
-                          Hayır
-                        </button>
+                  Hayır
+                </button>
 
-                        <button
-                          type="button"
-                          className="btn btn-primary"
-                          data-bs-dismiss="modal"
-                          onClick={() => handleDelete(selectForDeleteId)}
-                        >
-                          Evet
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  data-bs-dismiss="modal"
+                  onClick={() => handleDelete(selectForDeleteId)}
+                >
+                  Evet
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

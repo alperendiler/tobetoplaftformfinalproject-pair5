@@ -2,7 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useEffect, useState } from "react";
 import "../../styles/personalInformation.css";
-import "../../styles/MyProfileStyles/experienceInformation.css"
+import "../../styles/MyProfileStyles/experienceInformation.css";
 import React from "react";
 import FormikInput from "../../components/FormikInput/FormikInput";
 import ReactDatePicker from "react-datepicker";
@@ -43,6 +43,7 @@ export default function ExperienceInformation({}: Props) {
   const [provinces, setProvinces] = useState<Province[]>([]);
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setFinishDate] = React.useState<Date | null>(null);
+  const [selectForDeleteId, setSelectForDeleteId] = useState<string>("");
   // const [touched, setTouched] = useState<TouchedFields>({
   //   startDate: false,
   //   endDate: false,
@@ -146,7 +147,6 @@ export default function ExperienceInformation({}: Props) {
       300,
       "En fazla 300 karakter girebilirsiniz"
     ),
-  
   });
 
   return (
@@ -233,13 +233,13 @@ export default function ExperienceInformation({}: Props) {
                     dateFormat="dd.MM.yyyy"
                   />
                   <ErrorMessage name="startDate">
-  {message => {
-    if (!startDate ) {
-      return <p className="text-danger">{message}</p>;
-    }
-    return null; 
-  }}
-</ErrorMessage>
+                    {(message) => {
+                      if (!startDate) {
+                        return <p className="text-danger">{message}</p>;
+                      }
+                      return null;
+                    }}
+                  </ErrorMessage>
                 </div>
               </div>
             </div>
@@ -281,7 +281,7 @@ export default function ExperienceInformation({}: Props) {
                 </div>
               </div>
               <label>
-                <Field name="isContinued"  type="checkbox" />
+                <Field name="isContinued" type="checkbox" />
                 &nbsp;Çalışmaya hala devam ediyorum.
               </label>{" "}
             </div>
@@ -307,8 +307,12 @@ export default function ExperienceInformation({}: Props) {
             <div key={experience.id} className="my-grade">
               <div className="grade-header">
                 <span className="grade-date">
-                {new Date(experience.startDate).getDate()}.{new Date(experience.startDate).getMonth()}.{new Date(experience.startDate).getFullYear()}
-                  -        {new Date(experience.endDate).getDate()}.{new Date(experience.endDate).getMonth()}.{new Date(experience.endDate).getFullYear()}{" "}
+                  {new Date(experience.startDate).getDate()}.
+                  {new Date(experience.startDate).getMonth()}.
+                  {new Date(experience.startDate).getFullYear()}-{" "}
+                  {new Date(experience.endDate).getDate()}.
+                  {new Date(experience.endDate).getMonth()}.
+                  {new Date(experience.endDate).getFullYear()}{" "}
                 </span>
               </div>
               <div className="grade-details">
@@ -338,60 +342,15 @@ export default function ExperienceInformation({}: Props) {
                   <span
                     className=" grade-delete"
                     data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"
+                    data-bs-target="#exampleModal"
+                    onClick={() => {
+                      setSelectForDeleteId(experience.id);
+                    }}
                   ></span>
                   <span
                     onClick={() => handleOpenModal(experience.jobDescription)}
                     className=" grade-info"
                   ></span>
-                  <div
-                            className="modal fade"
-                            id="exampleModal"
-                            aria-labelledby="exampleModalLabel"
-                            aria-hidden="true"
-                          >
-                            <div className="modal-dialog  modal-dialog-centered ">
-                              <div className="modal-content">
-                                <div className="modal-header">
-                                  <img src="https://tobeto.com/_next/static/media/alert.309dc4c0.svg"></img>
-                                  <br />
-                                  <br />
-                                  <h6 className="modal-title">
-                                    <b>
-                                    Seçilen deneyimi silmek istediğinize emin misiniz ?
-                                    </b>
-                                  </h6>
-                                  <button
-                                    type="button"
-                                    className="btn-close"
-                                    data-bs-dismiss="modal"
-                                    aria-label="Close"
-                                  ></button>
-                                </div>
-                                <div className="modal-body text-muted">
-                                  <p>Bu işlem geri alınamaz.</p>
-                                </div>
-                                <div className=" modal-footer modal-footer-feature">
-                                  <button
-                                    type="button"
-                                    className="btn btn-secondary"
-                                    data-bs-dismiss="modal"
-                                  >
-                                    Hayır
-                                  </button>
-
-                                  <button
-                                    type="button"
-                                    className="btn btn-primary"
-                                    data-bs-dismiss="modal"
-                                    onClick={() => deleteExperience(experience.id)}
-                                  >
-                                    Evet
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
                 </div>
               </div>
             </div>
@@ -399,6 +358,52 @@ export default function ExperienceInformation({}: Props) {
         ) : (
           <div></div>
         )}
+        <div
+          className="modal fade"
+          id="exampleModal"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog  modal-dialog-centered ">
+            <div className="modal-content">
+              <div className="modal-header">
+                <img src="https://tobeto.com/_next/static/media/alert.309dc4c0.svg"></img>
+                <br />
+                <br />
+                <h6 className="modal-title">
+                  <b>Seçilen deneyimi silmek istediğinize emin misiniz ?</b>
+                </h6>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div className="modal-body text-muted">
+                <p>Bu işlem geri alınamaz.</p>
+              </div>
+              <div className=" modal-footer modal-footer-feature">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Hayır
+                </button>
+
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  data-bs-dismiss="modal"
+                  onClick={() => deleteExperience(selectForDeleteId)}
+                >
+                  Evet
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
