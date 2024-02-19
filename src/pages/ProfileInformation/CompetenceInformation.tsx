@@ -17,6 +17,7 @@ export default function CompetenceInformation({}: Props) {
   const [competences, setCompetences] = useState<GetCompetenceResponse[]>([]);
   const [selectForDeleteId, setSelectForDeleteId] = useState<string>("");
 
+
   useEffect(() => {
     fetchCompetences();
   }, []);
@@ -28,6 +29,11 @@ export default function CompetenceInformation({}: Props) {
   };
 
   const handleSubmit = async (competenceName: string) => {
+    if (competences.some(item => item.name === competenceName)) {
+      // Yetenek zaten listede var, hata mesajı göster
+      alert("Bu yetenek zaten seçilmiş!");
+      return;
+    }
     const studentId = localStorage.getItem("studentId")!;
     const response = await competenceService.add({
       studentId: studentId,
