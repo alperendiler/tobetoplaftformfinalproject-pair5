@@ -8,10 +8,18 @@ export interface CourseTopicTitle {
   videoLanguage: string;
   videoLink: string;
 }
+export interface CourseTopicVirtualClass{
+  topicId:string;
+  startTime:string;
+  finishTime:string;
+  name:string;
+  recordLink:string;
+}
 export interface Topic {
   id: string;
   name: string;
   titles: CourseTopicTitle[];
+  virtualClasses:CourseTopicVirtualClass[];
 }
 
 export interface CourseTopic {
@@ -22,6 +30,7 @@ export interface CourseTopic {
     id: string;
     name: string;
     titles: CourseTopicTitle[];
+    virtualClasses: CourseTopicVirtualClass[];
   };
 }
 

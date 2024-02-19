@@ -13,6 +13,11 @@ font-weight: bold;
 text-align: left;
 }
 
+.accordion-button:focus,
+.accordion-button:hover {
+    background-color: #9933FF !important; 
+    color: white !important; 
+}
 .accordion-content-all{
   display: flex;
   margin-bottom: 10px;
@@ -123,3 +128,4 @@ text-align: left;
   height: 13px;
   text-align: right;
 }
+

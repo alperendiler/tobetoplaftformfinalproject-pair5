@@ -12,13 +12,6 @@ export default function CourseDetailTab(props:{ courseDetail?:GetCourseDetailRes
   const { courseDetail } = props;
   const [course, setCourse] = useState<GetCourseResponse | any>();
 
-  useEffect(() => {
-    test();
-  }, []);
-  const test = async () => {
-    console.log(courseDetail);
-  };
-
   const formatDate = (isoDate: string): string => {
     // Gelen ISO 8601 formatındaki tarihi JavaScript Date nesnesine dönüştür
     const date = new Date(isoDate);
@@ -72,7 +65,6 @@ export default function CourseDetailTab(props:{ courseDetail?:GetCourseDetailRes
           aria-labelledby="content-tab"
         >
           <CourseDetailContent courseDetail={courseDetail} />
-          <SyncCourseDetailContent/>
         </div>
         <div
           className="tab-pane fade"

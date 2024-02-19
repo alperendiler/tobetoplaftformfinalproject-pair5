@@ -8,10 +8,10 @@ export default function SyncCourseDetailContent({}: Props) {
   return (
     <>
 <div className='row'>
-    <div className='col-lg-5 col-md-5 col-sm-12 col-xs-12'>
+    <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
          </div>
      
-        <div className='col-lg-7 col-md-7 col-sm-12 col-xs-12'>
+        <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
             <div className='activity-largeImageFileName no-video'>
                 <div className='activity-largeImageFileName no-video'>
                     <img src="https://lms.tobeto.com/tobeto/eep/common_show_picture_cached.aspx?pQS=DiBldjEKnwKDQVcjzXYj%2bf53hQnzP5df" alt="" />
