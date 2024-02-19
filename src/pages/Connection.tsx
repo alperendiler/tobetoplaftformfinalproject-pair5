@@ -5,6 +5,7 @@ import FormikInput from "../components/FormikInput/FormikInput";
 import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
 import ReCAPTCHA from "react-google-recaptcha";
+import emailjs from 'emailjs-com';
 
 type Props = {}
 
@@ -21,7 +22,6 @@ interface ConnectionForm {
 
 const Connection = ({ }: Props) => {
 
-
     const initialValues = {
         name: "",
         message: "",
@@ -34,7 +34,18 @@ const Connection = ({ }: Props) => {
     const [isCaptcha, setIsCaptcha] = useState(false);
     const [formSubmitted, setFormSubmitted] = useState(false);
 
+    function sendEmail(e:any) {
+        e.preventDefault();
+    
+        emailjs.sendForm('service_2b2', 'template_2b2', e.target, 'qteKHXYloBkH6jq7O')
+          .then((result) => {
+              console.log(result.text);
+          }, (error) => {
+              console.log(error.text);
+          });
+      }
 
+    
     const handleRecaptchaChange = (value: any) => {
         setIsCaptcha(true);   //  Recaptcha doğrulandıysa
         //set'i true yap ve butonu aktif et
@@ -142,11 +153,11 @@ const Connection = ({ }: Props) => {
                             }}
                             validateOnBlur={false} // Blur olduğunda doğrulama yapılmasını devre dışı bırakır
                             validateOnChange={false} // Değer değiştiğinde doğrulama yapılmasını devre dışı bırakır
-                            //Sadece form submit olduğunda doğrulama yapar 
+                        //Sadece form submit olduğunda doğrulama yapar 
                         >
 
                             {formik => (
-                                <form className="contact-form" onSubmit={formik.handleSubmit}>
+                                <form className="contact-form" onSubmit={sendEmail}>
                                     {/* İsim alanı */}
                                     <label htmlFor="name"></label>
                                     <FormikInput
@@ -196,11 +207,13 @@ const Connection = ({ }: Props) => {
                                     <div className="connection-button">
                                         <button type="submit" disabled={!isCaptcha}>Gönder</button></div>
                                     {/* isCaptcha true(doğrulanma) olmuşsa disabled false olacak ve buton görünecek */}
+
                                 </form>
+
                             )}
                         </Formik>
                     </div>
-
+                  
                 </div>
             </div>
         </div>
