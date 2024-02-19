@@ -6,6 +6,7 @@ import RemoveAlertModal from "../../components/Common/RemoveAlertModal";
 import competenceService from "../../services/competenceService";
 import { GetCompetenceResponse } from "../../models/responses/competence/getCompetenceResponse";
 import "../../styles/competence.css";
+import { ToastContainer, toast } from "react-toastify";
 
 type Props = {};
 interface CompetenceForm {
@@ -30,8 +31,16 @@ export default function CompetenceInformation({}: Props) {
 
   const handleSubmit = async (competenceName: string) => {
     if (competences.some(item => item.name === competenceName)) {
-      // Yetenek zaten listede var, hata mesajı göster
-      alert("Bu yetenek zaten seçilmiş!");
+      toast.error("Yetenek zaten listede var", {
+        position: "top-right",
+        autoClose: 5000, // 5 saniye sonra otomatik olarak kapat
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme:"colored"
+      });
       return;
     }
     const studentId = localStorage.getItem("studentId")!;
@@ -76,6 +85,7 @@ export default function CompetenceInformation({}: Props) {
   
   return (
     <>
+     <ToastContainer/>
       <Formik
         validationSchema={validationSchema}
         initialValues={initialValues}
