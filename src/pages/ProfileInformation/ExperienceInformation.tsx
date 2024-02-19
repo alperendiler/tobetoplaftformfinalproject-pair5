@@ -231,7 +231,6 @@ export default function ExperienceInformation({}: Props) {
                     selected={startDate}
                     onChange={(date) => {
                       setStartDate(date);
-                      // setTouched({ ...touched, startDate: true });
                     }}
                     dateFormat="dd.MM.yyyy"
                   />
