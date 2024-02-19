@@ -243,7 +243,6 @@ const EducationInformation: React.FC = ({}: Props) => {
                 >
                   Hayır
                 </button>
-
                 <button
                   type="button"
                   className="btn btn-primary"

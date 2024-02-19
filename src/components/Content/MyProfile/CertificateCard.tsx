@@ -1,22 +1,13 @@
 import React from "react";
 import "../../../styles/MyProfileStyles/certificateCard.css"
+import { GetCertificateResponse } from "../../../models/responses/certificate/getCertificateResponse";
 
-type Certificate = {
-  file: string;
-};
-
-type CertificateCardProps = {
-  certificate: Certificate;
-};
-
-function CertificateCard({ certificate }: CertificateCardProps) {
-  const { file } = certificate;
-
+function CertificateCard(props:{ certificate:GetCertificateResponse } ) {
   return (
     <div>
-      <a href="#"className="d-flex align-items-center justify-content-between rounded-pill shadow mb-3 text-muted bg-white p-2 button-hover">
+      <a href={props.certificate.filePath.split("public")[1]} download className="d-flex align-items-center justify-content-between rounded-pill shadow mb-3 text-muted bg-white p-2 button-hover"  >
         <div className="col-10">
-          <div>{file}</div>
+          <div>{props.certificate.fileName}</div>
         </div>
         <div className="col-2">
           <svg
@@ -26,6 +17,7 @@ function CertificateCard({ certificate }: CertificateCardProps) {
             fill="currentColor"
             className="bi bi-filetype-png"
             viewBox="0 0 16 16"
+           
           >
             <path
               fillRule="evenodd"
