@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/personalInformation.css";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import RemoveAlertModal from "../../components/Common/RemoveAlertModal";
 import competenceService from "../../services/competenceService";
@@ -52,7 +52,7 @@ export default function CompetenceInformation({}: Props) {
     competence: "",
   };
   const validationSchema = Yup.object({
-    competence: Yup.string(),
+    competence: Yup.string().required("Lütfen bir yetkinlik seçiniz"),
   });
   const [competenceList, setCompetenceList] = useState<
     Array<{ competence: string }>
@@ -66,6 +66,8 @@ export default function CompetenceInformation({}: Props) {
       ]);
     }
   }, [selectedCompetence]);
+
+  
   return (
     <>
       <Formik
@@ -109,6 +111,9 @@ export default function CompetenceInformation({}: Props) {
                 <option value="Apple IOS">Apple IOS</option>
                 <option value="Apple Xcode">Apple Xcode</option>
               </Field>
+              <ErrorMessage name="competence">
+                {(message) => <p className="text-danger">{message}</p>}
+              </ErrorMessage>
             </div>
 
             <button type="submit" className="btn btn-personal-information">
