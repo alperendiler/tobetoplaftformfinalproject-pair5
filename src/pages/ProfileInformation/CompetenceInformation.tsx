@@ -15,6 +15,7 @@ interface CompetenceForm {
 export default function CompetenceInformation({}: Props) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [competences, setCompetences] = useState<GetCompetenceResponse[]>([]);
+  const [selectForDeleteId, setSelectForDeleteId] = useState<string>("");
 
   useEffect(() => {
     fetchCompetences();
@@ -128,8 +129,13 @@ export default function CompetenceInformation({}: Props) {
                   className=" grade-delete g-del"
                   data-bs-toggle="modal"
                   data-bs-target="#exampleModal"
-                ></span>
-                <div
+                  onClick={() => {setSelectForDeleteId(item.id)}}
+                ></span>    
+              </div>
+            </div>
+          </div>
+        ))}
+          <div
                   className="modal fade"
                   id="exampleModal"
                   aria-labelledby="exampleModalLabel"
@@ -172,7 +178,7 @@ export default function CompetenceInformation({}: Props) {
                           type="button"
                           className="btn btn-primary"
                           data-bs-dismiss="modal"
-                          onClick={() => handleDelete(item.id)}
+                          onClick={() => handleDelete(selectForDeleteId)}
                         >
                           Evet
                         </button>
@@ -180,10 +186,6 @@ export default function CompetenceInformation({}: Props) {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        ))}
       </div>
     </>
   );
