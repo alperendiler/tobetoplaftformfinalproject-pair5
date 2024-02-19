@@ -7,6 +7,7 @@ export interface CourseTopicTitle {
   subtype: string;
   videoLanguage: string;
   videoLink: string;
+  videoTime: number;
 }
 export interface CourseTopicVirtualClass{
   topicId:string;

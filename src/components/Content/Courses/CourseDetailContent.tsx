@@ -37,7 +37,6 @@ export default function CourseDetailContent(props: {
   const [selectedTitle, setSelectedTitle] = useState<CourseTopicTitle>();
   const [contentType, setContentType] = useState<string>();
 
-  // Videoyu gösterme durumu ve resmin gösterilme durumu için birer state tanımlandı
   const [showVideo, setShowVideo] = useState(false);
   const [showVideo2, setShowVideo2] = useState(false);
   const [showImage, setShowImage] = useState(true);
@@ -45,25 +44,23 @@ export default function CourseDetailContent(props: {
   const handleSelectTitle = (title: CourseTopicTitle) => {
     setSelectedTitle(title);
     console.log(title);
-    setShowImage(false); // Resmi kaldır
-    setShowVideo(true); // Videoyu göster
-    setShowVideo2(false); // Eski videoyu kaldırck
+    setShowImage(false);
+    setShowVideo(true); 
+    setShowVideo2(false); 
   };
 
-  // Resmin üzerine tıklama olayını dinleyen bir fonksiyon
+
   const handleWordClick = () => {
-    setShowImage(false); // Resmi kaldır
-    setShowVideo(true); // Videoyu göster
-    setShowVideo2(false); // Eski videoyu kaldırck
+    setShowImage(false); 
+    setShowVideo(true); 
+    setShowVideo2(false); 
   };
 
   const handleWord2Click = () => {
-    setShowImage(false); // Resmi kaldır
-    setShowVideo(false); //İlk videoyu kaldırr
-    setShowVideo2(true); // Videoyu göster
-    // if (showVideo) {
-    //   setShowVideo(false);
-    // }
+    setShowImage(false); 
+    setShowVideo(false); 
+    setShowVideo2(true); 
+
   };
 
   return (
@@ -109,13 +106,12 @@ export default function CourseDetailContent(props: {
                               <div className="accordion-content-two col-11">
                                 <div
                                   className="accordion-content-title"
-                                  // Başlık tıklandığında setShowVideo(true) çağrılır ve video gösterilir
                                   onClick={() => handleSelectTitle(title)}
                                 >
                                   {title.name}
                                 </div>
                                 <div className="accordion-timer">
-                                  Video - 4 dk
+                                  Video - {title.videoTime} dk
                                 </div>
                               </div>
                             </div>
@@ -130,10 +126,8 @@ export default function CourseDetailContent(props: {
             {contentType=="title" && (
             <div className="container col-12 course-rigth col-lg-7">
               <div className="activity-content-info ">
-                {/* Resmi gösterme durumuna bağlı olarak resmi veya videoyu göster */}
                 {showImage && (
                   <div className="imageWord " onClick={handleWordClick}>
-                    {/* Resim buraya eklenebilir */}
                     <img
                       width="100%"
                       height="auto"
@@ -197,7 +191,7 @@ export default function CourseDetailContent(props: {
                   )}
 
                   <div className="sarma">
-                    <div className="video-ml col-2.5 ">Video - 4 dk</div>
+                    <div className="video-ml col-2.5 "> {selectedTitle &&( "video - " + selectedTitle?.videoTime + " dk")} </div>
                     <div className="score col-2 ">
                       {selectedTitle && selectedTitle?.point + " puan"}
                     </div>
