@@ -285,7 +285,6 @@ export default function ExperienceInformation({}: Props) {
                 </div>
               </div>
               <label>
-                <Field name="isContinued" type="checkbox" />
                 <Field name="isContinued"  type="checkbox"  checked={isContinued}   onChange={() => setIsContinued(prevState => !prevState)}  />
                 &nbsp;Çalışmaya hala devam ediyorum.
               </label>{" "}
