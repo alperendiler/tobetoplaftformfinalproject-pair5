@@ -14,11 +14,11 @@ export default function Navbar({}: Props) {
   const handleLogOut = () => {
     localStorage.clear();
   };
-  const [UserInfo, setUserInfo] =  useState<UserInfo | null>(null);
+  const [UserInfo, setUserInfo] = useState<UserInfo | null>(null);
 
   useEffect(() => {
     // Local Storage'dan token'ı al
-    const token = localStorage.getItem('user');
+    const token = localStorage.getItem("user");
 
     // Eğer token varsa, kullanıcı bilgilerini al
     if (token) {
@@ -27,15 +27,18 @@ export default function Navbar({}: Props) {
     }
   }, []); // Komponent yüklendiğinde sadece bir kere çalışsın
 
-  const getUserInfoFromToken = (token:string) => {
+  const getUserInfoFromToken = (token: string) => {
     try {
       // Token'ı çözümle
       const decodedToken: any = jwtDecode(token);
 
-      const username = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
+      const username =
+        decodedToken[
+          "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
+        ];
 
       // Token içindeki bütün bilgileri konsola yazdır
-      const user : UserInfo = {
+      const user: UserInfo = {
         name: username,
         email: decodedToken.email,
         // Diğer özellikler...
@@ -43,27 +46,15 @@ export default function Navbar({}: Props) {
 
       return user;
     } catch (error) {
-      console.error('Token çözümlenirken bir hata oluştu:', error);
+      console.error("Token çözümlenirken bir hata oluştu:", error);
       return null;
     }
   };
 
- 
   return (
     <>
       <nav className="navbar    navbar-expand-xxl  bg-white ">
         <div className="container-fluid">
-          <button
-            className="navbar-toggler  d-lg-none"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
           <Link className="nav-link navbar-brand" to="/">
             <img
               className="navbar-logo"
@@ -98,7 +89,10 @@ export default function Navbar({}: Props) {
               </Link>
             </li>
             <li className="nav-item fw-bold me-4">
-              <Link className="nav-link c-gray-3" to="#">
+              <Link
+                className="nav-link c-gray-3"
+                to="https://tobeto.com/istanbul-kodluyor"
+              >
                 İstanbul Kodluyor
               </Link>
             </li>
@@ -140,25 +134,77 @@ export default function Navbar({}: Props) {
               <ul className="dropdown-menu ">
                 <li>
                   <span className=" nav-link dropdown-item p-2 ">
-                    <Link className="nav-link" to="/edit-profile/personal-information">
+                    <Link
+                      className="nav-link"
+                      to="/edit-profile/personal-information"
+                    >
                       Profil Bilgileri
                     </Link>
                   </span>
                 </li>
                 <li>
                   <span className=" nav-link dropdown-item p-2 ">
-                  <Link
-                    onClick={handleLogOut}
-                    className=" nav-link dropdown-item"
-                    to="/"
-                  >
-                    Oturumu Kapat
-                  </Link>
+                    <Link
+                      onClick={handleLogOut}
+                      className=" nav-link dropdown-item"
+                      to="/"
+                    >
+                      Oturumu Kapat
+                    </Link>
                   </span>
                 </li>
               </ul>
             </div>
           </div>
+        </div>
+          <button
+            className="navbar-toggler  d-lg-none col-12 "
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+    
+        <div id="navbarNav" className="collapse">
+          <ul className="">
+            <li>
+              <Link className="nav-link fw-bold  nav-active" to="/home-page">
+                Ana Sayfa
+              </Link>
+            </li>
+            <li className="nav-item fw-bold me-4">
+              <Link className="nav-link c-gray-3" to="/user-profile">
+                Profilim
+              </Link>
+            </li>
+            <li className="nav-item fw-bold me-4">
+              <Link className="nav-link c-gray-3" to="/evaluations">
+                Değerlendirmeler
+              </Link>
+            </li>
+            <li className="nav-item fw-bold me-4">
+              <Link className="nav-link c-gray-3" to="/catalog">
+                Katalog
+              </Link>
+            </li>
+            <li className="nav-item fw-bold me-4">
+              <Link className="nav-link c-gray-3" to="/calendar">
+                Takvim
+              </Link>
+            </li>
+            <li className="nav-item fw-bold me-4">
+              <Link
+                className="nav-link c-gray-3"
+                to="https://tobeto.com/istanbul-kodluyor"
+              >
+                İstanbul Kodluyor
+              </Link>
+            </li>
+          </ul>
         </div>
       </nav>
     </>
