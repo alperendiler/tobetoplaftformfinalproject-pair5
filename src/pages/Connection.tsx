@@ -1,11 +1,14 @@
 import React from 'react'
 import "../styles/connection.css";
-import { useState } from 'react';
+import { useState,  useRef  } from 'react';
 import FormikInput from "../components/FormikInput/FormikInput";
 import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
 import ReCAPTCHA from "react-google-recaptcha";
 import emailjs from 'emailjs-com';
+import {useNavigate} from "react-router-dom";
+
+
 
 type Props = {}
 
@@ -22,6 +25,8 @@ interface ConnectionForm {
 
 const Connection = ({ }: Props) => {
 
+    const navigate = useNavigate(); 
+
     const initialValues = {
         name: "",
         message: "",
@@ -32,23 +37,27 @@ const Connection = ({ }: Props) => {
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
     const [isCaptcha, setIsCaptcha] = useState(false);
-    const [formSubmitted, setFormSubmitted] = useState(false);
 
-    function sendEmail(e:any) {
-        e.preventDefault();
-    
-        emailjs.sendForm('service_2b2', 'template_2b2', e.target, 'qteKHXYloBkH6jq7O')
-          .then((result) => {
-              console.log(result.text);
-          }, (error) => {
-              console.log(error.text);
-          });
-      }
-
-    
-    const handleRecaptchaChange = (value: any) => {
-        setIsCaptcha(true);   //  Recaptcha doğrulandıysa
-        //set'i true yap ve butonu aktif et
+function sendEmail(values: any): Promise<void> {
+    return new Promise((resolve, reject) => {
+        emailjs.send('service_2b2', 'template_2b2', values, 'qteKHXYloBkH6jq7O')
+            .then((result) => {
+                console.log(result.text);
+                resolve(); // E-posta gönderme başarılı oldu, Promise'i çöz
+            })
+            .catch((error) => {
+                console.log(error.text);
+                reject(error); // E-posta gönderme başarısız oldu, Promise'i reddet
+            });
+    });
+}
+      
+    const handleRecaptchaChange = (value:any) => {
+        if (value) {
+            setIsCaptcha(true);  //Recaptcha doğrulandıysa set i true yap
+        } else {
+            setIsCaptcha(false);
+        }
     };
 
     const validationSchema = Yup.object({
@@ -141,23 +150,34 @@ const Connection = ({ }: Props) => {
                         <Formik
                             validationSchema={validationSchema}
                             initialValues={initialValues}
-                            onSubmit={(values, formikProps) => {
+                            onSubmit={(values, { setSubmitting }) => {
                                 if (isCaptcha) {
                                     console.log("Form submitted");
-                                    // formun başarıyla gönderildikten sonra formSubmitted bayrağı 
-                                    //sıfırlanır, 1 kere form submitted olur
-                                    setFormSubmitted(false);
+                                    sendEmail(values)
+                                        .then(() => {
+                                            // E-posta gönderme işlemi başarılıysa, yönlendirme yap
+                                            navigate('/connectionsuccess');
+                                        })
+                                        .catch(error => {
+                                            // E-posta gönderme işlemi başarısızsa, hata mesajını göster
+                                            console.error("Email sending failed:", error);
+                                        })
+                                        .finally(() => {
+                                            // Form gönderme işlemi tamamlandığında submit düğmesini etkinleştir
+                                            setSubmitting(false);
+                                        });
                                 } else {
                                     console.log("Recaptcha not verified");
                                 }
                             }}
-                            validateOnBlur={false} // Blur olduğunda doğrulama yapılmasını devre dışı bırakır
-                            validateOnChange={false} // Değer değiştiğinde doğrulama yapılmasını devre dışı bırakır
-                        //Sadece form submit olduğunda doğrulama yapar 
+                            
+                            // validateOnBlur={false} // Blur olduğunda doğrulama yapılmasını devre dışı bırakır
+                            // validateOnChange={false} // Değer değiştiğinde doğrulama yapılmasını devre dışı bırakır
+                         
                         >
 
                             {formik => (
-                                <form className="contact-form" onSubmit={sendEmail}>
+                                <form className="contact-form" onSubmit={formik.handleSubmit}>
                                     {/* İsim alanı */}
                                     <label htmlFor="name"></label>
                                     <FormikInput
@@ -165,10 +185,8 @@ const Connection = ({ }: Props) => {
                                         type="text"
                                         placeholder='Adınız Soyadınız'
                                     />
-                                    {formik.errors.name && formik.touched.name && (
-                                        <div className="form-error-message">Doldurulması zorunlu alan*</div>
-                                    )}
-
+                                 
+                            
                                     {/* E-posta alanı */}
                                     <label htmlFor="email"></label>
                                     <FormikInput
@@ -176,10 +194,7 @@ const Connection = ({ }: Props) => {
                                         name="email"
                                         placeholder='E-Mail'
                                     />
-                                    {formik.errors.email && formik.touched.email && (
-                                        <div className="form-error-message">Doldurulması zorunlu alan*</div>
-                                    )}
-
+                                 
                                     {/* Mesaj alanı */}
                                     <label htmlFor="message"></label>
                                     <Field
@@ -205,7 +220,7 @@ const Connection = ({ }: Props) => {
                                         />
                                     </div><br />
                                     <div className="connection-button">
-                                        <button type="submit" disabled={!isCaptcha}>Gönder</button></div>
+                                       <button type="submit" disabled={!isCaptcha}>Gönder</button></div>
                                     {/* isCaptcha true(doğrulanma) olmuşsa disabled false olacak ve buton görünecek */}
 
                                 </form>

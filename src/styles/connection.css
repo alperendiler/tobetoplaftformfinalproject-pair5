@@ -1,6 +1,6 @@
 .form-error-message {
-  font-size: 10px;
-  text-align: left;
+  font-size: 12px;
+  text-align: center;
   color: red;
   /* İsteğe bağlı olarak hata mesajının rengini de belirleyebilirsiniz */
 }
@@ -185,4 +185,15 @@ button:disabled {
 
 .a {
   color: purple;
+}
+
+
+.picture-ok{
+  background-image: url(https://busraaknar.files.wordpress.com/2024/02/picture.png);
+  width: 50px;
+  height: 280px;
+  cursor: pointer;
+  text-align: center;
+  justify-content: center;
+  
 }
