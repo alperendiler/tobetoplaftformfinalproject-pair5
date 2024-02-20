@@ -2,9 +2,10 @@ import React from 'react'
 import Homework from './Homework'
 import SyncCourse from './SyncCourse'
 import "./SyncCourseDetailContent.css"
+import { Topic } from '../../../../models/responses/course/getCourseDetailResponse'
 type Props = {}
 
-export default function SyncCourseDetailContent({}: Props) {
+export default function SyncCourseDetailContent(props: {topic?:Topic}) {
   return (
     <>
 <div className='row'>
@@ -20,7 +21,7 @@ export default function SyncCourseDetailContent({}: Props) {
                      <div className="row">
       <div className="col-lg-9 col-md-8 col-sm-9 col-xs-12">
         <div className="unit-detail-title">
-          <div>.NET & React Fullstack</div>
+          <div>{props.topic?.name}</div>
         </div>
         <div className="unit-detail-col unit-detail-col-default">Sanal Sınıf<span></span></div>
         <div className="unit-detail-col unit-detail-col-status last-child">
@@ -40,7 +41,7 @@ export default function SyncCourseDetailContent({}: Props) {
         </div>
       </div>
     </div>
-    <SyncCourse/>
+    <SyncCourse topic={props.topic}/>
     <Homework/>
                 </div>
 

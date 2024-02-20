@@ -68,7 +68,7 @@ export default function CourseDetailContent(props: {
       <div className="container-fluid " style={{ backgroundColor: "white" }}>
         <div
           className="container col-12  "
-          style={{ backgroundColor: "white", height: "1000px" }}
+          style={{ backgroundColor: "white", minHeight: "1000px" }}
         >
           <div className="row ">
             <div className="container col-12 course-left col-lg-5  pt-0">
@@ -211,7 +211,7 @@ export default function CourseDetailContent(props: {
             )}
             {contentType=="virtualClass" && 
             <div className="container col-12 course-rigth col-lg-7">
-              <SyncCourseDetailContent />
+              <SyncCourseDetailContent topic={props.courseDetail?.courseTopics[0].topic} />
               </div>
             }
           </div>
