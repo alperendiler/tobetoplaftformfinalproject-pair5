@@ -4,19 +4,13 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "./CourseDetailTab.css";
 import { GetCourseResponse } from "../../../models/responses/course/getCourseResponse";
 import { GetCourseDetailResponse, Topic } from "../../../models/responses/course/getCourseDetailResponse";
+import SyncCourseDetailContent from "./SyncCourse/SyncCourseDetailContent";
 
 type Props = {};
 
 export default function CourseDetailTab(props:{ courseDetail?:GetCourseDetailResponse}) {
   const { courseDetail } = props;
   const [course, setCourse] = useState<GetCourseResponse | any>();
-
-  useEffect(() => {
-    test();
-  }, []);
-  const test = async () => {
-    console.log(courseDetail);
-  };
 
   const formatDate = (isoDate: string): string => {
     // Gelen ISO 8601 formatındaki tarihi JavaScript Date nesnesine dönüştür

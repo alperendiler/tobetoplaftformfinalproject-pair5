@@ -65,22 +65,21 @@ export default function UserProfile({}: Props) {
             </button>
             <div className="dropdown-menu text-muted drop-text-content p-3 border-color">
               <div className="row text-secondary mb-3">
-                <div className="col-md-10">
-                Profilimi Paylaş
-                </div>
+                <div className="col-md-10">Profilimi Paylaş</div>
                 <div className="col-md-2">
-                <div className="form-check form-switch ">
-  <input className="form-check-input attribute-switch" type="checkbox" role="switch" id="flexSwitchCheckDefault"/>
-  <label className="form-check-label flexSwitchCheckDefault" ></label>
-</div>
-</div>
-
-                
-                
+                  <div className="form-check form-switch ">
+                    <input
+                      className="form-check-input attribute-switch"
+                      type="checkbox"
+                      role="switch"
+                      id="flexSwitchCheckDefault"
+                    />
+                    <label className="form-check-label flexSwitchCheckDefault"></label>
+                  </div>
+                </div>
               </div>
               <p> Profil Linki</p>
               <div className="border border-2">
-                
                 <CopyUrl url={url} />
               </div>
             </div>
@@ -100,7 +99,7 @@ export default function UserProfile({}: Props) {
             <MyExam />
             <MyBadge />
             <MyActivityMap />
-            <MyEducationLifeAndExperiences/>
+            <MyEducationLifeAndExperiences />
           </div>
         </div>
       </div>

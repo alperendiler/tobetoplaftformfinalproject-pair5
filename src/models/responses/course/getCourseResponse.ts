@@ -2,6 +2,8 @@ export interface GetCourseResponse {
     Id: string;
     CategoryId: string;
     CompanyId: string;
+    categoryName: string;
+    companyName: string;
     Name: string;
     ImageUrl: string;
     About: string;

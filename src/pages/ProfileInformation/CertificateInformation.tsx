@@ -26,7 +26,6 @@ export default function CertificateInformation({}: Props) {
       10,
       studentId
     );
-    console.log(response);
     setFileList(response.data.items);
   };
 
@@ -61,16 +60,6 @@ export default function CertificateInformation({}: Props) {
     } catch (error) {
       console.error("Error uploading PDF:", error);
     }
-  };
-
-  const handleDownload = (filePath: any, fileName: any) => {
-    const downloadUrl = `${process.env.PUBLIC_URL}/${filePath}`;
-    const link = document.createElement("a");
-    link.href = downloadUrl;
-    link.download = fileName;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
   };
 
   const handleDelete = async (fileId: string) => {
@@ -141,10 +130,9 @@ export default function CertificateInformation({}: Props) {
                     <div className="col-md-2 mt-2">
                       <div className="row">
                         <div className="col-md-6">
-                          <span
-                            onClick={() =>
-                              handleDownload(file.filePath, file.fileName)
-                            }
+                          <a
+                            href={file.filePath.split("public")[1]}
+                            download
                             style={{ cursor: "pointer" }}
                             title="indirme"
                           >
@@ -158,14 +146,16 @@ export default function CertificateInformation({}: Props) {
                             >
                               <path d="M4 0h5.293A1 1 0 0 1 10 .293L13.707 4a1 1 0 0 1 .293.707V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2m5.5 1.5v2a1 1 0 0 0 1 1h2z" />
                             </svg>
-                          </span>
+                          </a>
                         </div>
                         <div className="col-md-6">
                           <span
                             data-bs-toggle="modal"
                             data-bs-target="#exampleModal"
                             title="silme"
-                            onClick={() => {setSelectForDeleteId(file.id)}}
+                            onClick={() => {
+                              setSelectForDeleteId(file.id);
+                            }}
                           >
                             <svg
                               xmlns="https://tobeto.com/trash.svg"
@@ -189,54 +179,51 @@ export default function CertificateInformation({}: Props) {
         </div>
       </div>
       <div
-                            className="modal fade"
-                            id="exampleModal"
-                            aria-labelledby="exampleModalLabel"
-                            aria-hidden="true"
-                          >
-                            <div className="modal-dialog  modal-dialog-centered ">
-                              <div className="modal-content">
-                                <div className="modal-header">
-                                  <img src="https://tobeto.com/_next/static/media/alert.309dc4c0.svg"></img>
-                                  <br />
-                                  <br />
-                                  <h6 className="modal-title">
-                                    <b>
-                                      Seçilen sertifikayı silmek istediğinize
-                                      emin misiniz?
-                                    </b>
-                                  </h6>
-                                  <button
-                                    type="button"
-                                    className="btn-close"
-                                    data-bs-dismiss="modal"
-                                    aria-label="Close"
-                                  ></button>
-                                </div>
-                                <div className="modal-body text-muted">
-                                  <p>Bu işlem geri alınamaz.</p>
-                                </div>
-                                <div className=" modal-footer modal-footer-feature">
-                                  <button
-                                    type="button"
-                                    className="btn btn-secondary"
-                                    data-bs-dismiss="modal"
-                                  >
-                                    Hayır
-                                  </button>
+        className="modal fade"
+        id="exampleModal"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog  modal-dialog-centered ">
+          <div className="modal-content">
+            <div className="modal-header">
+              <img src="https://tobeto.com/_next/static/media/alert.309dc4c0.svg"></img>
+              <br />
+              <br />
+              <h6 className="modal-title">
+                <b>Seçilen sertifikayı silmek istediğinize emin misiniz?</b>
+              </h6>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="modal-body text-muted">
+              <p>Bu işlem geri alınamaz.</p>
+            </div>
+            <div className=" modal-footer modal-footer-feature">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Hayır
+              </button>
 
-                                  <button
-                                    type="button"
-                                    className="btn btn-primary"
-                                    data-bs-dismiss="modal"
-                                    onClick={() => handleDelete(selectForDeleteId)}
-                                  >
-                                    Evet
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+              <button
+                type="button"
+                className="btn btn-primary"
+                data-bs-dismiss="modal"
+                onClick={() => handleDelete(selectForDeleteId)}
+              >
+                Evet
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

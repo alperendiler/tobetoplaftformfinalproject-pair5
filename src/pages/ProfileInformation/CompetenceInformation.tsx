@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/personalInformation.css";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import RemoveAlertModal from "../../components/Common/RemoveAlertModal";
 import competenceService from "../../services/competenceService";
 import { GetCompetenceResponse } from "../../models/responses/competence/getCompetenceResponse";
 import "../../styles/competence.css";
+import { ToastContainer, toast } from "react-toastify";
 
 type Props = {};
 interface CompetenceForm {
@@ -15,6 +16,8 @@ interface CompetenceForm {
 export default function CompetenceInformation({}: Props) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [competences, setCompetences] = useState<GetCompetenceResponse[]>([]);
+  const [selectForDeleteId, setSelectForDeleteId] = useState<string>("");
+
 
   useEffect(() => {
     fetchCompetences();
@@ -27,6 +30,19 @@ export default function CompetenceInformation({}: Props) {
   };
 
   const handleSubmit = async (competenceName: string) => {
+    if (competences.some(item => item.name === competenceName)) {
+      toast.error("Yetenek zaten listede var", {
+        position: "top-right",
+        autoClose: 5000, // 5 saniye sonra otomatik olarak kapat
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme:"colored"
+      });
+      return;
+    }
     const studentId = localStorage.getItem("studentId")!;
     const response = await competenceService.add({
       studentId: studentId,
@@ -51,7 +67,7 @@ export default function CompetenceInformation({}: Props) {
     competence: "",
   };
   const validationSchema = Yup.object({
-    competence: Yup.string(),
+    competence: Yup.string().required("Lütfen bir yetkinlik seçiniz"),
   });
   const [competenceList, setCompetenceList] = useState<
     Array<{ competence: string }>
@@ -65,8 +81,11 @@ export default function CompetenceInformation({}: Props) {
       ]);
     }
   }, [selectedCompetence]);
+
+  
   return (
     <>
+     <ToastContainer/>
       <Formik
         validationSchema={validationSchema}
         initialValues={initialValues}
@@ -108,6 +127,9 @@ export default function CompetenceInformation({}: Props) {
                 <option value="Apple IOS">Apple IOS</option>
                 <option value="Apple Xcode">Apple Xcode</option>
               </Field>
+              <ErrorMessage name="competence">
+                {(message) => <p className="text-danger">{message}</p>}
+              </ErrorMessage>
             </div>
 
             <button type="submit" className="btn btn-personal-information">
@@ -128,62 +150,63 @@ export default function CompetenceInformation({}: Props) {
                   className=" grade-delete g-del"
                   data-bs-toggle="modal"
                   data-bs-target="#exampleModal"
+                  onClick={() => {
+                    setSelectForDeleteId(item.id);
+                  }}
                 ></span>
-                <div
-                  className="modal fade"
-                  id="exampleModal"
-                  aria-labelledby="exampleModalLabel"
-                  aria-hidden="true"
-                >
-                  <div className="modal-dialog  modal-dialog-centered ">
-                    <div className="modal-content">
-                      <div className="modal-header">
-                        <img src="https://tobeto.com/_next/static/media/alert.309dc4c0.svg"></img>
-                        <br />
-                        <br />
-                        <h6 className="modal-title">
-                          <b>
-                            Seçilen yetkinliği silmek istediğinize emin misiniz?
-                          </b>
-                        </h6>
-                        <button
-                          type="button"
-                          className="btn-close"
-                          data-bs-dismiss="modal"
-                          aria-label="Close"
-                        ></button>
-                      </div>
-                      <div className="modal-body text-muted">
-                        <p>
-                          Daha sonra tekrardan listeden istediğiniz yetkinliği
-                          ekleyebilirsiniz.
-                        </p>
-                      </div>
-                      <div className=" modal-footer modal-footer-feature">
-                        <button
-                          type="button"
-                          className="btn btn-secondary"
-                          data-bs-dismiss="modal"
-                        >
-                          Hayır
-                        </button>
-
-                        <button
-                          type="button"
-                          className="btn btn-primary"
-                          data-bs-dismiss="modal"
-                          onClick={() => handleDelete(item.id)}
-                        >
-                          Evet
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
         ))}
+        <div
+          className="modal fade"
+          id="exampleModal"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog  modal-dialog-centered ">
+            <div className="modal-content">
+              <div className="modal-header">
+                <img src="https://tobeto.com/_next/static/media/alert.309dc4c0.svg"></img>
+                <br />
+                <br />
+                <h6 className="modal-title">
+                  <b>Seçilen yetkinliği silmek istediğinize emin misiniz?</b>
+                </h6>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div className="modal-body text-muted">
+                <p>
+                  Daha sonra tekrardan listeden istediğiniz yetkinliği
+                  ekleyebilirsiniz.
+                </p>
+              </div>
+              <div className=" modal-footer modal-footer-feature">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Hayır
+                </button>
+
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  data-bs-dismiss="modal"
+                  onClick={() => handleDelete(selectForDeleteId)}
+                >
+                  Evet
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

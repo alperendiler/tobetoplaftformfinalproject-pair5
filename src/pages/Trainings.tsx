@@ -103,7 +103,7 @@ export default function ({}: Props) {
 
             <div className="tab-content pt-2" id="borderedTabContent">
               <div
-                className="tab-pane fade"
+                className="tab-pane show active"
                 id="bordered-all"
                 role="tabpanel"
                 aria-labelledby="all-tab"

@@ -1,22 +1,42 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./CourseDetailContent.css";
 import OffCanvas from "./OffCanvas";
 import { useState } from "react";
 import ButtonGroup from "antd/es/button/button-group";
 import {
   CourseTopicTitle,
+  CourseTopicVirtualClass,
   GetCourseDetailResponse,
 } from "../../../models/responses/course/getCourseDetailResponse";
 import { title } from "process";
+import SyncCourseDetailContent from "./SyncCourse/SyncCourseDetailContent";
+import { useParams } from "react-router-dom";
 type Props = {};
 
 export default function CourseDetailContent(props: {
   courseDetail?: GetCourseDetailResponse;
 }) {
+  useEffect(() => {
+    SetContentType();
+  }, [props]);
+  const SetContentType = async () => {
+    if (
+      props.courseDetail &&
+      props.courseDetail.courseTopics[0].topic.virtualClasses?.length > 0
+    ) {
+      setContentType("virtualClass");
+    } else if (
+      props.courseDetail &&
+      props.courseDetail.courseTopics[0].topic.titles?.length > 0
+    ) {
+      setContentType("title");
+    }
+  };
+
   const { courseDetail } = props;
   const [selectedTitle, setSelectedTitle] = useState<CourseTopicTitle>();
+  const [contentType, setContentType] = useState<string>();
 
-  // Videoyu gösterme durumu ve resmin gösterilme durumu için birer state tanımlandı
   const [showVideo, setShowVideo] = useState(false);
   const [showVideo2, setShowVideo2] = useState(false);
   const [showImage, setShowImage] = useState(true);
@@ -24,25 +44,23 @@ export default function CourseDetailContent(props: {
   const handleSelectTitle = (title: CourseTopicTitle) => {
     setSelectedTitle(title);
     console.log(title);
-    setShowImage(false); // Resmi kaldır
-    setShowVideo(true); // Videoyu göster
-    setShowVideo2(false); // Eski videoyu kaldırck
+    setShowImage(false);
+    setShowVideo(true); 
+    setShowVideo2(false); 
   };
 
-  // Resmin üzerine tıklama olayını dinleyen bir fonksiyon
+
   const handleWordClick = () => {
-    setShowImage(false); // Resmi kaldır
-    setShowVideo(true); // Videoyu göster
-    setShowVideo2(false); // Eski videoyu kaldırck
+    setShowImage(false); 
+    setShowVideo(true); 
+    setShowVideo2(false); 
   };
 
   const handleWord2Click = () => {
-    setShowImage(false); // Resmi kaldır
-    setShowVideo(false); //İlk videoyu kaldırr
-    setShowVideo2(true); // Videoyu göster
-    // if (showVideo) {
-    //   setShowVideo(false);
-    // }
+    setShowImage(false); 
+    setShowVideo(false); 
+    setShowVideo2(true); 
+
   };
 
   return (
@@ -63,7 +81,7 @@ export default function CourseDetailContent(props: {
                         id={"heading" + item.topic.id}
                       >
                         <button
-                          className="accordion-button collapsed"
+                          className="accordion-button collapsed button-feature"
                           type="button"
                           data-bs-toggle="collapse"
                           data-bs-target={"#collapse" + item.topic.id}
@@ -88,13 +106,12 @@ export default function CourseDetailContent(props: {
                               <div className="accordion-content-two col-11">
                                 <div
                                   className="accordion-content-title"
-                                  // Başlık tıklandığında setShowVideo(true) çağrılır ve video gösterilir
                                   onClick={() => handleSelectTitle(title)}
                                 >
                                   {title.name}
                                 </div>
                                 <div className="accordion-timer">
-                                  Video - 4 dk
+                                  Video - {title.videoTime} dk
                                 </div>
                               </div>
                             </div>
@@ -102,296 +119,15 @@ export default function CourseDetailContent(props: {
                         </div>
                       </div>
                     </div>
-                  ))}
-                  <div className="accordion-item ">
-                    <h2 className="accordion-header" id="headingTwo">
-                      <button
-                        className="accordion-button collapsed"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapseTwo"
-                        aria-expanded="false"
-                        aria-controls="collapseTwo"
-                      >
-                        Microsoft Word - Word Processor
-                      </button>
-                    </h2>
-                    <div
-                      id="collapseTwo"
-                      className="accordion-collapse collapse"
-                      aria-labelledby="headingTwo"
-                      data-bs-parent="#accordionExample"
-                    >
-                      <div className="accordion-body">
-                        <div className="accordion-content-all col-12">
-                          <div className="accordion-content-two col-11">
-                            <div
-                              className="accordion-content-title"
-                              // Başlık tıklandığında setShowVideo(true) çağrılır ve video gösterilir
-                              onClick={handleWordClick}
-                            >
-                              Sözcük işleyişi () Word Processor / MS Word)
-                            </div>
-                            <div className="accordion-timer">Video - 4 dk</div>
-                          </div>
-                          <div className="isaret col-1">
-                            <img
-                              width="13px"
-                              height="13px"
-                              src="https://lms.tobeto.com/tobeto/eep/Styles/assets/css/img/icon/learning-experience-platform/unit-completed.svg"
-                            />
-                          </div>
-                        </div>
-                        <div className="accordion-content-all col-12">
-                          <div className="accordion-content-two col-11">
-                            <div
-                              className="accordion-content-title"
-                              onClick={handleWord2Click}
-                            >
-                              Word'e Giriş / Word Arayüzü ve Temel Kavramlar
-                            </div>
-                            <div className="accordion-timer">Video - 7 dk</div>
-                          </div>
-                          <div className="isaret col-1">
-                            <img
-                              width="13px"
-                              height="13px"
-                              src="https://lms.tobeto.com/tobeto/eep/Styles/assets/css/img/icon/learning-experience-platform/unit-completed.svg"
-                            />
-                          </div>
-                        </div>
-                        <div className="accordion-content-all col-12">
-                          <div className="accordion-content-two col-10">
-                            <div className="accordion-content-title">
-                              Word'e Metin Ekleme ve Biçimlendirme
-                            </div>
-                            <div className="accordion-timer">Video - 10 dk</div>
-                          </div>
-                          <div className="isaret col-2">
-                            <img
-                              width="13px"
-                              height="13px"
-                              src="https://lms.tobeto.com/tobeto/eep/Styles/assets/css/img/icon/learning-experience-platform/unit-completed.svg"
-                            />
-                          </div>
-                        </div>
-
-                        <div className="accordion-content-all col-12">
-                          <div className="accordion-content-two col-10">
-                            <div className="accordion-content-title">
-                              Metin Bulma ve Değiştirme İşlemleri
-                            </div>
-                            <div className="accordion-timer">Video - 12 dk</div>
-                          </div>
-                          <div className="isaret col-2">
-                            <img
-                              width="13px"
-                              height="13px"
-                              src="https://lms.tobeto.com/tobeto/eep/Styles/assets/css/img/icon/learning-experience-platform/unit-completed.svg"
-                            />
-                          </div>
-                        </div>
-                        <div className="accordion-content-all col-12">
-                          <div className="accordion-content-two col-10">
-                            <div className="accordion-content-title">
-                              Word ile Belge Üretimi Giriş
-                            </div>
-                            <div className="accordion-timer">Video - 3 dk</div>
-                          </div>
-                          <div className="isaret col-2">
-                            <img
-                              width="13px"
-                              height="13px"
-                              src="https://lms.tobeto.com/tobeto/eep/Styles/assets/css/img/icon/learning-experience-platform/unit-completed.svg"
-                            />
-                          </div>
-                        </div>
-                        <div className="accordion-content-all col-12">
-                          <div className="accordion-content-two col-10">
-                            <div className="accordion-content-title">
-                              Sözcük işleyişi ( Word Processor / MS Word)
-                            </div>
-                            <div className="accordion-timer">Video - 4 dk</div>
-                          </div>
-                          <div className="isaret col-2">
-                            <img
-                              width="13px"
-                              height="13px"
-                              src="https://lms.tobeto.com/tobeto/eep/Styles/assets/css/img/icon/learning-experience-platform/unit-completed.svg"
-                            />
-                          </div>
-                        </div>
-                        <div className="accordion-content-all col-12">
-                          <div className="accordion-content-two col-10">
-                            <div className="accordion-content-title">
-                              Sözcük işleyişi ( Word Processor / MS Word)
-                            </div>
-                            <div className="accordion-timer">Video - 4 dk</div>
-                          </div>
-                          <div className="isaret col-2">
-                            <img
-                              width="13px"
-                              height="13px"
-                              src="https://lms.tobeto.com/tobeto/eep/Styles/assets/css/img/icon/learning-experience-platform/unit-completed.svg"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="accordion-item">
-                    <h2 className="accordion-header" id="headingThree">
-                      <button
-                        className="accordion-button collapsed"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapseThree"
-                        aria-expanded="false"
-                        aria-controls="collapseThree"
-                      >
-                        Microsoft PowerPoint - Presentation
-                      </button>
-                    </h2>
-                    <div
-                      id="collapseThree"
-                      className="accordion-collapse collapse"
-                      aria-labelledby="headingThree"
-                      data-bs-parent="#accordionExample"
-                    >
-                      <div className="accordion-body">
-                        <div className="accordion-content-all col-12">
-                          <div className="accordion-content-two col-10">
-                            <div className="accordion-content-title">
-                              Sunum (Presentation / MS PowerPoint)
-                            </div>
-                            <div className="accordion-timer">Video - 2 dk</div>
-                          </div>
-                          <div className="isaret col-2 ">
-                            <img
-                              width="13px"
-                              height="13px"
-                              src="https://lms.tobeto.com/tobeto/eep/Styles/assets/css/img/icon/learning-experience-platform/unit-completed.svg"
-                            />
-                          </div>
-                        </div>
-                        <div className="accordion-content-all col-12">
-                          <div className="accordion-content-two col-11">
-                            <div className="accordion-content-title">
-                              PowerPoint'e Giriş
-                            </div>
-                            <div className="accordion-timer">Video - 26 dk</div>
-                          </div>
-                          <div className="isaret col-1 ">
-                            <img
-                              width="13px"
-                              height="13px"
-                              src="https://lms.tobeto.com/tobeto/eep/Styles/assets/css/img/icon/learning-experience-platform/unit-completed.svg"
-                            />
-                          </div>
-                        </div>
-                        <div className="accordion-content-all col-12">
-                          <div className="accordion-content-two col-10">
-                            <div className="accordion-content-title">
-                              PowerPoint ile Sunum Hazırlama - Giriş
-                            </div>
-                            <div className="accordion-timer">Video - 2 dk</div>
-                          </div>
-                          <div className="isaret col-2">
-                            <img
-                              width="13px"
-                              height="13px"
-                              src="https://lms.tobeto.com/tobeto/eep/Styles/assets/css/img/icon/learning-experience-platform/unit-completed.svg"
-                            />
-                          </div>
-                        </div>
-                        <div className="accordion-content-all col-12">
-                          <div className="accordion-content-two col-10">
-                            <div className="accordion-content-title">
-                              PowerPoint ile Asıl Slayt İşlevi
-                            </div>
-                            <div className="accordion-timer">Video - 13 dk</div>
-                          </div>
-                          <div className="isaret col-2">
-                            <img
-                              width="13px"
-                              height="13px"
-                              src="https://lms.tobeto.com/tobeto/eep/Styles/assets/css/img/icon/learning-experience-platform/unit-completed.svg"
-                            />
-                          </div>
-                        </div>
-                        <div className="accordion-content-all col-12">
-                          <div className="accordion-content-two col-10">
-                            <div className="accordion-content-title">
-                              PowerPoint ile Animasyon Ekleme
-                            </div>
-                            <div className="accordion-timer">Video - 12 dk</div>
-                          </div>
-                          <div className="isaret col-2">
-                            <img
-                              width="13px"
-                              height="13px"
-                              src="https://lms.tobeto.com/tobeto/eep/Styles/assets/css/img/icon/learning-experience-platform/unit-completed.svg"
-                            />
-                          </div>
-                        </div>
-                        <div className="accordion-content-all col-12">
-                          <div className="accordion-content-two col-10">
-                            <div className="accordion-content-title">
-                              PowerPoint ile Grafik Biçimlendirme
-                            </div>
-                            <div className="accordion-timer">Video - 10 dk</div>
-                          </div>
-                          <div className="isaret col-2">
-                            <img
-                              width="13px"
-                              height="13px"
-                              src="https://lms.tobeto.com/tobeto/eep/Styles/assets/css/img/icon/learning-experience-platform/unit-completed.svg"
-                            />
-                          </div>
-                        </div>
-                        <div className="accordion-content-all col-12">
-                          <div className="accordion-content-two col-10">
-                            <div className="accordion-content-title">
-                              PowerPoint ile Grafik Biçimlendirme
-                            </div>
-                            <div className="accordion-timer">Video - 6 dk</div>
-                          </div>
-                          <div className="isaret col-2">
-                            <img
-                              width="13px"
-                              height="13px"
-                              src="https://lms.tobeto.com/tobeto/eep/Styles/assets/css/img/icon/learning-experience-platform/unit-completed.svg"
-                            />
-                          </div>
-                        </div>
-                        <div className="accordion-content-all col-12">
-                          <div className="accordion-content-two col-10">
-                            <div className="accordion-content-title">
-                              Sözcük işleyişi () Word Processor / MS Word)
-                            </div>
-                            <div className="accordion-timer">Video - 4 dk</div>
-                          </div>
-                          <div className="isaret col-2">
-                            <img
-                              width="13px"
-                              height="13px"
-                              src="https://lms.tobeto.com/tobeto/eep/Styles/assets/css/img/icon/learning-experience-platform/unit-completed.svg"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  ))}       
                 </div>
               </div>
             </div>
-
+            {contentType=="title" && (
             <div className="container col-12 course-rigth col-lg-7">
               <div className="activity-content-info ">
-                {/* Resmi gösterme durumuna bağlı olarak resmi veya videoyu göster */}
                 {showImage && (
                   <div className="imageWord " onClick={handleWordClick}>
-                    {/* Resim buraya eklenebilir */}
                     <img
                       width="100%"
                       height="auto"
@@ -455,13 +191,13 @@ export default function CourseDetailContent(props: {
                   )}
 
                   <div className="sarma">
-                    <div className="video-ml col-2.5 ">Video - 4 dk</div>
+                    <div className="video-ml col-2.5 "> {selectedTitle &&( "video - " + selectedTitle?.videoTime + " dk")} </div>
                     <div className="score col-2 ">
                       {selectedTitle && selectedTitle?.point + " puan"}
                     </div>
                     <div className="status-continue col-5 ">
-                      <i className="bi bi-hand-thumbs-up"></i>
-                      &nbsp;Tebrikler,&nbsp;&nbsp;tamamladın!
+                      {/* <i className="bi bi-hand-thumbs-up"></i>
+                      &nbsp;Tebrikler,&nbsp;&nbsp;tamamladın! */}
                     </div>
                   </div>
                 </div>
@@ -472,9 +208,16 @@ export default function CourseDetailContent(props: {
                 </div>
               </div>
             </div>
+            )}
+            {contentType=="virtualClass" && 
+            <div className="container col-12 course-rigth col-lg-7">
+              <SyncCourseDetailContent />
+              </div>
+            }
           </div>
         </div>
       </div>
+      
     </>
   );
 }

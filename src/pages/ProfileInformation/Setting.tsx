@@ -43,26 +43,19 @@ export default function Setting({}: Props) {
         });
     
       } 
-      // else {
-      //   toast.error("Şifre değiştirme başarısız", {
-      //     position: "top-right",
-      //     autoClose: 5000, 
-      //     hideProgressBar: false,
-      //     closeOnClick: true,
-      //     pauseOnHover: true,
-      //     draggable: true,
-      //     progress: undefined,
-      //     theme:"colored"
-      //   });
-      // }
+ 
   };
 
   const validationSchema = Yup.object().shape({
     password: Yup.string().required("Eski Şifre gereklidir"),
-    newPassword: Yup.string().required("Yeni Şifre gereklidir"),
+    newPassword: Yup.string().required("Yeni Şifre gereklidir").min(6, "Şifre en az 6 karakter olmalıdır")
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W)/,
+      "En az bir küçük harf, en az bir büyük harf ve en az bir özel karakter içermelidir"),
     reNewPassword: Yup.string()
       .oneOf([Yup.ref("newPassword"), ""], "Yeni şifreler eşleşmiyor")
       .required("Yeni Şifre Tekrar gereklidir")
+      
   });
 
   return (
