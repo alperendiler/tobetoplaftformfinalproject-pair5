@@ -22,6 +22,7 @@ import EditProfile from "./pages/ProfileInformation/EditProfile";
 import Connection from "./pages/Connection";
 import { ToastContainer } from 'react-toastify';
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import ConnectionSuccess from "./pages/ConnectionSuccess";
  
 
 interface Props { }
@@ -177,7 +178,18 @@ function App({ }: Props) {
           </div>
         }
       />
-    
+      <Route
+        path="/connectionsuccess"
+        element={
+          <div>
+            <NavbarLogin />
+            <ConnectionSuccess/>
+            <FooterLogin />
+          </div>
+        }
+      />
+
+
       </Routes>
     </>
 
