@@ -10,7 +10,10 @@ export default function SyncCourse(props: { topic?: Topic }) {
     <>
       <div className="unit-detail-session-row LXP-Collapse">
         <div className="session-title">Oturumlar</div>
-        {props.topic?.virtualClasses.map((item, index) => (
+        {props.topic?.virtualClasses
+        .slice()
+        .sort((a, b) => (a.name > b.name ? 1 : -1))
+        .map((item, index) => (
           <div className="session-detail">
             <p className="d-inline-flex gap-1">
               <div
