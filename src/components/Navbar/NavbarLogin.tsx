@@ -69,10 +69,12 @@ export default function NavbarLogin({}: Props) {
 
             <button
               type="button"
-              className=" button-rainbow    fw-bold login-button text-light  "
+              className=" button-rainbow fw-bold login-button text-light  "
               aria-expanded="false"
-            >
-              Ücretsiz Üye Ol
+            ><Link to="/register" className="text-decoration">
+            Ücretsiz Üye Ol
+            </Link>
+              
             </button>
           </div>
         </div>

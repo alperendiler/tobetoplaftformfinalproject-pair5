@@ -1,15 +1,4 @@
-/* -
--*-~*~-*-*-~*~-*-*-~*~* |
-●▬▬▬▬▬▬▬๑۩۩๑▬▬▬▬▬▬▬●
-Made by ~
-Areal Alien ❥ 雷克斯
-●▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬●
-──────▄▀▄─────▄▀▄
-─────▄█░░▀▀▀▀▀░░█▄
-─▄▄──█░░░░░░░░░░░█──▄▄
-█▄▄█─█░░▀░░┬░░▀░░█─█▄▄█
--*-~*~-*-*-~*~-*-*-~*~* |
-- */
+
 :root {
     --background: 266, 16%, 92%;
     --text-primary: 0, 0%, 0%;
@@ -56,3 +45,8 @@ Areal Alien ❥ 雷克斯
       background-position: 100% 50%;
       outline: none;
   }
+
+.text-decoration{
+    text-decoration: none;
+   color: black !important;
+}
