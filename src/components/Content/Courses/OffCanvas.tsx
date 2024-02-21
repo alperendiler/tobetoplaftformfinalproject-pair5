@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./OffCanvas.css";
 import ReactDOM from "react-dom";
+import { CourseTopicTitle } from "../../../models/responses/course/getCourseDetailResponse";
 
 
 const Overlay = ({ isShowing, toggle }: any) => {
@@ -16,7 +17,7 @@ const Overlay = ({ isShowing, toggle }: any) => {
 
 
 // OffCanvas bileşeni
-const OffCanvas = () => {
+const OffCanvas = (props:{title?:CourseTopicTitle, image?:string}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [liked, setLiked] = useState(false);
   const togglePanel = () => {
@@ -46,7 +47,7 @@ const OffCanvas = () => {
               <div className="space-left"></div>
               <div className="image-canvas" style={{ width: " 160px" }}>
                 <img
-                  src="https://lms.tobeto.com/tobeto/eep/common_show_picture_cached.aspx?pQS=DiBldjEKnwJCe69nG2MNIKN8WyVXbzKN"
+                  src={props.image}
                   className="edu-img-c"
                   alt="Eğitim Resmi"
                 />
@@ -64,7 +65,7 @@ const OffCanvas = () => {
                       width: "400px",
                     }}
                   >
-                    Sözcük İşleyici (Word Processor / MS Word){" "}
+                    {props.title?.name}
                   </div>
                   <div className="row edu-detail-row-c">
                     <div
@@ -109,7 +110,7 @@ const OffCanvas = () => {
 
                       }}
                     >
-                      4dk
+                      {props.title?.videoTime}
                     </div>
                     <div
                       className="row  time-c"
@@ -169,7 +170,7 @@ const OffCanvas = () => {
                       Tebrikler,&nbsp;&nbsp;tamamladın!
                       </div>
 
-                      <div className="col-score col-3 ">100 PUAN</div>
+                      <div className="col-score col-3 ">{props.title?.point}</div>
                     </div>
                   </div>
                 </div>
@@ -186,7 +187,7 @@ const OffCanvas = () => {
                       </td>
                       <td>Kategori</td>
                       <td className="c-edu-detail">
-                        İş'te Mükemmellik / Bilişim Teknolojileri / Office 2016
+                        Yazılım
                       </td>
                     </tr>
                     <tr>
@@ -201,7 +202,7 @@ const OffCanvas = () => {
                         <i className="bi bi-boxes"></i>
                       </td>
                       <td>Alt Tip</td>
-                      <td className="c-edu-detail">Konu Uzmanı Videosu</td>
+                      <td className="c-edu-detail">{props.title?.subtype}</td>
                     </tr>
                     <tr>
                       <td>
@@ -230,7 +231,7 @@ const OffCanvas = () => {
                   fontSize: "14px"
                 }}
               >
-                Bu videoda sözlük işleyici kavramından ve belge üretmek için kullanılan uygulamalardan bahsedilmiştir.
+                {props.title?.description}
               </div>
             </div>
 

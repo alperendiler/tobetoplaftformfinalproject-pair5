@@ -1,6 +1,8 @@
 import "../styles/login.css";
 import LoginForm from "../components/Login/LoginForm";
 import { toast } from "react-toastify";
+import Chatbot from "../components/Common/Chatbot";
+
 
 const Login = () => {
   const onRegisterSuccess =()=>{
@@ -68,6 +70,7 @@ const Login = () => {
           </div>
         </section>
       </div>
+      <Chatbot/>
     </main>
   );
 };
