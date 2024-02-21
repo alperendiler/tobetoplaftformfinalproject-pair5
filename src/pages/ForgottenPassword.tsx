@@ -3,6 +3,7 @@ import FormikInput from "../components/FormikInput/FormikInput";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import "../styles/forgottenPassword.css";
+import Chatbot from "../components/Common/Chatbot";
 
 type Props = {};
 
@@ -44,6 +45,7 @@ export default function ForgottenPassword({}: Props) {
             </Formik>
           </div>
         </div>
+        <Chatbot/>
       </div>
     </>
   );

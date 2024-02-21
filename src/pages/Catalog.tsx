@@ -1,7 +1,7 @@
 import React from "react";
 import "../components/Content/Catalog/catalog.css";
 import Filters from "../components/Content/Catalog/CatalogFilter";
-import CatologList from "../components/Content/Catalog/CatalogList";
+import CatalogList from "../components/Content/Catalog/CatalogList";
 import Pagination from "../components/Common/Pagination";
 type Props = {};
 
@@ -82,7 +82,7 @@ export default function Catalog({}: Props) {
 
           <div className="col-lg-9 col-md-8 col-12">
             <div className="row gy-6 gx-3">
-              <CatologList />
+              <CatalogList />
               <Pagination />
             </div>
           </div>

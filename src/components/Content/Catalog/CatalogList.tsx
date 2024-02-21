@@ -1,38 +1,43 @@
 import React, { useState,useEffect } from 'react';
 import "./catalogList.css"
-const CatologList = () => {
-    const [catologs, setapplications] = useState<{ id: number; time: string; name: string; description: string; }[]>([]);
+const CatalogList = () => {
+    const [catalogs, setapplications] = useState<{ id: number; time: string; name: string; description: string; image: string }[]>([]);
 
-    const testCatologs = [
+    const testCatalogs = [
       {
         id: 1,
-        time: '22.22',
-        name: 'Alperen Diler', 
-        description: 'Lorem ipsum dolor sit aLorem ipsum dolor sit aLorem ipsum dolor sit a', 
+        time: '4s 14dk',
+        name: 'Gürkan İlişen', 
+        description: 'Dinle, Anla, İfade Et: Etkili İletişim Gelişim Yolculuğu', 
+        image: "https://tobeto.s3.cloud.ngn.com.tr/ENK_36573_a8546fa0ff.jpg"
       },
       {
         id: 2,
-        time: '22.22',
-        name: 'Alperen Diler', 
-        description: 'Lorem ipsum dolLorem ipsum dolor sit aor sit a', 
+        time: '40dk',
+        name: 'Gürkan İlişen', 
+        description: 'Sürdürülebilir Bir Dünya için Bireysel Farkındalık', 
+        image: "https://tobeto.s3.cloud.ngn.com.tr/ENK_365670_08eb2bab1a.jpg"
       },
       {
         id: 3,
-        time: '22.22',
-        name: 'Alperen Diler', 
-        description: 'Lorem ipsum doLorem ipsum dolor sit alor sit a', 
+        time: '2s 1dk',
+        name: 'Gürkan İlişen', 
+        description: 'Web Sayfası Tasarımı Nasıl Oluşturulur? - HTML (Temel Seviye)', 
+        image: "https://tobeto.s3.cloud.ngn.com.tr/ENK_365274_0e51ec7bdb.jpg"
       },
       {
         id: 4,
-        time: '22.22',
-        name: 'Alperen Diler', 
-        description: 'Lorem ipsum Lorem ipsum dolor sit adolor sit a', 
+        time: '20dk',
+        name: 'Gürkan İlişen', 
+        description: 'Yaratıcı Düşünme ve İnovasyon Teknikleri', 
+        image: "https://tobeto.s3.cloud.ngn.com.tr/ENIB_238_ea465ab18a.jpg"
       },
       {
         id: 5,
-        time: '22.22',
-        name: 'Alperen Diler', 
-        description: 'Lorem ipsum Lorem ipsum dolor sit adolor sit a', 
+        time: '1s 15dk',
+        name: 'Gürkan İlişen', 
+        description: 'Problem Çözme Teknikleri',
+        image: "https://tobeto.s3.cloud.ngn.com.tr/ENIB_210_e8f964f5a9.jpg" 
       },
      
     ];
@@ -41,7 +46,7 @@ const CatologList = () => {
         try {
   
   
-          setapplications(testCatologs);
+          setapplications(testCatalogs);
         } catch (error) {
           console.error("Error fetching products:", error);
         }
@@ -51,11 +56,11 @@ const CatologList = () => {
     }, []);
   return (
     <>
-    {catologs && catologs.length > 0 ? (
-        catologs.map((catolog) => (
-            <div key={catolog.id} className="col-lg-4 col-md-6 col-12 educard-mobile" style={{ position: 'relative', cursor: 'pointer' }}>
+    {catalogs && catalogs.length > 0 ? (
+        catalogs.map((catalog) => (
+            <div key={catalog.id} className="col-lg-4 col-md-6 col-12 educard-mobile" style={{ position: 'relative', cursor: 'pointer' }}>
             <div className="education-box-new fade-in">
-              <img className="edubox-img" src="https://tobeto.s3.cloud.ngn.com.tr/ENK_36573_a8546fa0ff.jpg" alt="" />
+              <img className="edubox-img" src={catalog.image} alt="" />
               <div className="catalog-content">
                 <div>
                   <div className="property">
@@ -64,7 +69,7 @@ const CatologList = () => {
                         <path d="M13.3334 14V12.6667C13.3334 11.9594 13.0525 11.2811 12.5524 10.781C12.0523 10.281 11.374 10 10.6667 10H5.33341C4.62617 10 3.94789 10.281 3.4478 10.781C2.9477 11.2811 2.66675 11.9594 2.66675 12.6667V14" stroke="#fff"  ></path>
                         <path d="M7.99992 7.33333C9.47268 7.33333 10.6666 6.13943 10.6666 4.66667C10.6666 3.19391 9.47268 2 7.99992 2C6.52716 2 5.33325 3.19391 5.33325 4.66667C5.33325 6.13943 6.52716 7.33333 7.99992 7.33333Z" stroke="#fff"  ></path>
                       </svg>
-                      <span className="pro">{catolog.name}</span>
+                      <span className="pro">{catalog.name}</span>
                     </div>
                     <div>
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/1200/svg">
@@ -78,13 +83,13 @@ const CatologList = () => {
                           </clipPath>
                         </defs>
                       </svg>
-                      <span className="pro">{catolog.time}</span>
+                      <span className="pro">{catalog.time}</span>
                     </div>
                     <div>
                       <span className="pro"></span>
                     </div>
                   </div>
-                  <div className="name fw-bold">{catolog.description}</div>
+                  <div className="name fw-bold">{catalog.description}</div>
                 </div>
               </div>
               <div className="prog-cont">
@@ -103,4 +108,4 @@ const CatologList = () => {
   );
 };
 
-export default CatologList;
+export default CatalogList;
