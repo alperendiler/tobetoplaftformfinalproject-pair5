@@ -47,6 +47,14 @@ function App({ }: Props) {
             </div>
           }
         />
+         <Route
+        path="/forgotPassword"
+        element={
+          <div>    <NavbarLogin />
+          <ForgottenPassword/>
+          <FooterLogin /></div>     
+        }
+      />
         <Route
           path="/home-page"
           element={
@@ -147,16 +155,6 @@ function App({ }: Props) {
             <Navbar />
             <Announcements />
             <Footer />
-            </ProtectedRoute> 
-        }
-      />
-      <Route
-        path="/forgotPassword"
-        element={
-          <ProtectedRoute> 
-            <NavbarLogin />
-            <ForgottenPassword/>
-            <FooterLogin />
             </ProtectedRoute> 
         }
       />

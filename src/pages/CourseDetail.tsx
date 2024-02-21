@@ -21,6 +21,7 @@ export default function Courses({}: Props) {
     const response = await courseService.GetCourseDetail(
       id!
     );
+    console.log(response);
    setCourseDetail(response.data);
    //console.log(response.data.courseTopics.map((item,index) => {return item.topic}));
   //  setTitleList(response.data.courseTopics.map((item,index) => {return item.topic}));
