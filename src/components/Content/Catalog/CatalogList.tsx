@@ -1,8 +1,11 @@
 import React, { useState,useEffect } from 'react';
 import "./catalogList.css"
 import courseService from '../../../services/courseService';
+import { GetAllCourseResponse } from '../../../models/responses/course/getAllCourseResponse';
+import { Link } from 'react-router-dom';
 const CatalogList = () => {
-    const [catalogs, setapplications] = useState<{ id: number; time: string; name: string; description: string; image: string }[]>([]);
+    // const [catalogs, setapplications] = useState<{ id: number; time: string; name: string; description: string; image: string }[]>([]);
+    const [catalogs, setapplications] = useState<GetAllCourseResponse[]>([]);
 
     const testCatalogs = [
       {
@@ -48,7 +51,7 @@ const CatalogList = () => {
   let response = await courseService.GetPublicCourseList()
   console.log(response)
   
-          setapplications(testCatalogs);
+          setapplications(response.data.items);
         } catch (error) {
           console.error("Error fetching products:", error);
         }
@@ -62,7 +65,7 @@ const CatalogList = () => {
         catalogs.map((catalog) => (
             <div key={catalog.id} className="col-lg-4 col-md-6 col-12 educard-mobile" style={{ position: 'relative', cursor: 'pointer' }}>
             <div className="education-box-new fade-in">
-              <img className="edubox-img" src={catalog.image} alt="" />
+              <img className="edubox-img" src={catalog.imageUrl} alt="" />
               <div className="catalog-content">
                 <div>
                   <div className="property">
@@ -71,7 +74,7 @@ const CatalogList = () => {
                         <path d="M13.3334 14V12.6667C13.3334 11.9594 13.0525 11.2811 12.5524 10.781C12.0523 10.281 11.374 10 10.6667 10H5.33341C4.62617 10 3.94789 10.281 3.4478 10.781C2.9477 11.2811 2.66675 11.9594 2.66675 12.6667V14" stroke="#fff"  ></path>
                         <path d="M7.99992 7.33333C9.47268 7.33333 10.6666 6.13943 10.6666 4.66667C10.6666 3.19391 9.47268 2 7.99992 2C6.52716 2 5.33325 3.19391 5.33325 4.66667C5.33325 6.13943 6.52716 7.33333 7.99992 7.33333Z" stroke="#fff"  ></path>
                       </svg>
-                      <span className="pro">{catalog.name}</span>
+                      {/* <span className="pro">{catalog.name}</span> */}
                     </div>
                     <div>
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/1200/svg">
@@ -85,13 +88,15 @@ const CatalogList = () => {
                           </clipPath>
                         </defs>
                       </svg>
-                      <span className="pro">{catalog.time}</span>
+                      <span className="pro"></span>
                     </div>
                     <div>
                       <span className="pro"></span>
                     </div>
                   </div>
-                  <div className="name fw-bold">{catalog.description}</div>
+                  
+                  <Link  className="apply-btn name fw-bold " to={"/courses/" + catalog.id}>{catalog.name}</Link>
+
                 </div>
               </div>
               <div className="prog-cont">
