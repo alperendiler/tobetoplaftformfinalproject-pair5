@@ -1,5 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import "./catalogList.css"
+import courseService from '../../../services/courseService';
 const CatalogList = () => {
     const [catalogs, setapplications] = useState<{ id: number; time: string; name: string; description: string; image: string }[]>([]);
 
@@ -44,7 +45,8 @@ const CatalogList = () => {
     useEffect(() => {
       const fetchData = async () => {
         try {
-  
+  let response = await courseService.GetPublicCourseList()
+  console.log(response)
   
           setapplications(testCatalogs);
         } catch (error) {
