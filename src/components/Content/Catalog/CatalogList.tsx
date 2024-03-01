@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import "./catalogList.css"
+import "../../../styles/Catalog/catalogList.css"
 const CatalogList = () => {
     const [catalogs, setapplications] = useState<{ id: number; time: string; name: string; description: string; image: string }[]>([]);
 

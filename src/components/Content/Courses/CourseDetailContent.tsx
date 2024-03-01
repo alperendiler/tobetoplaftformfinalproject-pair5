@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./CourseDetailContent.css";
+import "../../../styles/Courses/courseDetailContent.css";
 import OffCanvas from "./OffCanvas";
 import { useState } from "react";
 import ButtonGroup from "antd/es/button/button-group";

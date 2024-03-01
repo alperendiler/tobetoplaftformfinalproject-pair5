@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./mainMyTrainings.css"
+import "../../../styles/mainMyTrainings.css"
 import React, { useEffect, useState } from 'react'
 import { GetAllCourseResponse } from "../../../models/responses/course/getAllCourseResponse";
 import courseService from "../../../services/courseService";

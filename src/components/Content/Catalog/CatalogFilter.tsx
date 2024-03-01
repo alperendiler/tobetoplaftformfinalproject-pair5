@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "./catalogFilter.css"
+import "../../../styles/Catalog/catalogFilter.css"
 interface FilterOption {
   label: string;
   value: string;

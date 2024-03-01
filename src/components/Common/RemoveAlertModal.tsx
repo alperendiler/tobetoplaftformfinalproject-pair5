@@ -1,5 +1,5 @@
 import React from 'react'
-import "./removeAlertModal.css"
+import "../../styles/removeAlertModal.css"
 type Props = { onClose: () => void;}
 
 export default function RemoveAlertModal({onClose }: Props) {

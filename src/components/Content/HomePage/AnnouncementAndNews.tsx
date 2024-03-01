@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import "./announcementAndNews.css"
+import "../../../styles/announcementAndNews.css"
 import AnnouncementDetail from './AnnouncementDetail';
 import { GetAllAnnouncementResponse } from '../../../models/responses/announcement/getAllAnnouncementResponse';
 import announcementService from '../../../services/announcementService';

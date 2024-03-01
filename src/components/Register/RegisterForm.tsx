@@ -2,7 +2,7 @@ import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
 import FormikInput from "../FormikInput/FormikInput";
 import { Link, useNavigate } from "react-router-dom";
-import "./register.css";
+import "../../styles/register.css";
 import authService from "../../services/authService";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

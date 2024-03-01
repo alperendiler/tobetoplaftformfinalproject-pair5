@@ -1,5 +1,5 @@
 
-import "./courseDetailHeader.css"
+import "../../../styles/Courses/courseDetailHeader.css"
 import React, { useState, useEffect } from "react";
 import Heart from "react-animated-heart";
 import { GetAllCourseResponse } from "../../../models/responses/course/getAllCourseResponse";

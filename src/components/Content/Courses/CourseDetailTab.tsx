@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CourseDetailContent from "./CourseDetailContent";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import "./CourseDetailTab.css";
+import "../../../styles/Courses/courseDetailTab.css";
 import { GetCourseResponse } from "../../../models/responses/course/getCourseResponse";
 import { GetCourseDetailResponse, Topic } from "../../../models/responses/course/getCourseDetailResponse";
 import SyncCourseDetailContent from "./SyncCourse/SyncCourseDetailContent";

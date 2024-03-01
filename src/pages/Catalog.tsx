@@ -1,5 +1,5 @@
 import React from "react";
-import "../components/Content/Catalog/catalog.css";
+import "../styles/Catalog/catalog.css";
 import Filters from "../components/Content/Catalog/CatalogFilter";
 import CatalogList from "../components/Content/Catalog/CatalogList";
 import Pagination from "../components/Common/Pagination";

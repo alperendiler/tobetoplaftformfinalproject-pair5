@@ -1,5 +1,5 @@
 import React from 'react'
-import "./experienceDetailModal.css"
+import "../../../styles/experienceDetailModal.css"
 type Props = {
     onClose: () => void;
     jobDescription:string;

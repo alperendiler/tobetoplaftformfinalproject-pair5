@@ -1,5 +1,5 @@
 import React from 'react'
-import "./surveys.css"
+import "../../../styles/surveys.css"
 type Props = {}
 
 export default function Surveys({}: Props) {

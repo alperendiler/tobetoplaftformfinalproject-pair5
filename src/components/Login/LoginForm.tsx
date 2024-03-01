@@ -10,7 +10,7 @@ import authService from "../../services/authService";
 import axiosInstance from "../../core/interceptors/axiosInterceptor";
 import { useNavigate } from "react-router-dom";
 import tokenService from "../../core/services/tokenService";
-import "./loginForm.css"
+import "../../styles/loginForm.css"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { jwtDecode } from "jwt-decode";

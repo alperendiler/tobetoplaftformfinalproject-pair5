@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./OffCanvas.css";
+import "../../../styles/Courses/offCanvas.css";
 import ReactDOM from "react-dom";
 import { CourseTopicTitle } from "../../../models/responses/course/getCourseDetailResponse";
 

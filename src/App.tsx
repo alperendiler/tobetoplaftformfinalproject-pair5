@@ -23,6 +23,7 @@ import Connection from "./pages/Connection";
 import { ToastContainer } from 'react-toastify';
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import ConnectionSuccess from "./pages/ConnectionSuccess";
+import OverloyLoader from "./components/Common/OverloyLoader";
  
 
 interface Props { }
@@ -30,7 +31,10 @@ function App({ }: Props) {
   return (
     <>
       <ToastContainer />
+      <OverloyLoader/>
+
       <Routes>
+
         <Route
           path="/"
           element={

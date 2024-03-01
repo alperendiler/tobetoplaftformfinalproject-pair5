@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent } from 'react';
-import "./CalendarFilter.css"
+import "../../../styles/calendarFilter.css"
 interface EgitimAramaProps {}
 
 interface EduStatus {
