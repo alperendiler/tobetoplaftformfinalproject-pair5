@@ -1,5 +1,4 @@
 import React, { useState,useEffect } from 'react';
-import "./catalogList.css"
 import courseService from '../../../services/courseService';
 import { GetAllCourseResponse } from '../../../models/responses/course/getAllCourseResponse';
 import { Link } from 'react-router-dom';
@@ -107,7 +106,7 @@ const CatalogList = () => {
           </div>
             ))
             ) : (
-              <p>Başvurular bulunamadı.</p>
+              <p>Katalog bulunamadı.</p>
             )}
           
           

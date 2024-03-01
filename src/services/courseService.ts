@@ -26,6 +26,10 @@ class CourseService extends BaseService<
     GetCourseDetail(Id: string): Promise<AxiosResponse<GetCourseDetailResponse, any>> {
         return axiosInstance.get<GetCourseDetailResponse>('Courses/getDetail' + `?Id=${Id}`);
     }
+    GetPublicCourseList(): Promise<AxiosResponse<GetAllCourseResponse, any>> {
+        return axiosInstance.get<GetAllCourseResponse>('Courses/getPublicCourseList');
+    }
 }
+
 
 export default new CourseService();
